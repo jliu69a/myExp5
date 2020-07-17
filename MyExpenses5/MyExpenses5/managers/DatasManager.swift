@@ -14,6 +14,7 @@ class DatasManager: NSObject {
     
     static let sharedInstance = DatasManager()
     
+    let folder: String = "homee" //production use
     let kExpenseCode: Int = 0
     let kTop10Code: Int = 1
     let kPaymentCode: Int = 2
@@ -28,7 +29,7 @@ class DatasManager: NSObject {
         df.dateFormat = "yyyy-MM-dd"
         let dateStr: String = df.string(from: selectedDate)
         
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/home_test/test_data_new.php?date=%@", dateStr)
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/preload_data.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
@@ -47,15 +48,53 @@ class DatasManager: NSObject {
             return []
         }
         
-        var myexpsList: [MyExpsData] = []
+        var dataList: [MyExpsData] = []
         do {
-            myexpsList = try JSONDecoder().decode([MyExpsData].self, from: data)
+            dataList = try JSONDecoder().decode([MyExpsData].self, from: data)
         }
         catch {
             print(error)
         }
         
-        return myexpsList
+        return dataList
+    }
+    
+    //MARK: - myexp by date
+    
+    func myExpsWithDate(selectedDate: Date, completion: @escaping  (Any)->()) {
+        
+        let df: DateFormatter = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let dateStr: String = df.string(from: selectedDate)
+        
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expense_by_date.php?date=%@", folder, dateStr)
+        let connect: ConnectionsManager = ConnectionsManager()
+        
+        connect.getDataFromUrl(url: url) { (data: Any) in
+            let myexpData: Data = data as! Data
+            let myexpsList: [Expense] = self.parseMyExpsWithDate(data: myexpData)
+            let value: Any = myexpsList as Any
+            completion(value)
+        }
+    }
+    
+    func parseMyExpsWithDate(data: Data) -> [Expense] {
+        
+        let json = try? JSON(data: data)
+        if json == nil {
+            print("- my expenses : No Data")
+            return []
+        }
+        
+        var dataList: [Expense] = []
+        do {
+            dataList = try JSONDecoder().decode([Expense].self, from: data)
+        }
+        catch {
+            print(error)
+        }
+        
+        return dataList
     }
     
     //MARK: - states data
@@ -81,15 +120,15 @@ class DatasManager: NSObject {
             return []
         }
         
-        var myexpsList: [StatesData] = []
+        var dataList: [StatesData] = []
         do {
-            myexpsList = try JSONDecoder().decode([StatesData].self, from: data)
+            dataList = try JSONDecoder().decode([StatesData].self, from: data)
         }
         catch {
             print(error)
         }
         
-        return myexpsList
+        return dataList
     }
 
 }

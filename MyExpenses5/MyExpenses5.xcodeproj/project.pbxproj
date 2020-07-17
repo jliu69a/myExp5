@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A1CDDB324C221D100E83452 /* ExpenseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */; };
+		5A1CDDB624C235D400E83452 /* ChangeDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CDDB524C235D400E83452 /* ChangeDateViewController.swift */; };
 		5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB7B24C133D4009792A1 /* DatasManager.swift */; };
 		5A87AB7E24C133D4009792A1 /* ConnectionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB7C24C133D4009792A1 /* ConnectionsManager.swift */; };
 		5A87AB8324C1340E009792A1 /* jsonsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB8124C1340E009792A1 /* jsonsData.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseHomeViewController.swift; sourceTree = "<group>"; };
+		5A1CDDB524C235D400E83452 /* ChangeDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeDateViewController.swift; sourceTree = "<group>"; };
 		5A87AB7B24C133D4009792A1 /* DatasManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasManager.swift; sourceTree = "<group>"; };
 		5A87AB7C24C133D4009792A1 /* ConnectionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsManager.swift; sourceTree = "<group>"; };
 		5A87AB8124C1340E009792A1 /* jsonsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jsonsData.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */,
 				5A87AB9024C134C7009792A1 /* ExpenseCell.swift */,
 				5A87AB8F24C134C7009792A1 /* ExpenseCell.xib */,
+				5A1CDDB524C235D400E83452 /* ChangeDateViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				5A8B1F3124C137D80094E543 /* MyExpDataManager.swift in Sources */,
 				5A87AB7E24C133D4009792A1 /* ConnectionsManager.swift in Sources */,
 				5A97C77D24C12E050019E2B4 /* ViewController.swift in Sources */,
+				5A1CDDB624C235D400E83452 /* ChangeDateViewController.swift in Sources */,
 				5A87AB8324C1340E009792A1 /* jsonsData.swift in Sources */,
 				5A1CDDB324C221D100E83452 /* ExpenseHomeViewController.swift in Sources */,
 				5A87AB9424C1351B009792A1 /* HomeViewController.swift in Sources */,

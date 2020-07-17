@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChangeDateViewControllerDelegate {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
@@ -17,6 +17,9 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var expsList: [Expense] = []
+    var selectedDate: Date = Date()
+    
+    var changeDateVC: ChangeDateViewController? = nil
     
     //MARK: - init
     
@@ -27,6 +30,9 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         
         self.activityIndicator.startAnimating()
         self.myexpPreloadData()
+        
+        self.displayDate(date: self.selectedDate)
+        self.amountLabel.text = "Total($): 0.00"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,9 +40,6 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         
         self.tableView.layer.borderColor = UIColor.black.cgColor
         self.tableView.layer.borderWidth = 0.5
-        
-        self.dateLabel.text = MyExpDataManager.sharedInstance.showDate(date: Date())
-        self.amountLabel.text = "Total($): 0.00"
     }
     
     //MARK: - table view source
@@ -68,12 +71,25 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: - get data
     
     func myexpPreloadData() {
-        let selectedDate: Date = Date()
         
-        MyExpDataManager.sharedInstance.myExpsData(selectedDate: selectedDate) { (any: Any) in
+        MyExpDataManager.sharedInstance.myExpsData(selectedDate: self.selectedDate) { (any: Any) in
             DispatchQueue.main.async {
                 self.expsList = any as! [Expense]
                 self.displayAmount()
+                self.displayDate(date: self.selectedDate)
+                self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
+            }
+        }
+    }
+    
+    func myexpWithSelectedDate(date: Date) {
+        
+        MyExpDataManager.sharedInstance.myExpsWithDate(selectedDate: date) { (any: Any) in
+            DispatchQueue.main.async {
+                self.expsList = any as! [Expense]
+                self.displayAmount()
+                self.displayDate(date: date)
                 self.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
             }
@@ -91,6 +107,50 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
         self.amountLabel.text = String(format: "Total($): %0.2f", totalAmount)
+    }
+    
+    func displayDate(date: Date) {
+        self.dateLabel.text = MyExpDataManager.sharedInstance.showDate(date: date)
+    }
+    
+    //MARK: - IB functions
+    
+    @IBAction func changeDateAction(_ sender: Any) {
+        
+        let storyboard: UIStoryboard = UIStoryboard.init(name: "expenseHome", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "ChangeDateViewController") as? ChangeDateViewController {
+            self.changeDateVC = vc
+            self.changeDateVC!.delegate = self
+            self.changeDateVC!.currentDate = self.selectedDate
+            self.present(self.changeDateVC!, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func addExpenseAction(_ sender: Any) {
+        //
+    }
+    
+    //MARK: - delegate functions
+    
+    func cancelSelectDate() {
+        self.closeChangeDateView()
+    }
+    
+    func selectNewDate(date: Date) {
+        
+        self.selectedDate = date
+        self.closeChangeDateView()
+        
+        self.myexpWithSelectedDate(date: self.selectedDate)
+        self.activityIndicator.startAnimating()
+    }
+    
+    func closeChangeDateView() {
+        
+        if self.changeDateVC != nil {
+            self.changeDateVC!.dismiss(animated: true, completion: nil)
+            self.changeDateVC = nil
+        }
     }
     
 }
