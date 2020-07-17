@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,10 +13,11 @@
 		5A97C78024C12E050019E2B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A97C77E24C12E050019E2B4 /* Main.storyboard */; };
 		5A97C78224C12E060019E2B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A97C78124C12E060019E2B4 /* Assets.xcassets */; };
 		5A97C78524C12E060019E2B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A97C78324C12E060019E2B4 /* LaunchScreen.storyboard */; };
+		94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5A97C77524C12E050019E2B4 /* MyExpenses5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyExpenses5.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A97C77524C12E050019E2B4 /* MyExp 5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MyExp 5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A97C77824C12E050019E2B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A97C77A24C12E050019E2B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5A97C77C24C12E050019E2B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +25,9 @@
 		5A97C78124C12E060019E2B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A97C78424C12E060019E2B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A97C78624C12E060019E2B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyExpenses5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E7E7A5EB671D2EB1790CB4C /* Pods-MyExpenses5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.debug.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.debug.xcconfig"; sourceTree = "<group>"; };
+		D3D82A40FD8B16F17D98AD67 /* Pods-MyExpenses5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.release.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,24 +35,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09B7087C37D9605A6AC9F57F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4AC9B4FD6DD80E42202ED767 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9E7E7A5EB671D2EB1790CB4C /* Pods-MyExpenses5.debug.xcconfig */,
+				D3D82A40FD8B16F17D98AD67 /* Pods-MyExpenses5.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		5A97C76C24C12E050019E2B4 = {
 			isa = PBXGroup;
 			children = (
 				5A97C77724C12E050019E2B4 /* MyExpenses5 */,
 				5A97C77624C12E050019E2B4 /* Products */,
+				4AC9B4FD6DD80E42202ED767 /* Pods */,
+				09B7087C37D9605A6AC9F57F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		5A97C77624C12E050019E2B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5A97C77524C12E050019E2B4 /* MyExpenses5.app */,
+				5A97C77524C12E050019E2B4 /* MyExp 5.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -106,9 +130,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A97C78924C12E060019E2B4 /* Build configuration list for PBXNativeTarget "MyExpenses5" */;
 			buildPhases = (
+				C6D1C4948B9AE6FDD1FA3139 /* [CP] Check Pods Manifest.lock */,
 				5A97C77124C12E050019E2B4 /* Sources */,
 				5A97C77224C12E050019E2B4 /* Frameworks */,
 				5A97C77324C12E050019E2B4 /* Resources */,
+				F13E41C2C626370792969BDE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -116,7 +142,7 @@
 			);
 			name = MyExpenses5;
 			productName = MyExpenses5;
-			productReference = 5A97C77524C12E050019E2B4 /* MyExpenses5.app */;
+			productReference = 5A97C77524C12E050019E2B4 /* MyExp 5.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -164,6 +190,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C6D1C4948B9AE6FDD1FA3139 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyExpenses5-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F13E41C2C626370792969BDE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5A97C77124C12E050019E2B4 /* Sources */ = {
@@ -314,6 +382,7 @@
 		};
 		5A97C78A24C12E060019E2B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E7E7A5EB671D2EB1790CB4C /* Pods-MyExpenses5.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -326,7 +395,7 @@
 				);
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "home-office.MyExpenses5";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "MyExp 5";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -334,6 +403,7 @@
 		};
 		5A97C78B24C12E060019E2B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3D82A40FD8B16F17D98AD67 /* Pods-MyExpenses5.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -346,7 +416,7 @@
 				);
 				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "home-office.MyExpenses5";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "MyExp 5";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
