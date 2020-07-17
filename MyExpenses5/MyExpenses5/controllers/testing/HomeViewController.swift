@@ -125,35 +125,37 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func myexpData() {
         
-        DatasManager.sharedInstance.myExpsData { (any: Any) in
-            DispatchQueue.main.async {
-                let myexpsList: [MyExpsData] = any as! [MyExpsData]
-                
-                self.totalSections = myexpsList.count
-                for each in myexpsList {
-                    if each.expense != nil {
-                        MyExpDataManager.sharedInstance.expenseList = each.expense!
-                    }
-                    if each.payments != nil {
-                        MyExpDataManager.sharedInstance.paymentList = each.payments!
-                    }
-                    if each.vendors != nil {
-                        MyExpDataManager.sharedInstance.vendorList = each.vendors!
-                    }
-                    if each.top10 != nil {
-                        MyExpDataManager.sharedInstance.top10List = each.top10!
-                    }
-                }
-                print("- ")
-                print("- total sections = \(myexpsList.count)")
-                print("- expense count = \(MyExpDataManager.sharedInstance.expenseList.count) | payment count = \(MyExpDataManager.sharedInstance.paymentList.count) | top 10 count = \(MyExpDataManager.sharedInstance.top10List.count) | vendor count = \(MyExpDataManager.sharedInstance.vendorList.count) ")
-                print("- ")
-                
-                self.tableView.reloadData()
-                
-                //self.allStatesData()
-            }
-        }
+        //-- not being used.
+//        DatasManager.sharedInstance.myExpsData { (any: Any) in
+//            DispatchQueue.main.async {
+//                let myexpsList: [MyExpsData] = any as! [MyExpsData]
+//
+//                self.totalSections = myexpsList.count
+//                for each in myexpsList {
+//                    if each.expense != nil {
+//                        MyExpDataManager.sharedInstance.expenseList = each.expense!
+//                    }
+//                    if each.payments != nil {
+//                        MyExpDataManager.sharedInstance.paymentList = each.payments!
+//                    }
+//                    if each.vendors != nil {
+//                        MyExpDataManager.sharedInstance.vendorList = each.vendors!
+//                    }
+//                    if each.top10 != nil {
+//                        MyExpDataManager.sharedInstance.top10List = each.top10!
+//                    }
+//                }
+//                print("- ")
+//                print("- total sections = \(myexpsList.count)")
+//                print("- expense count = \(MyExpDataManager.sharedInstance.expenseList.count) | payment count = \(MyExpDataManager.sharedInstance.paymentList.count) | top 10 count = \(MyExpDataManager.sharedInstance.top10List.count) | vendor count = \(MyExpDataManager.sharedInstance.vendorList.count) ")
+//                print("- ")
+//
+//                self.tableView.reloadData()
+//
+//                //self.allStatesData()
+//            }
+//        }
+        
     }
     
     func allStatesData() {

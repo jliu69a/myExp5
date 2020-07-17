@@ -20,13 +20,13 @@ class DatasManager: NSObject {
     let kVendorCode: Int = 3
     
     
-    //MARK: - myexp data
+    //MARK: - myexp preload data
     
-    func myExpsData(completion: @escaping  (Any)->()) {
+    func myExpsData(selectedDate: Date, completion: @escaping  (Any)->()) {
         
         let df: DateFormatter = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
-        let dateStr: String = df.string(from: Date())
+        let dateStr: String = df.string(from: selectedDate)
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/home_test/test_data_new.php?date=%@", dateStr)
         let connect: ConnectionsManager = ConnectionsManager()

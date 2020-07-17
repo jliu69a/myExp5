@@ -68,29 +68,12 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     //MARK: - get data
     
     func myexpPreloadData() {
+        let selectedDate: Date = Date()
         
-        DatasManager.sharedInstance.myExpsData { (any: Any) in
+        MyExpDataManager.sharedInstance.myExpsData(selectedDate: selectedDate) { (any: Any) in
             DispatchQueue.main.async {
-                let myexpsList: [MyExpsData] = any as! [MyExpsData]
-                
-                //self.totalSections = myexpsList.count
-                for each in myexpsList {
-                    if each.expense != nil {
-                        MyExpDataManager.sharedInstance.expenseList = each.expense!
-                        self.expsList = each.expense!
-                    }
-                    if each.payments != nil {
-                        MyExpDataManager.sharedInstance.paymentList = each.payments!
-                    }
-                    if each.vendors != nil {
-                        MyExpDataManager.sharedInstance.vendorList = each.vendors!
-                    }
-                    if each.top10 != nil {
-                        MyExpDataManager.sharedInstance.top10List = each.top10!
-                    }
-                }
+                self.expsList = any as! [Expense]
                 self.displayAmount()
-                
                 self.tableView.reloadData()
                 self.activityIndicator.stopAnimating()
             }

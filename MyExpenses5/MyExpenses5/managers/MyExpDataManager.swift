@@ -34,4 +34,34 @@ class MyExpDataManager: NSObject {
         return dateText
     }
     
+    func myExpsData(selectedDate: Date, completion: @escaping  (Any)->()) {
+        
+        DatasManager.sharedInstance.myExpsData(selectedDate: Date()) { (any: Any) in
+            DispatchQueue.main.async {
+                let myexpsList: [MyExpsData] = any as! [MyExpsData]
+                self.expenseList.removeAll()
+                self.paymentList.removeAll()
+                self.vendorList.removeAll()
+                self.top10List.removeAll()
+                
+                for each in myexpsList {
+                    if each.expense != nil {
+                        self.expenseList = each.expense!
+                    }
+                    if each.payments != nil {
+                        self.paymentList = each.payments!
+                    }
+                    if each.vendors != nil {
+                        self.vendorList = each.vendors!
+                    }
+                    if each.top10 != nil {
+                        self.top10List = each.top10!
+                    }
+                }
+                let value: Any = self.expenseList as Any
+                completion(value)
+            }
+        }
+    }
+    
 }
