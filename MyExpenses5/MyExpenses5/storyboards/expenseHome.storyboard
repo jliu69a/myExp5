@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PJM-uF-xTG">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +10,7 @@
         <!--Expense Home View Controller-->
         <scene sceneID="JT9-IC-Rz0">
             <objects>
-                <viewController storyboardIdentifier="ExpenseHomeViewController" id="IS5-Vi-ogy" customClass="ExpenseHomeViewController" customModule="MyExp_11" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExpenseHomeViewController" id="IS5-Vi-ogy" customClass="ExpenseHomeViewController" customModule="MyExp_5" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U91-89-C1O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,7 +18,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RK-L5-Ue3" userLabel="message base view">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UE9-g4-PIp" userLabel="data base view">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UE9-g4-PIp" userLabel="top data view">
                                         <rect key="frame" x="10" y="0.0" width="355" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="34" translatesAutoresizingMaskIntoConstraints="NO" id="uLo-TY-qsI" userLabel="date label">
@@ -90,9 +89,6 @@
                                         <state key="normal" title="change date">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="changeDateAction:" destination="IS5-Vi-ogy" eventType="touchUpInside" id="ZAv-IX-OYP"/>
-                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myExp_plus.png" translatesAutoresizingMaskIntoConstraints="NO" id="If0-3Z-4XL" userLabel="add new image">
                                         <rect key="frame" x="331" y="0.0" width="44" height="44"/>
@@ -108,9 +104,6 @@
                                         <state key="normal" title="add new">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="addNewAction:" destination="IS5-Vi-ogy" eventType="touchUpInside" id="dqr-Jl-yZQ"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -152,20 +145,20 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="Bdr-oN-dPT" id="J09-HL-SmA"/>
-                        <outlet property="displayAmountLabel" destination="SbT-gK-FQA" id="ljW-iq-1RQ"/>
-                        <outlet property="displayDateLabel" destination="uLo-TY-qsI" id="ia0-Xt-Evu"/>
+                        <outlet property="activityIndicator" destination="Bdr-oN-dPT" id="HZ6-CP-NxR"/>
+                        <outlet property="amountLabel" destination="SbT-gK-FQA" id="7DZ-46-oDf"/>
+                        <outlet property="dateLabel" destination="uLo-TY-qsI" id="dfW-16-ZdL"/>
                         <outlet property="tableView" destination="2sD-EL-bq6" id="vHS-jN-SZP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8wP-W3-j7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1085.625" y="133.09859154929578"/>
+            <point key="canvasLocation" x="-148" y="132.68365817091455"/>
         </scene>
         <!--Change Date View Controller-->
         <scene sceneID="oVL-aj-a1j">
             <objects>
-                <viewController storyboardIdentifier="ChangeDateViewController" id="Edb-U3-irL" customClass="ChangeDateViewController" customModule="MyExp_11" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeDateViewController" id="Edb-U3-irL" customClass="ChangeDateViewController" customModule="MyExp_5" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h78-Ht-BYP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -283,12 +276,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5e5-d3-C0j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-146.25" y="132.04225352112675"/>
+            <point key="canvasLocation" x="792.79999999999995" y="131.78410794602701"/>
         </scene>
         <!--Edit Expenses View Controller-->
         <scene sceneID="CeC-Jc-VcM">
             <objects>
-                <viewController storyboardIdentifier="EditExpensesViewController" id="KwG-Y4-JbD" customClass="EditExpensesViewController" customModule="MyExp_11" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditExpensesViewController" id="KwG-Y4-JbD" customClass="EditExpensesViewController" customModule="MyExp_5" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TJq-hd-dJ6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -522,7 +515,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ej5-8r-OfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="740.625" y="132.04225352112675"/>
+            <point key="canvasLocation" x="1679.2" y="131.78410794602701"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nB9-8t-MSf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="PJM-uF-xTG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Iu8-VD-SQI">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IS5-Vi-ogy" kind="relationship" relationship="rootViewController" id="lyw-zQ-BE3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zUC-sE-he7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-940" y="133"/>
         </scene>
     </scenes>
     <resources>

@@ -26,15 +26,16 @@ class ExpenseCell: UITableViewCell {
     }
     
     //-- rewrite
-//    func displayModelData(data: ExpenseModel) {
-//
-//        self.cellVendorLabel.text = data.vendor!
-//        self.cellPaymentLabel.text = data.payment!
-//        self.cellNotesLabel.text = data.note!
-//        self.cellTimeLabel.text = String(format: "( time: %@ )", data.time!)
-//
-//        let amountText = String(format: "%0.2f", data.amount)
-//        self.cellAmountLabel.text = amountText
-//    }
+    func displayModelData(data: Expense) {
+
+        self.cellVendorLabel.text = data.vendor ?? ""
+        self.cellPaymentLabel.text = data.payment ?? ""
+        self.cellNotesLabel.text = data.note ?? ""
+        self.cellTimeLabel.text = String(format: "( time: %@ )", (data.time ?? ""))
+        
+        let amountText: String = data.amount ?? "0"
+        let amountValue: Float = (amountText as NSString).floatValue
+        self.cellAmountLabel.text = String(format: "%0.2f", amountValue)
+    }
     
 }

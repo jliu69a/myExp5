@@ -18,5 +18,20 @@ class MyExpDataManager: NSObject {
     var vendorList: [Vendor] = []
     var top10List: [Top10] = []
     
+    //MARK: - util functions
+    
+    func showDate(date: Date?) -> String {
+        
+        var selectedDate: Date? = date
+        if selectedDate == nil {
+            selectedDate = Date()
+        }
+        
+        let df: DateFormatter = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd, E"
+        let dateText: String = df.string(from: selectedDate!)
+        
+        return dateText
+    }
     
 }

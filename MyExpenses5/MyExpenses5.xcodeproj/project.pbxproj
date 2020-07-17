@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A1CDDB324C221D100E83452 /* ExpenseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */; };
 		5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB7B24C133D4009792A1 /* DatasManager.swift */; };
 		5A87AB7E24C133D4009792A1 /* ConnectionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB7C24C133D4009792A1 /* ConnectionsManager.swift */; };
 		5A87AB8324C1340E009792A1 /* jsonsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB8124C1340E009792A1 /* jsonsData.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseHomeViewController.swift; sourceTree = "<group>"; };
 		5A87AB7B24C133D4009792A1 /* DatasManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasManager.swift; sourceTree = "<group>"; };
 		5A87AB7C24C133D4009792A1 /* ConnectionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsManager.swift; sourceTree = "<group>"; };
 		5A87AB8124C1340E009792A1 /* jsonsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jsonsData.swift; sourceTree = "<group>"; };
@@ -85,6 +87,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5A1CDDB124C221B100E83452 /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				5A87AB9324C1351B009792A1 /* HomeViewController.swift */,
+			);
+			path = testing;
+			sourceTree = "<group>";
+		};
+		5A1CDDB424C2226B00E83452 /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				5A87AB9524C1355C009792A1 /* home.storyboard */,
+			);
+			path = testing;
+			sourceTree = "<group>";
+		};
 		5A87AB7F24C133FA009792A1 /* codables */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,13 +146,13 @@
 				5A97C77824C12E050019E2B4 /* AppDelegate.swift */,
 				5A97C77A24C12E050019E2B4 /* SceneDelegate.swift */,
 				5A97C77C24C12E050019E2B4 /* ViewController.swift */,
+				5A97C77E24C12E050019E2B4 /* Main.storyboard */,
 				5A87AB7F24C133FA009792A1 /* codables */,
 				5A87AB8624C13479009792A1 /* images */,
 				5A97C78F24C12E5C0019E2B4 /* managers */,
 				5A97C78E24C12E530019E2B4 /* models */,
 				5A97C78D24C12E4C0019E2B4 /* controllers */,
 				5A97C78C24C12E430019E2B4 /* storyboards */,
-				5A97C77E24C12E050019E2B4 /* Main.storyboard */,
 				5A97C78124C12E060019E2B4 /* Assets.xcassets */,
 				5A97C78324C12E060019E2B4 /* LaunchScreen.storyboard */,
 				5A97C78624C12E060019E2B4 /* Info.plist */,
@@ -145,7 +163,7 @@
 		5A97C78C24C12E430019E2B4 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				5A87AB9524C1355C009792A1 /* home.storyboard */,
+				5A1CDDB424C2226B00E83452 /* testing */,
 				5A87AB8424C13467009792A1 /* expenseHome.storyboard */,
 			);
 			path = storyboards;
@@ -154,7 +172,8 @@
 		5A97C78D24C12E4C0019E2B4 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5A87AB9324C1351B009792A1 /* HomeViewController.swift */,
+				5A1CDDB124C221B100E83452 /* testing */,
+				5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */,
 				5A87AB9024C134C7009792A1 /* ExpenseCell.swift */,
 				5A87AB8F24C134C7009792A1 /* ExpenseCell.xib */,
 			);
@@ -304,6 +323,7 @@
 				5A87AB7E24C133D4009792A1 /* ConnectionsManager.swift in Sources */,
 				5A97C77D24C12E050019E2B4 /* ViewController.swift in Sources */,
 				5A87AB8324C1340E009792A1 /* jsonsData.swift in Sources */,
+				5A1CDDB324C221D100E83452 /* ExpenseHomeViewController.swift in Sources */,
 				5A87AB9424C1351B009792A1 /* HomeViewController.swift in Sources */,
 				5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */,
 				5A87AB9224C134C7009792A1 /* ExpenseCell.swift in Sources */,
