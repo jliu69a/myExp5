@@ -40,7 +40,7 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.tableView.layer.borderColor = UIColor.black.cgColor
+        self.tableView.layer.borderColor = UIColor.darkGray.cgColor
         self.tableView.layer.borderWidth = 0.5
         
         self.selectedExpense = nil
