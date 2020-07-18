@@ -227,10 +227,10 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.displayPaymentData()
     }
     
-    func didSelectVendor(item: Vendor) {
+    func didSelectVendor(name: String, id: String) {
         
-        self.selectedExpense!.vendor = item.vendor!
-        self.selectedExpense!.vendor_id = item.id!
+        self.selectedExpense!.vendor = name
+        self.selectedExpense!.vendor_id = id
         self.displayVendorData()
     }
     

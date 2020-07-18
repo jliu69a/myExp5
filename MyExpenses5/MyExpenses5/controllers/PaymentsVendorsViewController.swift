@@ -12,7 +12,7 @@ import UIKit
 protocol PaymentsVendorsViewControllerDelegate: AnyObject {
     
     func didSelectPayment(item: Payment)
-    func didSelectVendor(item: Vendor)
+    func didSelectVendor(name: String, id: String)
 }
 
 
@@ -170,7 +170,23 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
             self.delegate?.didSelectPayment(item: self.allPayments[indexPath.row])
         }
         else {
-            self.delegate?.didSelectVendor(item: self.allVendors[indexPath.row])
+            var name: String = ""
+            var id: String = ""
+            
+            let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[indexPath.section]
+            if indexPath.section == 0 {
+                let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
+                let item: Top10 = array[indexPath.row]
+                name = item.vendor ?? ""
+                id = item.id ?? "0"
+            }
+            else {
+                let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
+                let item: Vendor = array[indexPath.row]
+                name = item.vendor ?? ""
+                id = item.id ?? "0"
+            }
+            self.delegate?.didSelectVendor(name: name, id: id)
         }
         
         self.navigationController!.popViewController(animated: true)

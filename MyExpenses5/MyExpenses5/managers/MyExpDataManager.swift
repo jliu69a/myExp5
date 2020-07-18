@@ -122,19 +122,14 @@ class MyExpDataManager: NSObject {
         
         //-- test print
         print("- ")
-        print("- total vendor titles = \(self.vendorDisplayTitles.count) ")
-        print("- ")
-        
-        for eachTitle in self.vendorDisplayTitles {
+        let array: [Top10] = self.vendorDisplayData[top10Key] as? [Top10] ?? []
+        for each in array {
             
-            if eachTitle == top10Key {
-                let array: [Top10] = (self.vendorDisplayData[eachTitle] as? [Top10]) ?? []
-                print("  - title : \(eachTitle), size = \(array.count)")
-            }
-            else {
-                let array: [Vendor] = (self.vendorDisplayData[eachTitle] as? [Vendor]) ?? []
-                print("  - title : \(eachTitle), size = \(array.count)")
-            }
+            let name = each.vendor ?? ""
+            let id = each.id ?? "0"
+            let total = each.total ?? "0"
+            
+            print("  - top 10, id = \(id), total = \(total), name = \(name)")
         }
         print("- ")
     }
@@ -212,6 +207,7 @@ class MyExpDataManager: NSObject {
                     }
                 }
                 let value: Any = self.expenseList as Any
+                self.parseVendorsArray()
                 completion(value)
             }
         }
