@@ -18,8 +18,10 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     
     var expsList: [Expense] = []
     var selectedDate: Date = Date()
+    var selectedExpense: Expense? = nil
     
     var changeDateVC: ChangeDateViewController? = nil
+    var editExpenseVC: EditExpensesViewController? = nil
     
     //MARK: - init
     
@@ -40,6 +42,8 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         
         self.tableView.layer.borderColor = UIColor.black.cgColor
         self.tableView.layer.borderWidth = 0.5
+        
+        self.selectedExpense = nil
     }
     
     //MARK: - table view source
@@ -66,6 +70,28 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+        self.selectedExpense = self.expsList[indexPath.row]
+        
+        let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        
+        alert.addAction( UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction) in
+            //
+            print("- ")
+            print("- to delete, myexp ID = \(self.selectedExpense!.id!) ")
+            print("- ")
+        }) )
+        
+        alert.addAction( UIAlertAction(title: "Edit", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
+            //
+            print("- ")
+            print("- to edit, myexp ID = \(self.selectedExpense!.id!) ")
+            print("- ")
+            self.showAddEditPage(model: self.selectedExpense)
+        }) )
+        
+        alert.addAction( UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil) )
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     //MARK: - get data
@@ -113,6 +139,20 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         self.dateLabel.text = MyExpDataManager.sharedInstance.showDate(date: date)
     }
     
+    //MARK: - change data
+    
+    func showAddEditPage(model: Expense?) {
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "expenseHome", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "EditExpensesViewController") as? EditExpensesViewController {
+            self.editExpenseVC = vc
+            self.editExpenseVC!.selectedExpense = model
+            //self.editExpenseVC!.delegate = self
+            //self.navController!.pushViewController(self.editExpenseVC!, animated: true)
+            self.navigationController?.pushViewController(self.editExpenseVC!, animated: true)
+        }
+    }
+    
     //MARK: - IB functions
     
     @IBAction func changeDateAction(_ sender: Any) {
@@ -127,7 +167,7 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     @IBAction func addExpenseAction(_ sender: Any) {
-        //
+        self.showAddEditPage(model: nil)
     }
     
     //MARK: - delegate functions

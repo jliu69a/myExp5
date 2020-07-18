@@ -48,9 +48,9 @@ public struct Expense: Codable {
     var id : String?
     var note : String?
     var payment : String?
-    var paymentId : String?
+    var payment_id : String?
     var time : String?
     var vendor : String?
-    var vendorId : String?
+    var vendor_id : String?
 }
 
