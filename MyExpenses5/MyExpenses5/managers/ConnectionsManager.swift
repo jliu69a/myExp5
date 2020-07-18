@@ -13,7 +13,10 @@ import SwiftyJSON
 
 class ConnectionsManager: NSObject {
     
+    //MARK: - APIs
+    
     func getJsonFromUrl(url: String, completion: @escaping (_ json: JSON) -> Void) {
+        
         AF.request(url).responseJSON { response in
             switch response.result {
             case let .success(value):
@@ -26,7 +29,9 @@ class ConnectionsManager: NSObject {
         }
     }
     
+    
     func getDataFromUrl(url: String, completion: @escaping (_ data: Any) -> Void) {
+        
         AF.request(url).responseData { response in
             switch response.result {
             case let .success(value):
@@ -37,16 +42,22 @@ class ConnectionsManager: NSObject {
         }
     }
     
-    func saveHomeTestData(url: String, data: HomeTest, completion: @escaping (_ data: Any) -> Void) {
+    
+    func saveDataFromUrl(url: String, parameters: [String: Any], completion: @escaping (_ data: Any) -> Void) {
         
-//        AF.request(url, method: .post, parameters: data, encoder: JSONParameterEncoder.default).responseData { response in
-//            switch response.result {
-//            case let .success(value):
-//                completion(value)
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
+        AF.request(url, method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: nil).validate().responseData { response in
+            switch response.result {
+            case let .success(value):
+                completion(value)
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
+    
+    //MARK: - testing
+    
+    func saveHomeTestData(url: String, data: HomeTest, completion: @escaping (_ data: Any) -> Void) {
         
         let parameters: [String: Any] = ["name": ("to save 2" as Any), "value": ("testing data 2" as Any), "notes": ("call from app 2" as Any)]
         AF.request(url, method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: nil).validate().responseData { response in
@@ -57,8 +68,6 @@ class ConnectionsManager: NSObject {
                 print(error)
             }
         }
-        
-        
     }
     
 }

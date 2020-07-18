@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChangeDateViewControllerDelegate {
+class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChangeDateViewControllerDelegate, EditExpensesViewControllerDelegate {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
@@ -44,13 +44,6 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         self.tableView.layer.borderWidth = 0.5
         
         self.selectedExpense = nil
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        //-- testing only
-        //MyExpDataManager.sharedInstance.saveHomeTest()
     }
     
     //MARK: - table view source
@@ -89,10 +82,6 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         }) )
         
         alert.addAction( UIAlertAction(title: "Edit", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
-            //
-            print("- ")
-            print("- to edit, myexp ID = \(self.selectedExpense!.id!) ")
-            print("- ")
             self.showAddEditPage(model: self.selectedExpense)
         }) )
         
@@ -154,7 +143,7 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         if let vc = storyboard.instantiateViewController(withIdentifier: "EditExpensesViewController") as? EditExpensesViewController {
             self.editExpenseVC = vc
             self.editExpenseVC!.selectedExpense = model
-            //self.editExpenseVC!.delegate = self
+            self.editExpenseVC!.delegate = self
             //self.navController!.pushViewController(self.editExpenseVC!, animated: true)
             self.navigationController?.pushViewController(self.editExpenseVC!, animated: true)
         }
@@ -197,6 +186,24 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         if self.changeDateVC != nil {
             self.changeDateVC!.dismiss(animated: true, completion: nil)
             self.changeDateVC = nil
+        }
+    }
+    
+    func didChangeExpenseData(data: Expense, selectedDate: Date, isForNew: Bool) {
+        self.selectedExpense = nil
+        
+        let actionCode: Int = isForNew == true ? MyExpDataManager.sharedInstance.kInsertCode : MyExpDataManager.sharedInstance.kUpdateCode
+        self.selectedDate = selectedDate
+        self.activityIndicator.startAnimating()
+        
+        MyExpDataManager.sharedInstance.saveMyexpsWithData(data: data, actionCode: actionCode)  { (any: Any) in
+            DispatchQueue.main.async {
+                self.expsList = any as! [Expense]
+                self.displayAmount()
+                self.displayDate(date: self.selectedDate)
+                self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
+            }
         }
     }
     

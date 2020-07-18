@@ -97,6 +97,41 @@ class DatasManager: NSObject {
         return dataList
     }
     
+    //MARK: - save changes
+    
+    func saveMyexpsWithParameters(parameters: [String: Any], completion: @escaping  (Any)->()) {
+        
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expenses_change.php", folder)
+        let connect: ConnectionsManager = ConnectionsManager()
+        
+        connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
+            let myexpData: Data = data as! Data
+            let myexpsList: [EditMyExpsData] = self.parseSaveMyexpsWithParameters(data: myexpData)
+            let value: Any = myexpsList as Any
+            completion(value)
+        }
+    }
+    
+    func parseSaveMyexpsWithParameters(data: Data) -> [EditMyExpsData] {
+        
+        let json = try? JSON(data: data)
+        if json == nil {
+            print("- my expenses : No Data")
+            return []
+        }
+        
+        var dataList: [EditMyExpsData] = []
+        do {
+            dataList = try JSONDecoder().decode([EditMyExpsData].self, from: data)
+        }
+        catch {
+            print(error)
+        }
+        
+        return dataList
+    }
+    
+    
     //MARK: - save home test
     
     func saveHomeTest(data: HomeTest) {

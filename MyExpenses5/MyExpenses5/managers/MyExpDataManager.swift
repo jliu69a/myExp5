@@ -12,6 +12,10 @@ class MyExpDataManager: NSObject {
     
     static let sharedInstance = MyExpDataManager()
     
+    let kInsertCode: Int = 1
+    let kUpdateCode: Int = 2
+    let kDeleteCode: Int = 3
+    
     var totalSections: Int = 0
     var expenseList: [Expense] = []
     var paymentList: [Payment] = []
@@ -32,6 +36,49 @@ class MyExpDataManager: NSObject {
         let dateText: String = df.string(from: selectedDate!)
         
         return dateText
+    }
+    
+    func createParameters(data: Expense, actionCode: Int) -> [String: Any] {
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let currentDate: String = df.string(from: Date())
+        df.dateFormat = "HH:mm:ss"
+        let currentTime: String = df.string(from: Date())
+        
+        let id: String = data.id ?? "-1"
+        let date: String = data.date ?? currentDate
+        let time: String = data.time ?? currentTime
+        let vendorId: String = data.vendor_id ?? "0"
+        let paymentId: String = data.payment_id ?? "0"
+        let amount: String = data.amount ?? "0"
+        let note: String = data.note ?? ""
+        
+        var isEdit: String = "0"
+        switch actionCode {
+        case kInsertCode:
+            isEdit = "0"
+            break
+        case kUpdateCode:
+            isEdit = "1"
+            break
+        case kDeleteCode:
+            isEdit = "0"
+            break
+        default:
+            break
+        }
+        
+        let parameters: [String: Any] = ["id": (id as Any), "date": (date as Any), "time": (time as Any), "vendorid":(vendorId as Any), "paymentid":(paymentId as Any), "amount":(amount as Any), "note":(note as Any), "isedit":(isEdit as Any)]
+        
+        return parameters
+    }
+    
+    func showAlert(title: String, message: String, vc: UIViewController) {
+        
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil) )
+        vc.present(alert, animated: true, completion: nil)
     }
     
     //MARK: - get myexp data
@@ -79,6 +126,31 @@ class MyExpDataManager: NSObject {
     }
     
     //MARK: - save myexp data
+    
+    func saveMyexpsWithData(data: Expense, actionCode: Int, completion: @escaping  (Any)->()) {
+        
+        let parameters: [String: Any] = self.createParameters(data: data, actionCode: actionCode)
+        DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { (any: Any) in
+            DispatchQueue.main.async {
+                let myexpsList: [EditMyExpsData] = any as! [EditMyExpsData]
+                self.expenseList.removeAll()
+                self.top10List.removeAll()
+                
+                for each in myexpsList {
+                    if each.expense != nil {
+                        self.expenseList = each.expense!
+                    }
+                    if each.top10 != nil {
+                        self.top10List = each.top10!
+                    }
+                }
+                let value: Any = self.expenseList as Any
+                completion(value)
+            }
+        }
+    }
+    
+    //MARK: - testing
     
     func saveHomeTest() {
         

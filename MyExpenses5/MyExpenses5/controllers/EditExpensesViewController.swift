@@ -11,8 +11,7 @@ import Foundation
 
 
 protocol EditExpensesViewControllerDelegate: AnyObject {
-    
-    func startShowingActivityIndicator()
+    func didChangeExpenseData(data: Expense, selectedDate: Date, isForNew: Bool)
 }
 
 
@@ -29,11 +28,14 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     @IBOutlet weak var changeDateButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
+    weak var delegate: EditExpensesViewControllerDelegate?
+    
     var selectedExpense: Expense? = nil
     
     var changeDateVC: ChangeDateViewController? = nil
     var selectedDate: Date = Date()
     var amountData: String = ""
+    var isForNew: Bool = false
     
     
     //MARK: - init
@@ -43,6 +45,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         
         if self.selectedExpense == nil {
             self.selectedExpense = Expense()
+            self.isForNew = true
         }
 
         self.priceTextField.text = self.selectedExpense!.amount ?? ""
@@ -110,13 +113,6 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.selectedExpense!.time = timeStr
     }
     
-    func showAlert(title: String, message: String) {
-        
-        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil) )
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     //MARK: - IB functiona
     
     @IBAction func gobackAction(_ sender: Any) {
@@ -126,6 +122,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     }
     
     @IBAction func selectPaymentAction(_ sender: Any) {
+        self.clearKeyboards()
         
         let storyboard = UIStoryboard(name: "pandv", bundle: nil)
         if let vc: PaymentsVendorsViewController = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
@@ -136,6 +133,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     }
     
     @IBAction func selectVendorAction(_ sender: Any) {
+        self.clearKeyboards()
         
         let storyboard = UIStoryboard(name: "pandv", bundle: nil)
         if let vc: PaymentsVendorsViewController = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
@@ -146,6 +144,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     }
     
     @IBAction func changeDateAction(_ sender: Any) {
+        self.clearKeyboards()
         
         let storyboard: UIStoryboard = UIStoryboard.init(name: "expenseHome", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "ChangeDateViewController") as? ChangeDateViewController {
@@ -160,37 +159,19 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.clearKeyboards()
         
         if self.selectedExpense!.payment_id == nil {
-            self.showAlert(title: "Error", message: "Need to select a payment type.")
+            MyExpDataManager.sharedInstance.showAlert(title: "Error", message: "Need to select a payment.", vc: self)
             return
         }
         if self.selectedExpense!.vendor_id == nil {
-            self.showAlert(title: "Error", message: "Need to select a vendor.")
+            MyExpDataManager.sharedInstance.showAlert(title: "Error", message: "Need to select a vendor.", vc: self)
             return
         }
         
         self.selectedExpense!.amount = self.priceTextLabel.text!
         self.selectedExpense!.note = self.notesTextField.text ?? ""
         
-        print("- ")
-        print("- to save :")
-        print("- ")
-        print("- id = \(self.selectedExpense!.id ?? "nil")")
-        print("- ")
-        print("- date = \(self.selectedExpense!.date!) ")
-        print("- time = \(self.selectedExpense!.time!)")
-        print("- ")
-        print("- vendor = \(self.selectedExpense!.vendor!)")
-        print("- vendor ID = \(self.selectedExpense!.vendor_id!)")
-        print("- ")
-        print("- payment = \(self.selectedExpense!.payment!)")
-        print("- payment ID = \(self.selectedExpense!.payment_id!)")
-        print("- ")
-        print("- amount = \(self.selectedExpense!.amount!)")
-        print("- ")
-        print("- notes = \(self.selectedExpense!.note!)")
-        print("- ")
-
-        //-- add or edit here.
+        self.delegate?.didChangeExpenseData(data: self.selectedExpense!, selectedDate: self.selectedDate, isForNew: self.isForNew)
+        self.navigationController!.popViewController(animated: true)
     }
     
     //MARK: - text field delegate
@@ -230,7 +211,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         
         var priceStr: String = "0.00"
         if self.priceTextLabel.text != nil && self.priceTextLabel.text!.count > 0 {
-            priceStr = self.priceTextLabel.text!
+            priceStr = self.priceTextField.text!
         }
         let priceValue: Float = fabsf((priceStr as NSString).floatValue / 100.0)
         self.amountData = String(format: "%0.2f", priceValue)
