@@ -46,6 +46,13 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         self.selectedExpense = nil
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //-- testing only
+        //MyExpDataManager.sharedInstance.saveHomeTest()
+    }
+    
     //MARK: - table view source
     
     func numberOfSections(in tableView: UITableView) -> Int {

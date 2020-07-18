@@ -54,3 +54,11 @@ public struct Expense: Codable {
     var vendor_id : String?
 }
 
+//MARK: - testing
+
+public struct HomeTest: Encodable {
+    var name: String
+    var value: String
+    var notes: String
+}
+

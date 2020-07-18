@@ -34,6 +34,8 @@ class MyExpDataManager: NSObject {
         return dateText
     }
     
+    //MARK: - get myexp data
+    
     func myExpsData(selectedDate: Date, completion: @escaping  (Any)->()) {
         
         DatasManager.sharedInstance.myExpsData(selectedDate: selectedDate) { (any: Any) in
@@ -74,6 +76,14 @@ class MyExpDataManager: NSObject {
                 completion(value)
             }
         }
+    }
+    
+    //MARK: - save myexp data
+    
+    func saveHomeTest() {
+        
+        let data: HomeTest = HomeTest(name: "real test", value: "to save", notes: "calliing from the app")
+        DatasManager.sharedInstance.saveHomeTest(data: data)
     }
     
 }

@@ -16,7 +16,7 @@ protocol EditExpensesViewControllerDelegate: AnyObject {
 }
 
 
-class EditExpensesViewController: UIViewController, UITextFieldDelegate {
+class EditExpensesViewController: UIViewController, UITextFieldDelegate, PaymentsVendorsViewControllerDelegate, ChangeDateViewControllerDelegate {
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -31,52 +31,90 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate {
     
     var selectedExpense: Expense? = nil
     
+    var changeDateVC: ChangeDateViewController? = nil
+    var selectedDate: Date = Date()
+    var amountData: String = ""
+    
+    
     //MARK: - init
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if self.selectedExpense == nil {
+            self.selectedExpense = Expense()
+        }
+
+        self.priceTextField.text = self.selectedExpense!.amount ?? ""
+        self.priceTextLabel.text = self.selectedExpense!.amount ?? "0.00"
+        self.notesTextField.text = self.selectedExpense!.note ?? ""
+
+        self.displayPaymentData()
+        self.displayVendorData()
+        self.displayInitialDate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.titleLabel.text = (self.selectedExpense == nil) ? "Add" : "Edit"
+        self.priceTextField.addTarget(self, action: #selector(changedPrice), for: UIControl.Event.editingChanged)
+    }
+    
+    //MARK: - helpers
+    
+    func displayPaymentData() {
+        var title: String = "select a payment"
         
-        self.selectPaymentButton.setTitle("select a payment", for: UIControl.State.normal)
-        self.selectPaymentButton.setTitle("select a payment", for: UIControl.State.highlighted)
+        if self.selectedExpense!.payment != nil && self.selectedExpense!.payment_id != nil {
+            title = String(format: "%@ (%@)", self.selectedExpense!.payment!, self.selectedExpense!.payment_id!)
+        }
+        self.selectPaymentButton.setTitle(title, for: UIControl.State.normal)
+        self.selectPaymentButton.setTitle(title, for: UIControl.State.highlighted)
+    }
+    
+    func displayVendorData() {
+        var title: String = "select a vendor"
         
-        self.selectVendorButton.setTitle("select a vendor", for: UIControl.State.normal)
-        self.selectVendorButton.setTitle("select a vendor", for: UIControl.State.highlighted)
+        if self.selectedExpense!.vendor != nil && self.selectedExpense!.vendor_id != nil {
+            title = String(format: "%@ (%@)", self.selectedExpense!.vendor!, self.selectedExpense!.vendor_id!)
+        }
+        self.selectVendorButton.setTitle(title, for: UIControl.State.normal)
+        self.selectVendorButton.setTitle(title, for: UIControl.State.highlighted)
+    }
+    
+    func displayInitialDate() {
+        
+        if self.selectedExpense!.date == nil || self.selectedExpense!.time == nil {
+            self.selectedDate = Date()
+            self.displayDate()
+        }
+        else {
+            self.changeDateButton.setTitle(self.selectedExpense!.date!, for: UIControl.State.normal)
+            self.changeDateButton.setTitle(self.selectedExpense!.date!, for: UIControl.State.highlighted)
+        }
+    }
+    
+    func displayDate() {
         
         let df: DateFormatter = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
-        var today: String = df.string(from: Date())
+        let dateStr: String = df.string(from: self.selectedDate)
+        self.selectedExpense!.date = dateStr
         
-        if self.selectedExpense == nil {
-            self.priceTextField.text = nil
-            self.priceTextLabel.text = "0.00"
-            self.notesTextField.text = nil
-        }
-        else {
-            self.priceTextField.text = self.selectedExpense!.amount!
-            self.priceTextLabel.text = self.selectedExpense!.amount!
-            self.notesTextField.text = self.selectedExpense!.note!
-            
-            today = self.selectedExpense!.date ?? today
-        }
+        self.changeDateButton.setTitle(dateStr, for: UIControl.State.normal)
+        self.changeDateButton.setTitle(dateStr, for: UIControl.State.highlighted)
         
-        self.changeDateButton.setTitle(today, for: UIControl.State.normal)
-        self.changeDateButton.setTitle(today, for: UIControl.State.highlighted)
+        df.dateFormat = "HH:mm:ss"
+        let timeStr: String = df.string(from: self.selectedDate)
+        self.selectedExpense!.time = timeStr
+    }
+    
+    func showAlert(title: String, message: String) {
         
-        if self.selectedExpense != nil {
-            let payment: String = String(format: "%@ (%@)", self.selectedExpense!.payment!, self.selectedExpense!.payment_id!)
-            self.selectPaymentButton.setTitle(payment, for: UIControl.State.normal)
-            self.selectPaymentButton.setTitle(payment, for: UIControl.State.highlighted)
-            
-            let vendor: String = String(format: "%@ (%@)", self.selectedExpense!.vendor!, self.selectedExpense!.vendor_id!)
-            self.selectVendorButton.setTitle(vendor, for: UIControl.State.normal)
-            self.selectVendorButton.setTitle(vendor, for: UIControl.State.highlighted)
-        }
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil) )
+        self.present(alert, animated: true, completion: nil)
     }
     
     //MARK: - IB functiona
@@ -88,25 +126,70 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func selectPaymentAction(_ sender: Any) {
-        //
+        
+        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
+        if let vc: PaymentsVendorsViewController = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
+            vc.isForPayments = true
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func selectVendorAction(_ sender: Any) {
-        //
+        
+        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
+        if let vc: PaymentsVendorsViewController = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
+            vc.isForPayments = false
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func changeDateAction(_ sender: Any) {
-        //
+        
+        let storyboard: UIStoryboard = UIStoryboard.init(name: "expenseHome", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "ChangeDateViewController") as? ChangeDateViewController {
+            self.changeDateVC = vc
+            self.changeDateVC!.delegate = self
+            self.changeDateVC!.currentDate = self.selectedDate
+            self.present(self.changeDateVC!, animated: true, completion: nil)
+        }
     }
     
     @IBAction func saveAction(_ sender: Any) {
+        self.clearKeyboards()
         
-        if self.selectedExpense == nil {
+        if self.selectedExpense!.payment_id == nil {
+            self.showAlert(title: "Error", message: "Need to select a payment type.")
+            return
+        }
+        if self.selectedExpense!.vendor_id == nil {
+            self.showAlert(title: "Error", message: "Need to select a vendor.")
             return
         }
         
-        self.clearKeyboards()
+        self.selectedExpense!.amount = self.priceTextLabel.text!
+        self.selectedExpense!.note = self.notesTextField.text ?? ""
         
+        print("- ")
+        print("- to save :")
+        print("- ")
+        print("- id = \(self.selectedExpense!.id ?? "nil")")
+        print("- ")
+        print("- date = \(self.selectedExpense!.date!) ")
+        print("- time = \(self.selectedExpense!.time!)")
+        print("- ")
+        print("- vendor = \(self.selectedExpense!.vendor!)")
+        print("- vendor ID = \(self.selectedExpense!.vendor_id!)")
+        print("- ")
+        print("- payment = \(self.selectedExpense!.payment!)")
+        print("- payment ID = \(self.selectedExpense!.payment_id!)")
+        print("- ")
+        print("- amount = \(self.selectedExpense!.amount!)")
+        print("- ")
+        print("- notes = \(self.selectedExpense!.note!)")
+        print("- ")
+
         //-- add or edit here.
     }
     
@@ -121,4 +204,72 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate {
         self.clearKeyboards()
         return true
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == self.priceTextField {
+            
+            //-- allow back space
+            if string.count == 0 {
+                return true
+            }
+            
+            let priceValue: Int? = Int(string)
+            if priceValue == nil {
+                return false
+            }
+            else {
+                return true
+            }
+        }
+        
+        return true
+    }
+    
+    @objc func changedPrice() {
+        
+        var priceStr: String = "0.00"
+        if self.priceTextLabel.text != nil && self.priceTextLabel.text!.count > 0 {
+            priceStr = self.priceTextLabel.text!
+        }
+        let priceValue: Float = fabsf((priceStr as NSString).floatValue / 100.0)
+        self.amountData = String(format: "%0.2f", priceValue)
+        self.priceTextLabel.text = self.amountData
+    }
+    
+    //MARK: - class delegates
+    
+    func didSelectPayment(item: Payment) {
+        
+        self.selectedExpense!.payment = item.payment!
+        self.selectedExpense!.payment_id = item.id!
+        self.displayPaymentData()
+    }
+    
+    func didSelectVendor(item: Vendor) {
+        
+        self.selectedExpense!.vendor = item.vendor!
+        self.selectedExpense!.vendor_id = item.id!
+        self.displayVendorData()
+    }
+    
+    func cancelSelectDate() {
+        self.closeChangeDateView()
+    }
+    
+    func selectNewDate(date: Date) {
+        self.closeChangeDateView()
+        
+        self.selectedDate = date
+        self.displayDate()
+    }
+    
+    func closeChangeDateView() {
+        
+        if self.changeDateVC != nil {
+            self.changeDateVC!.dismiss(animated: true, completion: nil)
+            self.changeDateVC = nil
+        }
+    }
+
 }
