@@ -75,10 +75,7 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         
         alert.addAction( UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction) in
-            //
-            print("- ")
-            print("- to delete, myexp ID = \(self.selectedExpense!.id!) ")
-            print("- ")
+            self.confirmToDelete(data: self.selectedExpense!)
         }) )
         
         alert.addAction( UIAlertAction(title: "Edit", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
@@ -147,6 +144,30 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
             //self.navController!.pushViewController(self.editExpenseVC!, animated: true)
             self.navigationController?.pushViewController(self.editExpenseVC!, animated: true)
         }
+    }
+    
+    func confirmToDelete(data: Expense) {
+        
+        let title: String = String(format: "Do you want to delete the expense at: %@? \n\nwith amount of $%@ ?", data.vendor!, data.amount!)
+        let alert: UIAlertController = UIAlertController(title: title, message: nil, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction( UIAlertAction(title: "Cancel", style: UIAlertAction.Style.destructive, handler: nil) )
+        alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
+            let actionCode: Int = MyExpDataManager.sharedInstance.kDeleteCode
+            self.activityIndicator.startAnimating()
+            
+            MyExpDataManager.sharedInstance.saveMyexpsWithData(data: data, actionCode: actionCode)  { (any: Any) in
+                DispatchQueue.main.async {
+                    self.expsList = any as! [Expense]
+                    self.displayAmount()
+                    self.displayDate(date: self.selectedDate)
+                    self.tableView.reloadData()
+                    self.activityIndicator.stopAnimating()
+                    self.selectedExpense = nil
+                }
+            }
+        }) )
+        self.present(alert, animated: true, completion: nil)
     }
     
     //MARK: - IB functions
