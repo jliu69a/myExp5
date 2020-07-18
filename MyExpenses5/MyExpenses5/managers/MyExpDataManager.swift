@@ -22,6 +22,11 @@ class MyExpDataManager: NSObject {
     var vendorList: [Vendor] = []
     var top10List: [Top10] = []
     
+    var vendorDisplayTitles: [String] = []
+    var vendorDisplayData: [String: AnyObject] = [:]
+    
+    let kPaymentsAndVendorsPageRefreshNotification: String = "Payments_And_Vendors_Page_Refresh_Notification"
+    
     //MARK: - util functions
     
     func showDate(date: Date?) -> String {
@@ -81,6 +86,59 @@ class MyExpDataManager: NSObject {
         vc.present(alert, animated: true, completion: nil)
     }
     
+    func parseVendorsArray() {
+        
+        self.vendorDisplayTitles.removeAll()
+        self.vendorDisplayData.removeAll()
+        
+        if self.vendorList.count == 0 {
+            return
+        }
+        
+        let top10Key: String = "Top 10"
+        
+        self.vendorDisplayTitles.append(top10Key)
+        self.vendorDisplayData[top10Key] = self.top10List as AnyObject
+        
+        let letters: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        
+        for each in self.vendorList {
+            let vendorName: String = each.vendor!.uppercased()
+            
+            var firstLetter: String = String(vendorName.prefix(1))
+            if letters.contains(firstLetter) == false {
+                firstLetter = "#"
+            }
+            
+            if self.vendorDisplayTitles.contains(firstLetter) == false {
+                self.vendorDisplayTitles.append(firstLetter)
+            }
+            var vendorsArray: [Vendor] = (self.vendorDisplayData[firstLetter] as? [Vendor]) ?? []
+            vendorsArray.append(each)
+            self.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
+        }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.kPaymentsAndVendorsPageRefreshNotification), object: nil)
+        
+        //-- test print
+        print("- ")
+        print("- total vendor titles = \(self.vendorDisplayTitles.count) ")
+        print("- ")
+        
+        for eachTitle in self.vendorDisplayTitles {
+            
+            if eachTitle == top10Key {
+                let array: [Top10] = (self.vendorDisplayData[eachTitle] as? [Top10]) ?? []
+                print("  - title : \(eachTitle), size = \(array.count)")
+            }
+            else {
+                let array: [Vendor] = (self.vendorDisplayData[eachTitle] as? [Vendor]) ?? []
+                print("  - title : \(eachTitle), size = \(array.count)")
+            }
+        }
+        print("- ")
+    }
+    
     //MARK: - get myexp data
     
     func myExpsData(selectedDate: Date, completion: @escaping  (Any)->()) {
@@ -108,6 +166,15 @@ class MyExpDataManager: NSObject {
                     }
                 }
                 let value: Any = self.expenseList as Any
+                
+                print("> ")
+                print("> top 10  = \(self.top10List.count)")
+                print("> vendor  = \(self.vendorList.count)")
+                print("> payment = \(self.paymentList.count)")
+                print("> my exps = \(self.expenseList.count)")
+                print("> ")
+                self.parseVendorsArray()
+
                 completion(value)
             }
         }

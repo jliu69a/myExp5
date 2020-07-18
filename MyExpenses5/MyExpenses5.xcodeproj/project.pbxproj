@@ -20,8 +20,6 @@
 		5A87AB8E24C134A0009792A1 /* myExp_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87AB8A24C134A0009792A1 /* myExp_plus.png */; };
 		5A87AB9124C134C7009792A1 /* ExpenseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A87AB8F24C134C7009792A1 /* ExpenseCell.xib */; };
 		5A87AB9224C134C7009792A1 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB9024C134C7009792A1 /* ExpenseCell.swift */; };
-		5A87AB9424C1351B009792A1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB9324C1351B009792A1 /* HomeViewController.swift */; };
-		5A87AB9624C1355C009792A1 /* home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A87AB9524C1355C009792A1 /* home.storyboard */; };
 		5A8B1F3124C137D80094E543 /* MyExpDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8B1F3024C137D80094E543 /* MyExpDataManager.swift */; };
 		5A8BAAB024C336440033B46A /* PAndVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8BAAAD24C336430033B46A /* PAndVCell.swift */; };
 		5A8BAAB124C336440033B46A /* PAndVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A8BAAAE24C336440033B46A /* PAndVCell.xib */; };
@@ -50,8 +48,6 @@
 		5A87AB8A24C134A0009792A1 /* myExp_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myExp_plus.png; sourceTree = "<group>"; };
 		5A87AB8F24C134C7009792A1 /* ExpenseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExpenseCell.xib; sourceTree = "<group>"; };
 		5A87AB9024C134C7009792A1 /* ExpenseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
-		5A87AB9324C1351B009792A1 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		5A87AB9524C1355C009792A1 /* home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = home.storyboard; sourceTree = "<group>"; };
 		5A8B1F3024C137D80094E543 /* MyExpDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExpDataManager.swift; sourceTree = "<group>"; };
 		5A8BAAAD24C336430033B46A /* PAndVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PAndVCell.swift; sourceTree = "<group>"; };
 		5A8BAAAE24C336440033B46A /* PAndVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PAndVCell.xib; sourceTree = "<group>"; };
@@ -97,22 +93,6 @@
 				D3D82A40FD8B16F17D98AD67 /* Pods-MyExpenses5.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		5A1CDDB124C221B100E83452 /* testing */ = {
-			isa = PBXGroup;
-			children = (
-				5A87AB9324C1351B009792A1 /* HomeViewController.swift */,
-			);
-			path = testing;
-			sourceTree = "<group>";
-		};
-		5A1CDDB424C2226B00E83452 /* testing */ = {
-			isa = PBXGroup;
-			children = (
-				5A87AB9524C1355C009792A1 /* home.storyboard */,
-			);
-			path = testing;
 			sourceTree = "<group>";
 		};
 		5A87AB7F24C133FA009792A1 /* codables */ = {
@@ -162,7 +142,6 @@
 				5A87AB7F24C133FA009792A1 /* codables */,
 				5A87AB8624C13479009792A1 /* images */,
 				5A97C78F24C12E5C0019E2B4 /* managers */,
-				5A97C78E24C12E530019E2B4 /* models */,
 				5A97C78D24C12E4C0019E2B4 /* controllers */,
 				5A97C78C24C12E430019E2B4 /* storyboards */,
 				5A97C78124C12E060019E2B4 /* Assets.xcassets */,
@@ -175,7 +154,6 @@
 		5A97C78C24C12E430019E2B4 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				5A1CDDB424C2226B00E83452 /* testing */,
 				5A87AB8424C13467009792A1 /* expenseHome.storyboard */,
 				5A8BAAB324C33EC50033B46A /* pandv.storyboard */,
 			);
@@ -185,7 +163,6 @@
 		5A97C78D24C12E4C0019E2B4 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5A1CDDB124C221B100E83452 /* testing */,
 				5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */,
 				5A87AB9024C134C7009792A1 /* ExpenseCell.swift */,
 				5A87AB8F24C134C7009792A1 /* ExpenseCell.xib */,
@@ -196,13 +173,6 @@
 				5A8BAAAE24C336440033B46A /* PAndVCell.xib */,
 			);
 			path = controllers;
-			sourceTree = "<group>";
-		};
-		5A97C78E24C12E530019E2B4 /* models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = models;
 			sourceTree = "<group>";
 		};
 		5A97C78F24C12E5C0019E2B4 /* managers */ = {
@@ -280,7 +250,6 @@
 				5A87AB8C24C134A0009792A1 /* myExp_back.png in Resources */,
 				5A87AB8524C13467009792A1 /* expenseHome.storyboard in Resources */,
 				5A87AB8B24C134A0009792A1 /* myExp_cal.png in Resources */,
-				5A87AB9624C1355C009792A1 /* home.storyboard in Resources */,
 				5A87AB8D24C134A0009792A1 /* myExp_more.png in Resources */,
 				5A97C78024C12E050019E2B4 /* Main.storyboard in Resources */,
 				5A8BAAB424C33EC50033B46A /* pandv.storyboard in Resources */,
@@ -347,7 +316,6 @@
 				5A87AB8324C1340E009792A1 /* jsonsData.swift in Sources */,
 				5A1CDDB324C221D100E83452 /* ExpenseHomeViewController.swift in Sources */,
 				5A1CDDB824C26C9400E83452 /* EditExpensesViewController.swift in Sources */,
-				5A87AB9424C1351B009792A1 /* HomeViewController.swift in Sources */,
 				5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */,
 				5A8BAAB024C336440033B46A /* PAndVCell.swift in Sources */,
 				5A87AB9224C134C7009792A1 /* ExpenseCell.swift in Sources */,

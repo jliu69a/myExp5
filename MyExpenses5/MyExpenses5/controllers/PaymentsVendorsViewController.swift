@@ -36,6 +36,8 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
         self.allVendors = MyExpDataManager.sharedInstance.vendorList
         
         self.tableView.register(UINib(nibName: "PAndVCell", bundle: nil), forCellReuseIdentifier: "CellId")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshAfterChanges), name: NSNotification.Name(rawValue: MyExpDataManager.sharedInstance.kPaymentsAndVendorsPageRefreshNotification), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,39 +60,39 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
         self.navigationController!.popViewController(animated: true)
     }
     
+    //MARK: - notification
+    
+    @objc func refreshAfterChanges() {
+        self.tableView.reloadData()
+    }
+    
     //MARK: - table view source
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-//        if self.isForPayments {
-//            return 1
-//        }
-//        else {
-//            return DataManager.sharedInstance.vendorTop10GroupKeys!.count
-//        }
-        
-        return 1
+        if self.isForPayments == true {
+            return 1
+        }
+        else {
+            return MyExpDataManager.sharedInstance.vendorDisplayTitles.count
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-//        if self.isForPayments {
-//            return self.rowsList!.count
-//        }
-//        else {
-//            let key: String = DataManager.sharedInstance.vendorTop10GroupKeys![section]
-//            var list: [PAndVModel]? = DataManager.sharedInstance.vendorGroups![key]
-//            if list == nil {
-//                list = []
-//            }
-//            return list!.count
-//        }
-        
-        if self.isForPayments {
+        if self.isForPayments == true {
             return self.allPayments.count
         }
         else {
-            return self.allVendors.count
+            let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[section]
+            if section == 0 {
+                let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
+                return array.count
+            }
+            else {
+                let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
+                return array.count
+            }
         }
     }
     
@@ -101,16 +103,30 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
         if self.isForPayments {
             let item: Payment = self.allPayments[indexPath.row]
             cell!.nameLabel.text = item.payment ?? ""
-            cell!.nameLabel.textColor = UIColor.black
             cell!.idLabel.text = item.id ?? "0"
+            
+            cell!.nameLabel.textColor = UIColor.black
             cell!.idLabel.textColor = UIColor.blue
         }
         else {
-            let item: Vendor = self.allVendors[indexPath.row]
-            cell!.nameLabel.text = item.vendor ?? ""
+            let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[indexPath.section]
+            
+            if indexPath.section == 0 {
+                let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
+                let item: Top10 = array[indexPath.row]
+                cell!.nameLabel.text = item.vendor ?? ""
+                
+                let totalCount: String = item.total ?? "0"
+                cell!.idLabel.text = String(format: "total = %@", totalCount)
+            }
+            else {
+                let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
+                let item: Vendor = array[indexPath.row]
+                cell!.nameLabel.text = item.vendor ?? ""
+                cell!.idLabel.text = item.id ?? "0"
+            }
             cell!.nameLabel.textColor = UIColor.blue
-            cell!.idLabel.text = item.id ?? "0"
-            cell!.idLabel.textColor = UIColor.green
+            cell!.idLabel.textColor = UIColor.orange
         }
         
         return cell!
@@ -118,41 +134,30 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-//        if self.isForPayments {
-//            return 0
-//        }
-//        else {
-//            //-- for vendors
-//            if section == 0 {
-//                let key: String = DataManager.sharedInstance.vendorTop10GroupKeys![section]
-//                let list: [PAndVModel]? = DataManager.sharedInstance.vendorGroups![key]
-//
-//                //-- check for Top-10 listing
-//                if list != nil && list!.count > 0 {
-//                    return 30
-//                }
-//                else {
-//                    return 0
-//                }
-//            }
-//            else {
-//                return 30
-//            }
-//        }
-        
-        return 0
+        if self.isForPayments == true {
+            return 0
+        }
+        else {
+            let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[section]
+            let array: [AnyObject] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [AnyObject]) ?? []
+            
+            if array.count > 0 {
+                return 40
+            }
+            else {
+                return 0
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-//        if self.isForPayments {
-//            return nil
-//        }
-//        else {
-//            return DataManager.sharedInstance.vendorTop10GroupKeys![section]
-//        }
-        
-        return nil
+        if self.isForPayments == true {
+            return nil
+        }
+        else {
+            return MyExpDataManager.sharedInstance.vendorDisplayTitles[section]
+        }
     }
     
     //MARK: - table view delegate
