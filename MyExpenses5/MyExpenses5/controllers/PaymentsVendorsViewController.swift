@@ -117,7 +117,7 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
                 cell!.nameLabel.text = item.vendor ?? ""
                 
                 let totalCount: String = item.total ?? "0"
-                cell!.idLabel.text = String(format: "total = %@", totalCount)
+                cell!.idLabel.text = String(format: "%@, total = %@", (item.id ?? "0"), totalCount)
             }
             else {
                 let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
