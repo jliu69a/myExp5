@@ -62,6 +62,11 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         
         self.titleLabel.text = (self.isForNew == true) ? "Add" : "Edit"
         self.priceTextField.addTarget(self, action: #selector(changedPrice), for: UIControl.Event.editingChanged)
+        
+        self.selectPaymentButton.layer.cornerRadius = 5
+        self.selectVendorButton.layer.cornerRadius = 5
+        self.changeDateButton.layer.cornerRadius = 5
+        self.saveButton.layer.cornerRadius = 5
     }
     
     //MARK: - helpers

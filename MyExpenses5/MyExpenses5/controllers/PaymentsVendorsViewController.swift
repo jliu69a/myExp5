@@ -105,7 +105,7 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
             cell!.nameLabel.text = item.payment ?? ""
             cell!.idLabel.text = item.id ?? "0"
             
-            cell!.nameLabel.textColor = UIColor.black
+            //cell!.nameLabel.textColor = UIColor.black
             cell!.idLabel.textColor = UIColor.blue
         }
         else {
@@ -125,7 +125,7 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
                 cell!.nameLabel.text = item.vendor ?? ""
                 cell!.idLabel.text = item.id ?? "0"
             }
-            cell!.nameLabel.textColor = UIColor.blue
+            //cell!.nameLabel.textColor = UIColor.blue
             cell!.idLabel.textColor = UIColor.orange
         }
         

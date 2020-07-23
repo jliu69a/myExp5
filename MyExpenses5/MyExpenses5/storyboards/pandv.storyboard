@@ -25,12 +25,22 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZ3-KK-5xl">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdq-dU-q2P" userLabel="back label">
+                                        <rect key="frame" x="10" y="0.0" width="56" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="IRC-t9-bEg"/>
+                                            <constraint firstAttribute="width" constant="56" id="okn-FZ-n4S"/>
                                         </constraints>
-                                        <state key="normal" title="back" image="myExp_back.png">
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZ3-KK-5xl">
+                                        <rect key="frame" x="0.0" y="0.0" width="66" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="66" id="IRC-t9-bEg"/>
+                                        </constraints>
+                                        <state key="normal" title="back">
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -38,13 +48,16 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.97999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="cZ3-KK-5xl" firstAttribute="top" secondItem="JEi-lO-zXJ" secondAttribute="top" id="76H-CN-CDh"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fdq-dU-q2P" secondAttribute="bottom" id="E95-mH-HDf"/>
                                     <constraint firstAttribute="height" constant="44" id="Ooj-XE-kOI"/>
                                     <constraint firstAttribute="bottom" secondItem="cZ3-KK-5xl" secondAttribute="bottom" id="XUP-V5-TLu"/>
                                     <constraint firstAttribute="bottom" secondItem="XHu-TR-W2l" secondAttribute="bottom" id="hqt-gu-kpc"/>
                                     <constraint firstAttribute="trailing" secondItem="XHu-TR-W2l" secondAttribute="trailing" id="jCg-Tb-09V"/>
+                                    <constraint firstItem="Fdq-dU-q2P" firstAttribute="top" secondItem="JEi-lO-zXJ" secondAttribute="top" id="mtD-mn-AzE"/>
+                                    <constraint firstItem="Fdq-dU-q2P" firstAttribute="leading" secondItem="JEi-lO-zXJ" secondAttribute="leading" constant="10" id="pJe-XW-eXQ"/>
                                     <constraint firstItem="XHu-TR-W2l" firstAttribute="top" secondItem="JEi-lO-zXJ" secondAttribute="top" id="pWa-yv-0Nr"/>
                                     <constraint firstItem="cZ3-KK-5xl" firstAttribute="leading" secondItem="JEi-lO-zXJ" secondAttribute="leading" id="pgQ-bb-t5M"/>
                                     <constraint firstItem="XHu-TR-W2l" firstAttribute="leading" secondItem="JEi-lO-zXJ" secondAttribute="leading" id="rV8-rb-xGk"/>
@@ -59,7 +72,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="NJf-DA-FtQ" firstAttribute="top" secondItem="JEi-lO-zXJ" secondAttribute="bottom" constant="10" id="B8o-U4-2oj"/>
                             <constraint firstItem="JEi-lO-zXJ" firstAttribute="trailing" secondItem="sXC-zf-whb" secondAttribute="trailing" id="HA2-HR-ock"/>
@@ -81,7 +94,4 @@
             <point key="canvasLocation" x="382.5" y="-183.80281690140845"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="myExp_back.png" width="33" height="33"/>
-    </resources>
 </document>
