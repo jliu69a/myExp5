@@ -10,7 +10,7 @@ import UIKit
 
 class ExpenseCell: UITableViewCell {
     
-    
+    @IBOutlet weak var baseLabel: UILabel!
     @IBOutlet weak var cellVendorLabel: UILabel!
     @IBOutlet weak var cellNotesLabel: UILabel!
     @IBOutlet weak var cellAmountLabel: UILabel!
@@ -36,6 +36,25 @@ class ExpenseCell: UITableViewCell {
         let amountText: String = data.amount ?? "0"
         let amountValue: Float = (amountText as NSString).floatValue
         self.cellAmountLabel.text = String(format: "%0.2f", amountValue)
+        
+        self.baseLabel.backgroundColor = UIColor.systemGray6
+    }
+    
+    func colorForData() -> UIColor {
+        
+        let dynamicColor = UIColor { (traitCollection: UITraitCollection) -> UIColor in
+            switch traitCollection.userInterfaceStyle {
+            case
+              .unspecified,
+              .light: return .white
+            case .dark: return .black
+            @unknown default:
+                print("error in color.")
+                return UIColor.clear
+            }
+        }
+        
+        return dynamicColor
     }
     
 }

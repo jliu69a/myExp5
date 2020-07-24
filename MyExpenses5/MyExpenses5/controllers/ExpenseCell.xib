@@ -100,6 +100,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="baseLabel" destination="BYB-Vj-utu" id="ksO-e2-cuw"/>
                 <outlet property="cellAmountLabel" destination="iaH-H5-5EJ" id="Bde-bd-Mte"/>
                 <outlet property="cellNotesLabel" destination="tK9-D1-AVK" id="AEG-la-BIW"/>
                 <outlet property="cellPaymentLabel" destination="eZe-ae-Nyn" id="sWC-ho-OOg"/>
