@@ -175,7 +175,7 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     @IBAction func changeDateAction(_ sender: Any) {
         
         let storyboard: UIStoryboard = UIStoryboard.init(name: "expenseHome", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "ChangeDateViewController") as? ChangeDateViewController {
+        if let vc: ChangeDateViewController = storyboard.instantiateViewController(withIdentifier: "ChangeDateViewController") as? ChangeDateViewController {
             self.changeDateVC = vc
             self.changeDateVC!.delegate = self
             self.changeDateVC!.currentDate = self.selectedDate
@@ -185,6 +185,14 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBAction func addExpenseAction(_ sender: Any) {
         self.showAddEditPage(model: nil)
+    }
+    
+    @IBAction func showAdminsAction(_ sender: Any) {
+        
+        let storyboard: UIStoryboard = UIStoryboard.init(name: "admins", bundle: nil)
+        if let vc: AdminHomeViewController = storyboard.instantiateViewController(withIdentifier: "AdminHomeViewController") as? AdminHomeViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     //MARK: - delegate functions

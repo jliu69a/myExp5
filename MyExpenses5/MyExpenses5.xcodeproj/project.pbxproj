@@ -31,6 +31,8 @@
 		5A97C78024C12E050019E2B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A97C77E24C12E050019E2B4 /* Main.storyboard */; };
 		5A97C78224C12E060019E2B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A97C78124C12E060019E2B4 /* Assets.xcassets */; };
 		5A97C78524C12E060019E2B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A97C78324C12E060019E2B4 /* LaunchScreen.storyboard */; };
+		5AF26FC224CB86380042DE15 /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF26FC124CB86380042DE15 /* AdminHomeViewController.swift */; };
+		5AF26FC424CB864D0042DE15 /* admins.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AF26FC324CB864D0042DE15 /* admins.storyboard */; };
 		94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		5A97C78124C12E060019E2B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A97C78424C12E060019E2B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5A97C78624C12E060019E2B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5AF26FC124CB86380042DE15 /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
+		5AF26FC324CB864D0042DE15 /* admins.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = admins.storyboard; sourceTree = "<group>"; };
 		95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyExpenses5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7E7A5EB671D2EB1790CB4C /* Pods-MyExpenses5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.debug.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.debug.xcconfig"; sourceTree = "<group>"; };
 		D3D82A40FD8B16F17D98AD67 /* Pods-MyExpenses5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.release.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 			children = (
 				5A87AB8424C13467009792A1 /* expenseHome.storyboard */,
 				5A8BAAB324C33EC50033B46A /* pandv.storyboard */,
+				5AF26FC324CB864D0042DE15 /* admins.storyboard */,
 			);
 			path = storyboards;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 		5A97C78D24C12E4C0019E2B4 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5AF26FC024CB85680042DE15 /* admins */,
 				5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */,
 				5A87AB9024C134C7009792A1 /* ExpenseCell.swift */,
 				5A87AB8F24C134C7009792A1 /* ExpenseCell.xib */,
@@ -183,6 +189,14 @@
 				5A8B1F3024C137D80094E543 /* MyExpDataManager.swift */,
 			);
 			path = managers;
+			sourceTree = "<group>";
+		};
+		5AF26FC024CB85680042DE15 /* admins */ = {
+			isa = PBXGroup;
+			children = (
+				5AF26FC124CB86380042DE15 /* AdminHomeViewController.swift */,
+			);
+			path = admins;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +263,7 @@
 				5A97C78224C12E060019E2B4 /* Assets.xcassets in Resources */,
 				5A87AB8C24C134A0009792A1 /* myExp_back.png in Resources */,
 				5A87AB8524C13467009792A1 /* expenseHome.storyboard in Resources */,
+				5AF26FC424CB864D0042DE15 /* admins.storyboard in Resources */,
 				5A87AB8B24C134A0009792A1 /* myExp_cal.png in Resources */,
 				5A87AB8D24C134A0009792A1 /* myExp_more.png in Resources */,
 				5A97C78024C12E050019E2B4 /* Main.storyboard in Resources */,
@@ -319,6 +334,7 @@
 				5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */,
 				5A8BAAB024C336440033B46A /* PAndVCell.swift in Sources */,
 				5A87AB9224C134C7009792A1 /* ExpenseCell.swift in Sources */,
+				5AF26FC224CB86380042DE15 /* AdminHomeViewController.swift in Sources */,
 				5A97C77924C12E050019E2B4 /* AppDelegate.swift in Sources */,
 				5A97C77B24C12E050019E2B4 /* SceneDelegate.swift in Sources */,
 			);
