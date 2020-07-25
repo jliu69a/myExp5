@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PaymentsVendorsViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var versionsLabel: UILabel!
@@ -102,6 +102,12 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         
         switch indexPath.section {
         case 0:
+            if indexPath.row == 0 {
+                self.showPaymentsAndVendors(isForPayment: true)
+            }
+            else if indexPath.row == 1 {
+                self.showPaymentsAndVendors(isForPayment: false)
+            }
             break
         case 1:
             break
@@ -111,5 +117,33 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             break
         }
     }
+    
+    //MARK: - payment & vendor
+    
+    func showPaymentsAndVendors(isForPayment: Bool) {
+        
+        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
+        if let vc: PaymentsVendorsViewController = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
+            vc.isForAdmin = true
+            vc.isForPayments = isForPayment
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func didSelectPayment(item: Payment) {
+        //
+        print("- ")
+        print("- from admin, selected payment, id = \(item.id!), name = '\(item.payment!)' ")
+        print("- ")
+    }
+    
+    func didSelectVendor(name: String, id: String) {
+        //
+        print("- ")
+        print("- from admin, selected vendor, id = \(id), name = '\(name)' ")
+        print("- ")
+    }
+
     
 }

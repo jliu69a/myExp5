@@ -131,6 +131,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         
         let storyboard = UIStoryboard(name: "pandv", bundle: nil)
         if let vc: PaymentsVendorsViewController = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
+            vc.isForAdmin = false
             vc.isForPayments = true
             vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
@@ -142,6 +143,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         
         let storyboard = UIStoryboard(name: "pandv", bundle: nil)
         if let vc: PaymentsVendorsViewController = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
+            vc.isForAdmin = false
             vc.isForPayments = false
             vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
