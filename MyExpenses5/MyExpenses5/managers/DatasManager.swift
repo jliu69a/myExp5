@@ -14,7 +14,7 @@ class DatasManager: NSObject {
     
     static let sharedInstance = DatasManager()
     
-    let folder: String = "homee" //production use
+    let folder: String = "prods" //production use
     let kExpenseCode: Int = 0
     let kTop10Code: Int = 1
     let kPaymentCode: Int = 2
