@@ -131,19 +131,20 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func didSelectPayment(item: Payment) {
-        //
-        print("- ")
-        print("- from admin, selected payment, id = \(item.id!), name = '\(item.payment!)' ")
-        print("- ")
+    func didSelectItem(isForPayment: Bool, name: String, id: String) {
+        
+        if isForPayment == true {
+            print("- ")
+            print("- from admin, selected payment, id = \(id), name = '\(name)' ")
+            print("- ")
+        }
+        else {
+            print("- ")
+            print("- from admin, selected vendor, id = \(id), name = '\(name)' ")
+            print("- ")
+        }
     }
-    
-    func didSelectVendor(name: String, id: String) {
-        //
-        print("- ")
-        print("- from admin, selected vendor, id = \(id), name = '\(name)' ")
-        print("- ")
-    }
+
 
     
 }

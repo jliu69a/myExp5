@@ -227,18 +227,18 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     
     //MARK: - class delegates
     
-    func didSelectPayment(item: Payment) {
+    func didSelectItem(isForPayment: Bool, name: String, id: String) {
         
-        self.selectedExpense!.payment = item.payment!
-        self.selectedExpense!.payment_id = item.id!
-        self.displayPaymentData()
-    }
-    
-    func didSelectVendor(name: String, id: String) {
-        
-        self.selectedExpense!.vendor = name
-        self.selectedExpense!.vendor_id = id
-        self.displayVendorData()
+        if isForPayment == true {
+            self.selectedExpense!.payment = name
+            self.selectedExpense!.payment_id = id
+            self.displayPaymentData()
+        }
+        else {
+            self.selectedExpense!.vendor = name
+            self.selectedExpense!.vendor_id = id
+            self.displayVendorData()
+        }
     }
     
     func cancelSelectDate() {

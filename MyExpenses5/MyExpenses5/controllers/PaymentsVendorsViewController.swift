@@ -10,9 +10,7 @@ import UIKit
 
 
 protocol PaymentsVendorsViewControllerDelegate: AnyObject {
-    
-    func didSelectPayment(item: Payment)
-    func didSelectVendor(name: String, id: String)
+    func didSelectItem(isForPayment: Bool, name: String, id: String)
 }
 
 
@@ -27,6 +25,9 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     var allVendors: [Vendor] = []
     var isForPayments: Bool = true
     var isForAdmin: Bool = false
+    
+    var selectedId: String = "0"
+    var selectedName: String = ""
     
     weak var delegate: PaymentsVendorsViewControllerDelegate?
 
@@ -73,48 +74,22 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     
     @IBAction func addNewAction(_ sender: Any) {
         //-- admin only
-        let emptyIndex: IndexPath = IndexPath(item: 0, section: 0)
-        self.showAddOrEditPage(isForNew: true, indexPath: emptyIndex)
+        self.showAddOrEditPage(isForNew: true, id: "0", name: "")
     }
     
-    func showAddOrEditPage(isForNew: Bool, indexPath: IndexPath) {
-        var idValue: String = "0"
-        var nameValue: String = ""
-        
-        if isForNew == false {
-            if self.isForPayments == true {
-                let item: Payment = self.allPayments[indexPath.row]
-                idValue = item.id!
-                nameValue = item.payment!
-            }
-            else {
-                let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[indexPath.section]
-                if indexPath.section == 0 {
-                    let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
-                    let item: Top10 = array[indexPath.row]
-                    idValue = item.id!
-                    nameValue = item.vendor!
-                }
-                else {
-                    let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
-                    let item: Vendor = array[indexPath.row]
-                    idValue = String(format: "%@", item.id!)
-                    nameValue = item.vendor!
-                }
-            }
-        }
+    func showAddOrEditPage(isForNew: Bool, id: String, name: String) {
         
         let storyboard = UIStoryboard(name: "admins", bundle: nil)
         if let vc: AdminPVAddEditViewController = storyboard.instantiateViewController(withIdentifier: "AdminPVAddEditViewController") as? AdminPVAddEditViewController {
             vc.delegate = self
             vc.isForPayment = self.isForPayments
-            vc.idValue = idValue
-            vc.nameValue = nameValue
+            vc.idValue = id
+            vc.nameValue = name
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
-    //MARK: - notification
+    //MARK: - notification, delegate
     
     @objc func refreshAfterChanges() {
         self.allPayments = MyExpDataManager.sharedInstance.paymentList
@@ -122,9 +97,11 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
         self.tableView.reloadData()
     }
     
-    //MARK: - delegate function
-    
     func didSaveChanges(isForPayment: Bool) {
+        self.toRefreshPage()
+    }
+    
+    func toRefreshPage() {
         self.allPayments = MyExpDataManager.sharedInstance.paymentList
         self.allVendors = MyExpDataManager.sharedInstance.vendorList
         self.tableView.reloadData()
@@ -226,34 +203,87 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         
-        if self.isForAdmin == true {
-            self.showAddOrEditPage(isForNew: false, indexPath: indexPath)
+        if self.isForPayments == true {
+            let item: Payment = self.allPayments[indexPath.row]
+            self.selectedId = item.id!
+            self.selectedName = item.payment!
         }
         else {
-            if self.isForPayments {
-                self.delegate?.didSelectPayment(item: self.allPayments[indexPath.row])
+            let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[indexPath.section]
+            if indexPath.section == 0 {
+                let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
+                let item: Top10 = array[indexPath.row]
+                self.selectedId = item.id!
+                self.selectedName = item.vendor!
             }
             else {
-                var name: String = ""
-                var id: String = ""
-                
-                let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[indexPath.section]
-                if indexPath.section == 0 {
-                    let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
-                    let item: Top10 = array[indexPath.row]
-                    name = item.vendor ?? ""
-                    id = item.id ?? "0"
-                }
-                else {
-                    let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
-                    let item: Vendor = array[indexPath.row]
-                    name = item.vendor ?? ""
-                    id = item.id ?? "0"
-                }
-                self.delegate?.didSelectVendor(name: name, id: id)
+                let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
+                let item: Vendor = array[indexPath.row]
+                self.selectedId = item.id!
+                self.selectedName = item.vendor!
             }
+        }
+        
+        if self.isForAdmin == true {
+            self.showOptions()
+        }
+        else {
+            self.delegate?.didSelectItem(isForPayment: self.isForPayments, name: self.selectedName, id: self.selectedId)
             self.navigationController!.popViewController(animated: true)
         }
     }
+    
+    //MARK: - alets
+    
+    func showOptions() {
+        let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        
+        alert.addAction( UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction) in
+            self.toConfirmDelete()
+        }) )
+        
+        alert.addAction( UIAlertAction(title: "Edit", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
+            self.toEdit()
+        }) )
+        
+        alert.addAction( UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil) )
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showAlert(title: String?, message: String?) {
+        let alert: UIAlertController = UIAlertController(title: title, message: nil, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction) in
+            self.toProcessDelete()
+        }) )
+        
+        alert.addAction( UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil) )
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: - alert actions
+    
+    func toEdit() {
+        self.showAddOrEditPage(isForNew: false, id: self.selectedId, name: self.selectedName)
+    }
+    
+    func toConfirmDelete() {
+        let line: String = String(format: "Are you sure you want to delete '%@' (%@)?", self.selectedName, self.selectedId)
+        self.showAlert(title: line, message: nil)
+    }
+    
+    func toProcessDelete() {
+        
+        MyExpDataManager.sharedInstance.savePaymentsAndVendors(id: self.selectedId, name: self.selectedName, isForPayment: self.isForPayments, isEdit: false) { (any: Any) in
+            DispatchQueue.main.async {
+                let list: [String: AnyObject] = any as! [String: AnyObject]
+                print("-> delete a payment/vendor, result array size = \(list.count) ")
+                self.toRefreshPage()
+            }
+        }
+    }
+    
 }
 

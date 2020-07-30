@@ -70,7 +70,7 @@ class AdminPVAddEditViewController: UIViewController, UITextFieldDelegate {
         MyExpDataManager.sharedInstance.savePaymentsAndVendors(id: self.idValue, name: self.nameValue, isForPayment: self.isForPayment, isEdit: true) { (any: Any) in
             DispatchQueue.main.async {
                 let list: [String: AnyObject] = any as! [String: AnyObject]
-                print("-> edit payments & vendors, result array size = \(list.count) ")
+                print("-> edit a payment/vendor, result array size = \(list.count) ")
                 self.refreshPage()
             }
         }
