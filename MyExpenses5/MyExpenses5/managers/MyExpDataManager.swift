@@ -118,17 +118,15 @@ class MyExpDataManager: NSObject {
             self.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.kPaymentsAndVendorsPageRefreshNotification), object: nil)
+        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.kPaymentsAndVendorsPageRefreshNotification), object: nil)
         
         //-- test print
         print("- ")
         let array: [Top10] = self.vendorDisplayData[top10Key] as? [Top10] ?? []
         for each in array {
-            
             let name = each.vendor ?? ""
             let id = each.id ?? "0"
             let total = each.total ?? "0"
-            
             print("  - top 10, id = \(id), total = \(total), name = \(name)")
         }
         print("- ")
@@ -208,6 +206,40 @@ class MyExpDataManager: NSObject {
                 }
                 let value: Any = self.expenseList as Any
                 self.parseVendorsArray()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.kPaymentsAndVendorsPageRefreshNotification), object: nil)
+                completion(value)
+            }
+        }
+    }
+    
+    //MARK: - save payment & vendor
+    
+    func savePaymentsAndVendors(id: String, name: String, isForPayment: Bool, isEdit: Bool, completion: @escaping  (Any)->()) {
+        
+        let idValue: String = (id == "0") ? "-1" : id
+        let isPaymentValue: String = isForPayment ? "1" : "0"
+        let isEditValue: String = isEdit ? "1" : "0"
+        
+        let parameters: [String: Any] = ["id": (idValue as Any), "name": (name as Any), "ispayment": (isPaymentValue as Any), "edit":(isEditValue as Any)]
+        
+        DatasManager.sharedInstance.savePaymentsAndVendors(parameters: parameters) { (any: Any) in
+            DispatchQueue.main.async {
+                let pvList: [ChangePVData] = any as! [ChangePVData]
+                self.paymentList.removeAll()
+                self.vendorList.removeAll()
+                
+                for each in pvList {
+                    if each.payments != nil {
+                        self.paymentList = each.payments!
+                    }
+                    if each.vendors != nil {
+                        self.vendorList = each.vendors!
+                    }
+                }
+                self.parseVendorsArray()
+                let data: [String: AnyObject] = ["payments": (self.paymentList as AnyObject), "vendors": (self.vendorList as AnyObject), "groups": (self.vendorDisplayData as AnyObject)]
+                
+                let value: Any = data as Any
                 completion(value)
             }
         }

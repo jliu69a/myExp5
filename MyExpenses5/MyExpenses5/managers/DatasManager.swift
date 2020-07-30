@@ -131,6 +131,41 @@ class DatasManager: NSObject {
         return dataList
     }
     
+    //MARK: - save payment / vendor
+    
+    func savePaymentsAndVendors(parameters: [String: Any], completion: @escaping  (Any)->()) {
+        
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_edit.php", folder)
+        let connect: ConnectionsManager = ConnectionsManager()
+        
+        connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
+            let myexpData: Data = data as! Data
+            let myexpsList: [ChangePVData] = self.parseSavePaymentsAndVendors(data: myexpData)
+            let value: Any = myexpsList as Any
+            completion(value)
+        }
+    }
+    
+    func parseSavePaymentsAndVendors(data: Data) -> [ChangePVData] {
+        
+        let json = try? JSON(data: data)
+        if json == nil {
+            print("- my expenses : No Data")
+            return []
+        }
+        
+        var dataList: [ChangePVData] = []
+        do {
+            dataList = try JSONDecoder().decode([ChangePVData].self, from: data)
+        }
+        catch {
+            print(error)
+        }
+        
+        return dataList
+    }
+    
+    
     
     //MARK: - save home test
     

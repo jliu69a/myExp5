@@ -16,7 +16,7 @@ protocol PaymentsVendorsViewControllerDelegate: AnyObject {
 }
 
 
-class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AdminPVAddEditViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -78,13 +78,13 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func showAddOrEditPage(isForNew: Bool, indexPath: IndexPath) {
-        var idValue: String = "ID: 0"
+        var idValue: String = "0"
         var nameValue: String = ""
         
         if isForNew == false {
             if self.isForPayments == true {
                 let item: Payment = self.allPayments[indexPath.row]
-                idValue = String(format: "ID: %@", item.id!)
+                idValue = item.id!
                 nameValue = item.payment!
             }
             else {
@@ -92,13 +92,13 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
                 if indexPath.section == 0 {
                     let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
                     let item: Top10 = array[indexPath.row]
-                    idValue = String(format: "ID: %@", item.id!)
+                    idValue = item.id!
                     nameValue = item.vendor!
                 }
                 else {
                     let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
                     let item: Vendor = array[indexPath.row]
-                    idValue = String(format: "ID: %@", item.id!)
+                    idValue = String(format: "%@", item.id!)
                     nameValue = item.vendor!
                 }
             }
@@ -106,6 +106,7 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
         
         let storyboard = UIStoryboard(name: "admins", bundle: nil)
         if let vc: AdminPVAddEditViewController = storyboard.instantiateViewController(withIdentifier: "AdminPVAddEditViewController") as? AdminPVAddEditViewController {
+            vc.delegate = self
             vc.isForPayment = self.isForPayments
             vc.idValue = idValue
             vc.nameValue = nameValue
@@ -116,6 +117,16 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     //MARK: - notification
     
     @objc func refreshAfterChanges() {
+        self.allPayments = MyExpDataManager.sharedInstance.paymentList
+        self.allVendors = MyExpDataManager.sharedInstance.vendorList
+        self.tableView.reloadData()
+    }
+    
+    //MARK: - delegate function
+    
+    func didSaveChanges(isForPayment: Bool) {
+        self.allPayments = MyExpDataManager.sharedInstance.paymentList
+        self.allVendors = MyExpDataManager.sharedInstance.vendorList
         self.tableView.reloadData()
     }
     
