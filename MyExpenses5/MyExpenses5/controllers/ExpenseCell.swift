@@ -17,15 +17,7 @@ class ExpenseCell: UITableViewCell {
     @IBOutlet weak var cellPaymentLabel: UILabel!
     @IBOutlet weak var cellTimeLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
-    //-- rewrite
     func displayModelData(data: Expense) {
 
         self.cellVendorLabel.text = data.vendor ?? ""

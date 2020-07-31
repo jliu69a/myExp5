@@ -39,6 +39,7 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
         self.allPayments = MyExpDataManager.sharedInstance.paymentList
         self.allVendors = MyExpDataManager.sharedInstance.vendorList
         
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "PAndVCell", bundle: nil), forCellReuseIdentifier: "CellId")
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshAfterChanges), name: NSNotification.Name(rawValue: MyExpDataManager.sharedInstance.kPaymentsAndVendorsPageRefreshNotification), object: nil)
@@ -138,36 +139,39 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let generic = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
         
-        let cell: PAndVCell? = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? PAndVCell
-        
-        if self.isForPayments {
-            let item: Payment = self.allPayments[indexPath.row]
-            cell!.nameLabel.text = item.payment ?? ""
-            cell!.idLabel.text = item.id ?? "0"
-            cell!.idLabel.textColor = UIColor.blue
-        }
-        else {
-            let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[indexPath.section]
-            
-            if indexPath.section == 0 {
-                let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
-                let item: Top10 = array[indexPath.row]
-                cell!.nameLabel.text = item.vendor ?? ""
-                
-                let totalCount: String = item.total ?? "0"
-                cell!.idLabel.text = String(format: "%@, total = %@", (item.id ?? "0"), totalCount)
+        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? PAndVCell {
+            if self.isForPayments {
+                let item: Payment = self.allPayments[indexPath.row]
+                cell.nameLabel.text = item.payment ?? ""
+                cell.idLabel.text = item.id ?? "0"
+                cell.idLabel.textColor = UIColor.blue
             }
             else {
-                let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
-                let item: Vendor = array[indexPath.row]
-                cell!.nameLabel.text = item.vendor ?? ""
-                cell!.idLabel.text = item.id ?? "0"
+                let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[indexPath.section]
+                
+                if indexPath.section == 0 {
+                    let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
+                    let item: Top10 = array[indexPath.row]
+                    cell.nameLabel.text = item.vendor ?? ""
+                    
+                    let totalCount: String = item.total ?? "0"
+                    cell.idLabel.text = String(format: "%@, total = %@", (item.id ?? "0"), totalCount)
+                }
+                else {
+                    let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
+                    let item: Vendor = array[indexPath.row]
+                    cell.nameLabel.text = item.vendor ?? ""
+                    cell.idLabel.text = item.id ?? "0"
+                }
+                cell.idLabel.textColor = UIColor.orange
             }
-            cell!.idLabel.textColor = UIColor.orange
+            return cell
         }
-        
-        return cell!
+        else {
+            return generic!
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

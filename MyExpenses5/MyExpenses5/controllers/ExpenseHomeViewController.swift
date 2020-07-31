@@ -28,6 +28,7 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
         
         self.activityIndicator.startAnimating()
@@ -57,13 +58,16 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let genericCell = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
         
-        let cell: ExpenseCell? = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell
-        
-        let model: Expense = self.expsList[indexPath.row]
-        cell!.displayModelData(data: model)
-        
-        return cell!
+        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell {
+            let model: Expense = self.expsList[indexPath.row]
+            cell.displayModelData(data: model)
+            return cell
+        }
+        else {
+            return genericCell!
+        }
     }
     
     //MARK: - table view delegate

@@ -23,6 +23,7 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
     }
     
@@ -70,25 +71,28 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let generic = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
         
-        let cell: UITableViewCell? = self.tableView.dequeueReusableCell(withIdentifier: "CellId")
-        
-        switch indexPath.section {
-        case 0:
-            cell!.textLabel!.text = self.settingsList[indexPath.row]
-            break
-        case 1:
-            cell!.textLabel!.text = self.reportsList[indexPath.row]
-            break
-        case 2:
-            cell!.textLabel!.text = self.miscList[indexPath.row]
-            break
-        default:
-            break
+        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") {
+            switch indexPath.section {
+            case 0:
+                cell.textLabel!.text = self.settingsList[indexPath.row]
+                break
+            case 1:
+                cell.textLabel!.text = self.reportsList[indexPath.row]
+                break
+            case 2:
+                cell.textLabel!.text = self.miscList[indexPath.row]
+                break
+            default:
+                break
+            }
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+            return cell
         }
-        cell!.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-        
-        return cell!
+        else {
+            return generic!
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
