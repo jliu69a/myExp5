@@ -27,6 +27,8 @@ class MyExpDataManager: NSObject {
     
     let kPaymentsAndVendorsPageRefreshNotification: String = "Payments_And_Vendors_Page_Refresh_Notification"
     
+    let monthsNameList: [String] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    
     //MARK: - util functions
     
     func showDate(date: Date?) -> String {

@@ -123,5 +123,152 @@
             </objects>
             <point key="canvasLocation" x="382.5" y="-183.80281690140845"/>
         </scene>
+        <!--Vendors Lookup View Controller-->
+        <scene sceneID="WfX-Cu-jrP">
+            <objects>
+                <viewController storyboardIdentifier="VendorsLookupViewController" id="fOG-Bq-BX2" customClass="VendorsLookupViewController" customModule="MyExp_5" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fgs-py-gat">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCw-DW-9br" userLabel="top view">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vendor Lookup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMl-HK-33G">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtC-l5-eTy" userLabel="back label">
+                                        <rect key="frame" x="10" y="0.0" width="56" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="WIm-FR-KnG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqd-b6-aNc">
+                                        <rect key="frame" x="0.0" y="0.0" width="66" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="66" id="HIW-ZI-BMa"/>
+                                        </constraints>
+                                        <state key="normal" title="back">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="gobackAction:" destination="fOG-Bq-BX2" eventType="touchUpInside" id="9Xq-vs-fpk"/>
+                                            <action selector="gobackAction:" destination="Eh2-1S-For" eventType="touchUpInside" id="gkx-b1-TC5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="hMl-HK-33G" firstAttribute="leading" secondItem="pCw-DW-9br" secondAttribute="leading" id="2Zj-7T-IRo"/>
+                                    <constraint firstItem="oqd-b6-aNc" firstAttribute="leading" secondItem="pCw-DW-9br" secondAttribute="leading" id="36u-M6-dcZ"/>
+                                    <constraint firstItem="DtC-l5-eTy" firstAttribute="top" secondItem="pCw-DW-9br" secondAttribute="top" id="8at-bK-832"/>
+                                    <constraint firstAttribute="bottom" secondItem="DtC-l5-eTy" secondAttribute="bottom" id="C9B-oi-DVJ"/>
+                                    <constraint firstItem="oqd-b6-aNc" firstAttribute="top" secondItem="pCw-DW-9br" secondAttribute="top" id="DKk-Zz-ElV"/>
+                                    <constraint firstItem="DtC-l5-eTy" firstAttribute="leading" secondItem="pCw-DW-9br" secondAttribute="leading" constant="10" id="DkP-d4-1Ap"/>
+                                    <constraint firstAttribute="height" constant="44" id="PD9-RT-Lg0"/>
+                                    <constraint firstAttribute="trailing" secondItem="hMl-HK-33G" secondAttribute="trailing" id="X3y-ep-s8i"/>
+                                    <constraint firstAttribute="bottom" secondItem="hMl-HK-33G" secondAttribute="bottom" id="j3l-bx-IP0"/>
+                                    <constraint firstAttribute="bottom" secondItem="oqd-b6-aNc" secondAttribute="bottom" id="nP2-ic-sCY"/>
+                                    <constraint firstItem="hMl-HK-33G" firstAttribute="top" secondItem="pCw-DW-9br" secondAttribute="top" id="ufj-Co-xuQ"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ta-nF-TCB" userLabel="year label">
+                                <rect key="frame" x="50" y="138" width="314" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="3Wj-hb-oy5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7O-LG-MBH" userLabel="year button">
+                                <rect key="frame" x="50" y="171" width="314" height="50"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Lzp-ap-2De"/>
+                                </constraints>
+                                <state key="normal" title="select a year">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseYearAction:" destination="fOG-Bq-BX2" eventType="touchUpInside" id="sX7-mY-EP1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vendor :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nH-LQ-BGS" userLabel="vendor label">
+                                <rect key="frame" x="50" y="271" width="314" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="rOg-QM-62E"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I20-Mo-2RX" userLabel="vendor button">
+                                <rect key="frame" x="50" y="306" width="314" height="50"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="K51-2V-n9E"/>
+                                </constraints>
+                                <state key="normal" title="select a vendor">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseVendorActiono:" destination="fOG-Bq-BX2" eventType="touchUpInside" id="btG-tv-swC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nD-Z4-gVY">
+                                <rect key="frame" x="75" y="456" width="264" height="50"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="VVa-xx-klO"/>
+                                </constraints>
+                                <state key="normal" title="Start to Lookup">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="lookupAction:" destination="fOG-Bq-BX2" eventType="touchUpInside" id="9ZN-mr-BUU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="I20-Mo-2RX" firstAttribute="top" secondItem="9nH-LQ-BGS" secondAttribute="bottom" constant="10" id="0yr-ao-5gD"/>
+                            <constraint firstItem="6nD-Z4-gVY" firstAttribute="top" secondItem="I20-Mo-2RX" secondAttribute="bottom" constant="100" id="6er-m7-b4t"/>
+                            <constraint firstItem="9nH-LQ-BGS" firstAttribute="top" secondItem="V7O-LG-MBH" secondAttribute="bottom" constant="50" id="6yK-ga-tel"/>
+                            <constraint firstItem="6nD-Z4-gVY" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" constant="75" id="7Ti-Rc-2QS"/>
+                            <constraint firstItem="bIR-iz-9xi" firstAttribute="trailing" secondItem="5Ta-nF-TCB" secondAttribute="trailing" constant="50" id="7bu-4R-3ax"/>
+                            <constraint firstItem="V7O-LG-MBH" firstAttribute="top" secondItem="5Ta-nF-TCB" secondAttribute="bottom" constant="8" id="Afe-xp-gU0"/>
+                            <constraint firstItem="I20-Mo-2RX" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" constant="50" id="REZ-TL-qr7"/>
+                            <constraint firstItem="pCw-DW-9br" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" id="TMu-e1-FiJ"/>
+                            <constraint firstItem="bIR-iz-9xi" firstAttribute="trailing" secondItem="6nD-Z4-gVY" secondAttribute="trailing" constant="75" id="TiE-eQ-WcT"/>
+                            <constraint firstItem="bIR-iz-9xi" firstAttribute="trailing" secondItem="9nH-LQ-BGS" secondAttribute="trailing" constant="50" id="Vmf-hf-nmm"/>
+                            <constraint firstItem="9nH-LQ-BGS" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" constant="50" id="Yta-gX-wgp"/>
+                            <constraint firstItem="5Ta-nF-TCB" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" constant="50" id="Z50-eM-jJx"/>
+                            <constraint firstItem="V7O-LG-MBH" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" constant="50" id="bSh-Io-FZy"/>
+                            <constraint firstItem="pCw-DW-9br" firstAttribute="top" secondItem="bIR-iz-9xi" secondAttribute="top" id="fmL-y4-vBh"/>
+                            <constraint firstItem="bIR-iz-9xi" firstAttribute="trailing" secondItem="I20-Mo-2RX" secondAttribute="trailing" constant="50" id="kBZ-eq-TZS"/>
+                            <constraint firstItem="pCw-DW-9br" firstAttribute="trailing" secondItem="bIR-iz-9xi" secondAttribute="trailing" id="mKM-3Z-gVO"/>
+                            <constraint firstItem="bIR-iz-9xi" firstAttribute="trailing" secondItem="V7O-LG-MBH" secondAttribute="trailing" constant="50" id="nDR-Oj-d5d"/>
+                            <constraint firstItem="5Ta-nF-TCB" firstAttribute="top" secondItem="pCw-DW-9br" secondAttribute="bottom" constant="50" id="r4K-Vz-Bgl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bIR-iz-9xi"/>
+                    </view>
+                    <connections>
+                        <outlet property="lookupButton" destination="6nD-Z4-gVY" id="EG6-0G-eAX"/>
+                        <outlet property="selectVendorButton" destination="I20-Mo-2RX" id="Ior-Jp-wOf"/>
+                        <outlet property="selectYearButton" destination="V7O-LG-MBH" id="7by-KP-9N4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y51-pL-V6h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1262.3188405797102" y="-184.15178571428569"/>
+        </scene>
     </scenes>
 </document>

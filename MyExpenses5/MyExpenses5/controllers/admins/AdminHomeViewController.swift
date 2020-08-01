@@ -15,8 +15,8 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     let titlesList: [String] = ["Settings", "Reports", "Misc"]
     let settingsList: [String] = ["Edit Payments", "Edit Vendors"]
-    let reportsList: [String] = ["Expense Report", "Export Data"]
-    let miscList: [String] = ["Look Up Vendor", "Look Up Expenses", "Location Check", "Device Info"]
+    let reportsList: [String] = ["Look Up Vendor", "Look Up Expenses", "Expense Report", "Export Data"]
+    let miscList: [String] = ["Location Check", "Device Info"]
     
     //MARK: - init
     
@@ -114,6 +114,9 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             }
             break
         case 1:
+            if indexPath.row == 0 {
+                self.showVendorsLoopup()
+            }
             break
         case 2:
             break
@@ -148,7 +151,15 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             print("- ")
         }
     }
-
-
+    
+    //MARK: - loopups
+    
+    func showVendorsLoopup() {
+        
+        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "VendorsLookupViewController") as? VendorsLookupViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
 }
