@@ -81,7 +81,7 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     func showAddOrEditPage(isForNew: Bool, id: String, name: String) {
         
         let storyboard = UIStoryboard(name: "admins", bundle: nil)
-        if let vc: AdminPVAddEditViewController = storyboard.instantiateViewController(withIdentifier: "AdminPVAddEditViewController") as? AdminPVAddEditViewController {
+        if let vc = storyboard.instantiateViewController(withIdentifier: "AdminPVAddEditViewController") as? AdminPVAddEditViewController {
             vc.delegate = self
             vc.isForPayment = self.isForPayments
             vc.idValue = id

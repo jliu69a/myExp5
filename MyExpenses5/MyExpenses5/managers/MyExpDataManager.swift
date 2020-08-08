@@ -120,8 +120,6 @@ class MyExpDataManager: NSObject {
             self.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
         }
         
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: self.kPaymentsAndVendorsPageRefreshNotification), object: nil)
-        
         //-- test print
         print("- ")
         let array: [Top10] = self.vendorDisplayData[top10Key] as? [Top10] ?? []
@@ -140,7 +138,7 @@ class MyExpDataManager: NSObject {
         
         DatasManager.sharedInstance.myExpsData(selectedDate: selectedDate) { (any: Any) in
             DispatchQueue.main.async {
-                let myexpsList: [MyExpsData] = any as! [MyExpsData]
+                let myexpsList = any as! [MyExpsData]
                 self.expenseList.removeAll()
                 self.paymentList.removeAll()
                 self.vendorList.removeAll()
@@ -179,7 +177,7 @@ class MyExpDataManager: NSObject {
         
         DatasManager.sharedInstance.myExpsWithDate(selectedDate: selectedDate) { (any: Any) in
             DispatchQueue.main.async {
-                let dataList: [Expense] = any as! [Expense]
+                let dataList = any as! [Expense]
                 self.expenseList = dataList
                 let value: Any = self.expenseList as Any
                 completion(value)
@@ -194,7 +192,7 @@ class MyExpDataManager: NSObject {
         let parameters: [String: Any] = self.createParameters(data: data, actionCode: actionCode)
         DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { (any: Any) in
             DispatchQueue.main.async {
-                let myexpsList: [EditMyExpsData] = any as! [EditMyExpsData]
+                let myexpsList = any as! [EditMyExpsData]
                 self.expenseList.removeAll()
                 self.top10List.removeAll()
                 
@@ -226,7 +224,7 @@ class MyExpDataManager: NSObject {
         
         DatasManager.sharedInstance.savePaymentsAndVendors(parameters: parameters) { (any: Any) in
             DispatchQueue.main.async {
-                let pvList: [ChangePVData] = any as! [ChangePVData]
+                let pvList = any as! [ChangePVData]
                 self.paymentList.removeAll()
                 self.vendorList.removeAll()
                 
@@ -246,6 +244,30 @@ class MyExpDataManager: NSObject {
             }
         }
     }
+    
+    //MARK: - vendor lookup
+    
+    func vendorsLookupData(year: String, vendorId: String, completion: @escaping  (Any)->()) {
+        
+        DatasManager.sharedInstance.vendorsLookup(year: year, vendorId: vendorId) { (any: Any) in
+            DispatchQueue.main.async {
+                let dataList = any as! [MyExpsData]
+                
+                if dataList.count > 0 {
+                    let each = dataList[0]
+                    let expsListWithVendor: [Expense] = each.expense!
+                    
+                    print("-> ")
+                    print("-> at MyExpDataManager, for vendor lookup, total expense items = \(expsListWithVendor.count) ")
+                    print("-> ")
+                }
+                
+                let temp: [Expense] = []
+                completion(temp)
+            }
+        }
+    }
+    
     
     //MARK: - testing
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewControllerDelegate {
+class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewControllerDelegate, PaymentsVendorsViewControllerDelegate {
     
     @IBOutlet weak var selectYearButton: UIButton!
     @IBOutlet weak var selectVendorButton: UIButton!
@@ -19,6 +19,7 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
     var selectedVendorName: String = "select a vendor"
     
     var selectVC: SelectMonthAndYearViewController? = nil
+    var selectVendor: PaymentsVendorsViewController? = nil
     
     //MARK: - init
     
@@ -51,23 +52,41 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
     }
     
     @IBAction func lookupAction(_ sender: Any) {
-        //
+        
+        print("> ")
+        print("> look up vendor, year = \(self.selectedYear), vendor ID = \(self.selectedVendorId) ...")
+        print("> ")
+        
+        MyExpDataManager.sharedInstance.vendorsLookupData(year: self.selectedYear, vendorId: self.selectedVendorId) { (any: Any) in
+            DispatchQueue.main.async {
+                let temp = any as! [Expense]
+                print("-> ")
+                print("-> at VC, vendor lookup, temp array size = \(temp.count) ")
+                print("-> ")
+            }
+        }
     }
     
     @IBAction func chooseYearAction(_ sender: Any) {
-        //
         
         let storyboard = UIStoryboard(name: "moneyAndYear", bundle: nil)
-        self.selectVC = storyboard.instantiateViewController(withIdentifier: "SelectMonthAndYearViewController") as? SelectMonthAndYearViewController
-        if self.selectVC != nil {
-            self.selectVC!.delegate = self
-            self.selectVC!.isForYearOnly = true
+        if let vc = storyboard.instantiateViewController(withIdentifier: "SelectMonthAndYearViewController") as? SelectMonthAndYearViewController {
+            vc.delegate = self
+            vc.isForYearOnly = true
+            self.selectVC = vc
             self.present(self.selectVC!, animated: true, completion: nil)
         }
     }
     
-    @IBAction func chooseVendorActiono(_ sender: Any) {
-        //
+    @IBAction func chooseVendorAction(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
+            vc.isForAdmin = false
+            vc.isForPayments = false
+            vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     //MARK: - delegates
@@ -83,5 +102,17 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
         self.selectYearButton.setTitle(self.selectedYear, for: UIControl.State.highlighted)
         
         self.selectVC?.dismiss(animated: true, completion: nil)
+    }
+    
+    func didSelectItem(isForPayment: Bool, name: String, id: String) {
+        
+        if isForPayment == false {
+            self.selectedVendorId = id
+            self.selectedVendorName = name
+            
+            let displayVendor = String(format: "%@ (%@)", self.selectedVendorName, self.selectedVendorId)
+            self.selectVendorButton.setTitle(displayVendor, for: UIControl.State.normal)
+            self.selectVendorButton.setTitle(displayVendor, for: UIControl.State.highlighted)
+        }
     }
 }

@@ -165,6 +165,39 @@ class DatasManager: NSObject {
         return dataList
     }
     
+    //MARK: - vendor lookup
+    
+    func vendorsLookup(year: String, vendorId: String, completion: @escaping  (Any)->()) {
+        
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/vendors_lookup.php?year=%@&vendorid=%@", folder, year, vendorId)
+        let connect: ConnectionsManager = ConnectionsManager()
+        
+        connect.getDataFromUrl(url: url) { (data: Any) in
+            let myexpData: Data = data as! Data
+            let myexpsList: [MyExpsData] = self.parseDataForVendors(data: myexpData)
+            let value: Any = myexpsList as Any
+            completion(value)
+        }
+    }
+    
+    func parseDataForVendors(data: Data) -> [MyExpsData] {
+        
+        let json = try? JSON(data: data)
+        if json == nil {
+            print("- my expenses : No Data")
+            return []
+        }
+        
+        var dataList: [MyExpsData] = []
+        do {
+            dataList = try JSONDecoder().decode([MyExpsData].self, from: data)
+        }
+        catch {
+            print(error)
+        }
+        
+        return dataList
+    }
     
     
     //MARK: - save home test

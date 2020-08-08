@@ -220,7 +220,7 @@
                                     <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="chooseVendorActiono:" destination="fOG-Bq-BX2" eventType="touchUpInside" id="btG-tv-swC"/>
+                                    <action selector="chooseVendorAction:" destination="fOG-Bq-BX2" eventType="touchUpInside" id="AuY-yG-0Th"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nD-Z4-gVY">
