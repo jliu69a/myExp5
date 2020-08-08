@@ -8,11 +8,16 @@
 
 import UIKit
 
-class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewControllerDelegate, PaymentsVendorsViewControllerDelegate {
+class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SelectMonthAndYearViewControllerDelegate, PaymentsVendorsViewControllerDelegate {
     
     @IBOutlet weak var selectYearButton: UIButton!
     @IBOutlet weak var selectVendorButton: UIButton!
     @IBOutlet weak var lookupButton: UIButton!
+    
+    @IBOutlet weak var resultView: UIView!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var startNewLookupButton: UIButton!
+    @IBOutlet weak var yearLabel: UILabel!
     
     var selectedYear: String = "0"
     var selectedVendorId: String = "0"
@@ -21,10 +26,18 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
     var selectVC: SelectMonthAndYearViewController? = nil
     var selectVendor: PaymentsVendorsViewController? = nil
     
+    var lookupTitlesList: [String] = []
+    var lookupData: [String: LookupModel] = [:]
+    
     //MARK: - init
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        MyExpDataManager.sharedInstance.clearVendorLookupData()
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
+        self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
         
         let df = DateFormatter()
         df.dateFormat = "yyyy"
@@ -32,6 +45,7 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
         
         self.selectYearButton.setTitle(self.selectedYear, for: UIControl.State.normal)
         self.selectYearButton.setTitle(self.selectedYear, for: UIControl.State.highlighted)
+        self.displayYear()
         
         self.selectVendorButton.setTitle(self.selectedVendorName, for: UIControl.State.normal)
         self.selectVendorButton.setTitle(self.selectedVendorName, for: UIControl.State.highlighted)
@@ -40,9 +54,15 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.hideResultView()
+        
+        self.tableView.layer.borderColor = UIColor.systemOrange.cgColor
+        self.tableView.layer.borderWidth = 0.5
+        
         self.selectYearButton.layer.cornerRadius = 5
         self.selectVendorButton.layer.cornerRadius = 5
         self.lookupButton.layer.cornerRadius = 5
+        self.startNewLookupButton.layer.cornerRadius = 5
     }
     
     //MARK: - IB functions
@@ -59,10 +79,10 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
         
         MyExpDataManager.sharedInstance.vendorsLookupData(year: self.selectedYear, vendorId: self.selectedVendorId) { (any: Any) in
             DispatchQueue.main.async {
-                let temp = any as! [Expense]
-                print("-> ")
-                print("-> at VC, vendor lookup, temp array size = \(temp.count) ")
-                print("-> ")
+                self.showResultView()
+                self.lookupTitlesList = MyExpDataManager.sharedInstance.lookupTitlesList
+                self.lookupData = MyExpDataManager.sharedInstance.lookupData
+                self.tableView.reloadData()
             }
         }
     }
@@ -89,6 +109,68 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
         }
     }
     
+    @IBAction func startNewLookupAction(_ sender: Any) {
+        
+        MyExpDataManager.sharedInstance.clearVendorLookupData()
+        self.hideResultView()
+    }
+    
+    //MARK: - result view
+    
+    func showResultView() {
+        self.resultView.isHidden = false
+    }
+    
+    func hideResultView() {
+        self.resultView.isHidden = true
+    }
+    
+    func displayYear() {
+        self.yearLabel.text = String(format: "( Year: %@ )", self.selectedYear)
+        self.yearLabel.backgroundColor = UIColor.systemGray6
+    }
+    
+    //MARK: - table view source
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.lookupTitlesList.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        let title = self.lookupTitlesList[section]
+        let model = self.lookupData[title] ?? LookupModel()
+        return model.exps.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let genericCell = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
+        
+        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell {
+            let title = self.lookupTitlesList[indexPath.section]
+            let model = self.lookupData[title] ?? LookupModel()
+            let expsData = model.exps[indexPath.row]
+            cell.displayModelData(data: expsData)
+            return cell
+        }
+        else {
+            return genericCell!
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        let title = self.lookupTitlesList[section]
+        let model = self.lookupData[title] ?? LookupModel()
+        return String(format: "%@ (total = %0.2f)", model.date, model.total)
+    }
+    
+    //MARK: - table view delegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     //MARK: - delegates
     
     func cancelYearSelection() {
@@ -100,6 +182,7 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
         self.selectedYear = selectedYear
         self.selectYearButton.setTitle(self.selectedYear, for: UIControl.State.normal)
         self.selectYearButton.setTitle(self.selectedYear, for: UIControl.State.highlighted)
+        self.displayYear()
         
         self.selectVC?.dismiss(animated: true, completion: nil)
     }

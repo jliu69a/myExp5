@@ -180,7 +180,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ta-nF-TCB" userLabel="year label">
-                                <rect key="frame" x="50" y="138" width="314" height="25"/>
+                                <rect key="frame" x="50" y="148" width="314" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="3Wj-hb-oy5"/>
                                 </constraints>
@@ -189,7 +189,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7O-LG-MBH" userLabel="year button">
-                                <rect key="frame" x="50" y="171" width="314" height="50"/>
+                                <rect key="frame" x="50" y="181" width="314" height="50"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Lzp-ap-2De"/>
@@ -202,7 +202,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vendor :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nH-LQ-BGS" userLabel="vendor label">
-                                <rect key="frame" x="50" y="271" width="314" height="25"/>
+                                <rect key="frame" x="50" y="281" width="314" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="rOg-QM-62E"/>
                                 </constraints>
@@ -211,7 +211,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I20-Mo-2RX" userLabel="vendor button">
-                                <rect key="frame" x="50" y="306" width="314" height="50"/>
+                                <rect key="frame" x="50" y="316" width="314" height="50"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="K51-2V-n9E"/>
@@ -224,7 +224,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nD-Z4-gVY">
-                                <rect key="frame" x="75" y="456" width="264" height="50"/>
+                                <rect key="frame" x="75" y="466" width="264" height="50"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="VVa-xx-klO"/>
@@ -236,15 +236,65 @@
                                     <action selector="lookupAction:" destination="fOG-Bq-BX2" eventType="touchUpInside" id="9ZN-mr-BUU"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tR-tH-Qvg" userLabel="result view">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HD1-Z3-D3A">
+                                        <rect key="frame" x="57" y="704" width="300" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="7qb-MG-7CN"/>
+                                            <constraint firstAttribute="width" constant="300" id="CoL-WT-Y84"/>
+                                        </constraints>
+                                        <state key="normal" title="Start New Vendor Lookup">
+                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startNewLookupAction:" destination="fOG-Bq-BX2" eventType="touchUpInside" id="lXk-kk-w1W"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(year)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITb-BU-k47" userLabel="year label">
+                                        <rect key="frame" x="5" y="0.0" width="404" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="oje-xf-WOr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="45" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="sFI-gX-I9B">
+                                        <rect key="frame" x="5" y="15" width="404" height="674"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="fOG-Bq-BX2" id="ksD-9L-4wd"/>
+                                            <outlet property="delegate" destination="fOG-Bq-BX2" id="iGw-uw-Jew"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="sFI-gX-I9B" firstAttribute="top" secondItem="ITb-BU-k47" secondAttribute="bottom" id="8xg-JP-2zP"/>
+                                    <constraint firstItem="HD1-Z3-D3A" firstAttribute="top" secondItem="sFI-gX-I9B" secondAttribute="bottom" constant="15" id="DXe-zf-WwJ"/>
+                                    <constraint firstItem="sFI-gX-I9B" firstAttribute="leading" secondItem="4tR-tH-Qvg" secondAttribute="leading" constant="5" id="IN3-ZQ-gD1"/>
+                                    <constraint firstItem="ITb-BU-k47" firstAttribute="top" secondItem="4tR-tH-Qvg" secondAttribute="top" id="QZb-yw-ssz"/>
+                                    <constraint firstAttribute="trailing" secondItem="sFI-gX-I9B" secondAttribute="trailing" constant="5" id="XNU-ZX-IVP"/>
+                                    <constraint firstItem="HD1-Z3-D3A" firstAttribute="centerX" secondItem="4tR-tH-Qvg" secondAttribute="centerX" id="eTb-CD-Gyt"/>
+                                    <constraint firstAttribute="trailing" secondItem="ITb-BU-k47" secondAttribute="trailing" constant="5" id="jiP-l1-QeI"/>
+                                    <constraint firstAttribute="bottom" secondItem="HD1-Z3-D3A" secondAttribute="bottom" constant="20" id="kxY-Wb-ay3"/>
+                                    <constraint firstItem="ITb-BU-k47" firstAttribute="leading" secondItem="4tR-tH-Qvg" secondAttribute="leading" constant="5" id="vRT-Pi-V8h"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="I20-Mo-2RX" firstAttribute="top" secondItem="9nH-LQ-BGS" secondAttribute="bottom" constant="10" id="0yr-ao-5gD"/>
+                            <constraint firstItem="4tR-tH-Qvg" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" id="2Ya-MJ-vbu"/>
                             <constraint firstItem="6nD-Z4-gVY" firstAttribute="top" secondItem="I20-Mo-2RX" secondAttribute="bottom" constant="100" id="6er-m7-b4t"/>
                             <constraint firstItem="9nH-LQ-BGS" firstAttribute="top" secondItem="V7O-LG-MBH" secondAttribute="bottom" constant="50" id="6yK-ga-tel"/>
                             <constraint firstItem="6nD-Z4-gVY" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" constant="75" id="7Ti-Rc-2QS"/>
                             <constraint firstItem="bIR-iz-9xi" firstAttribute="trailing" secondItem="5Ta-nF-TCB" secondAttribute="trailing" constant="50" id="7bu-4R-3ax"/>
                             <constraint firstItem="V7O-LG-MBH" firstAttribute="top" secondItem="5Ta-nF-TCB" secondAttribute="bottom" constant="8" id="Afe-xp-gU0"/>
+                            <constraint firstItem="bIR-iz-9xi" firstAttribute="bottom" secondItem="4tR-tH-Qvg" secondAttribute="bottom" id="LnT-oR-BZU"/>
                             <constraint firstItem="I20-Mo-2RX" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" constant="50" id="REZ-TL-qr7"/>
                             <constraint firstItem="pCw-DW-9br" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" id="TMu-e1-FiJ"/>
                             <constraint firstItem="bIR-iz-9xi" firstAttribute="trailing" secondItem="6nD-Z4-gVY" secondAttribute="trailing" constant="75" id="TiE-eQ-WcT"/>
@@ -256,14 +306,20 @@
                             <constraint firstItem="bIR-iz-9xi" firstAttribute="trailing" secondItem="I20-Mo-2RX" secondAttribute="trailing" constant="50" id="kBZ-eq-TZS"/>
                             <constraint firstItem="pCw-DW-9br" firstAttribute="trailing" secondItem="bIR-iz-9xi" secondAttribute="trailing" id="mKM-3Z-gVO"/>
                             <constraint firstItem="bIR-iz-9xi" firstAttribute="trailing" secondItem="V7O-LG-MBH" secondAttribute="trailing" constant="50" id="nDR-Oj-d5d"/>
-                            <constraint firstItem="5Ta-nF-TCB" firstAttribute="top" secondItem="pCw-DW-9br" secondAttribute="bottom" constant="50" id="r4K-Vz-Bgl"/>
+                            <constraint firstItem="5Ta-nF-TCB" firstAttribute="top" secondItem="pCw-DW-9br" secondAttribute="bottom" constant="60" id="r4K-Vz-Bgl"/>
+                            <constraint firstItem="4tR-tH-Qvg" firstAttribute="top" secondItem="pCw-DW-9br" secondAttribute="bottom" id="sDB-jK-1wn"/>
+                            <constraint firstItem="4tR-tH-Qvg" firstAttribute="trailing" secondItem="bIR-iz-9xi" secondAttribute="trailing" id="u6R-G1-Nw0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bIR-iz-9xi"/>
                     </view>
                     <connections>
                         <outlet property="lookupButton" destination="6nD-Z4-gVY" id="EG6-0G-eAX"/>
+                        <outlet property="resultView" destination="4tR-tH-Qvg" id="oFv-Hg-4PJ"/>
                         <outlet property="selectVendorButton" destination="I20-Mo-2RX" id="Ior-Jp-wOf"/>
                         <outlet property="selectYearButton" destination="V7O-LG-MBH" id="7by-KP-9N4"/>
+                        <outlet property="startNewLookupButton" destination="HD1-Z3-D3A" id="noI-4g-p1u"/>
+                        <outlet property="tableView" destination="sFI-gX-I9B" id="15r-BP-vVP"/>
+                        <outlet property="yearLabel" destination="ITb-BU-k47" id="5a2-6H-p1h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y51-pL-V6h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
