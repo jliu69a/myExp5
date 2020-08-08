@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A072FD524DEFA14009DA0A4 /* LookupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A072FD424DEFA14009DA0A4 /* LookupModel.swift */; };
 		5A1CDDB324C221D100E83452 /* ExpenseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */; };
 		5A1CDDB624C235D400E83452 /* ChangeDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CDDB524C235D400E83452 /* ChangeDateViewController.swift */; };
 		5A1CDDB824C26C9400E83452 /* EditExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CDDB724C26C9400E83452 /* EditExpensesViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A072FD424DEFA14009DA0A4 /* LookupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupModel.swift; sourceTree = "<group>"; };
 		5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseHomeViewController.swift; sourceTree = "<group>"; };
 		5A1CDDB524C235D400E83452 /* ChangeDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeDateViewController.swift; sourceTree = "<group>"; };
 		5A1CDDB724C26C9400E83452 /* EditExpensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExpensesViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				5A87AB8124C1340E009792A1 /* jsonsData.swift */,
+				5A072FD424DEFA14009DA0A4 /* LookupModel.swift */,
 			);
 			path = codables;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				5A8F15AE24D4D88500B57A9B /* VendorsLookupViewController.swift in Sources */,
 				5AF26FC224CB86380042DE15 /* AdminHomeViewController.swift in Sources */,
 				5A97C77924C12E050019E2B4 /* AppDelegate.swift in Sources */,
+				5A072FD524DEFA14009DA0A4 /* LookupModel.swift in Sources */,
 				5A97C77B24C12E050019E2B4 /* SceneDelegate.swift in Sources */,
 				5AF26FC624CBA8550042DE15 /* AdminPVAddEditViewController.swift in Sources */,
 			);

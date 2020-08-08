@@ -25,6 +25,9 @@ class MyExpDataManager: NSObject {
     var vendorDisplayTitles: [String] = []
     var vendorDisplayData: [String: AnyObject] = [:]
     
+    var lookupTitlesList: [String] = []
+    var lookupData: [String: LookupModel] = [:]
+    
     let kPaymentsAndVendorsPageRefreshNotification: String = "Payments_And_Vendors_Page_Refresh_Notification"
     
     let monthsNameList: [String] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -256,10 +259,7 @@ class MyExpDataManager: NSObject {
                 if dataList.count > 0 {
                     let each = dataList[0]
                     let expsListWithVendor: [Expense] = each.expense!
-                    
-                    print("-> ")
-                    print("-> at MyExpDataManager, for vendor lookup, total expense items = \(expsListWithVendor.count) ")
-                    print("-> ")
+                    self.parseVendorLookupsData(list: expsListWithVendor)
                 }
                 
                 let temp: [Expense] = []
@@ -268,6 +268,62 @@ class MyExpDataManager: NSObject {
         }
     }
     
+    func clearVendorLookupData() {
+        self.lookupTitlesList.removeAll()
+        self.lookupData.removeAll()
+    }
+    
+    func parseVendorLookupsData(list: [Expense]) {
+        
+        self.clearVendorLookupData()
+        if list.count == 0 {
+            return
+        }
+        
+        for each in list {
+            let dateText = each.date ?? ""
+            let dateTitle = self.createLookupTitle(date: dateText)
+            
+            if self.lookupTitlesList.contains(dateTitle) == false {
+                self.lookupTitlesList.append(dateTitle)
+            }
+            
+            let model = self.lookupData[dateTitle] ?? LookupModel()
+            model.date = dateTitle
+            
+            let amount = each.amount ?? "0"
+            let amountValue = Float(amount) ?? 0
+            model.total += amountValue
+            
+            model.exps.append(each)
+            self.lookupData[dateTitle] = model
+        }
+        
+        //-- testing print
+        print("- ")
+        print("- lookup title list : \(self.lookupTitlesList) ")
+
+        for each in self.lookupTitlesList {
+            let model = self.lookupData[each] ?? LookupModel()
+            print("    - title : \(model.date), total = \(model.total), array size = \(model.exps.count)")
+        }
+        print("- ")
+        
+    }
+    
+    func createLookupTitle(date: String) -> String {
+        
+        if date.count == 0 {
+            return ""
+        }
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let dateValue = df.date(from: date) ?? Date()
+        
+        df.dateFormat = "MMMM"
+        return df.string(from: dateValue)
+    }
     
     //MARK: - testing
     
