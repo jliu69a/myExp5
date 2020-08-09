@@ -147,6 +147,8 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
         let genericCell = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
         
         if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell {
+            cell.isForLookup = true
+            
             let title = self.lookupTitlesList[indexPath.section]
             let model = self.lookupData[title] ?? LookupModel()
             let expsData = model.exps[indexPath.row]

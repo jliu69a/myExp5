@@ -61,6 +61,8 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         let genericCell = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
         
         if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell {
+            cell.isForLookup = false
+            
             let model: Expense = self.expsList[indexPath.row]
             cell.displayModelData(data: model)
             return cell

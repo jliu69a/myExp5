@@ -17,13 +17,20 @@ class ExpenseCell: UITableViewCell {
     @IBOutlet weak var cellPaymentLabel: UILabel!
     @IBOutlet weak var cellTimeLabel: UILabel!
     
+    var isForLookup: Bool = false
     
     func displayModelData(data: Expense) {
 
         self.cellVendorLabel.text = data.vendor ?? ""
         self.cellPaymentLabel.text = data.payment ?? ""
         self.cellNotesLabel.text = data.note ?? ""
-        self.cellTimeLabel.text = String(format: "( time: %@ )", (data.time ?? ""))
+        
+        if self.isForLookup == true {
+            self.cellTimeLabel.text = String(format: "( %@, %@ )", (data.date ?? ""), (data.time ?? ""))
+        }
+        else {
+            self.cellTimeLabel.text = String(format: "( time: %@ )", (data.time ?? ""))
+        }
         
         let amountText: String = data.amount ?? "0"
         let amountValue: Float = (amountText as NSString).floatValue
