@@ -115,7 +115,10 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             break
         case 1:
             if indexPath.row == 0 {
-                self.showVendorsLoopup()
+                self.showVendorsLookup()
+            }
+            else if indexPath.row == 1 {
+                self.showExpenseLookup()
             }
             break
         case 2:
@@ -152,14 +155,18 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    //MARK: - loopups
+    //MARK: - lookups
     
-    func showVendorsLoopup() {
+    func showVendorsLookup() {
         
         let storyboard = UIStoryboard(name: "pandv", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "VendorsLookupViewController") as? VendorsLookupViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    func showExpenseLookup() {
+        
     }
     
 }

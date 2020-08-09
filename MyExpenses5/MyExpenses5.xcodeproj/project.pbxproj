@@ -14,7 +14,7 @@
 		5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB7B24C133D4009792A1 /* DatasManager.swift */; };
 		5A87AB7E24C133D4009792A1 /* ConnectionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB7C24C133D4009792A1 /* ConnectionsManager.swift */; };
 		5A87AB8324C1340E009792A1 /* jsonsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A87AB8124C1340E009792A1 /* jsonsData.swift */; };
-		5A87AB8524C13467009792A1 /* expenseHome.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A87AB8424C13467009792A1 /* expenseHome.storyboard */; };
+		5A87AB8524C13467009792A1 /* expense.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A87AB8424C13467009792A1 /* expense.storyboard */; };
 		5A87AB8B24C134A0009792A1 /* myExp_cal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87AB8724C1349F009792A1 /* myExp_cal.png */; };
 		5A87AB8C24C134A0009792A1 /* myExp_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87AB8824C1349F009792A1 /* myExp_back.png */; };
 		5A87AB8D24C134A0009792A1 /* myExp_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A87AB8924C1349F009792A1 /* myExp_more.png */; };
@@ -49,7 +49,7 @@
 		5A87AB7B24C133D4009792A1 /* DatasManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatasManager.swift; sourceTree = "<group>"; };
 		5A87AB7C24C133D4009792A1 /* ConnectionsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsManager.swift; sourceTree = "<group>"; };
 		5A87AB8124C1340E009792A1 /* jsonsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jsonsData.swift; sourceTree = "<group>"; };
-		5A87AB8424C13467009792A1 /* expenseHome.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = expenseHome.storyboard; sourceTree = "<group>"; };
+		5A87AB8424C13467009792A1 /* expense.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = expense.storyboard; sourceTree = "<group>"; };
 		5A87AB8724C1349F009792A1 /* myExp_cal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myExp_cal.png; sourceTree = "<group>"; };
 		5A87AB8824C1349F009792A1 /* myExp_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myExp_back.png; sourceTree = "<group>"; };
 		5A87AB8924C1349F009792A1 /* myExp_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myExp_more.png; sourceTree = "<group>"; };
@@ -169,7 +169,7 @@
 		5A97C78C24C12E430019E2B4 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				5A87AB8424C13467009792A1 /* expenseHome.storyboard */,
+				5A87AB8424C13467009792A1 /* expense.storyboard */,
 				5A8BAAB324C33EC50033B46A /* pandv.storyboard */,
 				5AF26FC324CB864D0042DE15 /* admins.storyboard */,
 				5A8F15AB24D4C54500B57A9B /* moneyAndYear.storyboard */,
@@ -277,7 +277,7 @@
 				5A97C78524C12E060019E2B4 /* LaunchScreen.storyboard in Resources */,
 				5A97C78224C12E060019E2B4 /* Assets.xcassets in Resources */,
 				5A87AB8C24C134A0009792A1 /* myExp_back.png in Resources */,
-				5A87AB8524C13467009792A1 /* expenseHome.storyboard in Resources */,
+				5A87AB8524C13467009792A1 /* expense.storyboard in Resources */,
 				5AF26FC424CB864D0042DE15 /* admins.storyboard in Resources */,
 				5A87AB8B24C134A0009792A1 /* myExp_cal.png in Resources */,
 				5A87AB8D24C134A0009792A1 /* myExp_more.png in Resources */,
@@ -502,7 +502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = WSH8T4CK9T;
 				INFOPLIST_FILE = MyExpenses5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -524,7 +524,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = WSH8T4CK9T;
 				INFOPLIST_FILE = MyExpenses5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

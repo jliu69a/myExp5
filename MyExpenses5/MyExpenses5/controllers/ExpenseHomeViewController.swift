@@ -142,7 +142,7 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     
     func showAddEditPage(model: Expense?) {
         
-        let storyboard: UIStoryboard = UIStoryboard(name: "expenseHome", bundle: nil)
+        let storyboard: UIStoryboard = UIStoryboard(name: "expense", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "EditExpensesViewController") as? EditExpensesViewController {
             self.editExpenseVC = vc
             self.editExpenseVC!.selectedExpense = model
@@ -180,7 +180,7 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBAction func changeDateAction(_ sender: Any) {
         
-        let storyboard: UIStoryboard = UIStoryboard.init(name: "expenseHome", bundle: nil)
+        let storyboard: UIStoryboard = UIStoryboard.init(name: "expense", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "ChangeDateViewController") as? ChangeDateViewController {
             self.changeDateVC = vc
             self.changeDateVC!.delegate = self
