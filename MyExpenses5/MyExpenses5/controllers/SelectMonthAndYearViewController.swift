@@ -127,7 +127,7 @@ class SelectMonthAndYearViewController: UIViewController, UIPickerViewDataSource
             self.selectedYear = self.yearsList[row]
         }
         else {
-            self.selectedMonthIndex = self.monthsList[row]
+            self.selectedMonthIndex = String(format: "%0.2d", (row + 1))
         }
     }
     

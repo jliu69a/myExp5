@@ -167,6 +167,10 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     
     func showExpenseLookup() {
         
+        let storyboard = UIStoryboard(name: "expense", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "ExpensesLookupViewController") as? ExpensesLookupViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }
