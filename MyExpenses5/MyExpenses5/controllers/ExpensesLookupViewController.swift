@@ -20,7 +20,13 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
     
     let maxDayNumber: Int = 42
     
+    var selectedYear: Int = 0
+    var selectedMonth: Int = 0
     var yearMonthDisplay: String = ""
+    
+    var totalDaysOfMonth: Int = 0
+    var dayOfWeek: Int = 0
+    var firstDayIndex: Int = 0
     
     var selectVC: SelectMonthAndYearViewController? = nil
     
@@ -30,11 +36,24 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let rightNow = Date()
         let df = DateFormatter()
-        df.dateFormat = "yyyy-MM"
-        self.yearMonthDisplay = df.string(from: Date())
         
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CellId")
+        df.dateFormat = "yyyy"
+        let yearText = df.string(from: rightNow)
+        self.selectedYear = Int(yearText) ?? 0
+        
+        df.dateFormat = "MM"
+        let monthText = df.string(from: rightNow)
+        self.selectedMonth = Int(monthText) ?? 0
+        
+        self.yearMonthDisplay = String(format: "%@-%@", yearText, monthText)
+        
+        self.resultsView.backgroundColor = UIColor.systemGray6
+        self.collectionView.backgroundColor = UIColor.systemGray6
+        
+        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "GenericCellId")  //CellId
+        self.collectionView.register(UINib(nibName: "ExpLookupCell", bundle: nil), forCellWithReuseIdentifier: "CellId")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,16 +82,26 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let genericCell: UICollectionViewCell? = self.collectionView.dequeueReusableCell(withReuseIdentifier: "GenericCellId", for: indexPath)
         
-        var cell: UICollectionViewCell? = self.collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath)
+        if let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as? ExpLookupCell {
+            cell.contentView.backgroundColor = UIColor.systemBackground
+            cell.contentView.layer.borderColor = UIColor.black.cgColor
+            cell.contentView.layer.borderWidth = 0.5
+            
+            let day = self.displayForCell(cellIndex: indexPath.row)
+            let isActive = (day.count > 0) ? true : false
+            cell.showCellData(index: indexPath.row, date: day, isWithData: false, isActive: isActive)
+            
+            print("-> index = \(indexPath.row), cell : '\(day)' ")
+            
+            return cell
+        }
         
-        cell!.contentView.backgroundColor = UIColor.systemGreen
-        
-        return cell!
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 43, height: 45)
+        genericCell!.contentView.backgroundColor = UIColor.systemBackground
+        genericCell!.contentView.layer.borderColor = UIColor.black.cgColor
+        genericCell!.contentView.layer.borderWidth = 0.5
+        return genericCell!
     }
     
     //MARK: - collection view delegate
@@ -100,6 +129,51 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         self.resultsView.isHidden = true
     }
     
+    func monthInfo() {
+        
+        let dateComponents = DateComponents(year: self.selectedYear, month: self.selectedMonth)
+        let calendar = Calendar.current
+        let date = calendar.date(from: dateComponents)!
+
+        let range = calendar.range(of: .day, in: .month, for: date)!
+        self.totalDaysOfMonth = range.count
+        print("> ")
+        print("> display as '\(self.yearMonthDisplay)', total days of month = \(self.totalDaysOfMonth)")
+        print("> ")
+        
+        //-- 1 : Sunday
+        //-- 7 : Saturday
+        let firstDayOfMonth = "\(self.yearMonthDisplay)-01"
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let selectedDate = df.date(from: firstDayOfMonth) ?? Date()
+        
+        self.dayOfWeek = Calendar.current.component(.weekday, from: selectedDate)
+        self.firstDayIndex = self.dayOfWeek - 1
+        
+        let totalDaysAhead: Int = self.dayOfWeek - 1
+        print("- ")
+        print("- date = \(selectedDate), the day of week is : \(self.dayOfWeek), total days ahead = \(totalDaysAhead) ")
+        print("- ")
+        
+        self.collectionView.reloadData()
+    }
+    
+    func displayForCell(cellIndex: Int) -> String {
+        
+        if cellIndex < self.firstDayIndex {
+            return ""
+        }
+        
+        let dayValue = cellIndex - self.firstDayIndex + 1
+        var dayDisplay = ""
+        
+        if dayValue <= self.totalDaysOfMonth {
+            dayDisplay = "\(cellIndex - self.firstDayIndex + 1)"
+        }
+        return dayDisplay
+    }
+    
     //MARK: - IB functions
     
     @IBAction func gobackAction(_ sender: Any) {
@@ -125,7 +199,7 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         //-- w : 43 x 7 = 301
         //-- h : 66 x 6 = 396
         
-        
+        self.monthInfo()
     }
     
     @IBAction func clearResultsAction(_ sender: Any) {
@@ -139,6 +213,9 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
     }
     
     func didSelectYear(isForYearOnly: Bool, selectedYear: String, selectedMonthIndex: String) {
+        
+        self.selectedYear = Int(selectedYear) ?? 0
+        self.selectedMonth = Int(selectedMonthIndex) ?? 0
         
         self.yearMonthDisplay = String(format: "%@-%@", selectedYear, selectedMonthIndex)
         self.showYearAndMonth()

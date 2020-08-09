@@ -30,6 +30,8 @@
 		5A8F15AC24D4C54500B57A9B /* moneyAndYear.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A8F15AB24D4C54500B57A9B /* moneyAndYear.storyboard */; };
 		5A8F15AE24D4D88500B57A9B /* VendorsLookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F15AD24D4D88500B57A9B /* VendorsLookupViewController.swift */; };
 		5A90E45B24E03471005C42A3 /* ExpensesLookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A90E45A24E03471005C42A3 /* ExpensesLookupViewController.swift */; };
+		5A90E45E24E05E84005C42A3 /* ExpLookupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A90E45C24E05E84005C42A3 /* ExpLookupCell.swift */; };
+		5A90E45F24E05E84005C42A3 /* ExpLookupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A90E45D24E05E84005C42A3 /* ExpLookupCell.xib */; };
 		5A97C77924C12E050019E2B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A97C77824C12E050019E2B4 /* AppDelegate.swift */; };
 		5A97C77B24C12E050019E2B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A97C77A24C12E050019E2B4 /* SceneDelegate.swift */; };
 		5A97C77D24C12E050019E2B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A97C77C24C12E050019E2B4 /* ViewController.swift */; };
@@ -66,6 +68,8 @@
 		5A8F15AB24D4C54500B57A9B /* moneyAndYear.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = moneyAndYear.storyboard; sourceTree = "<group>"; };
 		5A8F15AD24D4D88500B57A9B /* VendorsLookupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsLookupViewController.swift; sourceTree = "<group>"; };
 		5A90E45A24E03471005C42A3 /* ExpensesLookupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesLookupViewController.swift; sourceTree = "<group>"; };
+		5A90E45C24E05E84005C42A3 /* ExpLookupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpLookupCell.swift; sourceTree = "<group>"; };
+		5A90E45D24E05E84005C42A3 /* ExpLookupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpLookupCell.xib; sourceTree = "<group>"; };
 		5A97C77524C12E050019E2B4 /* MyExp 5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MyExp 5.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A97C77824C12E050019E2B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A97C77A24C12E050019E2B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 				5A8F15A924D4C51100B57A9B /* SelectMonthAndYearViewController.swift */,
 				5A8F15AD24D4D88500B57A9B /* VendorsLookupViewController.swift */,
 				5A90E45A24E03471005C42A3 /* ExpensesLookupViewController.swift */,
+				5A90E45C24E05E84005C42A3 /* ExpLookupCell.swift */,
+				5A90E45D24E05E84005C42A3 /* ExpLookupCell.xib */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -284,6 +290,7 @@
 				5AF26FC424CB864D0042DE15 /* admins.storyboard in Resources */,
 				5A87AB8B24C134A0009792A1 /* myExp_cal.png in Resources */,
 				5A87AB8D24C134A0009792A1 /* myExp_more.png in Resources */,
+				5A90E45F24E05E84005C42A3 /* ExpLookupCell.xib in Resources */,
 				5A97C78024C12E050019E2B4 /* Main.storyboard in Resources */,
 				5A8BAAB424C33EC50033B46A /* pandv.storyboard in Resources */,
 				5A87AB9124C134C7009792A1 /* ExpenseCell.xib in Resources */,
@@ -347,6 +354,7 @@
 				5A87AB7E24C133D4009792A1 /* ConnectionsManager.swift in Sources */,
 				5A97C77D24C12E050019E2B4 /* ViewController.swift in Sources */,
 				5A1CDDB624C235D400E83452 /* ChangeDateViewController.swift in Sources */,
+				5A90E45E24E05E84005C42A3 /* ExpLookupCell.swift in Sources */,
 				5A87AB8324C1340E009792A1 /* jsonsData.swift in Sources */,
 				5A1CDDB324C221D100E83452 /* ExpenseHomeViewController.swift in Sources */,
 				5A1CDDB824C26C9400E83452 /* EditExpensesViewController.swift in Sources */,

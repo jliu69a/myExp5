@@ -737,7 +737,7 @@
                                         </connections>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="NWw-qT-HX8" firstAttribute="leading" secondItem="xr3-7d-4kQ" secondAttribute="leading" constant="25" id="0UA-XI-Qnw"/>
                                     <constraint firstItem="fxU-3G-kye" firstAttribute="top" secondItem="NWw-qT-HX8" secondAttribute="bottom" constant="40" id="6kl-ML-y82"/>
