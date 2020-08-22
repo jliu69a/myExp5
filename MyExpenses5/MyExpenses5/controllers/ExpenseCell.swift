@@ -18,6 +18,7 @@ class ExpenseCell: UITableViewCell {
     @IBOutlet weak var cellTimeLabel: UILabel!
     
     var isForLookup: Bool = false
+    var dayOfWeek: String = ""
     
     func displayModelData(data: Expense) {
 
@@ -26,7 +27,9 @@ class ExpenseCell: UITableViewCell {
         self.cellNotesLabel.text = data.note ?? ""
         
         if self.isForLookup == true {
-            self.cellTimeLabel.text = String(format: "( %@, %@ )", (data.date ?? ""), (data.time ?? ""))
+            let date = data.date ?? ""
+            let weekday = self.dayOfWeek(date: date)
+            self.cellTimeLabel.text = String(format: "( %@,  %@,  %@ )", date, weekday, (data.time ?? ""))
         }
         else {
             self.cellTimeLabel.text = String(format: "( time: %@ )", (data.time ?? ""))
@@ -37,6 +40,20 @@ class ExpenseCell: UITableViewCell {
         self.cellAmountLabel.text = String(format: "%0.2f", amountValue)
         
         self.baseLabel.backgroundColor = UIColor.systemGray6
+    }
+    
+    func dayOfWeek(date: String) -> String {
+        if date.count == 0 {
+            return ""
+        }
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let dateObject = df.date(from: date) ?? Date()
+        df.dateFormat = "EEE"
+        let weekday = df.string(from: dateObject)
+        
+        return weekday
     }
     
     func colorForData() -> UIColor {

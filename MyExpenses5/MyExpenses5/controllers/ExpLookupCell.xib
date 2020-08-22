@@ -23,7 +23,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Indicator Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qyp-X9-lhw" userLabel="indicator label">
-                        <rect key="frame" x="19" y="35" width="5" height="5"/>
+                        <rect key="frame" x="19" y="40" width="5" height="5"/>
                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="5" id="6Ym-nV-DJj"/>
@@ -51,7 +51,7 @@
                 <constraint firstItem="tnP-mY-TEd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="QDh-kO-I2e"/>
                 <constraint firstAttribute="trailing" secondItem="tnP-mY-TEd" secondAttribute="trailing" constant="5" id="SsX-Km-GpV"/>
                 <constraint firstAttribute="trailing" secondItem="fU9-Jc-Nwg" secondAttribute="trailing" id="arB-Nv-WrX"/>
-                <constraint firstAttribute="bottom" secondItem="qyp-X9-lhw" secondAttribute="bottom" constant="20" id="iYC-4L-pr6"/>
+                <constraint firstAttribute="bottom" secondItem="qyp-X9-lhw" secondAttribute="bottom" constant="15" id="iYC-4L-pr6"/>
                 <constraint firstItem="qyp-X9-lhw" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="m8T-Bw-dcX"/>
                 <constraint firstItem="fU9-Jc-Nwg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="t8M-hg-SzI"/>
                 <constraint firstItem="fU9-Jc-Nwg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ygZ-VR-QXP"/>

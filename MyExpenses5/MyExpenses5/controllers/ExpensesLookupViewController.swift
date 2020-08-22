@@ -226,7 +226,7 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
     func dataForSelectedDate(day: String) {
         let modelsList = self.lookupData[day] ?? []
         
-        let storyboard = UIStoryboard(name: "moneyAndYear", bundle: nil)
+        let storyboard = UIStoryboard(name: "monthAndYear", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "ExpLookupDisplayViewController") as? ExpLookupDisplayViewController {
             vc.myexpsList = modelsList
             self.present(vc, animated: true, completion: nil)
@@ -241,7 +241,7 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
     
     @IBAction func chooseYearMonthAction(_ sender: Any) {
         
-        let storyboard = UIStoryboard(name: "moneyAndYear", bundle: nil)
+        let storyboard = UIStoryboard(name: "monthAndYear", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "SelectMonthAndYearViewController") as? SelectMonthAndYearViewController {
             vc.delegate = self
             vc.isForYearOnly = false

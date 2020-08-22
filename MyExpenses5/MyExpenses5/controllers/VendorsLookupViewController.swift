@@ -89,7 +89,7 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
     
     @IBAction func chooseYearAction(_ sender: Any) {
         
-        let storyboard = UIStoryboard(name: "moneyAndYear", bundle: nil)
+        let storyboard = UIStoryboard(name: "monthAndYear", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "SelectMonthAndYearViewController") as? SelectMonthAndYearViewController {
             vc.delegate = self
             vc.isForYearOnly = true
