@@ -114,5 +114,64 @@
             </objects>
             <point key="canvasLocation" x="57.971014492753625" y="-141.29464285714286"/>
         </scene>
+        <!--Exp Lookup Display View Controller-->
+        <scene sceneID="dzd-Iz-Grz">
+            <objects>
+                <viewController storyboardIdentifier="ExpLookupDisplayViewController" id="UfG-cZ-CQL" customClass="ExpLookupDisplayViewController" customModule="MyExp_5" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PwB-jK-eW5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cfb-G0-Pq1" userLabel="inner view">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense Lookup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8xn-0b-Boi" userLabel="date &amp; time label">
+                                        <rect key="frame" x="10" y="10" width="394" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Bam-Ji-pLz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="aFw-me-fEM">
+                                        <rect key="frame" x="10" y="45" width="394" height="758"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="UfG-cZ-CQL" id="YhL-Wc-N28"/>
+                                            <outlet property="delegate" destination="UfG-cZ-CQL" id="V08-Xn-30V"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="aFw-me-fEM" firstAttribute="top" secondItem="8xn-0b-Boi" secondAttribute="bottom" constant="10" id="Amy-hG-uTL"/>
+                                    <constraint firstItem="8xn-0b-Boi" firstAttribute="top" secondItem="Cfb-G0-Pq1" secondAttribute="top" constant="10" id="Bqq-Fm-i91"/>
+                                    <constraint firstItem="aFw-me-fEM" firstAttribute="leading" secondItem="Cfb-G0-Pq1" secondAttribute="leading" constant="10" id="CI0-5r-obs"/>
+                                    <constraint firstAttribute="bottom" secondItem="aFw-me-fEM" secondAttribute="bottom" constant="15" id="PPr-AL-mXX"/>
+                                    <constraint firstItem="8xn-0b-Boi" firstAttribute="leading" secondItem="Cfb-G0-Pq1" secondAttribute="leading" constant="10" id="fN0-l6-f2h"/>
+                                    <constraint firstAttribute="trailing" secondItem="aFw-me-fEM" secondAttribute="trailing" constant="10" id="gvf-sW-qHZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="8xn-0b-Boi" secondAttribute="trailing" constant="10" id="oOg-pR-60y"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ykj-cA-wAU" firstAttribute="bottom" secondItem="Cfb-G0-Pq1" secondAttribute="bottom" id="LGc-mh-9iB"/>
+                            <constraint firstItem="ykj-cA-wAU" firstAttribute="trailing" secondItem="Cfb-G0-Pq1" secondAttribute="trailing" id="PlS-gB-eEa"/>
+                            <constraint firstItem="Cfb-G0-Pq1" firstAttribute="leading" secondItem="ykj-cA-wAU" secondAttribute="leading" id="ToV-xY-rmL"/>
+                            <constraint firstItem="Cfb-G0-Pq1" firstAttribute="top" secondItem="ykj-cA-wAU" secondAttribute="top" id="ixy-VT-Khx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ykj-cA-wAU"/>
+                    </view>
+                    <connections>
+                        <outlet property="dateTimeLabel" destination="8xn-0b-Boi" id="Hng-xU-6bO"/>
+                        <outlet property="tableView" destination="aFw-me-fEM" id="tAi-Ct-lww"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZbH-Zr-EeP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="834.78260869565224" y="-141.29464285714286"/>
+        </scene>
     </scenes>
 </document>

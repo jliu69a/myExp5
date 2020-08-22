@@ -199,6 +199,39 @@ class DatasManager: NSObject {
         return dataList
     }
     
+    //MARK: - expense lookup
+    
+    func expenseLookup(year: String, month: String, completion: @escaping  (Any)->()) {
+        
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expense_lookup.php?date=%@-%@", folder, year, month)
+        let connect: ConnectionsManager = ConnectionsManager()
+        
+        connect.getDataFromUrl(url: url) { (data: Any) in
+            let myexpData: Data = data as! Data
+            let myexpsList: [Expense] = self.parseDataForExpenseLookup(data: myexpData)
+            let value: Any = myexpsList as Any
+            completion(value)
+        }
+    }
+
+    func parseDataForExpenseLookup(data: Data) -> [Expense] {
+        
+        let json = try? JSON(data: data)
+        if json == nil {
+            print("- my expenses : No Data")
+            return []
+        }
+        
+        var dataList: [Expense] = []
+        do {
+            dataList = try JSONDecoder().decode([Expense].self, from: data)
+        }
+        catch {
+            print(error)
+        }
+        
+        return dataList
+    }
     
     //MARK: - save home test
     

@@ -13,13 +13,10 @@ class ExpLookupCell: UICollectionViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var indicatorLabel: UILabel!
     
+    weak var parentVC: ExpensesLookupViewController?
+    
     var selectedIndex: Int = 0
     var isActive: Bool = false
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     func showCellData(index: Int, date: String, isWithData: Bool, isActive: Bool) {
         self.dateLabel.text = date
@@ -33,5 +30,18 @@ class ExpLookupCell: UICollectionViewCell {
         
         self.selectedIndex = index
         self.isActive = isActive
+    }
+    
+    @IBAction func selectAction(_ sender: Any) {
+        
+        if !self.isActive {
+            return
+        }
+        
+        let day = self.dateLabel.text ?? "0"
+        self.parentVC!.dataForSelectedDate(day: day)
+        print("-> ")
+        print("-> select index = \(selectedIndex), date = \(day)")
+        print("-> ")
     }
 }

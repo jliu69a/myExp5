@@ -28,7 +28,12 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
     var dayOfWeek: Int = 0
     var firstDayIndex: Int = 0
     
+    var expsLookupList: [Expense] = []
+    var lookupDaysList: [String] = []
+    var lookupData: [String: [Expense]] = [:]
+    
     var selectVC: SelectMonthAndYearViewController? = nil
+    var displayLookupVC: ExpLookupDisplayViewController? = nil
     
     
     //MARK: - init
@@ -47,12 +52,13 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         let monthText = df.string(from: rightNow)
         self.selectedMonth = Int(monthText) ?? 0
         
-        self.yearMonthDisplay = String(format: "%@-%@", yearText, monthText)
+        self.myexpWithYearAndMonth(year: yearText, month: monthText)
         
+        self.yearMonthDisplay = String(format: "%@-%@", yearText, monthText)
         self.resultsView.backgroundColor = UIColor.systemGray6
         self.collectionView.backgroundColor = UIColor.systemGray6
         
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "GenericCellId")  //CellId
+        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "GenericCellId")
         self.collectionView.register(UINib(nibName: "ExpLookupCell", bundle: nil), forCellWithReuseIdentifier: "CellId")
     }
     
@@ -71,6 +77,43 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         
     }
     
+    //MARK: - get data
+    
+    func myexpWithYearAndMonth(year: String, month: String) {
+        self.expsLookupList.removeAll()
+        
+        MyExpDataManager.sharedInstance.expsLookupData(year: year, month: month) { (any: Any) in
+            DispatchQueue.main.async {
+                self.expsLookupList = any as! [Expense]
+                self.parseExpsLookupData()
+            }
+        }
+    }
+    
+    func parseExpsLookupData() {
+        
+        self.lookupDaysList.removeAll()
+        self.lookupData.removeAll()
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let defaultDate = df.string(from: Date())
+        
+        for eachExp in self.expsLookupList {
+            let dayText = (eachExp.date ?? defaultDate).suffix(2)
+            let displayDay = "\(Int(dayText) ?? 0)"
+            
+            if !self.lookupDaysList.contains(displayDay) {
+                self.lookupDaysList.append(displayDay)
+            }
+            
+            var list = self.lookupData[displayDay] ?? []
+            list.append(eachExp)
+            self.lookupData[displayDay] = list
+        }
+        self.collectionView.reloadData()
+    }
+    
     //MARK: - collection view source
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -85,15 +128,21 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         let genericCell: UICollectionViewCell? = self.collectionView.dequeueReusableCell(withReuseIdentifier: "GenericCellId", for: indexPath)
         
         if let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as? ExpLookupCell {
+            cell.parentVC = self
             cell.contentView.backgroundColor = UIColor.systemBackground
             cell.contentView.layer.borderColor = UIColor.black.cgColor
             cell.contentView.layer.borderWidth = 0.5
             
             let day = self.displayForCell(cellIndex: indexPath.row)
-            let isActive = (day.count > 0) ? true : false
-            cell.showCellData(index: indexPath.row, date: day, isWithData: false, isActive: isActive)
+            var isActive: Bool = false
+            var isWithData: Bool = false
             
-            print("-> index = \(indexPath.row), cell : '\(day)' ")
+            if day.count > 0 {
+                isActive = true
+                isWithData = self.lookupDaysList.contains(day)
+            }
+            cell.showCellData(index: indexPath.row, date: day, isWithData: isWithData, isActive: isActive)
+            print("-> index = \(indexPath.row), cell : '\(day)', is active? \(isActive), is with data? \(isWithData) ")
             
             return cell
         }
@@ -172,6 +221,16 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
             dayDisplay = "\(cellIndex - self.firstDayIndex + 1)"
         }
         return dayDisplay
+    }
+    
+    func dataForSelectedDate(day: String) {
+        let modelsList = self.lookupData[day] ?? []
+        
+        let storyboard = UIStoryboard(name: "moneyAndYear", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "ExpLookupDisplayViewController") as? ExpLookupDisplayViewController {
+            vc.myexpsList = modelsList
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     //MARK: - IB functions
