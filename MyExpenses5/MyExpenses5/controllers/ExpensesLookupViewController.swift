@@ -22,6 +22,7 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
     
     var selectedYear: Int = 0
     var selectedMonth: Int = 0
+    var selectedMonthText: String = ""
     var yearMonthDisplay: String = ""
     
     var totalDaysOfMonth: Int = 0
@@ -52,6 +53,9 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         let monthText = df.string(from: rightNow)
         self.selectedMonth = Int(monthText) ?? 0
         
+        df.dateFormat = "MMM"
+        self.selectedMonthText = df.string(from: rightNow)
+        
         self.myexpWithYearAndMonth(year: yearText, month: monthText)
         
         self.yearMonthDisplay = String(format: "%@-%@", yearText, monthText)
@@ -60,13 +64,13 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "GenericCellId")
         self.collectionView.register(UINib(nibName: "ExpLookupCell", bundle: nil), forCellWithReuseIdentifier: "CellId")
+        
+        self.hideResultsView()
+        self.showYearAndMonth()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.hideResultsView()
-        self.showYearAndMonth()
         
         self.yearMonthBotton.layer.cornerRadius = 5
         self.startLookupButton.layer.cornerRadius = 5
@@ -229,7 +233,8 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         let storyboard = UIStoryboard(name: "monthAndYear", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "ExpLookupDisplayViewController") as? ExpLookupDisplayViewController {
             vc.myexpsList = modelsList
-            self.present(vc, animated: true, completion: nil)
+            //self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -253,7 +258,7 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
     @IBAction func startLookupAction(_ sender: Any) {
         
         self.showResultsView()
-        self.lookupTitle.text = String(format: "( data for : %@ )", self.yearMonthDisplay)
+        self.lookupTitle.text = String(format: "for: %@ %d", self.selectedMonthText, self.selectedYear)
         
         //-- w : 43 x 7 = 301
         //-- h : 66 x 6 = 396
@@ -271,10 +276,12 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         self.selectVC?.dismiss(animated: true, completion: nil)
     }
     
-    func didSelectYear(isForYearOnly: Bool, selectedYear: String, selectedMonthIndex: String) {
+    func didSelectYear(isForYearOnly: Bool, selectedYear: String, selectedMonthIndex: String, selectedMonthText: String) {
+        self.myexpWithYearAndMonth(year: selectedYear, month: selectedMonthIndex)
         
         self.selectedYear = Int(selectedYear) ?? 0
         self.selectedMonth = Int(selectedMonthIndex) ?? 0
+        self.selectedMonthText = selectedMonthText
         
         self.yearMonthDisplay = String(format: "%@-%@", selectedYear, selectedMonthIndex)
         self.showYearAndMonth()

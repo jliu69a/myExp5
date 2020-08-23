@@ -11,7 +11,6 @@ import UIKit
 class ExpLookupDisplayViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var dateTimeLabel: UILabel!
     
     var myexpsList: [Expense] = []
     
@@ -29,6 +28,12 @@ class ExpLookupDisplayViewController: UIViewController, UITableViewDataSource, U
         
         self.tableView.layer.borderColor = UIColor.systemOrange.cgColor
         self.tableView.layer.borderWidth = 0.5
+    }
+    
+    //MARK: - IB function
+    
+    @IBAction func gobackAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: - table view source

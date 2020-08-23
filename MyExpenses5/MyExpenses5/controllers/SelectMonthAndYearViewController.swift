@@ -12,7 +12,7 @@ import UIKit
 protocol SelectMonthAndYearViewControllerDelegate: AnyObject {
     
     func cancelYearSelection()
-    func didSelectYear(isForYearOnly: Bool, selectedYear: String, selectedMonthIndex: String)
+    func didSelectYear(isForYearOnly: Bool, selectedYear: String, selectedMonthIndex: String, selectedMonthText: String)
 }
 
 
@@ -35,6 +35,7 @@ class SelectMonthAndYearViewController: UIViewController, UIPickerViewDataSource
     
     var selectedYear: String = "0"
     var selectedMonthIndex: String = "0"
+    var selectedMonthText: String = ""
     
     //MARK: - init
     
@@ -90,7 +91,7 @@ class SelectMonthAndYearViewController: UIViewController, UIPickerViewDataSource
     }
     
     @IBAction func saveAction(_ sender: Any) {
-        self.delegate?.didSelectYear(isForYearOnly: self.isForYearOnly, selectedYear: self.selectedYear, selectedMonthIndex: self.selectedMonthIndex)
+        self.delegate?.didSelectYear(isForYearOnly: self.isForYearOnly, selectedYear: self.selectedYear, selectedMonthIndex: self.selectedMonthIndex, selectedMonthText: self.selectedMonthText)
     }
     
     //MARK: - picker view source
@@ -128,6 +129,7 @@ class SelectMonthAndYearViewController: UIViewController, UIPickerViewDataSource
         }
         else {
             self.selectedMonthIndex = String(format: "%0.2d", (row + 1))
+            self.selectedMonthText = self.monthsList[row]
         }
     }
     

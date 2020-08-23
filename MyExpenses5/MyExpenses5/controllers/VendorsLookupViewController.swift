@@ -179,7 +179,7 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
         self.selectVC?.dismiss(animated: true, completion: nil)
     }
     
-    func didSelectYear(isForYearOnly: Bool, selectedYear: String, selectedMonthIndex: String) {
+    func didSelectYear(isForYearOnly: Bool, selectedYear: String, selectedMonthIndex: String, selectedMonthText: String) {
         
         self.selectedYear = selectedYear
         self.selectYearButton.setTitle(self.selectedYear, for: UIControl.State.normal)
