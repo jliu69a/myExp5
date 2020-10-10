@@ -10,7 +10,7 @@ import UIKit
 
 class ExpenseCell: UITableViewCell {
     
-    @IBOutlet weak var baseLabel: UILabel!
+    @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var cellVendorLabel: UILabel!
     @IBOutlet weak var cellNotesLabel: UILabel!
     @IBOutlet weak var cellAmountLabel: UILabel!
@@ -39,7 +39,7 @@ class ExpenseCell: UITableViewCell {
         let amountValue: Float = (amountText as NSString).floatValue
         self.cellAmountLabel.text = String(format: "%0.2f", amountValue)
         
-        self.baseLabel.backgroundColor = UIColor.systemGray6
+        self.innerView.backgroundColor = UIColor.systemGray6
     }
     
     func dayOfWeek(date: String) -> String {
