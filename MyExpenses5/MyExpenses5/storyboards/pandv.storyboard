@@ -237,16 +237,16 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tR-tH-Qvg" userLabel="result view">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HD1-Z3-D3A">
-                                        <rect key="frame" x="57" y="704" width="300" height="50"/>
+                                        <rect key="frame" x="57" y="748" width="300" height="50"/>
                                         <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="7qb-MG-7CN"/>
                                             <constraint firstAttribute="width" constant="300" id="CoL-WT-Y84"/>
                                         </constraints>
-                                        <state key="normal" title="Start New Vendor Lookup">
+                                        <state key="normal" title="Go Back">
                                             <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         </state>
                                         <connections>
@@ -254,16 +254,16 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(year)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITb-BU-k47" userLabel="year label">
-                                        <rect key="frame" x="5" y="0.0" width="404" height="15"/>
+                                        <rect key="frame" x="5" y="0.0" width="404" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="15" id="oje-xf-WOr"/>
+                                            <constraint firstAttribute="height" constant="50" id="oje-xf-WOr"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="45" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="sFI-gX-I9B">
-                                        <rect key="frame" x="5" y="15" width="404" height="674"/>
+                                        <rect key="frame" x="5" y="50" width="404" height="683"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="fOG-Bq-BX2" id="ksD-9L-4wd"/>
@@ -289,6 +289,7 @@
                         <constraints>
                             <constraint firstItem="I20-Mo-2RX" firstAttribute="top" secondItem="9nH-LQ-BGS" secondAttribute="bottom" constant="10" id="0yr-ao-5gD"/>
                             <constraint firstItem="4tR-tH-Qvg" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" id="2Ya-MJ-vbu"/>
+                            <constraint firstItem="4tR-tH-Qvg" firstAttribute="top" secondItem="bIR-iz-9xi" secondAttribute="top" id="4Ko-u3-mCL"/>
                             <constraint firstItem="6nD-Z4-gVY" firstAttribute="top" secondItem="I20-Mo-2RX" secondAttribute="bottom" constant="100" id="6er-m7-b4t"/>
                             <constraint firstItem="9nH-LQ-BGS" firstAttribute="top" secondItem="V7O-LG-MBH" secondAttribute="bottom" constant="50" id="6yK-ga-tel"/>
                             <constraint firstItem="6nD-Z4-gVY" firstAttribute="leading" secondItem="bIR-iz-9xi" secondAttribute="leading" constant="75" id="7Ti-Rc-2QS"/>
@@ -307,7 +308,6 @@
                             <constraint firstItem="pCw-DW-9br" firstAttribute="trailing" secondItem="bIR-iz-9xi" secondAttribute="trailing" id="mKM-3Z-gVO"/>
                             <constraint firstItem="bIR-iz-9xi" firstAttribute="trailing" secondItem="V7O-LG-MBH" secondAttribute="trailing" constant="50" id="nDR-Oj-d5d"/>
                             <constraint firstItem="5Ta-nF-TCB" firstAttribute="top" secondItem="pCw-DW-9br" secondAttribute="bottom" constant="60" id="r4K-Vz-Bgl"/>
-                            <constraint firstItem="4tR-tH-Qvg" firstAttribute="top" secondItem="pCw-DW-9br" secondAttribute="bottom" id="sDB-jK-1wn"/>
                             <constraint firstItem="4tR-tH-Qvg" firstAttribute="trailing" secondItem="bIR-iz-9xi" secondAttribute="trailing" id="u6R-G1-Nw0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bIR-iz-9xi"/>

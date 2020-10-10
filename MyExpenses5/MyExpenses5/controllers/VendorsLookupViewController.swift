@@ -113,6 +113,7 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
         
         MyExpDataManager.sharedInstance.clearVendorLookupData()
         self.hideResultView()
+        self.tableView.setContentOffset(CGPoint.zero, animated: false)
     }
     
     //MARK: - result view
