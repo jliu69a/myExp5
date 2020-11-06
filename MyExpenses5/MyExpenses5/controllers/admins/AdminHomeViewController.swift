@@ -13,11 +13,12 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var versionsLabel: UILabel!
     
-    let titlesList: [String] = ["Settings", "Reports", "Misc"]
+    let titlesList: [String] = ["Settings", "Reports"]
+    //let titlesList: [String] = ["Settings", "Reports", "Misc"]
     let settingsList: [String] = ["Edit Payments", "Edit Vendors"]
-    let reportsList: [String] = ["Look Up Vendor", "Look Up Expenses", "Expense Report", "Export Data"]
-    let miscList: [String] = ["Location Check", "Device Info"]
-    
+    let reportsList: [String] = ["Look Up Vendor", "Look Up Expenses"]
+    //let reportsList: [String] = ["Look Up Vendor", "Look Up Expenses", "Expense Report", "Export Data"]
+
     //MARK: - init
     
     override func viewDidLoad() {
@@ -61,9 +62,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         case 1:
             totalRows = self.reportsList.count
             break
-        case 2:
-            totalRows = self.miscList.count
-            break
         default:
             break
         }
@@ -80,9 +78,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
                 break
             case 1:
                 cell.textLabel!.text = self.reportsList[indexPath.row]
-                break
-            case 2:
-                cell.textLabel!.text = self.miscList[indexPath.row]
                 break
             default:
                 break
