@@ -137,6 +137,13 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		5A8942D52554E1AE0085AFF3 /* view models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "view models";
+			sourceTree = "<group>";
+		};
 		5A97C76C24C12E050019E2B4 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +172,7 @@
 				5A87AB7F24C133FA009792A1 /* codables */,
 				5A87AB8624C13479009792A1 /* images */,
 				5A97C78F24C12E5C0019E2B4 /* managers */,
+				5A8942D52554E1AE0085AFF3 /* view models */,
 				5A97C78D24C12E4C0019E2B4 /* controllers */,
 				5A97C78C24C12E430019E2B4 /* storyboards */,
 				5A97C78124C12E060019E2B4 /* Assets.xcassets */,
