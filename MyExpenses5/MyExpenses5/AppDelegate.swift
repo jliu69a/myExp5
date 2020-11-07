@@ -11,6 +11,14 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var paymentsList: [Payment] = []
+    var vendorsList: [Vendor] = []
+    var top10sList: [Top10] = []
+    
+    var vendorDisplayTitles: [String] = []
+    var vendorDisplayData: [String: AnyObject] = [:]
+    
+    var folder: String = "prods" //production use
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
