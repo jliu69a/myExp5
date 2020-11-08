@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Expense Home View Controller-->
+        <!--My Exp Home View Controller-->
         <scene sceneID="JT9-IC-Rz0">
             <objects>
-                <viewController storyboardIdentifier="ExpenseHomeViewController" id="IS5-Vi-ogy" customClass="ExpenseHomeViewController" customModule="MyExp_5" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyExpHomeViewController" id="IS5-Vi-ogy" customClass="MyExpHomeViewController" customModule="MyExp_5_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U91-89-C1O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,7 +54,7 @@
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="showAdminsAction:" destination="IS5-Vi-ogy" eventType="touchUpInside" id="6ac-sb-5uQ"/>
+                                            <action selector="adminAction:" destination="IS5-Vi-ogy" eventType="touchUpInside" id="bCc-TP-MWI"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -79,14 +79,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RK-L5-Ue3" userLabel="message base view">
                                 <rect key="frame" x="0.0" y="44" width="375" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="34" translatesAutoresizingMaskIntoConstraints="NO" id="uLo-TY-qsI" userLabel="date label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="34" translatesAutoresizingMaskIntoConstraints="NO" id="uLo-TY-qsI" userLabel="date label">
                                         <rect key="frame" x="5" y="0.0" width="365" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbT-gK-FQA" userLabel="amount label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbT-gK-FQA" userLabel="amount label">
                                         <rect key="frame" x="5" y="0.0" width="365" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -128,7 +128,7 @@
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="changeDateAction:" destination="IS5-Vi-ogy" eventType="touchUpInside" id="qA0-aL-Yc0"/>
+                                            <action selector="selectDateAction:" destination="IS5-Vi-ogy" eventType="touchUpInside" id="KEZ-Ha-k5e"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fe-Ew-ZMG" userLabel="add new label">
@@ -149,7 +149,7 @@
                                             <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="addExpenseAction:" destination="IS5-Vi-ogy" eventType="touchUpInside" id="dyg-E5-6MT"/>
+                                            <action selector="createNewAction:" destination="IS5-Vi-ogy" eventType="touchUpInside" id="o6f-tr-kgT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -224,7 +224,7 @@
         <!--Change Date View Controller-->
         <scene sceneID="oVL-aj-a1j">
             <objects>
-                <viewController storyboardIdentifier="ChangeDateViewController" id="Edb-U3-irL" customClass="ChangeDateViewController" customModule="MyExp_5" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeDateViewController" id="Edb-U3-irL" customClass="ChangeDateViewController" customModule="MyExp_5_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h78-Ht-BYP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -349,7 +349,7 @@
         <!--Edit Expenses View Controller-->
         <scene sceneID="CeC-Jc-VcM">
             <objects>
-                <viewController storyboardIdentifier="EditExpensesViewController" id="KwG-Y4-JbD" customClass="EditExpensesViewController" customModule="MyExp_5" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditExpensesViewController" id="KwG-Y4-JbD" customClass="EditExpensesViewController" customModule="MyExp_5_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TJq-hd-dJ6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -597,7 +597,7 @@
         <!--Expenses Lookup View Controller-->
         <scene sceneID="H7q-IR-YfE">
             <objects>
-                <viewController storyboardIdentifier="ExpensesLookupViewController" id="kbQ-Wh-kGI" customClass="ExpensesLookupViewController" customModule="MyExp_5" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExpensesLookupViewController" id="kbQ-Wh-kGI" customClass="ExpensesLookupViewController" customModule="MyExp_5_1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5wb-o8-Zrw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

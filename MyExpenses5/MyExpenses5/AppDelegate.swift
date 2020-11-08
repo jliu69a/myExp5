@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var vendorDisplayTitles: [String] = []
     var vendorDisplayData: [String: AnyObject] = [:]
     
-    var folder: String = "prods" //production use
+    var folder: String = "homee" //production use
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

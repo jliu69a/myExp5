@@ -20,11 +20,11 @@ class ExpsHomeViewModel {
     weak var delegate: ExpsHomeViewModelDelegate?
     let appDele = UIApplication.shared.delegate as! AppDelegate
     
-    var totalSections: Int = 0
+    var totalSections: Int = 1
     var totalRows: Int = 0
     
     var expenseList: [Expense] = []
-    
+    var totalAmount: Double = 0
 }
 
 extension ExpsHomeViewModel {
@@ -47,13 +47,20 @@ extension ExpsHomeViewModel {
         return self.expenseList[index]
     }
     
+    func displayTotalAmount() -> String {
+        return String(format: "Total($): %0.2f", self.totalAmount)
+    }
+    
+    func displayCurrentDate(date: Date) -> String {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd, EEE"
+        return df.string(from: date)
+    }
+    
     //MARK: - api calls
     
     func loadingData(date: Date) {
-        
-        loadingMyExpenses(selectedDate: date) {
-            self.delegate?.didLoadExpensesData()
-        }
+        loadingMyExpenses(selectedDate: date) {}
     }
     
     func loadingMyExpenses(selectedDate: Date, completion: @escaping () -> Void) {
@@ -111,26 +118,11 @@ extension ExpsHomeViewModel {
                 self.appDele.top10sList = each.top10!
             }
         }
-        
-        print("> ")
-        print("> total top 10s (in AppDelegate) = \(self.appDele.top10sList.count)")
-        print("> total vendors (in AppDelegate) = \(self.appDele.vendorsList.count)")
-        print("> total payments (in AppDelegate) = \(self.appDele.paymentsList.count)")
-        print("> total expenses = \(self.expenseList.count)")
-        print("> ")
+        self.totalRows = self.expenseList.count
         
         parseVendorsArray()
-    }
-    
-    func clearAllData() {
-        
-        self.expenseList.removeAll()
-        self.appDele.paymentsList.removeAll()
-        self.appDele.vendorsList.removeAll()
-        self.appDele.top10sList.removeAll()
-        
-        self.appDele.vendorDisplayTitles.removeAll()
-        self.appDele.vendorDisplayData.removeAll()
+        totalExpensesAmount()
+        self.delegate?.didLoadExpensesData()
     }
     
     func parseVendorsArray() {
@@ -163,6 +155,11 @@ extension ExpsHomeViewModel {
         }
         
         //-- test print
+        print("> ")
+        print("> total top 10s (in AppDelegate) = \(self.appDele.top10sList.count)")
+        print("> total vendors (in AppDelegate) = \(self.appDele.vendorsList.count)")
+        print("> total payments (in AppDelegate) = \(self.appDele.paymentsList.count)")
+        print("> total expenses = \(self.expenseList.count)")
         print("- ")
         let array: [Top10] = self.appDele.vendorDisplayData[top10Key] as? [Top10] ?? []
         for each in array {
@@ -172,7 +169,31 @@ extension ExpsHomeViewModel {
             print("    - top 10, id = \(id), total = \(total), name = \(name)")
         }
         print("- ")
-        
     }
-
+    
+    //MARK: - helpers
+    
+    func clearAllData() {
+        
+        self.expenseList.removeAll()
+        self.appDele.paymentsList.removeAll()
+        self.appDele.vendorsList.removeAll()
+        self.appDele.top10sList.removeAll()
+        
+        self.appDele.vendorDisplayTitles.removeAll()
+        self.appDele.vendorDisplayData.removeAll()
+    }
+    
+    func totalExpensesAmount() {
+        
+        if self.expenseList.count == 0 {
+            return
+        }
+        self.totalAmount = 0
+        
+        for each in self.expenseList {
+            let amount = Double(each.amount ?? "0") ?? 0
+            self.totalAmount += amount
+        }
+    }
 }
