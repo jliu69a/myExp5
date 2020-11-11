@@ -31,6 +31,7 @@
 		5A8F15AA24D4C51100B57A9B /* SelectMonthAndYearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F15A924D4C51100B57A9B /* SelectMonthAndYearViewController.swift */; };
 		5A8F15AC24D4C54500B57A9B /* monthAndYear.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A8F15AB24D4C54500B57A9B /* monthAndYear.storyboard */; };
 		5A8F15AE24D4D88500B57A9B /* VendorsLookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F15AD24D4D88500B57A9B /* VendorsLookupViewController.swift */; };
+		5A8F7575255C5ECE00612AE4 /* PaymentVendorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F7574255C5ECE00612AE4 /* PaymentVendorViewModel.swift */; };
 		5A90E45B24E03471005C42A3 /* ExpensesLookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A90E45A24E03471005C42A3 /* ExpensesLookupViewController.swift */; };
 		5A90E45E24E05E84005C42A3 /* ExpLookupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A90E45C24E05E84005C42A3 /* ExpLookupCell.swift */; };
 		5A90E45F24E05E84005C42A3 /* ExpLookupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A90E45D24E05E84005C42A3 /* ExpLookupCell.xib */; };
@@ -73,6 +74,7 @@
 		5A8F15A924D4C51100B57A9B /* SelectMonthAndYearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMonthAndYearViewController.swift; sourceTree = "<group>"; };
 		5A8F15AB24D4C54500B57A9B /* monthAndYear.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = monthAndYear.storyboard; sourceTree = "<group>"; };
 		5A8F15AD24D4D88500B57A9B /* VendorsLookupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsLookupViewController.swift; sourceTree = "<group>"; };
+		5A8F7574255C5ECE00612AE4 /* PaymentVendorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVendorViewModel.swift; sourceTree = "<group>"; };
 		5A90E45A24E03471005C42A3 /* ExpensesLookupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesLookupViewController.swift; sourceTree = "<group>"; };
 		5A90E45C24E05E84005C42A3 /* ExpLookupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpLookupCell.swift; sourceTree = "<group>"; };
 		5A90E45D24E05E84005C42A3 /* ExpLookupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpLookupCell.xib; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				5A92416F255637AC00263B07 /* ExpsHomeViewModel.swift */,
+				5A8F7574255C5ECE00612AE4 /* PaymentVendorViewModel.swift */,
 			);
 			path = "view models";
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				5A8BAAB024C336440033B46A /* PAndVCell.swift in Sources */,
 				5A924170255637AC00263B07 /* ExpsHomeViewModel.swift in Sources */,
 				5A8F15AA24D4C51100B57A9B /* SelectMonthAndYearViewController.swift in Sources */,
+				5A8F7575255C5ECE00612AE4 /* PaymentVendorViewModel.swift in Sources */,
 				5A87DCF92558227800F6D2C2 /* MyExpHomeViewController.swift in Sources */,
 				5A87AB9224C134C7009792A1 /* ExpenseCell.swift in Sources */,
 				5A8F15AE24D4D88500B57A9B /* VendorsLookupViewController.swift in Sources */,

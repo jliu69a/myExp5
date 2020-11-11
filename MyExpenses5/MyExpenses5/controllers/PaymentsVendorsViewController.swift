@@ -14,7 +14,7 @@ protocol PaymentsVendorsViewControllerDelegate: AnyObject {
 }
 
 
-class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AdminPVAddEditViewControllerDelegate {
+class PaymentsVendorsViewController: UIViewController, AdminPVAddEditViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -23,8 +23,13 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     
     let appDele = UIApplication.shared.delegate as! AppDelegate
     
+    var viewModel: PaymentVendorViewModel = PaymentVendorViewModel()
+    
     var allPayments: [Payment] = []
     var allVendors: [Vendor] = []
+    var vendorDisplayTitles: [String] = []
+    var vendorDisplayData: [String: AnyObject] = [:]
+    
     var isForPayments: Bool = true
     var isForAdmin: Bool = false
     
@@ -38,8 +43,12 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.allPayments = self.appDele.paymentsList
-        self.allVendors = self.appDele.vendorsList
+        self.viewModel.allPayments = self.appDele.paymentsList
+        self.viewModel.allVendors = self.appDele.vendorsList
+        self.viewModel.vendorDisplayTitles = self.appDele.vendorDisplayTitles
+        self.viewModel.vendorDisplayData = self.appDele.vendorDisplayData
+        self.viewModel.isForPayments = self.isForPayments
+        self.viewModel.isForAdmin = self.isForAdmin
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "PAndVCell", bundle: nil), forCellReuseIdentifier: "CellId")
@@ -50,12 +59,7 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if self.isForPayments {
-            self.titleLabel.text = "Payment"
-        }
-        else {
-            self.titleLabel.text = "Vendor"
-        }
+        self.titleLabel.text = self.isForPayments ? "Payment" : "Vendor"
         
         if self.isForAdmin == true {
             self.tableViewBottomSpace.constant = 64
@@ -108,135 +112,6 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
         self.allPayments = MyExpDataManager.sharedInstance.paymentList
         self.allVendors = MyExpDataManager.sharedInstance.vendorList
         self.tableView.reloadData()
-    }
-    
-    //MARK: - table view source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        if self.isForPayments == true {
-            return 1
-        }
-        else {
-            return MyExpDataManager.sharedInstance.vendorDisplayTitles.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if self.isForPayments == true {
-            return self.allPayments.count
-        }
-        else {
-            let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[section]
-            if section == 0 {
-                let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
-                return array.count
-            }
-            else {
-                let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
-                return array.count
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let generic = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
-        
-        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? PAndVCell {
-            if self.isForPayments {
-                let item: Payment = self.allPayments[indexPath.row]
-                cell.nameLabel.text = item.payment ?? ""
-                cell.idLabel.text = item.id ?? "0"
-                cell.idLabel.textColor = UIColor.blue
-            }
-            else {
-                let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[indexPath.section]
-                
-                if indexPath.section == 0 {
-                    let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
-                    let item: Top10 = array[indexPath.row]
-                    cell.nameLabel.text = item.vendor ?? ""
-                    
-                    let totalCount: String = item.total ?? "0"
-                    cell.idLabel.text = String(format: "%@, total = %@", (item.id ?? "0"), totalCount)
-                }
-                else {
-                    let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
-                    let item: Vendor = array[indexPath.row]
-                    cell.nameLabel.text = item.vendor ?? ""
-                    cell.idLabel.text = item.id ?? "0"
-                }
-                cell.idLabel.textColor = UIColor.orange
-            }
-            return cell
-        }
-        else {
-            return generic!
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        if self.isForPayments == true {
-            return 0
-        }
-        else {
-            let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[section]
-            let array: [AnyObject] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [AnyObject]) ?? []
-            
-            if array.count > 0 {
-                return 40
-            }
-            else {
-                return 0
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        if self.isForPayments == true {
-            return nil
-        }
-        else {
-            return MyExpDataManager.sharedInstance.vendorDisplayTitles[section]
-        }
-    }
-    
-    //MARK: - table view delegate
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
-        
-        if self.isForPayments == true {
-            let item: Payment = self.allPayments[indexPath.row]
-            self.selectedId = item.id!
-            self.selectedName = item.payment!
-        }
-        else {
-            let key: String = MyExpDataManager.sharedInstance.vendorDisplayTitles[indexPath.section]
-            if indexPath.section == 0 {
-                let array: [Top10] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Top10]) ?? []
-                let item: Top10 = array[indexPath.row]
-                self.selectedId = item.id!
-                self.selectedName = item.vendor!
-            }
-            else {
-                let array: [Vendor] = (MyExpDataManager.sharedInstance.vendorDisplayData[key] as? [Vendor]) ?? []
-                let item: Vendor = array[indexPath.row]
-                self.selectedId = item.id!
-                self.selectedName = item.vendor!
-            }
-        }
-        
-        if self.isForAdmin == true {
-            self.showOptions()
-        }
-        else {
-            self.delegate?.didSelectItem(isForPayment: self.isForPayments, name: self.selectedName, id: self.selectedId)
-            self.navigationController!.popViewController(animated: true)
-        }
     }
     
     //MARK: - alets
@@ -293,3 +168,55 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     
 }
 
+
+extension PaymentsVendorsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.viewModel.numberOfSectionis()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel.numberOfRows(section: section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? PAndVCell {
+            let data = self.viewModel.rowAtIndex(indexPath: indexPath)
+            cell.displayData(data: data, isForPayments: self.isForPayments)
+            return cell
+        }
+        else {
+            let generic = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
+            return generic!
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.viewModel.headerHeightForSection(section: section)
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.viewModel.headerTitleForSection(section: section)
+    }
+}
+
+
+extension PaymentsVendorsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        let data = self.viewModel.rowAtIndex(indexPath: indexPath)
+        self.selectedId = data.id
+        self.selectedName = data.name
+        
+        if self.isForAdmin {
+            self.showOptions()
+        }
+        else {
+            self.delegate?.didSelectItem(isForPayment: self.isForPayments, name: self.selectedName, id: self.selectedId)
+            self.navigationController!.popViewController(animated: true)
+        }
+    }
+}
