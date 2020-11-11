@@ -53,14 +53,48 @@ class MyExpHomeViewController: UIViewController {
         self.activityIndicator.startAnimating()
     }
     
+    func dataEditOptions() {
+        
+        let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        
+        alert.addAction( UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction) in
+            self.confirmToDelete(data: self.selectedExpense!)
+        }) )
+        
+        alert.addAction( UIAlertAction(title: "Edit", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
+            self.showAddEditPage(model: self.selectedExpense)
+        }) )
+        
+        alert.addAction( UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil) )
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func showAddEditPage(model: Expense?) {
-        //
+        
+        if let vc = MEStoryboard.home(MEHomePage.saveExp).vc as? EditExpensesViewController {
+            vc.delegate = self
+            vc.selectedExpense = model
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func confirmToDelete(data: Expense) {
+        
+        let title: String = String(format: "Do you want to delete the expense at: %@? \n\nwith amount of $%@ ?", data.vendor!, data.amount!)
+        let alert: UIAlertController = UIAlertController(title: title, message: nil, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction( UIAlertAction(title: "Cancel", style: UIAlertAction.Style.destructive, handler: nil) )
+        alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
+            self.viewModel.savingData(data: data, actionCode: self.viewModel.kDeleteCode)
+        }) )
+        self.present(alert, animated: true, completion: nil)
     }
     
     //MARK: - IB actions
     
     @IBAction func adminAction(_ sender: Any) {
-        self.showAddEditPage(model: nil)
+        //
+        print("-> show ADMIN ...")
     }
     
     @IBAction func selectDateAction(_ sender: Any) {
@@ -74,10 +108,11 @@ class MyExpHomeViewController: UIViewController {
     }
     
     @IBAction func createNewAction(_ sender: Any) {
-        //
+        self.showAddEditPage(model: nil)
     }
 }
 
+//MARK: -
 
 extension MyExpHomeViewController: UITableViewDataSource {
     
@@ -104,6 +139,7 @@ extension MyExpHomeViewController: UITableViewDataSource {
     }
 }
 
+//MARK: -
 
 extension MyExpHomeViewController: UITableViewDelegate {
     
@@ -112,14 +148,12 @@ extension MyExpHomeViewController: UITableViewDelegate {
         
         if let data = self.viewModel.rowAtIndex(index: indexPath.row) {
             self.selectedExpense = data
+            self.dataEditOptions()
         }
-        
-        //-- show alert here
-        
-        self.showAddEditPage(model: self.selectedExpense)
     }
 }
 
+//MARK: -
 
 extension MyExpHomeViewController: ExpsHomeViewModelDelegate {
     
@@ -134,6 +168,7 @@ extension MyExpHomeViewController: ExpsHomeViewModelDelegate {
     }
 }
 
+//MARK: -
 
 extension MyExpHomeViewController: ChangeDateViewControllerDelegate {
     
@@ -154,5 +189,15 @@ extension MyExpHomeViewController: ChangeDateViewControllerDelegate {
             self.changeDateVC!.dismiss(animated: true, completion: nil)
             self.changeDateVC = nil
         }
+    }
+}
+
+//MARK: -
+
+extension MyExpHomeViewController: EditExpensesViewControllerDelegate {
+    
+    func didChangeExpenseData(data: Expense, selectedDate: Date, isForNew: Bool) {
+        let actionCode = isForNew ? self.viewModel.kInsertCode : self.viewModel.kUpdateCode
+        self.viewModel.savingData(data: data, actionCode: actionCode)
     }
 }

@@ -129,8 +129,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     @IBAction func selectPaymentAction(_ sender: Any) {
         self.clearKeyboards()
         
-        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
+        if let vc = MEStoryboard.pv.vc as? PaymentsVendorsViewController {
             vc.isForAdmin = false
             vc.isForPayments = true
             vc.delegate = self
@@ -141,8 +140,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     @IBAction func selectVendorAction(_ sender: Any) {
         self.clearKeyboards()
         
-        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
+        if let vc = MEStoryboard.pv.vc as? PaymentsVendorsViewController {
             vc.isForAdmin = false
             vc.isForPayments = false
             vc.delegate = self
@@ -153,8 +151,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     @IBAction func changeDateAction(_ sender: Any) {
         self.clearKeyboards()
         
-        let storyboard: UIStoryboard = UIStoryboard.init(name: "expense", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "ChangeDateViewController") as? ChangeDateViewController {
+        if let vc = MEStoryboard.home(MEHomePage.changeDate).vc as? ChangeDateViewController {
             self.changeDateVC = vc
             self.changeDateVC!.delegate = self
             self.changeDateVC!.currentDate = self.selectedDate

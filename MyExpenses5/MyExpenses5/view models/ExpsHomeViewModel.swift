@@ -17,6 +17,10 @@ protocol ExpsHomeViewModelDelegate: class {
 
 class ExpsHomeViewModel {
     
+    let kInsertCode: Int = 1
+    let kUpdateCode: Int = 2
+    let kDeleteCode: Int = 3
+    
     weak var delegate: ExpsHomeViewModelDelegate?
     let appDele = UIApplication.shared.delegate as! AppDelegate
     
@@ -57,7 +61,7 @@ extension ExpsHomeViewModel {
         return df.string(from: date)
     }
     
-    //MARK: - api calls
+    //MARK: - api, query expense
     
     func loadingData(date: Date) {
         loadingMyExpenses(selectedDate: date) {}
@@ -125,6 +129,26 @@ extension ExpsHomeViewModel {
         self.delegate?.didLoadExpensesData()
     }
     
+    func parseSavedExpsData(myexpsList: [EditMyExpsData]) {
+        
+        self.expenseList.removeAll()
+        self.appDele.top10sList.removeAll()
+        
+        for each in myexpsList {
+            if each.expense != nil {
+                self.expenseList = each.expense!
+            }
+            if each.top10 != nil {
+                self.appDele.top10sList = each.top10!
+            }
+        }
+        self.totalRows = self.expenseList.count
+        
+        parseVendorsArray()
+        totalExpensesAmount()
+        self.delegate?.didLoadExpensesData()
+    }
+    
     func parseVendorsArray() {
         let vendorsList = self.appDele.vendorsList
         
@@ -169,6 +193,82 @@ extension ExpsHomeViewModel {
             print("    - top 10, id = \(id), total = \(total), name = \(name)")
         }
         print("- ")
+    }
+    
+    //MARK: - api, save expense
+    
+    func savingData(data: Expense, actionCode: Int) {
+        saveMyexpsWithParameters(data: data, actionCode: actionCode) {}
+    }
+    
+    func saveMyexpsWithParameters(data: Expense, actionCode: Int, completion: @escaping () -> Void) {
+        
+        let parameters: [String: Any] = self.createParameters(data: data, actionCode: actionCode)
+        
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expenses_change.php", self.appDele.folder)
+        let connect: ConnectionsManager = ConnectionsManager()
+        
+        connect.saveDataFromUrl(url: url, parameters: parameters) { [weak self] (data: Any) in
+            let myexpData: Data = data as! Data
+            let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: myexpData) ?? []
+            self?.parseSavedExpsData(myexpsList: myexpsList)
+            completion()
+        }
+    }
+    
+    func parseSaveMyexpsWithParameters(data: Data) -> [EditMyExpsData] {
+        
+        let json = try? JSON(data: data)
+        if json == nil {
+            print("- my expenses : No Data")
+            return []
+        }
+        
+        var dataList: [EditMyExpsData] = []
+        do {
+            dataList = try JSONDecoder().decode([EditMyExpsData].self, from: data)
+        }
+        catch {
+            print(error)
+        }
+        
+        return dataList
+    }
+    
+    func createParameters(data: Expense, actionCode: Int) -> [String: Any] {
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
+        let currentDate: String = df.string(from: Date())
+        df.dateFormat = "HH:mm:ss"
+        let currentTime: String = df.string(from: Date())
+        
+        let id: String = data.id ?? "-1"
+        let date: String = data.date ?? currentDate
+        let time: String = data.time ?? currentTime
+        let vendorId: String = data.vendor_id ?? "0"
+        let paymentId: String = data.payment_id ?? "0"
+        let amount: String = data.amount ?? "0"
+        let note: String = data.note ?? ""
+        
+        var isEdit: String = "0"
+        switch actionCode {
+        case kInsertCode:
+            isEdit = "0"
+            break
+        case kUpdateCode:
+            isEdit = "1"
+            break
+        case kDeleteCode:
+            isEdit = "0"
+            break
+        default:
+            break
+        }
+        
+        let parameters: [String: Any] = ["id": (id as Any), "date": (date as Any), "time": (time as Any), "vendorid":(vendorId as Any), "paymentid":(paymentId as Any), "amount":(amount as Any), "note":(note as Any), "isedit":(isEdit as Any)]
+        
+        return parameters
     }
     
     //MARK: - helpers

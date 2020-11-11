@@ -21,6 +21,8 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var addNewButton: UIButton!
     @IBOutlet weak var tableViewBottomSpace: NSLayoutConstraint!
     
+    let appDele = UIApplication.shared.delegate as! AppDelegate
+    
     var allPayments: [Payment] = []
     var allVendors: [Vendor] = []
     var isForPayments: Bool = true
@@ -36,8 +38,8 @@ class PaymentsVendorsViewController: UIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.allPayments = MyExpDataManager.sharedInstance.paymentList
-        self.allVendors = MyExpDataManager.sharedInstance.vendorList
+        self.allPayments = self.appDele.paymentsList
+        self.allVendors = self.appDele.vendorsList
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "PAndVCell", bundle: nil), forCellReuseIdentifier: "CellId")
