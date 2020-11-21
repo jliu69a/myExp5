@@ -46,8 +46,7 @@ class AdminHomeViewController: UIViewController {
     
     func showPaymentsAndVendors(isForPayment: Bool) {
         
-        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
-        if let vc: PaymentsVendorsViewController = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
+        if let vc = MEStoryboard.pv.vc as? PaymentsVendorsViewController {
             vc.isForAdmin = true
             vc.isForPayments = isForPayment
             vc.delegate = self
@@ -59,16 +58,14 @@ class AdminHomeViewController: UIViewController {
     
     func showVendorsLookup() {
         
-        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "VendorsLookupViewController") as? VendorsLookupViewController {
+        if let vc = MEStoryboard.vendorLookup.vc as? VendorsLookupViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     func showExpenseLookup() {
         
-        let storyboard = UIStoryboard(name: "expense", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "ExpensesLookupViewController") as? ExpensesLookupViewController {
+        if let vc = MEStoryboard.expenseLookup.vc as? ExpensesLookupViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
