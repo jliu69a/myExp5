@@ -13,21 +13,24 @@ struct MEConstants {
     
     static let kHomePageStoryboardName = "expense"
     static let kPaymentsVendorsStoryboardName = "pandv"
+    static let kAdminPagesStoryboardName = "admins"
     
     static let kHomePageStoryboardId = "MyExpHomeViewController"
     static let kChangeDateStoryboardId = "ChangeDateViewController"
     static let kEditExpenseStoryboardId = "EditExpensesViewController"
     static let kPaymentsVendorsStoryboardId = "PaymentsVendorsViewController"
+    static let kAdminHomePageStoryboardId = "AdminHomeViewController"
 }
 
 
 enum MEStoryboard {
-    case home(MEHomePage), pv
+    case home(MEHomePage), pv, admin(MEAdminsPage)
     
     var board: UIStoryboard {
         switch self {
         case .home: return UIStoryboard(name: MEConstants.kHomePageStoryboardName, bundle: nil)
         case .pv: return UIStoryboard(name: MEConstants.kPaymentsVendorsStoryboardName, bundle: nil)
+        case .admin: return UIStoryboard(name: MEConstants.kAdminPagesStoryboardName, bundle: nil)
         }
     }
     
@@ -35,6 +38,7 @@ enum MEStoryboard {
         switch self {
         case .home(let page): return self.board.instantiateViewController(identifier: page.vcId)
         case .pv: return self.board.instantiateViewController(identifier: MEConstants.kPaymentsVendorsStoryboardId)
+        case .admin(let page): return self.board.instantiateViewController(identifier: page.vcId)
         }
     }
 }
@@ -51,3 +55,15 @@ enum MEHomePage {
         }
     }
 }
+
+
+enum MEAdminsPage {
+    case home
+    
+    var vcId: String {
+        switch self {
+        case .home: return MEConstants.kAdminHomePageStoryboardId
+        }
+    }
+}
+

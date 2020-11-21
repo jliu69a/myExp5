@@ -8,16 +8,12 @@
 
 import UIKit
 
-class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, PaymentsVendorsViewControllerDelegate {
+class AdminHomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var versionsLabel: UILabel!
     
-    let titlesList: [String] = ["Settings", "Reports"]
-    //let titlesList: [String] = ["Settings", "Reports", "Misc"]
-    let settingsList: [String] = ["Edit Payments", "Edit Vendors"]
-    let reportsList: [String] = ["Look Up Vendor", "Look Up Expenses"]
-    //let reportsList: [String] = ["Look Up Vendor", "Look Up Expenses", "Expense Report", "Export Data"]
+    var viewModel: AdminHomeViewModel = AdminHomeViewModel()
 
     //MARK: - init
     
@@ -46,83 +42,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         self.navigationController?.popViewController(animated: true)
     }
     
-    //MARK: - table view source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.titlesList.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var totalRows: Int = 0
-        
-        switch section {
-        case 0:
-            totalRows = self.settingsList.count
-            break
-        case 1:
-            totalRows = self.reportsList.count
-            break
-        default:
-            break
-        }
-        return totalRows
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let generic = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
-        
-        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") {
-            switch indexPath.section {
-            case 0:
-                cell.textLabel!.text = self.settingsList[indexPath.row]
-                break
-            case 1:
-                cell.textLabel!.text = self.reportsList[indexPath.row]
-                break
-            default:
-                break
-            }
-            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-            return cell
-        }
-        else {
-            return generic!
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.titlesList[section]
-    }
-    
-    //MARK: - table view delegate
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
-        
-        switch indexPath.section {
-        case 0:
-            if indexPath.row == 0 {
-                self.showPaymentsAndVendors(isForPayment: true)
-            }
-            else if indexPath.row == 1 {
-                self.showPaymentsAndVendors(isForPayment: false)
-            }
-            break
-        case 1:
-            if indexPath.row == 0 {
-                self.showVendorsLookup()
-            }
-            else if indexPath.row == 1 {
-                self.showExpenseLookup()
-            }
-            break
-        case 2:
-            break
-        default:
-            break
-        }
-    }
-    
     //MARK: - payment & vendor
     
     func showPaymentsAndVendors(isForPayment: Bool) {
@@ -133,20 +52,6 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
             vc.isForPayments = isForPayment
             vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
-    func didSelectItem(isForPayment: Bool, name: String, id: String) {
-        
-        if isForPayment == true {
-            print("- ")
-            print("- from admin, selected payment, id = \(id), name = '\(name)' ")
-            print("- ")
-        }
-        else {
-            print("- ")
-            print("- from admin, selected vendor, id = \(id), name = '\(name)' ")
-            print("- ")
         }
     }
     
@@ -168,4 +73,79 @@ class AdminHomeViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+}
+
+
+extension AdminHomeViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.viewModel.numberOfSectionis()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel.numberOfRows(index: section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") {
+            cell.textLabel!.text = self.viewModel.rowAtIndex(section: indexPath.section, row: indexPath.row)
+            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+            return cell
+        }
+        else {
+            let generic = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
+            return generic!
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.viewModel.titleForSections(index: section)
+    }
+}
+
+
+extension AdminHomeViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch indexPath.section {
+        case 0:
+            if indexPath.row == 0 {
+                self.showPaymentsAndVendors(isForPayment: true)
+            }
+            else if indexPath.row == 1 {
+                self.showPaymentsAndVendors(isForPayment: false)
+            }
+            break
+        case 1:
+            if indexPath.row == 0 {
+                self.showVendorsLookup()
+            }
+            else if indexPath.row == 1 {
+                self.showExpenseLookup()
+            }
+            break
+        default:
+            break
+        }
+    }
+}
+
+
+extension AdminHomeViewController: PaymentsVendorsViewControllerDelegate {
+    
+    func didSelectItem(isForPayment: Bool, name: String, id: String) {
+        if isForPayment == true {
+            print("- ")
+            print("- from admin, selected payment, id = \(id), name = '\(name)' ")
+            print("- ")
+        }
+        else {
+            print("- ")
+            print("- from admin, selected vendor, id = \(id), name = '\(name)' ")
+            print("- ")
+        }
+    }
 }

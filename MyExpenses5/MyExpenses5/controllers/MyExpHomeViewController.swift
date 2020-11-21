@@ -93,8 +93,10 @@ class MyExpHomeViewController: UIViewController {
     //MARK: - IB actions
     
     @IBAction func adminAction(_ sender: Any) {
-        //
-        print("-> show ADMIN ...")
+        
+        if let vc = MEStoryboard.admin(MEAdminsPage.home).vc as? AdminHomeViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @IBAction func selectDateAction(_ sender: Any) {
