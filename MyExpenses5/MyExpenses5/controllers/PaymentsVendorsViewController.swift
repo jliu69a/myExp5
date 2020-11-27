@@ -91,6 +91,8 @@ class PaymentsVendorsViewController: UIViewController {
     func toRefreshPage() {
         self.viewModel.allPayments = self.appDele.paymentsList
         self.viewModel.allVendors = self.appDele.vendorsList
+        self.viewModel.vendorDisplayTitles = self.appDele.vendorDisplayTitles
+        self.viewModel.vendorDisplayData = self.appDele.vendorDisplayData
         self.tableView.reloadData()
     }
     

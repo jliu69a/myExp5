@@ -21,6 +21,10 @@ class PaymentVendorViewModel {
     
     let appDele = UIApplication.shared.delegate as! AppDelegate
     
+    let kInsertVendorCode: Int = 1
+    let kUpdateVendorCode: Int = 2
+    let kDeleteVendorCode: Int = 3
+    
     var allPayments: [Payment] = []
     var allVendors: [Vendor] = []
     var vendorDisplayTitles: [String] = []
@@ -29,6 +33,8 @@ class PaymentVendorViewModel {
     var isForPayments: Bool = true
     var isForAdmin: Bool = false
     
+    var selectedVendor = EditedVendor()
+    var vendorActionCode: Int = 0
 }
 
 //MARK: -
@@ -107,6 +113,22 @@ extension PaymentVendorViewModel {
     //MARK: - saving changes
     
     func savePaymentsAndVendors(id: String, name: String, isForPayment: Bool, isEdit: Bool) {
+        
+        self.isForPayments = isForPayment
+        
+        self.selectedVendor.id = id
+        self.selectedVendor.name = name
+        
+        if id == "0" {
+            self.vendorActionCode = kInsertVendorCode
+        }
+        else if isEdit {
+            self.vendorActionCode = kUpdateVendorCode
+        }
+        else {
+            self.vendorActionCode = kDeleteVendorCode
+        }
+        
         self.savePVData(id: id, name: name, isForPayment: isForPayment, isEdit: isEdit) {}
     }
     
@@ -160,7 +182,74 @@ extension PaymentVendorViewModel {
                 self.appDele.vendorsList = each.vendors!
             }
         }
+        if !self.isForPayments {
+            self.updateVendorsData()
+        }
         self.delegate?.didLoadPaymentsAndVendors()
+    }
+    
+    func updateVendorsData() {
+        
+        //-- update existing top-10 array
+        let top10Key: String = "Top 10"
+        var top10Vendors = (self.appDele.vendorDisplayData[top10Key] as? [Top10]) ?? []
+        
+        var selectedIndex: Int = -1
+        for index in 0..<top10Vendors.count {
+            let item = top10Vendors[index]
+            let idValue = item.id ?? "0"
+            
+            if self.selectedVendor.id == idValue {
+                selectedIndex = index
+                break
+            }
+        }
+        
+        if selectedIndex >= 0 {
+            if self.vendorActionCode == kUpdateVendorCode {
+                var selectedVendor = top10Vendors[selectedIndex]
+                selectedVendor.vendor = self.selectedVendor.name
+                top10Vendors[selectedIndex] = selectedVendor
+            }
+            else if self.vendorActionCode == kDeleteVendorCode {
+                top10Vendors.remove(at: selectedIndex)
+            }
+        }
+        
+        //-- parse latest vendors
+        let vendorsList = self.appDele.vendorsList
+        if vendorsList.count == 0 {
+            return
+        }
+        
+        self.appDele.vendorDisplayTitles.removeAll()
+        self.appDele.vendorDisplayTitles.append(top10Key)
+        
+        self.appDele.vendorDisplayData.removeAll()
+        self.appDele.vendorDisplayData[top10Key] = top10Vendors as AnyObject
+        
+        let letters: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        
+        for each in vendorsList {
+            let vendorName: String = each.vendor!.uppercased()
+            
+            var firstLetter: String = String(vendorName.prefix(1))
+            if letters.contains(firstLetter) == false {
+                firstLetter = "#"
+            }
+            
+            if self.appDele.vendorDisplayTitles.contains(firstLetter) == false {
+                self.appDele.vendorDisplayTitles.append(firstLetter)
+            }
+            var vendorsArray = (self.appDele.vendorDisplayData[firstLetter] as? [Vendor]) ?? []
+            vendorsArray.append(each)
+            self.appDele.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
+        }
+        
+        print("-> ")
+        print("-> AppDelegate, vendor titles, size = \(self.appDele.vendorDisplayTitles.count) ...")
+        print("-> AppDelegate, vendor data dictionary, size = \(self.appDele.vendorDisplayData.count) ...")
+        print("-> ")
     }
     
 }
@@ -173,4 +262,9 @@ public class PAndVData: NSObject {
     var name: String = ""
     var displayId: String = ""
     var isForPayments: Bool = false
+}
+
+public class EditedVendor: NSObject {
+    var id: String = ""
+    var name: String = ""
 }
