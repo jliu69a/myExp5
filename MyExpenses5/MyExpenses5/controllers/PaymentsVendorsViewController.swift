@@ -33,6 +33,8 @@ class PaymentsVendorsViewController: UIViewController {
     var isForPayments: Bool = true
     var isForAdmin: Bool = false
     
+    let kDeleteCode: Int = 11
+    
     var selectedId: String = "0"
     var selectedName: String = ""
     
@@ -49,6 +51,8 @@ class PaymentsVendorsViewController: UIViewController {
         self.viewModel.vendorDisplayData = self.appDele.vendorDisplayData
         self.viewModel.isForPayments = self.isForPayments
         self.viewModel.isForAdmin = self.isForAdmin
+        
+        self.viewModel.delegate = self
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "PAndVCell", bundle: nil), forCellReuseIdentifier: "CellId")
@@ -108,11 +112,13 @@ class PaymentsVendorsViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func showAlert(title: String?, message: String?) {
+    func showAlert(title: String?, message: String?, code: Int) {
         let alert: UIAlertController = UIAlertController(title: title, message: nil, preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction) in
-            self.toProcessDelete()
+            if code == self.kDeleteCode {
+                self.toProcessDelete()
+            }
         }) )
         
         alert.addAction( UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil) )
@@ -128,18 +134,11 @@ class PaymentsVendorsViewController: UIViewController {
     
     func toConfirmDelete() {
         let line: String = String(format: "Are you sure you want to delete '%@' (%@)?", self.selectedName, self.selectedId)
-        self.showAlert(title: line, message: nil)
+        self.showAlert(title: line, message: nil, code: self.kDeleteCode)
     }
     
     func toProcessDelete() {
-        
-        MyExpDataManager.sharedInstance.savePaymentsAndVendors(id: self.selectedId, name: self.selectedName, isForPayment: self.isForPayments, isEdit: false) { (any: Any) in
-            DispatchQueue.main.async {
-                let list: [String: AnyObject] = any as! [String: AnyObject]
-                print("-> delete a payment/vendor, result array size = \(list.count) ")
-                self.toRefreshPage()
-            }
-        }
+        self.viewModel.savePaymentsAndVendors(id: self.selectedId, name: self.selectedName, isForPayment: self.isForAdmin, isEdit: false)
     }
     
     //MARK: - helpers
@@ -218,5 +217,16 @@ extension PaymentsVendorsViewController: AdminPVAddEditViewControllerDelegate {
     
     func didSaveChanges(isForPayment: Bool) {
         self.toRefreshPage()
+    }
+}
+
+//MARK: -
+
+extension PaymentsVendorsViewController: PaymentVendorViewModelDelegate {
+    
+    func didLoadPaymentsAndVendors() {
+        self.viewModel.allPayments = self.appDele.paymentsList
+        self.viewModel.allVendors = self.appDele.vendorsList
+        self.tableView.reloadData()
     }
 }
