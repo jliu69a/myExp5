@@ -140,7 +140,7 @@ class PaymentsVendorsViewController: UIViewController {
     }
     
     func toProcessDelete() {
-        self.viewModel.savePaymentsAndVendors(id: self.selectedId, name: self.selectedName, isForPayment: self.isForAdmin, isEdit: false)
+        self.viewModel.savePaymentsAndVendors(id: self.selectedId, name: self.selectedName, isForPayment: self.isForPayments, isEdit: false)
     }
     
     //MARK: - helpers
@@ -227,8 +227,6 @@ extension PaymentsVendorsViewController: AdminPVAddEditViewControllerDelegate {
 extension PaymentsVendorsViewController: PaymentVendorViewModelDelegate {
     
     func didLoadPaymentsAndVendors() {
-        self.viewModel.allPayments = self.appDele.paymentsList
-        self.viewModel.allVendors = self.appDele.vendorsList
-        self.tableView.reloadData()
+        self.toRefreshPage()
     }
 }
