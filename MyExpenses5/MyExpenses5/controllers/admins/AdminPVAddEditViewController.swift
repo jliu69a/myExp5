@@ -14,7 +14,7 @@ protocol AdminPVAddEditViewControllerDelegate: AnyObject {
 }
 
 
-class AdminPVAddEditViewController: UIViewController, UITextFieldDelegate {
+class AdminPVAddEditViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var idTextField: UITextField!
@@ -23,6 +23,7 @@ class AdminPVAddEditViewController: UIViewController, UITextFieldDelegate {
     
     weak var delegate: AdminPVAddEditViewControllerDelegate?
     
+    var viewModel: PaymentVendorViewModel = PaymentVendorViewModel()
     var idValue: String = "0"
     var nameValue: String = ""
     var isForPayment: Bool = false
@@ -31,6 +32,8 @@ class AdminPVAddEditViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.viewModel.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,26 +69,17 @@ class AdminPVAddEditViewController: UIViewController, UITextFieldDelegate {
         
         //-- save action here.
         self.nameValue = self.nameTextField.text ?? ""
-        
-        MyExpDataManager.sharedInstance.savePaymentsAndVendors(id: self.idValue, name: self.nameValue, isForPayment: self.isForPayment, isEdit: true) { (any: Any) in
-            DispatchQueue.main.async {
-                let list: [String: AnyObject] = any as! [String: AnyObject]
-                print("-> edit a payment/vendor, result array size = \(list.count) ")
-                self.refreshPage()
-            }
-        }
-    }
-    
-    func refreshPage() {
-        self.delegate?.didSaveChanges(isForPayment: self.isForPayment)
-        self.closePage()
+        self.viewModel.savePaymentsAndVendors(id: self.idValue, name: self.nameValue, isForPayment: self.isForPayment, isEdit: true)
     }
     
     func closePage() {
         self.navigationController?.popViewController(animated: true)
     }
-    
-    //MARK: - text field delegate
+}
+
+//MARK: -
+
+extension AdminPVAddEditViewController: UITextFieldDelegate {
     
     func clearKeyboard() {
         self.idTextField.resignFirstResponder()
@@ -97,3 +91,13 @@ class AdminPVAddEditViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 }
+
+
+extension AdminPVAddEditViewController: PaymentVendorViewModelDelegate {
+    
+    func didLoadPaymentsAndVendors() {
+        self.delegate?.didSaveChanges(isForPayment: self.isForPayment)
+        self.closePage()
+    }
+}
+

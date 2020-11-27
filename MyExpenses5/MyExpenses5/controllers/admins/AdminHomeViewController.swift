@@ -72,6 +72,7 @@ class AdminHomeViewController: UIViewController {
     
 }
 
+//MARK: -
 
 extension AdminHomeViewController: UITableViewDataSource {
     
@@ -101,6 +102,7 @@ extension AdminHomeViewController: UITableViewDataSource {
     }
 }
 
+//MARK: -
 
 extension AdminHomeViewController: UITableViewDelegate {
     
@@ -130,6 +132,7 @@ extension AdminHomeViewController: UITableViewDelegate {
     }
 }
 
+//MARK: -
 
 extension AdminHomeViewController: PaymentsVendorsViewControllerDelegate {
     

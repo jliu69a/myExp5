@@ -14,7 +14,7 @@ protocol PaymentsVendorsViewControllerDelegate: AnyObject {
 }
 
 
-class PaymentsVendorsViewController: UIViewController, AdminPVAddEditViewControllerDelegate {
+class PaymentsVendorsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -52,8 +52,6 @@ class PaymentsVendorsViewController: UIViewController, AdminPVAddEditViewControl
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "PAndVCell", bundle: nil), forCellReuseIdentifier: "CellId")
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshAfterChanges), name: NSNotification.Name(rawValue: MyExpDataManager.sharedInstance.kPaymentsAndVendorsPageRefreshNotification), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,33 +82,11 @@ class PaymentsVendorsViewController: UIViewController, AdminPVAddEditViewControl
         self.showAddOrEditPage(isForNew: true, id: "0", name: "")
     }
     
-    func showAddOrEditPage(isForNew: Bool, id: String, name: String) {
-        
-        let storyboard = UIStoryboard(name: "admins", bundle: nil)
-        if let vc = storyboard.instantiateViewController(withIdentifier: "AdminPVAddEditViewController") as? AdminPVAddEditViewController {
-            vc.delegate = self
-            vc.isForPayment = self.isForPayments
-            vc.idValue = id
-            vc.nameValue = name
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
-    
     //MARK: - notification, delegate
     
-    @objc func refreshAfterChanges() {
-        self.allPayments = MyExpDataManager.sharedInstance.paymentList
-        self.allVendors = MyExpDataManager.sharedInstance.vendorList
-        self.tableView.reloadData()
-    }
-    
-    func didSaveChanges(isForPayment: Bool) {
-        self.toRefreshPage()
-    }
-    
     func toRefreshPage() {
-        self.allPayments = MyExpDataManager.sharedInstance.paymentList
-        self.allVendors = MyExpDataManager.sharedInstance.vendorList
+        self.viewModel.allPayments = self.appDele.paymentsList
+        self.viewModel.allVendors = self.appDele.vendorsList
         self.tableView.reloadData()
     }
     
@@ -166,8 +142,22 @@ class PaymentsVendorsViewController: UIViewController, AdminPVAddEditViewControl
         }
     }
     
+    //MARK: - helpers
+    
+    func showAddOrEditPage(isForNew: Bool, id: String, name: String) {
+        
+        let storyboard = UIStoryboard(name: "admins", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "AdminPVAddEditViewController") as? AdminPVAddEditViewController {
+            vc.delegate = self
+            vc.isForPayment = self.isForPayments
+            vc.idValue = id
+            vc.nameValue = name
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
+//MARK: -
 
 extension PaymentsVendorsViewController: UITableViewDataSource {
     
@@ -201,6 +191,7 @@ extension PaymentsVendorsViewController: UITableViewDataSource {
     }
 }
 
+//MARK: -
 
 extension PaymentsVendorsViewController: UITableViewDelegate {
     
@@ -218,5 +209,14 @@ extension PaymentsVendorsViewController: UITableViewDelegate {
             self.delegate?.didSelectItem(isForPayment: self.isForPayments, name: self.selectedName, id: self.selectedId)
             self.navigationController!.popViewController(animated: true)
         }
+    }
+}
+
+//MARK: -
+
+extension PaymentsVendorsViewController: AdminPVAddEditViewControllerDelegate {
+    
+    func didSaveChanges(isForPayment: Bool) {
+        self.toRefreshPage()
     }
 }

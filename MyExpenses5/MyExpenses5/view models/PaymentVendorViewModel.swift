@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 
 protocol PaymentVendorViewModelDelegate: class {
@@ -19,8 +20,6 @@ class PaymentVendorViewModel {
     weak var delegate: PaymentVendorViewModelDelegate?
     
     let appDele = UIApplication.shared.delegate as! AppDelegate
-    //var totalSections: Int = 1
-    //var totalRows: Int = 0
     
     var allPayments: [Payment] = []
     var allVendors: [Vendor] = []
@@ -32,9 +31,9 @@ class PaymentVendorViewModel {
     
 }
 
+//MARK: -
+
 extension PaymentVendorViewModel {
-    
-    //MARK: - table view data
     
     func numberOfSectionis() -> Int {
         return self.isForPayments ? 1 : self.vendorDisplayTitles.count
@@ -104,7 +103,69 @@ extension PaymentVendorViewModel {
     func headerTitleForSection(section: Int) -> String? {
         return self.isForPayments ? nil : self.appDele.vendorDisplayTitles[section]
     }
+    
+    //MARK: - saving changes
+    
+    func savePaymentsAndVendors(id: String, name: String, isForPayment: Bool, isEdit: Bool) {
+        self.savePVData(id: id, name: name, isForPayment: isForPayment, isEdit: isEdit) {}
+    }
+    
+    func savePVData(id: String, name: String, isForPayment: Bool, isEdit: Bool, completion: @escaping () -> Void) {
+        
+        let idValue: String = (id == "0") ? "-1" : id
+        let isPaymentValue: String = isForPayment ? "1" : "0"
+        let isEditValue: String = isEdit ? "1" : "0"
+        
+        let parameters: [String: Any] = ["id": (idValue as Any), "name": (name as Any), "ispayment": (isPaymentValue as Any), "edit":(isEditValue as Any)]
+        
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_edit.php", self.appDele.folder)
+        let connect: ConnectionsManager = ConnectionsManager()
+        
+        connect.saveDataFromUrl(url: url, parameters: parameters) { [weak self] (data: Any) in
+            let myPVData: Data = data as! Data
+            let pvList: [ChangePVData] = self?.parseSavePaymentsAndVendors(data: myPVData) ?? []
+            self?.parseSavedPVData(myPVList: pvList)
+            completion()
+        }
+    }
+    
+    func parseSavePaymentsAndVendors(data: Data) -> [ChangePVData] {
+        
+        let json = try? JSON(data: data)
+        if json == nil {
+            print("- payments & vendors : No Data")
+            return []
+        }
+        
+        var dataList: [ChangePVData] = []
+        do {
+            dataList = try JSONDecoder().decode([ChangePVData].self, from: data)
+        }
+        catch {
+            print(error)
+        }
+        return dataList
+    }
+    
+    func parseSavedPVData(myPVList: [ChangePVData]) {
+        
+        self.appDele.paymentsList.removeAll()
+        self.appDele.vendorsList.removeAll()
+        
+        for each in myPVList {
+            if each.payments != nil {
+                self.appDele.paymentsList = each.payments!
+            }
+            if each.vendors != nil {
+                self.appDele.vendorsList = each.vendors!
+            }
+        }
+        self.delegate?.didLoadPaymentsAndVendors()
+    }
+    
 }
+
+//MARK: -
 
 public class PAndVData: NSObject {
     
