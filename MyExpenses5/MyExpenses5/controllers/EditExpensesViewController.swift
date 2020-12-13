@@ -93,8 +93,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     
     func displayInitialDate() {
         
-        if self.selectedExpense!.date == nil || self.selectedExpense!.time == nil {
-            self.selectedDate = Date()
+        if self.isForNew {
             self.displayDate()
         }
         else {

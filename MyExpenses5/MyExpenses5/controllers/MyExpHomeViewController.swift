@@ -74,6 +74,9 @@ class MyExpHomeViewController: UIViewController {
         if let vc = MEStoryboard.home(MEHomePage.saveExp).vc as? EditExpensesViewController {
             vc.delegate = self
             vc.selectedExpense = model
+            if model == nil {
+                vc.selectedDate = self.selectedDate
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -116,7 +119,7 @@ class MyExpHomeViewController: UIViewController {
 
 //MARK: -
 
-extension MyExpHomeViewController: UITableViewDataSource {
+extension MyExpHomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.viewModel.numberOfSectionis()
@@ -139,11 +142,6 @@ extension MyExpHomeViewController: UITableViewDataSource {
             return genericCell!
         }
     }
-}
-
-//MARK: -
-
-extension MyExpHomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
