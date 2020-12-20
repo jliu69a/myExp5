@@ -10,6 +10,8 @@ import UIKit
 
 class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ChangeDateViewControllerDelegate, EditExpensesViewControllerDelegate {
     
+    //-- not used
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     

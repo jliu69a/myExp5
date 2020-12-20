@@ -107,6 +107,7 @@ class MyExpHomeViewController: UIViewController {
         if let vc = MEStoryboard.home(MEHomePage.changeDate).vc as? ChangeDateViewController {
             vc.currentDate = self.selectedDate
             vc.delegate = self
+            vc.modalPresentationStyle = .fullScreen
             self.changeDateVC = vc
             self.present(vc, animated: true, completion: nil)
         }

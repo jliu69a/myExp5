@@ -19,7 +19,7 @@ protocol ChangeDateViewControllerDelegate: AnyObject {
 class ChangeDateViewController: UIViewController {
     
     @IBOutlet weak var todayButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
+    //@IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -38,6 +38,10 @@ class ChangeDateViewController: UIViewController {
         
         self.df.dateFormat = "M/d, E"
         self.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        
+        if #available(iOS 14, *) {
+            self.datePicker.preferredDatePickerStyle = .inline
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -45,10 +49,15 @@ class ChangeDateViewController: UIViewController {
         
         self.datePicker.date = self.currentDate
         self.displayDate(currentDate: self.datePicker.date)
-
+        
         self.todayButton.layer.cornerRadius = 5
-        self.cancelButton.layer.cornerRadius = 5
+        self.todayButton.clipsToBounds = true
+        
         self.selectButton.layer.cornerRadius = 5
+        self.selectButton.clipsToBounds = true
+        
+        self.datePicker.layer.borderColor = UIColor.systemGray4.cgColor
+        self.datePicker.layer.borderWidth = 1.0
     }
     
     override func viewDidAppear(_ animated: Bool) {
