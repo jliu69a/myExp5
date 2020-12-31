@@ -174,6 +174,11 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.selectedExpense!.amount = self.priceTextLabel.text!
         self.selectedExpense!.note = self.notesTextField.text ?? ""
         
+        //-- get the current time
+        let df: DateFormatter = DateFormatter()
+        df.dateFormat = "HH:mm:ss"
+        self.selectedExpense!.time = df.string(from: Date())
+        
         self.delegate?.didChangeExpenseData(data: self.selectedExpense!, selectedDate: self.selectedDate, isForNew: self.isForNew)
         self.navigationController!.popViewController(animated: true)
     }
