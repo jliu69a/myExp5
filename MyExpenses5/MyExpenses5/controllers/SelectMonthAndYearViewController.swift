@@ -49,6 +49,9 @@ class SelectMonthAndYearViewController: UIViewController, UIPickerViewDataSource
         self.cancelButton.layer.cornerRadius = 5
         self.saveButton.layer.cornerRadius = 5
         
+        self.picker.layer.borderColor = UIColor.black.cgColor
+        self.picker.layer.borderWidth = 0.5
+        
         self.titleLabel.text = (self.isForYearOnly == true) ? "Choose A Year" : "Choose A Month and A Year"
         self.monthsList = MyExpDataManager.sharedInstance.monthsNameList
         

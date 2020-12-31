@@ -250,6 +250,7 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         if let vc = storyboard.instantiateViewController(withIdentifier: "SelectMonthAndYearViewController") as? SelectMonthAndYearViewController {
             vc.delegate = self
             vc.isForYearOnly = false
+            vc.modalPresentationStyle = .fullScreen
             self.selectVC = vc
             self.present(self.selectVC!, animated: true, completion: nil)
         }

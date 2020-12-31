@@ -70,6 +70,10 @@ class AdminHomeViewController: UIViewController {
         }
     }
     
+    func showLocationCheck() {
+        //
+    }
+    
 }
 
 //MARK: -
@@ -124,6 +128,11 @@ extension AdminHomeViewController: UITableViewDelegate {
             }
             else if indexPath.row == 1 {
                 self.showExpenseLookup()
+            }
+            break
+        case 2:
+            if indexPath.row == 0 {
+                self.showLocationCheck()
             }
             break
         default:

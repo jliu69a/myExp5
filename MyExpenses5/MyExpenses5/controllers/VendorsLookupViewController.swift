@@ -93,6 +93,7 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
         if let vc = storyboard.instantiateViewController(withIdentifier: "SelectMonthAndYearViewController") as? SelectMonthAndYearViewController {
             vc.delegate = self
             vc.isForYearOnly = true
+            vc.modalPresentationStyle = .fullScreen
             self.selectVC = vc
             self.present(self.selectVC!, animated: true, completion: nil)
         }

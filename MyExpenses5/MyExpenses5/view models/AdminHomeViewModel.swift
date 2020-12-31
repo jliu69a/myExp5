@@ -13,9 +13,10 @@ class AdminHomeViewModel {
     var totalSections: Int = 1
     var totalRows: Int = 0
     
-    let titlesList: [String] = ["Settings", "Reports"]
+    let titlesList: [String] = ["Settings", "Reports", "Misc"]
     let settingsList: [String] = ["Edit Payments", "Edit Vendors"]
     let reportsList: [String] = ["Look Up Vendor", "Look Up Expenses"]
+    let miscList: [String] = ["Check Location"]
 }
 
 
@@ -30,16 +31,23 @@ extension AdminHomeViewModel {
     }
     
     func numberOfRows(index: Int) -> Int {
+        var totalRows: Int = 0
         
-        if index == 0 {
-            return self.settingsList.count
+        switch index {
+        case 0:
+            totalRows = self.settingsList.count
+            break
+        case 1:
+            totalRows = self.reportsList.count
+            break
+        case 2:
+            totalRows = self.miscList.count
+            break
+        default:
+            break
         }
-        else if index == 1 {
-            return self.reportsList.count
-        }
-        else {
-            return 0
-        }
+        
+        return totalRows
     }
     
     func rowAtIndex(section: Int, row: Int) -> String {
@@ -49,6 +57,9 @@ extension AdminHomeViewModel {
         }
         else if section == 1 {
             return self.reportsList[row]
+        }
+        else if section == 2 {
+            return self.miscList[row]
         }
         else {
             return ""
