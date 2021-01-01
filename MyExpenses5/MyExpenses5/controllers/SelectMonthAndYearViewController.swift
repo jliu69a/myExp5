@@ -20,7 +20,6 @@ class SelectMonthAndYearViewController: UIViewController, UIPickerViewDataSource
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var picker: UIPickerView!
-    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
     weak var delegate: SelectMonthAndYearViewControllerDelegate?
@@ -46,7 +45,6 @@ class SelectMonthAndYearViewController: UIViewController, UIPickerViewDataSource
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.cancelButton.layer.cornerRadius = 5
         self.saveButton.layer.cornerRadius = 5
         
         self.picker.layer.borderColor = UIColor.black.cgColor
@@ -83,7 +81,8 @@ class SelectMonthAndYearViewController: UIViewController, UIPickerViewDataSource
             self.picker.selectRow(self.currentYearIndex, inComponent: 1, animated: true)
             
             self.selectedYear = yearText
-            self.selectedMonthIndex = "\(self.currentMonthIndex)"
+            self.selectedMonthIndex = String(format: "%0.2d", (self.currentMonthIndex + 1))
+            self.selectedMonthText = self.monthsList[self.currentMonthIndex]
         }
     }
     
