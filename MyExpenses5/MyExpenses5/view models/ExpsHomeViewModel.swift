@@ -174,7 +174,11 @@ extension ExpsHomeViewModel {
                 self.appDele.vendorDisplayTitles.append(firstLetter)
             }
             var vendorsArray = (self.appDele.vendorDisplayData[firstLetter] as? [Vendor]) ?? []
-            vendorsArray.append(each)
+            
+            let isUnique = self.checkForUnique(vendorsList: vendorsArray, vendor: each)
+            if isUnique {
+                vendorsArray.append(each)
+            }
             self.appDele.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
         }
         
@@ -193,6 +197,25 @@ extension ExpsHomeViewModel {
             print("    - top 10, id = \(id), total = \(total), name = \(name)")
         }
         print("- ")
+    }
+    
+    func checkForUnique(vendorsList: [Vendor], vendor: Vendor) -> Bool {
+        
+        if vendorsList.count == 0 {
+            return true
+        }
+        var isUnique: Bool = true
+        
+        for each in vendorsList {
+            let eachId = each.id ?? "0"
+            let vendorId = vendor.id ?? "0"
+            
+            if eachId == vendorId {
+                isUnique = false
+                break
+            }
+        }
+        return isUnique
     }
     
     //MARK: - api, save expense
@@ -285,11 +308,11 @@ extension ExpsHomeViewModel {
     }
     
     func totalExpensesAmount() {
+        self.totalAmount = 0
         
         if self.expenseList.count == 0 {
             return
         }
-        self.totalAmount = 0
         
         for each in self.expenseList {
             let amount = Double(each.amount ?? "0") ?? 0
