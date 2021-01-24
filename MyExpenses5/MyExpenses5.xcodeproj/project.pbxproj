@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5A072FD524DEFA14009DA0A4 /* LookupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A072FD424DEFA14009DA0A4 /* LookupModel.swift */; };
-		5A1CDDB324C221D100E83452 /* ExpenseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */; };
 		5A1CDDB624C235D400E83452 /* ChangeDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CDDB524C235D400E83452 /* ChangeDateViewController.swift */; };
 		5A1CDDB824C26C9400E83452 /* EditExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1CDDB724C26C9400E83452 /* EditExpensesViewController.swift */; };
 		5A344D1A25585BE2000B993E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A344D1925585BE2000B993E /* Constants.swift */; };
@@ -48,11 +47,11 @@
 		5AF26FC624CBA8550042DE15 /* AdminPVAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF26FC524CBA8550042DE15 /* AdminPVAddEditViewController.swift */; };
 		5AFBAE1E24F1763100F87276 /* ExpLookupDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFBAE1D24F1763100F87276 /* ExpLookupDisplayViewController.swift */; };
 		94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */; };
+		FE377C7225BDB5C100033B25 /* ExpenseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE377C7125BDB5C100033B25 /* ExpenseHomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5A072FD424DEFA14009DA0A4 /* LookupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupModel.swift; sourceTree = "<group>"; };
-		5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseHomeViewController.swift; sourceTree = "<group>"; };
 		5A1CDDB524C235D400E83452 /* ChangeDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeDateViewController.swift; sourceTree = "<group>"; };
 		5A1CDDB724C26C9400E83452 /* EditExpensesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExpensesViewController.swift; sourceTree = "<group>"; };
 		5A344D1925585BE2000B993E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -96,6 +95,7 @@
 		95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyExpenses5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7E7A5EB671D2EB1790CB4C /* Pods-MyExpenses5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.debug.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.debug.xcconfig"; sourceTree = "<group>"; };
 		D3D82A40FD8B16F17D98AD67 /* Pods-MyExpenses5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.release.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.release.xcconfig"; sourceTree = "<group>"; };
+		FE377C7125BDB5C100033B25 /* ExpenseHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseHomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,8 +218,8 @@
 		5A97C78D24C12E4C0019E2B4 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE377C7425BDB5F200033B25 /* old */,
 				5AF26FC024CB85680042DE15 /* admins */,
-				5A1CDDB224C221D100E83452 /* ExpenseHomeViewController.swift */,
 				5A87DCF82558227800F6D2C2 /* MyExpHomeViewController.swift */,
 				5A87AB9024C134C7009792A1 /* ExpenseCell.swift */,
 				5A87AB8F24C134C7009792A1 /* ExpenseCell.xib */,
@@ -255,6 +255,14 @@
 				5AF26FC524CBA8550042DE15 /* AdminPVAddEditViewController.swift */,
 			);
 			path = admins;
+			sourceTree = "<group>";
+		};
+		FE377C7425BDB5F200033B25 /* old */ = {
+			isa = PBXGroup;
+			children = (
+				FE377C7125BDB5C100033B25 /* ExpenseHomeViewController.swift */,
+			);
+			path = old;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,7 +400,6 @@
 				5A1CDDB624C235D400E83452 /* ChangeDateViewController.swift in Sources */,
 				5A90E45E24E05E84005C42A3 /* ExpLookupCell.swift in Sources */,
 				5A87AB8324C1340E009792A1 /* jsonsData.swift in Sources */,
-				5A1CDDB324C221D100E83452 /* ExpenseHomeViewController.swift in Sources */,
 				5A1CDDB824C26C9400E83452 /* EditExpensesViewController.swift in Sources */,
 				5A90E45B24E03471005C42A3 /* ExpensesLookupViewController.swift in Sources */,
 				5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */,
@@ -402,6 +409,7 @@
 				5A8F7575255C5ECE00612AE4 /* PaymentVendorViewModel.swift in Sources */,
 				5A87DCF92558227800F6D2C2 /* MyExpHomeViewController.swift in Sources */,
 				5A87AB9224C134C7009792A1 /* ExpenseCell.swift in Sources */,
+				FE377C7225BDB5C100033B25 /* ExpenseHomeViewController.swift in Sources */,
 				5A8F15AE24D4D88500B57A9B /* VendorsLookupViewController.swift in Sources */,
 				5AF26FC224CB86380042DE15 /* AdminHomeViewController.swift in Sources */,
 				5A3A578F256951710033EDAB /* AdminHomeViewModel.swift in Sources */,
@@ -554,7 +562,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = WSH8T4CK9T;
 				INFOPLIST_FILE = MyExpenses5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -576,7 +584,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = WSH8T4CK9T;
 				INFOPLIST_FILE = MyExpenses5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

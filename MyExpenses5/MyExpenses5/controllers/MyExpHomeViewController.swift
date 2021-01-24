@@ -197,7 +197,10 @@ extension MyExpHomeViewController: ChangeDateViewControllerDelegate {
 
 extension MyExpHomeViewController: EditExpensesViewControllerDelegate {
     
-    func didChangeExpenseData(data: Expense, selectedDate: Date, isForNew: Bool) {
+    func didChangeExpenseData(data: Expense, selectedDate: Date, isForNew: Bool, isDateChanged: Bool) {
+        if isDateChanged {
+            self.selectedDate = selectedDate
+        }
         let actionCode = isForNew ? self.viewModel.kInsertCode : self.viewModel.kUpdateCode
         self.viewModel.savingData(data: data, actionCode: actionCode)
     }

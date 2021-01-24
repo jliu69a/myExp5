@@ -226,7 +226,7 @@ class ExpenseHomeViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    func didChangeExpenseData(data: Expense, selectedDate: Date, isForNew: Bool) {
+    func didChangeExpenseData(data: Expense, selectedDate: Date, isForNew: Bool, isDateChanged: Bool) {
         self.selectedExpense = nil
         
         let actionCode: Int = isForNew == true ? MyExpDataManager.sharedInstance.kInsertCode : MyExpDataManager.sharedInstance.kUpdateCode

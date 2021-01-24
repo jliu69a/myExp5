@@ -11,7 +11,7 @@ import Foundation
 
 
 protocol EditExpensesViewControllerDelegate: AnyObject {
-    func didChangeExpenseData(data: Expense, selectedDate: Date, isForNew: Bool)
+    func didChangeExpenseData(data: Expense, selectedDate: Date, isForNew: Bool, isDateChanged: Bool)
 }
 
 
@@ -34,6 +34,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     
     var changeDateVC: ChangeDateViewController? = nil
     var selectedDate: Date = Date()
+    var isDateChanged: Bool = false
     var amountData: String = ""
     var isForNew: Bool = false
     
@@ -179,7 +180,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         df.dateFormat = "HH:mm:ss"
         self.selectedExpense!.time = df.string(from: Date())
         
-        self.delegate?.didChangeExpenseData(data: self.selectedExpense!, selectedDate: self.selectedDate, isForNew: self.isForNew)
+        self.delegate?.didChangeExpenseData(data: self.selectedExpense!, selectedDate: self.selectedDate, isForNew: self.isForNew, isDateChanged: self.isDateChanged)
         self.navigationController!.popViewController(animated: true)
     }
     
@@ -251,6 +252,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.closeChangeDateView()
         
         self.selectedDate = date
+        self.isDateChanged = true
         self.displayDate()
     }
     
