@@ -18,9 +18,13 @@ after all of these steps are completed successfully, then delete the "dev_3" bra
 
 
 2,
-then, here is the branch struture : "develop" -> "release" -> "dev_4"
+then, here is the branch struture : "develop" -> "release" -> "dev_6"
 
-and, after any changes, follow the structure, in reverse order, to bring the latest code into "develop" branch.
+after any changes, follow the structure, in reverse order, to bring the latest code into "develop" branch.
+
+the next change is to use shared top-nav, and replace the existing UIView on every page.
+
+NOTE: "dev_6" is the latest branch now.  the "dev_4" is being removed.
 
 
 3,
