@@ -20,62 +20,9 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhG-0Q-mW7" userLabel="top view">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Expenses" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jef-94-MVF">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Admin" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GG4-hw-lof" userLabel="admin label">
-                                        <rect key="frame" x="309" y="0.0" width="56" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="56" id="QB7-2z-rqo"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                        <color key="textColor" systemColor="systemBlueColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Border Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rd5-jB-5vk" userLabel="border label">
-                                        <rect key="frame" x="0.0" y="43.5" width="375" height="0.5"/>
-                                        <color key="backgroundColor" systemColor="separatorColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="0.5" id="tuf-Dh-oJf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUn-6D-iiY" userLabel="admin button">
-                                        <rect key="frame" x="309" y="0.0" width="66" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="66" id="D4S-dW-BGz"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="Button">
-                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="adminAction:" destination="IS5-Vi-ogy" eventType="touchUpInside" id="bCc-TP-MWI"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="0AK-GJ-ZO3"/>
-                                    <constraint firstAttribute="bottom" secondItem="jef-94-MVF" secondAttribute="bottom" id="1Ns-T8-R32"/>
-                                    <constraint firstAttribute="trailing" secondItem="zUn-6D-iiY" secondAttribute="trailing" id="1uK-fv-M9S"/>
-                                    <constraint firstAttribute="trailing" secondItem="rd5-jB-5vk" secondAttribute="trailing" id="DBS-ur-vtb"/>
-                                    <constraint firstItem="GG4-hw-lof" firstAttribute="top" secondItem="fhG-0Q-mW7" secondAttribute="top" id="TTa-D7-Mkp"/>
-                                    <constraint firstItem="zUn-6D-iiY" firstAttribute="top" secondItem="fhG-0Q-mW7" secondAttribute="top" id="Vhk-bX-TGL"/>
-                                    <constraint firstAttribute="bottom" secondItem="GG4-hw-lof" secondAttribute="bottom" id="cvq-ZM-4Yd"/>
-                                    <constraint firstItem="rd5-jB-5vk" firstAttribute="leading" secondItem="fhG-0Q-mW7" secondAttribute="leading" id="dUP-5r-fOg"/>
-                                    <constraint firstAttribute="bottom" secondItem="rd5-jB-5vk" secondAttribute="bottom" id="e3V-Sx-2ky"/>
-                                    <constraint firstAttribute="trailing" secondItem="GG4-hw-lof" secondAttribute="trailing" constant="10" id="if4-rf-dDZ"/>
-                                    <constraint firstItem="jef-94-MVF" firstAttribute="top" secondItem="fhG-0Q-mW7" secondAttribute="top" id="mCn-BJ-oMr"/>
-                                    <constraint firstAttribute="bottom" secondItem="zUn-6D-iiY" secondAttribute="bottom" id="p55-Eh-2Fr"/>
-                                    <constraint firstItem="jef-94-MVF" firstAttribute="leading" secondItem="fhG-0Q-mW7" secondAttribute="leading" id="rua-GL-EgW"/>
-                                    <constraint firstAttribute="trailing" secondItem="jef-94-MVF" secondAttribute="trailing" id="xKN-ix-nF0"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RK-L5-Ue3" userLabel="message base view">
@@ -112,7 +59,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9v-CG-qhG" userLabel="bottom nav view">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJ4-Sc-ftX" userLabel="change date label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJ4-Sc-ftX" userLabel="change date label">
                                         <rect key="frame" x="10" y="0.0" width="56" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="56" id="Yjp-Xh-FRv"/>
@@ -217,6 +164,7 @@
                         <outlet property="amountLabel" destination="SbT-gK-FQA" id="7DZ-46-oDf"/>
                         <outlet property="dateLabel" destination="uLo-TY-qsI" id="dfW-16-ZdL"/>
                         <outlet property="tableView" destination="2sD-EL-bq6" id="vHS-jN-SZP"/>
+                        <outlet property="topView" destination="fhG-0Q-mW7" id="f3q-AP-BQi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8wP-W3-j7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -915,9 +863,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="separatorColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

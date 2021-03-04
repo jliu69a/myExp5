@@ -10,6 +10,7 @@ import UIKit
 
 class MyExpHomeViewController: UIViewController {
     
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     
@@ -33,6 +34,7 @@ class MyExpHomeViewController: UIViewController {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
         
+        self.showTopView()
         self.loadingData()
     }
     
@@ -44,6 +46,22 @@ class MyExpHomeViewController: UIViewController {
         
         self.amountLabel.text = viewModel.displayTotalAmount()
         self.dateLabel.text = viewModel.displayCurrentDate(date: self.selectedDate)
+    }
+    
+    //MARK: - top view
+    
+    func showTopView() {
+        let storyboard = UIStoryboard(name: "topheader", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "TopHeaderViewController") as? TopHeaderViewController {
+            let frame = self.topView.frame
+            vc.view.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+            vc.delegate = self
+            vc.headerTitle = "My Expenses"
+            vc.isForAdmin = true
+            self.topView.addSubview(vc.view)
+            self.addChild(vc)
+        }
     }
     
     //MARK: - helpers
@@ -95,12 +113,12 @@ class MyExpHomeViewController: UIViewController {
     
     //MARK: - IB actions
     
-    @IBAction func adminAction(_ sender: Any) {
-        
-        if let vc = MEStoryboard.admin(MEAdminsPage.home).vc as? AdminHomeViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
+//    @IBAction func adminAction(_ sender: Any) {
+//
+//        if let vc = MEStoryboard.admin(MEAdminsPage.home).vc as? AdminHomeViewController {
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+//    }
     
     @IBAction func selectDateAction(_ sender: Any) {
         
@@ -203,5 +221,18 @@ extension MyExpHomeViewController: EditExpensesViewControllerDelegate {
         }
         let actionCode = isForNew ? self.viewModel.kInsertCode : self.viewModel.kUpdateCode
         self.viewModel.savingData(data: data, actionCode: actionCode)
+    }
+}
+
+extension MyExpHomeViewController: TopHeaderViewControllerDelegate {
+    
+    func goback() {
+        //
+    }
+    
+    func showAdmin() {
+        if let vc = MEStoryboard.admin(MEAdminsPage.home).vc as? AdminHomeViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

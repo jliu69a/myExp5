@@ -47,6 +47,8 @@
 		5AF26FC624CBA8550042DE15 /* AdminPVAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF26FC524CBA8550042DE15 /* AdminPVAddEditViewController.swift */; };
 		5AFBAE1E24F1763100F87276 /* ExpLookupDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFBAE1D24F1763100F87276 /* ExpLookupDisplayViewController.swift */; };
 		94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */; };
+		FE1F566325F06F1C00743825 /* TopHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */; };
+		FE1F566725F071D200743825 /* topheader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE1F566625F071D200743825 /* topheader.storyboard */; };
 		FE377C7225BDB5C100033B25 /* ExpenseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE377C7125BDB5C100033B25 /* ExpenseHomeViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +97,8 @@
 		95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyExpenses5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7E7A5EB671D2EB1790CB4C /* Pods-MyExpenses5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.debug.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.debug.xcconfig"; sourceTree = "<group>"; };
 		D3D82A40FD8B16F17D98AD67 /* Pods-MyExpenses5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.release.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.release.xcconfig"; sourceTree = "<group>"; };
+		FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderViewController.swift; sourceTree = "<group>"; };
+		FE1F566625F071D200743825 /* topheader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = topheader.storyboard; sourceTree = "<group>"; };
 		FE377C7125BDB5C100033B25 /* ExpenseHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseHomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +211,7 @@
 		5A97C78C24C12E430019E2B4 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				FE1F566125F06EEA00743825 /* shared */,
 				5A87AB8424C13467009792A1 /* expense.storyboard */,
 				5A8BAAB324C33EC50033B46A /* pandv.storyboard */,
 				5AF26FC324CB864D0042DE15 /* admins.storyboard */,
@@ -219,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				FE377C7425BDB5F200033B25 /* old */,
+				FE1F566025F06EDF00743825 /* shared */,
 				5AF26FC024CB85680042DE15 /* admins */,
 				5A87DCF82558227800F6D2C2 /* MyExpHomeViewController.swift */,
 				5A87AB9024C134C7009792A1 /* ExpenseCell.swift */,
@@ -255,6 +261,22 @@
 				5AF26FC524CBA8550042DE15 /* AdminPVAddEditViewController.swift */,
 			);
 			path = admins;
+			sourceTree = "<group>";
+		};
+		FE1F566025F06EDF00743825 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */,
+			);
+			path = shared;
+			sourceTree = "<group>";
+		};
+		FE1F566125F06EEA00743825 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				FE1F566625F071D200743825 /* topheader.storyboard */,
+			);
+			path = shared;
 			sourceTree = "<group>";
 		};
 		FE377C7425BDB5F200033B25 /* old */ = {
@@ -338,6 +360,7 @@
 				5A87AB9124C134C7009792A1 /* ExpenseCell.xib in Resources */,
 				5A8F15AC24D4C54500B57A9B /* monthAndYear.storyboard in Resources */,
 				5A8BAAB124C336440033B46A /* PAndVCell.xib in Resources */,
+				FE1F566725F071D200743825 /* topheader.storyboard in Resources */,
 				5A87AB8E24C134A0009792A1 /* myExp_plus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +428,7 @@
 				5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */,
 				5A8BAAB024C336440033B46A /* PAndVCell.swift in Sources */,
 				5A924170255637AC00263B07 /* ExpsHomeViewModel.swift in Sources */,
+				FE1F566325F06F1C00743825 /* TopHeaderViewController.swift in Sources */,
 				5A8F15AA24D4C51100B57A9B /* SelectMonthAndYearViewController.swift in Sources */,
 				5A8F7575255C5ECE00612AE4 /* PaymentVendorViewModel.swift in Sources */,
 				5A87DCF92558227800F6D2C2 /* MyExpHomeViewController.swift in Sources */,
