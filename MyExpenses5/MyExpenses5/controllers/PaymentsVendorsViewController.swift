@@ -16,8 +16,9 @@ protocol PaymentsVendorsViewControllerDelegate: AnyObject {
 
 class PaymentsVendorsViewController: UIViewController {
     
+    @IBOutlet weak var topView: UIView!
+    
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addNewButton: UIButton!
     @IBOutlet weak var tableViewBottomSpace: NSLayoutConstraint!
     
@@ -38,12 +39,16 @@ class PaymentsVendorsViewController: UIViewController {
     var selectedId: String = "0"
     var selectedName: String = ""
     
+    var topHeaderVC: TopHeaderViewController? = nil
+    
     weak var delegate: PaymentsVendorsViewControllerDelegate?
 
     //MARK: - init
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.showTopView()
         
         self.viewModel.allPayments = self.appDele.paymentsList
         self.viewModel.allVendors = self.appDele.vendorsList
@@ -61,7 +66,7 @@ class PaymentsVendorsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.titleLabel.text = self.isForPayments ? "Payment" : "Vendor"
+        self.topHeaderVC?.changeTitle(title: (self.isForPayments ? "Payment" : "Vendor"))
         
         if self.isForAdmin == true {
             self.tableViewBottomSpace.constant = 64
@@ -73,6 +78,23 @@ class PaymentsVendorsViewController: UIViewController {
         
         self.tableView.layer.borderColor = UIColor.systemOrange.cgColor
         self.tableView.layer.borderWidth = 0.5
+    }
+    
+    //MARK: - top view
+    
+    func showTopView() {
+        let storyboard = UIStoryboard(name: "topheader", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "TopHeaderViewController") as? TopHeaderViewController {
+            let frame = self.topView.frame
+            vc.view.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+            vc.delegate = self
+            vc.headerTitle = ""
+            vc.isForAdmin = false
+            self.topView.addSubview(vc.view)
+            self.addChild(vc)
+            self.topHeaderVC = vc
+        }
     }
     
     //MARK: - IB action
@@ -228,5 +250,16 @@ extension PaymentsVendorsViewController: PaymentVendorViewModelDelegate {
     
     func didLoadPaymentsAndVendors() {
         self.toRefreshPage()
+    }
+}
+
+extension PaymentsVendorsViewController: TopHeaderViewControllerDelegate {
+    
+    func goback() {
+        self.navigationController!.popViewController(animated: true)
+    }
+    
+    func showAdmin() {
+        //
     }
 }

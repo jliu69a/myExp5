@@ -65,8 +65,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let titleString = (self.isForNew == true) ? "Add" : "Edit"
-        self.topHeaderVC?.changeTitle(title: titleString)
+        self.topHeaderVC?.changeTitle(title: (self.isForNew ? "Add" : "Edit"))
         
         self.priceTextField.addTarget(self, action: #selector(changedPrice), for: UIControl.Event.editingChanged)
         

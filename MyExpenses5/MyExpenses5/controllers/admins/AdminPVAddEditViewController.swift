@@ -45,12 +45,7 @@ class AdminPVAddEditViewController: UIViewController {
         self.idTextField.text = self.idValue
         self.nameTextField.text = self.nameValue
         
-        if self.isForPayment == true {
-            self.topHeaderVC?.changeTitle(title: "Payment")
-        }
-        else {
-            self.topHeaderVC?.changeTitle(title: "Vendor")
-        }
+        self.topHeaderVC?.changeTitle(title: (self.isForPayment ? "Payment" : "Vendor"))
         self.saveButton.layer.cornerRadius = 5
     }
     

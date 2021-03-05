@@ -10,6 +10,8 @@ import UIKit
 
 class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, SelectMonthAndYearViewControllerDelegate, PaymentsVendorsViewControllerDelegate {
     
+    @IBOutlet weak var topView: UIView!
+    
     @IBOutlet weak var selectYearButton: UIButton!
     @IBOutlet weak var selectVendorButton: UIButton!
     @IBOutlet weak var lookupButton: UIButton!
@@ -33,6 +35,8 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.showTopView()
         
         MyExpDataManager.sharedInstance.clearVendorLookupData()
         
@@ -63,6 +67,22 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
         self.selectVendorButton.layer.cornerRadius = 5
         self.lookupButton.layer.cornerRadius = 5
         self.startNewLookupButton.layer.cornerRadius = 5
+    }
+    
+    //MARK: - top view
+    
+    func showTopView() {
+        let storyboard = UIStoryboard(name: "topheader", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "TopHeaderViewController") as? TopHeaderViewController {
+            let frame = self.topView.frame
+            vc.view.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+            vc.delegate = self
+            vc.headerTitle = "Vendor Lookup"
+            vc.isForAdmin = false
+            self.topView.addSubview(vc.view)
+            self.addChild(vc)
+        }
     }
     
     //MARK: - IB functions
@@ -201,5 +221,16 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
             self.selectVendorButton.setTitle(displayVendor, for: UIControl.State.normal)
             self.selectVendorButton.setTitle(displayVendor, for: UIControl.State.highlighted)
         }
+    }
+}
+
+extension VendorsLookupViewController: TopHeaderViewControllerDelegate {
+    
+    func goback() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showAdmin() {
+        //
     }
 }
