@@ -10,6 +10,7 @@ import UIKit
 
 class ExpLookupDisplayViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     var myexpsList: [Expense] = []
@@ -30,10 +31,20 @@ class ExpLookupDisplayViewController: UIViewController, UITableViewDataSource, U
         self.tableView.layer.borderWidth = 0.5
     }
     
-    //MARK: - IB function
+    //MARK: - top view
     
-    @IBAction func gobackAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+    func showTopView() {
+        let storyboard = UIStoryboard(name: "topheader", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "TopHeaderViewController") as? TopHeaderViewController {
+            let frame = self.topView.frame
+            vc.view.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+            vc.delegate = self
+            vc.headerTitle = "Expense Lookup"
+            vc.isForAdmin = false
+            self.topView.addSubview(vc.view)
+            self.addChild(vc)
+        }
     }
     
     //MARK: - table view source
@@ -62,5 +73,16 @@ class ExpLookupDisplayViewController: UIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ExpLookupDisplayViewController: TopHeaderViewControllerDelegate {
+    
+    func goback() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showAdmin() {
+        //
     }
 }
