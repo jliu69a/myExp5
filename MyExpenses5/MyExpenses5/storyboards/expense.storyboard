@@ -42,17 +42,27 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXg-kL-erd" userLabel="border view">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
+                                        <color key="backgroundColor" systemColor="separatorColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="nys-gf-7Lg"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="FXg-kL-erd" secondAttribute="trailing" id="8jM-1Q-jMb"/>
                                     <constraint firstAttribute="trailing" secondItem="SbT-gK-FQA" secondAttribute="trailing" constant="5" id="ABB-rB-T7y"/>
                                     <constraint firstAttribute="bottom" secondItem="uLo-TY-qsI" secondAttribute="bottom" id="GDa-pZ-iz7"/>
                                     <constraint firstAttribute="trailing" secondItem="uLo-TY-qsI" secondAttribute="trailing" constant="5" id="ISo-Ro-Voj"/>
                                     <constraint firstItem="SbT-gK-FQA" firstAttribute="top" secondItem="3RK-L5-Ue3" secondAttribute="top" id="Ou2-uu-98l"/>
                                     <constraint firstItem="uLo-TY-qsI" firstAttribute="leading" secondItem="3RK-L5-Ue3" secondAttribute="leading" constant="5" id="S1D-Ez-LoW"/>
+                                    <constraint firstItem="FXg-kL-erd" firstAttribute="leading" secondItem="3RK-L5-Ue3" secondAttribute="leading" id="TV8-LE-dTk"/>
                                     <constraint firstAttribute="bottom" secondItem="SbT-gK-FQA" secondAttribute="bottom" id="UBQ-ND-a0J"/>
                                     <constraint firstItem="SbT-gK-FQA" firstAttribute="leading" secondItem="3RK-L5-Ue3" secondAttribute="leading" constant="5" id="gS0-PM-piY"/>
                                     <constraint firstAttribute="height" constant="30" id="hit-p7-Vwe"/>
+                                    <constraint firstItem="FXg-kL-erd" firstAttribute="top" secondItem="3RK-L5-Ue3" secondAttribute="top" id="inl-zo-PTg"/>
                                     <constraint firstItem="uLo-TY-qsI" firstAttribute="top" secondItem="3RK-L5-Ue3" secondAttribute="top" id="l4q-J4-tvC"/>
                                 </constraints>
                             </view>
@@ -863,6 +873,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -18,7 +18,6 @@ protocol TopHeaderViewControllerDelegate: AnyObject {
 class TopHeaderViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var borderLabel: UILabel!
     @IBOutlet weak var backLabel: UILabel!
     @IBOutlet weak var adminLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
@@ -43,10 +42,17 @@ class TopHeaderViewController: UIViewController {
     
     func displayForAdmin() {
         self.titleLabel.text = self.headerTitle
+        let isTrue = self.isForAdmin
+        let isNotShowing = !self.isForAdmin
         
-        self.borderLabel.isHidden = !self.isForAdmin
-        self.adminLabel.isHidden = !self.isForAdmin
-        self.backLabel.isHidden = self.isForAdmin
+        self.adminLabel.isHidden =  isNotShowing //false
+        self.backLabel.isHidden  = !isNotShowing //true
+        
+        self.backButton.isEnabled = !isTrue
+        self.backButton.isUserInteractionEnabled = !isTrue
+        
+        self.adminButton.isEnabled = isTrue
+        self.adminButton.isUserInteractionEnabled = isTrue
     }
     
     //MARK : - IB functions
