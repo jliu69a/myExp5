@@ -17,7 +17,7 @@ protocol EditExpensesViewControllerDelegate: AnyObject {
 
 class EditExpensesViewController: UIViewController, UITextFieldDelegate, PaymentsVendorsViewControllerDelegate, ChangeDateViewControllerDelegate {
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var topView: UIView!
     
     @IBOutlet weak var priceTextLabel: UILabel!
     @IBOutlet weak var priceTextField: UITextField!
@@ -38,11 +38,15 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     var amountData: String = ""
     var isForNew: Bool = false
     
+    var topHeaderVC: TopHeaderViewController? = nil
+    
     
     //MARK: - init
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.showTopView()
         
         if self.selectedExpense == nil {
             self.selectedExpense = Expense()
@@ -61,13 +65,32 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.titleLabel.text = (self.isForNew == true) ? "Add" : "Edit"
+        let titleString = (self.isForNew == true) ? "Add" : "Edit"
+        self.topHeaderVC?.changeTitle(title: titleString)
+        
         self.priceTextField.addTarget(self, action: #selector(changedPrice), for: UIControl.Event.editingChanged)
         
         self.selectPaymentButton.layer.cornerRadius = 5
         self.selectVendorButton.layer.cornerRadius = 5
         self.changeDateButton.layer.cornerRadius = 5
         self.saveButton.layer.cornerRadius = 5
+    }
+    
+    //MARK: - top view
+    
+    func showTopView() {
+        let storyboard = UIStoryboard(name: "topheader", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "TopHeaderViewController") as? TopHeaderViewController {
+            let frame = self.topView.frame
+            vc.view.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+            vc.delegate = self
+            vc.headerTitle = ""
+            vc.isForAdmin = false
+            self.topView.addSubview(vc.view)
+            self.addChild(vc)
+            self.topHeaderVC = vc
+        }
     }
     
     //MARK: - helpers
@@ -264,4 +287,16 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         }
     }
 
+}
+
+extension EditExpensesViewController: TopHeaderViewControllerDelegate {
+    
+    func goback() {
+        self.clearKeyboards()
+        self.navigationController!.popViewController(animated: true)
+    }
+    
+    func showAdmin() {
+        //
+    }
 }
