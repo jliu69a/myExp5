@@ -51,16 +51,13 @@ class MyExpHomeViewController: UIViewController {
     //MARK: - top view
     
     func showTopView() {
-        let storyboard = UIStoryboard(name: "topheader", bundle: nil)
+        let frame = self.topView.frame
+        let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "My Expense", isForAdmin: true)
         
-        if let vc = storyboard.instantiateViewController(withIdentifier: "TopHeaderViewController") as? TopHeaderViewController {
-            let frame = self.topView.frame
-            vc.view.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
-            vc.delegate = self
-            vc.headerTitle = "My Expenses"
-            vc.isForAdmin = true
-            self.topView.addSubview(vc.view)
-            self.addChild(vc)
+        if vc != nil {
+            vc!.delegate = self
+            self.topView.addSubview(vc!.view)
+            self.addChild(vc!)
         }
     }
     

@@ -19,7 +19,6 @@ protocol ChangeDateViewControllerDelegate: AnyObject {
 class ChangeDateViewController: UIViewController {
     
     @IBOutlet weak var todayButton: UIButton!
-    //@IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var selectButton: UIButton!
     
     @IBOutlet weak var titleLabel: UILabel!

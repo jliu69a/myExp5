@@ -50,6 +50,7 @@
 		FE1F566325F06F1C00743825 /* TopHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */; };
 		FE1F566725F071D200743825 /* topheader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE1F566625F071D200743825 /* topheader.storyboard */; };
 		FE377C7225BDB5C100033B25 /* ExpenseHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE377C7125BDB5C100033B25 /* ExpenseHomeViewController.swift */; };
+		FECD2D0A25F2E5B400410E7C /* TopBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECD2D0925F2E5B400410E7C /* TopBarManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderViewController.swift; sourceTree = "<group>"; };
 		FE1F566625F071D200743825 /* topheader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = topheader.storyboard; sourceTree = "<group>"; };
 		FE377C7125BDB5C100033B25 /* ExpenseHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpenseHomeViewController.swift; sourceTree = "<group>"; };
+		FECD2D0925F2E5B400410E7C /* TopBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 				5A87AB7C24C133D4009792A1 /* ConnectionsManager.swift */,
 				5A87AB7B24C133D4009792A1 /* DatasManager.swift */,
 				5A8B1F3024C137D80094E543 /* MyExpDataManager.swift */,
+				FECD2D0925F2E5B400410E7C /* TopBarManager.swift */,
 			);
 			path = managers;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				5A1CDDB624C235D400E83452 /* ChangeDateViewController.swift in Sources */,
 				5A90E45E24E05E84005C42A3 /* ExpLookupCell.swift in Sources */,
 				5A87AB8324C1340E009792A1 /* jsonsData.swift in Sources */,
+				FECD2D0A25F2E5B400410E7C /* TopBarManager.swift in Sources */,
 				5A1CDDB824C26C9400E83452 /* EditExpensesViewController.swift in Sources */,
 				5A90E45B24E03471005C42A3 /* ExpensesLookupViewController.swift in Sources */,
 				5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */,
