@@ -16,7 +16,7 @@ protocol AdminPVAddEditViewControllerDelegate: AnyObject {
 
 class AdminPVAddEditViewController: UIViewController {
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
@@ -28,12 +28,15 @@ class AdminPVAddEditViewController: UIViewController {
     var nameValue: String = ""
     var isForPayment: Bool = false
     
+    var topHeaderVC: TopHeaderViewController? = nil
+    
     //MARK: - init
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.viewModel.delegate = self
+        self.showTopView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,10 +46,10 @@ class AdminPVAddEditViewController: UIViewController {
         self.nameTextField.text = self.nameValue
         
         if self.isForPayment == true {
-            self.titleLabel.text = "Payment"
+            self.topHeaderVC?.changeTitle(title: "Payment")
         }
         else {
-            self.titleLabel.text = "Vendor"
+            self.topHeaderVC?.changeTitle(title: "Vendor")
         }
         self.saveButton.layer.cornerRadius = 5
     }
@@ -55,6 +58,23 @@ class AdminPVAddEditViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.nameTextField.becomeFirstResponder()
+    }
+    
+    //MARK: - top view
+    
+    func showTopView() {
+        let storyboard = UIStoryboard(name: "topheader", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "TopHeaderViewController") as? TopHeaderViewController {
+            let frame = self.topView.frame
+            vc.view.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+            vc.delegate = self
+            vc.headerTitle = ""
+            vc.isForAdmin = false
+            self.topView.addSubview(vc.view)
+            self.addChild(vc)
+            self.topHeaderVC = vc
+        }
     }
     
     //MARK: - IB actions
@@ -101,3 +121,14 @@ extension AdminPVAddEditViewController: PaymentVendorViewModelDelegate {
     }
 }
 
+extension AdminPVAddEditViewController: TopHeaderViewControllerDelegate {
+    
+    func goback() {
+        self.clearKeyboard()
+        self.closePage()
+    }
+    
+    func showAdmin() {
+        //
+    }
+}

@@ -10,6 +10,7 @@ import UIKit
 
 class AdminHomeViewController: UIViewController {
     
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var versionsLabel: UILabel!
     
@@ -22,6 +23,8 @@ class AdminHomeViewController: UIViewController {
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
+        
+        self.showTopView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,10 +39,20 @@ class AdminHomeViewController: UIViewController {
         self.versionsLabel.text = String(format: "Version: %@,  Build: %@", appVersion!, build!)
     }
     
-    //MARK: - IB Actions
+    //MARK: - top view
     
-    @IBAction func gobackAction(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+    func showTopView() {
+        let storyboard = UIStoryboard(name: "topheader", bundle: nil)
+        
+        if let vc = storyboard.instantiateViewController(withIdentifier: "TopHeaderViewController") as? TopHeaderViewController {
+            let frame = self.topView.frame
+            vc.view.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+            vc.delegate = self
+            vc.headerTitle = "Admin"
+            vc.isForAdmin = false
+            self.topView.addSubview(vc.view)
+            self.addChild(vc)
+        }
     }
     
     //MARK: - payment & vendor
@@ -156,5 +169,16 @@ extension AdminHomeViewController: PaymentsVendorsViewControllerDelegate {
             print("- from admin, selected vendor, id = \(id), name = '\(name)' ")
             print("- ")
         }
+    }
+}
+
+extension AdminHomeViewController: TopHeaderViewControllerDelegate {
+    
+    func goback() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showAdmin() {
+        //
     }
 }

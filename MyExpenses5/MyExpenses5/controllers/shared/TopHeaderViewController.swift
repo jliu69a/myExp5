@@ -55,6 +55,11 @@ class TopHeaderViewController: UIViewController {
         self.adminButton.isUserInteractionEnabled = isTrue
     }
     
+    func changeTitle(title: String) {
+        self.headerTitle = title
+        self.titleLabel.text = self.headerTitle
+    }
+    
     //MARK : - IB functions
     
     @IBAction func gobackAction(_ sender: Any) {
