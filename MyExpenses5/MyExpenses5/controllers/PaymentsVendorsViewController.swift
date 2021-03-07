@@ -17,11 +17,14 @@ protocol PaymentsVendorsViewControllerDelegate: AnyObject {
 class PaymentsVendorsViewController: UIViewController {
     
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var referenceView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addNewButton: UIButton!
     @IBOutlet weak var tableViewBottomSpace: NSLayoutConstraint!
-    
+    @IBOutlet weak var tableViewTrailingSpace: NSLayoutConstraint!
+    @IBOutlet weak var refViewBottomSpace: NSLayoutConstraint!
+
     let appDele = UIApplication.shared.delegate as! AppDelegate
     
     var viewModel: PaymentVendorViewModel = PaymentVendorViewModel()
@@ -49,6 +52,7 @@ class PaymentsVendorsViewController: UIViewController {
         super.viewDidLoad()
         
         self.showTopView()
+        self.addVendorReferences()
         
         self.viewModel.allPayments = self.appDele.paymentsList
         self.viewModel.allVendors = self.appDele.vendorsList
@@ -70,10 +74,22 @@ class PaymentsVendorsViewController: UIViewController {
         
         if self.isForAdmin == true {
             self.tableViewBottomSpace.constant = 64
+            self.refViewBottomSpace.constant = 64
         }
         else {
             self.tableViewBottomSpace.constant = 10
+            self.refViewBottomSpace.constant = 10
         }
+        
+        if self.isForPayments {
+            self.referenceView.isHidden = true
+            self.tableViewTrailingSpace.constant = 10
+        }
+        else {
+            self.referenceView.isHidden = false
+            self.tableViewTrailingSpace.constant = 40
+        }
+        
         self.addNewButton.layer.cornerRadius = 5
         
         self.tableView.layer.borderColor = UIColor.systemOrange.cgColor
@@ -91,6 +107,22 @@ class PaymentsVendorsViewController: UIViewController {
             self.topView.addSubview(vc!.view)
             self.addChild(vc!)
             self.topHeaderVC = vc
+        }
+    }
+    
+    //MARK: - vendor refernece
+    
+    func addVendorReferences() {
+        
+        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "VendorReferencesViewController") as? VendorReferencesViewController {
+            let frame = self.referenceView.frame
+            
+            vc.view.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+            vc.delegate = self
+            vc.displayTitles(list: self.appDele.vendorDisplayTitles)
+            self.referenceView.addSubview(vc.view)
+            self.addChild(vc)
         }
     }
     
@@ -258,5 +290,16 @@ extension PaymentsVendorsViewController: TopHeaderViewControllerDelegate {
     
     func showAdmin() {
         //
+    }
+}
+
+extension PaymentsVendorsViewController: VendorReferencesViewControllerDelegate {
+    
+    func didSelectVendorReferenceAtIndex(index: Int) {
+        
+        if !self.isForPayments {
+            let indexPath = IndexPath(row: 0, section: index)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
 }
