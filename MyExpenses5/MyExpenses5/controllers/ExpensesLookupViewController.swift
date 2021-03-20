@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, SelectMonthAndYearViewControllerDelegate {
+class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewControllerDelegate {
     
     @IBOutlet weak var topView: UIView!
     
@@ -135,55 +135,6 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
         self.collectionView.reloadData()
     }
     
-    //MARK: - collection view source
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.maxDayNumber
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let genericCell: UICollectionViewCell? = self.collectionView.dequeueReusableCell(withReuseIdentifier: "GenericCellId", for: indexPath)
-        
-        if let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as? ExpLookupCell {
-            cell.parentVC = self
-            cell.contentView.backgroundColor = UIColor.systemBackground
-            cell.contentView.layer.borderColor = UIColor.black.cgColor
-            cell.contentView.layer.borderWidth = 0.5
-            
-            let day = self.displayForCell(cellIndex: indexPath.row)
-            var isActive: Bool = false
-            var isWithData: Bool = false
-            
-            if day.count > 0 {
-                isActive = true
-                isWithData = self.lookupDaysList.contains(day)
-            }
-            cell.showCellData(index: indexPath.row, date: day, isWithData: isWithData, isActive: isActive)
-            print("-> index = \(indexPath.row), cell : '\(day)', is active? \(isActive), is with data? \(isWithData) ")
-            
-            return cell
-        }
-        
-        genericCell!.contentView.backgroundColor = UIColor.systemBackground
-        genericCell!.contentView.layer.borderColor = UIColor.black.cgColor
-        genericCell!.contentView.layer.borderWidth = 0.5
-        return genericCell!
-    }
-    
-    //MARK: - collection view delegate
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.collectionView.deselectItem(at: indexPath, animated: true)
-        
-        print("-> ")
-        print("-> collection view, selected item at: section = \(indexPath.section), row = \(indexPath.row) ")
-        print("-> ")
-    }
-    
     //MARK: - heplers
     
     func showYearAndMonth() {
@@ -308,6 +259,8 @@ class ExpensesLookupViewController: UIViewController, UICollectionViewDataSource
     
 }
 
+//MARK: -
+
 extension ExpensesLookupViewController: TopHeaderViewControllerDelegate {
     
     func goback() {
@@ -317,4 +270,52 @@ extension ExpensesLookupViewController: TopHeaderViewControllerDelegate {
     func showAdmin() {
         //
     }
+}
+
+//MARK: -
+
+extension ExpensesLookupViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.maxDayNumber
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let genericCell: UICollectionViewCell? = self.collectionView.dequeueReusableCell(withReuseIdentifier: "GenericCellId", for: indexPath)
+        
+        if let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as? ExpLookupCell {
+            cell.parentVC = self
+            cell.contentView.backgroundColor = UIColor.systemBackground
+            cell.contentView.layer.borderColor = UIColor.black.cgColor
+            cell.contentView.layer.borderWidth = 0.5
+            
+            let day = self.displayForCell(cellIndex: indexPath.row)
+            var isActive: Bool = false
+            var isWithData: Bool = false
+            
+            if day.count > 0 {
+                isActive = true
+                isWithData = self.lookupDaysList.contains(day)
+            }
+            cell.showCellData(index: indexPath.row, date: day, isWithData: isWithData, isActive: isActive)
+            print("-> index = \(indexPath.row), cell : '\(day)', is active? \(isActive), is with data? \(isWithData) ")
+            
+            return cell
+        }
+        
+        genericCell!.contentView.backgroundColor = UIColor.systemBackground
+        genericCell!.contentView.layer.borderColor = UIColor.black.cgColor
+        genericCell!.contentView.layer.borderWidth = 0.5
+        return genericCell!
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
 }

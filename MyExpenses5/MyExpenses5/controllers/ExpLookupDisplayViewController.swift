@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpLookupDisplayViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ExpLookupDisplayViewController: UIViewController {
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -19,6 +19,8 @@ class ExpLookupDisplayViewController: UIViewController, UITableViewDataSource, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.showTopView()
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
@@ -44,7 +46,24 @@ class ExpLookupDisplayViewController: UIViewController, UITableViewDataSource, U
         }
     }
     
-    //MARK: - table view source
+}
+
+//MARK: -
+
+extension ExpLookupDisplayViewController: TopHeaderViewControllerDelegate {
+    
+    func goback() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showAdmin() {
+        //
+    }
+}
+
+//MARK: -
+
+extension ExpLookupDisplayViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -66,20 +85,7 @@ class ExpLookupDisplayViewController: UIViewController, UITableViewDataSource, U
         return genericCell!
     }
     
-    //MARK: - table view delegate
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-extension ExpLookupDisplayViewController: TopHeaderViewControllerDelegate {
-    
-    func goback() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func showAdmin() {
-        //
     }
 }
