@@ -173,7 +173,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ykj-cA-wAU"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ykj-cA-wAU" firstAttribute="bottom" secondItem="Cfb-G0-Pq1" secondAttribute="bottom" id="LGc-mh-9iB"/>
                             <constraint firstItem="ykj-cA-wAU" firstAttribute="trailing" secondItem="Cfb-G0-Pq1" secondAttribute="trailing" id="PlS-gB-eEa"/>
