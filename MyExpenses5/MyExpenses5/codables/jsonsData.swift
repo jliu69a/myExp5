@@ -64,6 +64,34 @@ public struct Expense: Codable {
     var vendor_id : String?
 }
 
+//MARK: - films
+
+public struct FilmsData: Codable {
+    var languages : [FilmSelection]?
+    var types : [FilmSelection]?
+    var genres : [FilmSelection]?
+    var films : [Film]?
+}
+
+public struct FilmSelection: Codable {
+    var id: String?
+    var name: String?
+}
+
+public struct Film: Codable {
+    var id: String?
+    var title: String?
+    var year: String?
+    var watch_date: String?
+    var language_code: String?
+    var language: String?
+    var type_code: String?
+    var type: String?
+    var genre_code: String?
+    var genre: String?
+    var notes: String?
+}
+
 //MARK: - testing
 
 public struct HomeTest: Encodable {

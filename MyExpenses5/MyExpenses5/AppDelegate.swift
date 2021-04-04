@@ -18,8 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var vendorDisplayTitles: [String] = []
     var vendorDisplayData: [String: AnyObject] = [:]
     
-    var folder: String = "homee" //production use
+    var folder: String = "prods" //production use
 
+    var filmLanguagesList: [FilmSelection] = []
+    var filmTypesList: [FilmSelection] = []
+    var filmGenresList: [FilmSelection] = []
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

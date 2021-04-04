@@ -14,6 +14,7 @@ class AdminHomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var versionsLabel: UILabel!
     
+    var filmViewModel: FilmsHomeViewModel = FilmsHomeViewModel()
     var viewModel: AdminHomeViewModel = AdminHomeViewModel()
 
     //MARK: - init
@@ -21,10 +22,13 @@ class AdminHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        filmViewModel.delegate = self
+        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
         
         self.showTopView()
+        self.loadMyFilms()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +54,12 @@ class AdminHomeViewController: UIViewController {
             self.topView.addSubview(vc!.view)
             self.addChild(vc!)
         }
+    }
+    
+    //MARK: - my films list
+    
+    func loadMyFilms() {
+        filmViewModel.loadingFilmData()
     }
     
     //MARK: - payment & vendor
@@ -177,5 +187,15 @@ extension AdminHomeViewController: TopHeaderViewControllerDelegate {
     
     func showAdmin() {
         //
+    }
+}
+
+extension AdminHomeViewController: FilmsHomeViewModelDelegate {
+    
+    func didLoadFilmsData() {
+        //
+        let appDele = UIApplication.shared.delegate as! AppDelegate
+        
+        
     }
 }
