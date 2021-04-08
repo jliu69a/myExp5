@@ -56,9 +56,7 @@ extension ExpsHomeViewModel {
     }
     
     func displayCurrentDate(date: Date) -> String {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd, EEE"
-        return df.string(from: date)
+        return date.dateToText(formate: "yyyy-MM-dd, EEE")
     }
     
     //MARK: - api, query expense
@@ -69,11 +67,7 @@ extension ExpsHomeViewModel {
     
     func loadingMyExpenses(selectedDate: Date, completion: @escaping () -> Void) {
         
-        let df: DateFormatter = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        let dateStr: String = df.string(from: selectedDate)
-        
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/preload_data.php?date=%@", self.appDele.folder, dateStr)
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/preload_data.php?date=%@", self.appDele.folder, selectedDate.dateToText(formate: "yyyy-MM-dd"))
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { [weak self] (data: Any) in
@@ -260,11 +254,8 @@ extension ExpsHomeViewModel {
     
     func createParameters(data: Expense, actionCode: Int) -> [String: Any] {
         
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        let currentDate: String = df.string(from: Date())
-        df.dateFormat = "HH:mm:ss"
-        let currentTime: String = df.string(from: Date())
+        let currentDate: String = Date().dateToText(formate: "yyyy-MM-dd")
+        let currentTime: String = Date().dateToText(formate: "HH:mm:ss")
         
         let id: String = data.id ?? "-1"
         let date: String = data.date ?? currentDate

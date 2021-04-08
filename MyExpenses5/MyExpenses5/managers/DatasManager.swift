@@ -25,10 +25,7 @@ class DatasManager: NSObject {
     
     func myExpsData(selectedDate: Date, completion: @escaping  (Any)->()) {
         
-        let df: DateFormatter = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        let dateStr: String = df.string(from: selectedDate)
-        
+        let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/preload_data.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
         
@@ -63,10 +60,7 @@ class DatasManager: NSObject {
     
     func myExpsWithDate(selectedDate: Date, completion: @escaping  (Any)->()) {
         
-        let df: DateFormatter = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        let dateStr: String = df.string(from: selectedDate)
-        
+        let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expense_by_date.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
         

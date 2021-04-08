@@ -46,23 +46,13 @@ class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewCont
         
         self.showTopView()
         
-        let rightNow = Date()
-        let df = DateFormatter()
+        self.selectedYear = Int(Date().dateToText(formate: "yyyy")) ?? 0
+        self.selectedMonth = Int(Date().dateToText(formate: "MM")) ?? 0
+        self.selectedMonthText = Date().dateToText(formate: "MMM")
         
-        df.dateFormat = "yyyy"
-        let yearText = df.string(from: rightNow)
-        self.selectedYear = Int(yearText) ?? 0
+        self.myexpWithYearAndMonth(year: Date().dateToText(formate: "yyyy"), month: Date().dateToText(formate: "MM"))
         
-        df.dateFormat = "MM"
-        let monthText = df.string(from: rightNow)
-        self.selectedMonth = Int(monthText) ?? 0
-        
-        df.dateFormat = "MMM"
-        self.selectedMonthText = df.string(from: rightNow)
-        
-        self.myexpWithYearAndMonth(year: yearText, month: monthText)
-        
-        self.yearMonthDisplay = String(format: "%@-%@", yearText, monthText)
+        self.yearMonthDisplay = String(format: "%@-%@", Date().dateToText(formate: "yyyy"), Date().dateToText(formate: "MM"))
         self.resultsView.backgroundColor = UIColor.systemGray6
         self.collectionView.backgroundColor = UIColor.systemGray6
         
@@ -116,9 +106,7 @@ class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewCont
         self.lookupDaysList.removeAll()
         self.lookupData.removeAll()
         
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        let defaultDate = df.string(from: Date())
+        let defaultDate = Date().dateToText(formate: "yyyy-MM-dd")
         
         for eachExp in self.expsLookupList {
             let dayText = (eachExp.date ?? defaultDate).suffix(2)
@@ -164,10 +152,7 @@ class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewCont
         
         //-- 1 : Sunday
         //-- 7 : Saturday
-        let firstDayOfMonth = "\(self.yearMonthDisplay)-01"
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        let selectedDate = df.date(from: firstDayOfMonth) ?? Date()
+        let selectedDate = Date().textToDate(format: "yyyy-MM-dd", dateText: "\(self.yearMonthDisplay)-01")
         
         self.dayOfWeek = Calendar.current.component(.weekday, from: selectedDate)
         self.firstDayIndex = self.dayOfWeek - 1

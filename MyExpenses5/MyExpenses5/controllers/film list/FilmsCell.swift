@@ -29,7 +29,7 @@ class FilmsCell: UITableViewCell {
         
         self.titleLabel.text = title
         self.yearGenreLable.text = "\(year) (\(genre))"
-        self.watchTimeLabel.text = watchDate.dateAndTimetoString()
+        self.watchTimeLabel.text = watchDate.dateToText(formate: "yyyy-MM-dd HH:mm:ss")
     }
     
 }

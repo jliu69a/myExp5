@@ -43,9 +43,7 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
         
-        let df = DateFormatter()
-        df.dateFormat = "yyyy"
-        self.selectedYear = df.string(from: Date())
+        self.selectedYear = Date().dateToText(formate: "yyyy")
         
         self.selectYearButton.setTitle(self.selectedYear, for: UIControl.State.normal)
         self.selectYearButton.setTitle(self.selectedYear, for: UIControl.State.highlighted)

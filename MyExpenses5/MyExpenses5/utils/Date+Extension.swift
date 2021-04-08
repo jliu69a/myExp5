@@ -11,10 +11,20 @@ import Foundation
 
 extension Date {
     
-    func dateAndTimetoString() -> String {
-        
+    func dateToText(formate: String) -> String {
         let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return df.string(from: self)
+        df.dateFormat = formate
+        let newText = df.string(from: self)
+        return newText
     }
+    
+    func textToDate(format: String, dateText: String) -> Date {
+        let df = DateFormatter()
+        df.dateFormat = format
+        guard let newDate = df.date(from: dateText) else {
+            return Date()
+        }
+        return newDate
+    }
+    
 }

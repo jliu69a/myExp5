@@ -53,13 +53,8 @@ class SelectMonthAndYearViewController: UIViewController, UIPickerViewDataSource
         self.titleLabel.text = (self.isForYearOnly == true) ? "Choose A Year" : "Choose A Month and A Year"
         self.monthsList = MyExpDataManager.sharedInstance.monthsNameList
         
-        let df = DateFormatter()
-        df.dateFormat = "yyyy"
-        let yearText = df.string(from: Date())
-        let yearValue = Int(yearText) ?? 0
-        
-        df.dateFormat = "MM"
-        self.currentMonthIndex = (Int(df.string(from: Date())) ?? 0) - 1
+        let yearValue = Int(Date().dateToText(formate: "yyyy")) ?? 0
+        self.currentMonthIndex = (Int(Date().dateToText(formate: "MM")) ?? 0) - 1
         
         let beginYearValue = yearValue - 20
         let endYearValue = yearValue + 20
@@ -68,19 +63,19 @@ class SelectMonthAndYearViewController: UIViewController, UIPickerViewDataSource
         for index in beginYearValue...endYearValue {
             self.yearsList.append(String(index))
         }
-        self.currentYearIndex = self.yearsList.firstIndex(of: yearText) ?? 0
+        self.currentYearIndex = self.yearsList.firstIndex(of: Date().dateToText(formate: "yyyy")) ?? 0
 
         self.picker.reloadAllComponents()
         
         if self.isForYearOnly == true {
             self.picker.selectRow(self.currentYearIndex, inComponent: 0, animated: true)
-            self.selectedYear = yearText
+            self.selectedYear = Date().dateToText(formate: "yyyy")
         }
         else  {
             self.picker.selectRow(self.currentMonthIndex, inComponent: 0, animated: true)
             self.picker.selectRow(self.currentYearIndex, inComponent: 1, animated: true)
             
-            self.selectedYear = yearText
+            self.selectedYear = Date().dateToText(formate: "yyyy")
             self.selectedMonthIndex = String(format: "%0.2d", (self.currentMonthIndex + 1))
             self.selectedMonthText = self.monthsList[self.currentMonthIndex]
         }

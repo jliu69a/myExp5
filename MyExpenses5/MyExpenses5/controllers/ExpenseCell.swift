@@ -47,11 +47,7 @@ class ExpenseCell: UITableViewCell {
             return ""
         }
         
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        let dateObject = df.date(from: date) ?? Date()
-        df.dateFormat = "EEE"
-        let weekday = df.string(from: dateObject)
+        let weekday = Date().textToDate(format: "yyyy-MM-dd", dateText: date).dateToText(formate: "EEE")
         
         return weekday
     }

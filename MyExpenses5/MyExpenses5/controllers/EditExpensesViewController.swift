@@ -124,17 +124,11 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     
     func displayDate() {
         
-        let df: DateFormatter = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        let dateStr: String = df.string(from: self.selectedDate)
-        self.selectedExpense!.date = dateStr
+        self.selectedExpense!.date = self.selectedDate.dateToText(formate: "yyyy-MM-dd")
+        self.selectedExpense!.time = self.selectedDate.dateToText(formate: "HH:mm:ss")
         
-        self.changeDateButton.setTitle(dateStr, for: UIControl.State.normal)
-        self.changeDateButton.setTitle(dateStr, for: UIControl.State.highlighted)
-        
-        df.dateFormat = "HH:mm:ss"
-        let timeStr: String = df.string(from: self.selectedDate)
-        self.selectedExpense!.time = timeStr
+        self.changeDateButton.setTitle(self.selectedExpense!.date, for: UIControl.State.normal)
+        self.changeDateButton.setTitle(self.selectedExpense!.date, for: UIControl.State.highlighted)
     }
     
     //MARK: - IB functiona
@@ -195,9 +189,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.selectedExpense!.note = self.notesTextField.text ?? ""
         
         //-- get the current time
-        let df: DateFormatter = DateFormatter()
-        df.dateFormat = "HH:mm:ss"
-        self.selectedExpense!.time = df.string(from: Date())
+        self.selectedExpense!.time = Date().dateToText(formate: "HH:mm:ss")
         
         self.delegate?.didChangeExpenseData(data: self.selectedExpense!, selectedDate: self.selectedDate, isForNew: self.isForNew, isDateChanged: self.isDateChanged)
         self.navigationController!.popViewController(animated: true)

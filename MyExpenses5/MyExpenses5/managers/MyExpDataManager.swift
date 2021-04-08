@@ -37,26 +37,13 @@ class MyExpDataManager: NSObject {
     //MARK: - util functions
     
     func showDate(date: Date?) -> String {
-        
-        var selectedDate: Date? = date
-        if selectedDate == nil {
-            selectedDate = Date()
-        }
-        
-        let df: DateFormatter = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd, E"
-        let dateText: String = df.string(from: selectedDate!)
-        
-        return dateText
+        return (date ?? Date()).dateToText(formate: "yyyy-MM-dd, E")
     }
     
     func createParameters(data: Expense, actionCode: Int) -> [String: Any] {
         
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        let currentDate: String = df.string(from: Date())
-        df.dateFormat = "HH:mm:ss"
-        let currentTime: String = df.string(from: Date())
+        let currentDate: String = Date().dateToText(formate: "yyyy-MM-dd")
+        let currentTime: String = Date().dateToText(formate: "HH:mm:ss")
         
         let id: String = data.id ?? "-1"
         let date: String = data.date ?? currentDate
@@ -296,7 +283,7 @@ class MyExpDataManager: NSObject {
         
         for each in list {
             let dateText = each.date ?? ""
-            let dateTitle = self.createLookupTitle(date: dateText)
+            let dateTitle = self.createLookupTitle(dateText: dateText)
             
             if self.lookupTitlesList.contains(dateTitle) == false {
                 self.lookupTitlesList.append(dateTitle)
@@ -325,18 +312,11 @@ class MyExpDataManager: NSObject {
         
     }
     
-    func createLookupTitle(date: String) -> String {
-        
-        if date.count == 0 {
+    func createLookupTitle(dateText: String) -> String {
+        if dateText.count == 0 {
             return ""
         }
-        
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        let dateValue = df.date(from: date) ?? Date()
-        
-        df.dateFormat = "MMMM"
-        return df.string(from: dateValue)
+        return Date().textToDate(format: "yyyy-MM-dd", dateText: dateText).dateToText(formate: "MMMM")
     }
     
     //MARK: - testing

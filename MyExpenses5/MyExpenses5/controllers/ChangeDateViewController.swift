@@ -28,14 +28,14 @@ class ChangeDateViewController: UIViewController {
     weak var delegate: ChangeDateViewControllerDelegate?
     
     var currentDate: Date = Date()
-    var df: DateFormatter = DateFormatter()
+    //var df: DateFormatter = DateFormatter()
     
     //MARK: - init
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.df.dateFormat = "M/d, E"
+        //self.df.dateFormat = "M/d, E"
         self.datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         
         if #available(iOS 14, *) {
@@ -85,9 +85,7 @@ class ChangeDateViewController: UIViewController {
     }
     
     func displayDate(currentDate: Date) {
-        
-        let dateString: String = df.string(from: self.datePicker.date)
-        self.titleLabel.text = String(format: "Date : %@", dateString)
+        self.titleLabel.text = String(format: "Date : %@", currentDate.dateToText(formate: "M/d, E"))
     }
     
 }
