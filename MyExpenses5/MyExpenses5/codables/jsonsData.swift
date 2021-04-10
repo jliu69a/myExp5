@@ -14,20 +14,20 @@ import UIKit
 public struct MyExpsData: Codable {
     var expense : [Expense]?
     var payments : [Payment]?
-    var top10 : [Top10]?
+    var top10 : [Vendor]?
     var vendors : [Vendor]?
 }
 
-public struct MyExps2Data: Codable {
-    var expense : [Expense]?
-    var payments : [Selection]?
-    var top10 : [Selection]?
-    var vendors : [Selection]?
-}
+//public struct MyExps2Data: Codable {
+//    var expense : [Expense]?
+//    var payments : [Selection]?
+//    var top10 : [Selection]?
+//    var vendors : [Selection]?
+//}
 
 public struct EditMyExpsData: Codable {
     var expense: [Expense]?
-    var top10: [Top10]?
+    var top10: [Vendor]?
 }
 
 public struct ChangePVData: Codable {
@@ -45,14 +45,15 @@ public struct StatesData: Codable {
 
 public struct Vendor: Codable {
     var id : String?
-    var vendor : String?
-}
-
-public struct Top10: Codable {
-    var id : String?
     var total : String?
     var vendor : String?
 }
+
+//public struct Top10: Codable {
+//    var id : String?
+//    var total : String?
+//    var vendor : String?
+//}
 
 public struct Payment: Codable {
     var id : String?

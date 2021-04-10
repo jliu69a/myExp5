@@ -20,12 +20,12 @@ class MyExpDataManager: NSObject {
     var expenseList: [Expense] = []
     var paymentList: [Payment] = []
     var vendorList: [Vendor] = []
-    var top10List: [Top10] = []
+    var top10List: [Vendor] = []
     
     var expenseLookupList: [Expense] = []
     
     var vendorDisplayTitles: [String] = []
-    var vendorDisplayData: [String: AnyObject] = [:]
+    var vendorDisplayData: [String: [Vendor]] = [:]
     
     var lookupTitlesList: [String] = []
     var lookupData: [String: LookupModel] = [:]
@@ -89,37 +89,19 @@ class MyExpDataManager: NSObject {
             return
         }
         
+        self.vendorDisplayData = Dictionary(grouping: self.vendorList, by: { ($0.vendor!.uppercased().first!.isNumber) ? "#" : String($0.vendor!.uppercased().first!) })
+        let allKeys = Array(self.vendorDisplayData.keys) as [String]
+        self.vendorDisplayTitles = allKeys.sorted()
+        
         let top10Key: String = "Top 10"
-        
-        self.vendorDisplayTitles.append(top10Key)
-        self.vendorDisplayData[top10Key] = self.top10List as AnyObject
-        
-        let letters: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        
-        for each in self.vendorList {
-            let vendorName: String = each.vendor!.uppercased()
-            
-            var firstLetter: String = String(vendorName.prefix(1))
-            if letters.contains(firstLetter) == false {
-                firstLetter = "#"
-            }
-            
-            if self.vendorDisplayTitles.contains(firstLetter) == false {
-                self.vendorDisplayTitles.append(firstLetter)
-            }
-            var vendorsArray: [Vendor] = (self.vendorDisplayData[firstLetter] as? [Vendor]) ?? []
-            vendorsArray.append(each)
-            self.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
-        }
+        self.vendorDisplayTitles.insert(top10Key, at: 0)
+        self.vendorDisplayData[top10Key] = self.top10List
         
         //-- test print
         print("- ")
-        let array: [Top10] = self.vendorDisplayData[top10Key] as? [Top10] ?? []
-        for each in array {
-            let name = each.vendor ?? ""
-            let id = each.id ?? "0"
-            let total = each.total ?? "0"
-            print("  - top 10, id = \(id), total = \(total), name = \(name)")
+        let vendors = self.vendorDisplayData[top10Key] ?? []
+        for each in vendors {
+            print("    - top 10: id = \(each.id ?? "0"), total = \(each.total ?? "0"), name = \(each.vendor ?? "") ")
         }
         print("- ")
     }

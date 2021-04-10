@@ -52,7 +52,7 @@ extension PaymentVendorViewModel {
         else {
             let key: String = self.vendorDisplayTitles[section]
             if section == 0 {
-                let array = (self.vendorDisplayData[key] as? [Top10]) ?? []
+                let array = (self.vendorDisplayData[key] as? [Vendor]) ?? []
                 return array.count
             }
             else {
@@ -75,7 +75,7 @@ extension PaymentVendorViewModel {
             let key: String = self.vendorDisplayTitles[indexPath.section]
             
             if indexPath.section == 0 {
-                let array = (self.vendorDisplayData[key] as? [Top10]) ?? []
+                let array = (self.vendorDisplayData[key] as? [Vendor]) ?? []
                 let item = array[indexPath.row]
                 data.name = item.vendor ?? ""
                 
@@ -192,7 +192,7 @@ extension PaymentVendorViewModel {
         
         //-- update existing top-10 array
         let top10Key: String = "Top 10"
-        var top10Vendors = (self.appDele.vendorDisplayData[top10Key] as? [Top10]) ?? []
+        var top10Vendors = (self.appDele.vendorDisplayData[top10Key] as? [Vendor]) ?? []
         
         var selectedIndex: Int = -1
         for index in 0..<top10Vendors.count {

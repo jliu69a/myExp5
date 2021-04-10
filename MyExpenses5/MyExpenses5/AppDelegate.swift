@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var paymentsList: [Payment] = []
     var vendorsList: [Vendor] = []
-    var top10sList: [Top10] = []
+    var top10sList: [Vendor] = []
     
     var vendorDisplayTitles: [String] = []
     var vendorDisplayData: [String: AnyObject] = [:]

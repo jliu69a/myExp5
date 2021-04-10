@@ -183,7 +183,7 @@ extension ExpsHomeViewModel {
         print("> total payments (in AppDelegate) = \(self.appDele.paymentsList.count)")
         print("> total expenses = \(self.expenseList.count)")
         print("- ")
-        let array: [Top10] = self.appDele.vendorDisplayData[top10Key] as? [Top10] ?? []
+        let array: [Vendor] = self.appDele.vendorDisplayData[top10Key] as? [Vendor] ?? []
         for each in array {
             let name = each.vendor ?? ""
             let id = each.id ?? "0"
