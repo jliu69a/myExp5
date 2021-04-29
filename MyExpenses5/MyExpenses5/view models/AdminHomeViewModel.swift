@@ -13,10 +13,10 @@ class AdminHomeViewModel {
     var totalSections: Int = 1
     var totalRows: Int = 0
     
-    let titlesList: [String] = ["Settings", "Reports", "Misc"]
+    let titlesList: [String] = ["Settings", "Reports"]  //"Misc"
     let settingsList: [String] = ["Edit Payments", "Edit Vendors"]
     let reportsList: [String] = ["Look Up Vendor", "Look Up Expenses"]
-    let miscList: [String] = ["Film Lists"]
+    let miscList: [String] = []  //Film Lists
 }
 
 
