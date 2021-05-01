@@ -18,5 +18,12 @@ class VendorReferenceCell: UITableViewCell {
     func displayTitle(index: Int, title: String) {
         self.refTitleLabel.text = title;
         self.topLineLabel.isHidden = (index != 0)
+        
+        if index == 0 {
+            self.refTitleLabel.font = UIFont.systemFont(ofSize: 9)
+        }
+        else {
+            self.refTitleLabel.font = UIFont.systemFont(ofSize: 11)
+        }
     }
 }
