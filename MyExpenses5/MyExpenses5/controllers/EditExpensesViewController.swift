@@ -86,21 +86,14 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     
     func displayPaymentData() {
         
-        var title = String(format: "%@ (%@)", (self.selectedExpense.payment ?? ""), (self.selectedExpense.payment_id ?? "0"))
-        if title == " (0)" {
-            title = "select a payment"
-        }
+        let title = self.isForNew ? "select a payment" : String(format: "%@ (%@)", (self.selectedExpense.payment ?? ""), (self.selectedExpense.payment_id ?? "0"))
         self.selectPaymentButton.setTitle(title, for: UIControl.State.normal)
         self.selectPaymentButton.setTitle(title, for: UIControl.State.highlighted)
     }
     
     func displayVendorData() {
         
-        var title = String(format: "%@ (%@)", (self.selectedExpense.vendor ?? ""), (self.selectedExpense.vendor_id ?? "0"))
-        if title == " (0)" {
-            title = "select a vendor"
-        }
-        
+        let title = self.isForNew ? "select a vendor" : String(format: "%@ (%@)", (self.selectedExpense.vendor ?? ""), (self.selectedExpense.vendor_id ?? "0"))
         self.selectVendorButton.setTitle(title, for: UIControl.State.normal)
         self.selectVendorButton.setTitle(title, for: UIControl.State.highlighted)
     }
