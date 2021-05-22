@@ -24,7 +24,6 @@ class AdminHomeViewController: UIViewController {
         
         filmViewModel.delegate = self
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
         
         self.showTopView()
@@ -108,15 +107,13 @@ extension AdminHomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") {
-            cell.textLabel!.text = self.viewModel.rowAtIndex(section: indexPath.section, row: indexPath.row)
-            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-            return cell
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") else {
+            return UITableViewCell()
         }
-        else {
-            let generic = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
-            return generic!
-        }
+        
+        cell.textLabel!.text = self.viewModel.rowAtIndex(section: indexPath.section, row: indexPath.row)
+        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
+        return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

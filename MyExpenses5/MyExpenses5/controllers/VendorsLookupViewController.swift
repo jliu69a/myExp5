@@ -40,7 +40,6 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
         
         MyExpDataManager.sharedInstance.clearVendorLookupData()
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
         
         self.selectedYear = Date().dateToText(formate: "yyyy")
@@ -155,20 +154,18 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let genericCell = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
         
-        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell {
-            cell.isForLookup = true
-            
-            let title = self.lookupTitlesList[indexPath.section]
-            let model = self.lookupData[title] ?? LookupModel()
-            let expsData = model.exps[indexPath.row]
-            cell.displayModelData(data: expsData)
-            return cell
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell else {
+            return UITableViewCell()
         }
-        else {
-            return genericCell!
-        }
+        
+        cell.isForLookup = true
+        
+        let title = self.lookupTitlesList[indexPath.section]
+        let model = self.lookupData[title] ?? LookupModel()
+        let expsData = model.exps[indexPath.row]
+        cell.displayModelData(data: expsData)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

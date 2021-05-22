@@ -31,7 +31,6 @@ class MyExpHomeViewController: UIViewController {
         super.viewDidLoad()
         self.viewModel.delegate = self
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
         
         self.showTopView()
@@ -139,16 +138,14 @@ extension MyExpHomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell {
-            if let data = self.viewModel.rowAtIndex(index: indexPath.row) {
-                cell.displayModelData(data: data)
-            }
-            return cell
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell else {
+            return UITableViewCell()
         }
-        else {
-            let genericCell = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
-            return genericCell!
+        
+        if let data = self.viewModel.rowAtIndex(index: indexPath.row) {
+            cell.displayModelData(data: data)
         }
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

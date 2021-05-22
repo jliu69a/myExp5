@@ -22,7 +22,6 @@ class ExpLookupDisplayViewController: UIViewController {
         
         self.showTopView()
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
     }
     
@@ -72,15 +71,15 @@ extension ExpLookupDisplayViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let genericCell = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
         
-        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell {
-            let model = self.myexpsList[indexPath.row]
-            cell.isForLookup = true
-            cell.displayModelData(data: model)
-            return cell
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? ExpenseCell else {
+            return UITableViewCell()
         }
-        return genericCell!
+        
+        let model = self.myexpsList[indexPath.row]
+        cell.isForLookup = true
+        cell.displayModelData(data: model)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

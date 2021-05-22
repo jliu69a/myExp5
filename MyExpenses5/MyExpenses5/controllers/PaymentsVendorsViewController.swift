@@ -63,7 +63,6 @@ class PaymentsVendorsViewController: UIViewController {
         
         self.viewModel.delegate = self
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "GenericCell")
         self.tableView.register(UINib(nibName: "PAndVCell", bundle: nil), forCellReuseIdentifier: "CellId")
     }
     
@@ -221,15 +220,13 @@ extension PaymentsVendorsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? PAndVCell {
-            let data = self.viewModel.rowAtIndex(indexPath: indexPath)
-            cell.displayData(data: data, isForPayments: self.isForPayments)
-            return cell
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") as? PAndVCell else {
+            return UITableViewCell()
         }
-        else {
-            let generic = self.tableView.dequeueReusableCell(withIdentifier: "GenericCell")
-            return generic!
-        }
+        
+        let data = self.viewModel.rowAtIndex(indexPath: indexPath)
+        cell.displayData(data: data, isForPayments: self.isForPayments)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
