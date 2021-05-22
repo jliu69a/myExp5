@@ -41,7 +41,6 @@ class DatasManager: NSObject {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("- my expenses : No Data")
             return []
         }
         
@@ -76,7 +75,6 @@ class DatasManager: NSObject {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("- my expenses : No Data")
             return []
         }
         
@@ -110,7 +108,6 @@ class DatasManager: NSObject {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("- my expenses : No Data")
             return []
         }
         
@@ -144,7 +141,6 @@ class DatasManager: NSObject {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("- my expenses : No Data")
             return []
         }
         
@@ -178,7 +174,6 @@ class DatasManager: NSObject {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("- my expenses : No Data")
             return []
         }
         
@@ -212,7 +207,6 @@ class DatasManager: NSObject {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("- my expenses : No Data")
             return []
         }
         
@@ -238,9 +232,7 @@ class DatasManager: NSObject {
             let myexpData: Data = data as! Data
             
             let resultText: String = String(data: myexpData, encoding: .utf8) ?? "n/a"
-            print("- ")
-            print("- save HomeTest, result = '\(resultText)' ")
-            print("- ")
+            print("-> save HomeTest, result = '\(resultText)' ")
         }
     }
     
@@ -263,7 +255,6 @@ class DatasManager: NSObject {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("- states : No Data")
             return []
         }
         

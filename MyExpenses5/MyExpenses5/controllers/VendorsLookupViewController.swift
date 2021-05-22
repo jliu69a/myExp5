@@ -86,10 +86,6 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
     
     @IBAction func lookupAction(_ sender: Any) {
         
-        print("> ")
-        print("> look up vendor, year = \(self.selectedYear), vendor ID = \(self.selectedVendorId) ...")
-        print("> ")
-        
         MyExpDataManager.sharedInstance.vendorsLookupData(year: self.selectedYear, vendorId: self.selectedVendorId) { (any: Any) in
             DispatchQueue.main.async {
                 self.showResultView()

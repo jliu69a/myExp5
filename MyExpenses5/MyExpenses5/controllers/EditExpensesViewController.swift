@@ -30,7 +30,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     
     weak var delegate: EditExpensesViewControllerDelegate?
     
-    var selectedExpense: Expense? = nil
+    var selectedExpense: Expense = Expense()
     
     var changeDateVC: ChangeDateViewController? = nil
     var selectedDate: Date = Date()
@@ -48,14 +48,9 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         
         self.showTopView()
         
-        if self.selectedExpense == nil {
-            self.selectedExpense = Expense()
-            self.isForNew = true
-        }
-
-        self.priceTextField.text = self.selectedExpense!.amount ?? ""
-        self.priceTextLabel.text = self.selectedExpense!.amount ?? "0.00"
-        self.notesTextField.text = self.selectedExpense!.note ?? ""
+        self.priceTextField.text = self.selectedExpense.amount ?? ""
+        self.priceTextLabel.text = self.selectedExpense.amount ?? "0.00"
+        self.notesTextField.text = self.selectedExpense.note ?? ""
 
         self.displayPaymentData()
         self.displayVendorData()
@@ -90,21 +85,22 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     //MARK: - helpers
     
     func displayPaymentData() {
-        var title: String = "select a payment"
         
-        if self.selectedExpense!.payment != nil && self.selectedExpense!.payment_id != nil {
-            title = String(format: "%@ (%@)", self.selectedExpense!.payment!, self.selectedExpense!.payment_id!)
+        var title = String(format: "%@ (%@)", (self.selectedExpense.payment ?? ""), (self.selectedExpense.payment_id ?? "0"))
+        if title == " (0)" {
+            title = "select a payment"
         }
         self.selectPaymentButton.setTitle(title, for: UIControl.State.normal)
         self.selectPaymentButton.setTitle(title, for: UIControl.State.highlighted)
     }
     
     func displayVendorData() {
-        var title: String = "select a vendor"
         
-        if self.selectedExpense!.vendor != nil && self.selectedExpense!.vendor_id != nil {
-            title = String(format: "%@ (%@)", self.selectedExpense!.vendor!, self.selectedExpense!.vendor_id!)
+        var title = String(format: "%@ (%@)", (self.selectedExpense.vendor ?? ""), (self.selectedExpense.vendor_id ?? "0"))
+        if title == " (0)" {
+            title = "select a vendor"
         }
+        
         self.selectVendorButton.setTitle(title, for: UIControl.State.normal)
         self.selectVendorButton.setTitle(title, for: UIControl.State.highlighted)
     }
@@ -115,18 +111,19 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
             self.displayDate()
         }
         else {
-            self.changeDateButton.setTitle(self.selectedExpense!.date!, for: UIControl.State.normal)
-            self.changeDateButton.setTitle(self.selectedExpense!.date!, for: UIControl.State.highlighted)
+            let dateStr = self.selectedExpense.date ?? Date().dateToText(formate: "yyyy-MM-dd")
+            self.changeDateButton.setTitle(dateStr, for: UIControl.State.normal)
+            self.changeDateButton.setTitle(dateStr, for: UIControl.State.highlighted)
         }
     }
     
     func displayDate() {
         
-        self.selectedExpense!.date = self.selectedDate.dateToText(formate: "yyyy-MM-dd")
-        self.selectedExpense!.time = self.selectedDate.dateToText(formate: "HH:mm:ss")
+        self.selectedExpense.date = self.selectedDate.dateToText(formate: "yyyy-MM-dd")
+        self.selectedExpense.time = self.selectedDate.dateToText(formate: "HH:mm:ss")
         
-        self.changeDateButton.setTitle(self.selectedExpense!.date, for: UIControl.State.normal)
-        self.changeDateButton.setTitle(self.selectedExpense!.date, for: UIControl.State.highlighted)
+        self.changeDateButton.setTitle(self.selectedExpense.date, for: UIControl.State.normal)
+        self.changeDateButton.setTitle(self.selectedExpense.date, for: UIControl.State.highlighted)
     }
     
     //MARK: - IB functiona
@@ -134,7 +131,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     @IBAction func gobackAction(_ sender: Any) {
         
         self.clearKeyboards()
-        self.navigationController!.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func selectPaymentAction(_ sender: Any) {
@@ -174,23 +171,23 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     @IBAction func saveAction(_ sender: Any) {
         self.clearKeyboards()
         
-        if self.selectedExpense!.payment_id == nil {
+        if self.selectedExpense.payment_id == nil {
             MyExpDataManager.sharedInstance.showAlert(title: "Error", message: "Need to select a payment.", vc: self)
             return
         }
-        if self.selectedExpense!.vendor_id == nil {
+        if self.selectedExpense.vendor_id == nil {
             MyExpDataManager.sharedInstance.showAlert(title: "Error", message: "Need to select a vendor.", vc: self)
             return
         }
         
-        self.selectedExpense!.amount = self.priceTextLabel.text!
-        self.selectedExpense!.note = self.notesTextField.text ?? ""
+        self.selectedExpense.amount = self.priceTextLabel.text ?? "0"
+        self.selectedExpense.note = self.notesTextField.text ?? ""
         
         //-- get the current time
-        self.selectedExpense!.time = Date().dateToText(formate: "HH:mm:ss")
+        self.selectedExpense.time = Date().dateToText(formate: "HH:mm:ss")
         
-        self.delegate?.didChangeExpenseData(data: self.selectedExpense!, selectedDate: self.selectedDate, isForNew: self.isForNew, isDateChanged: self.isDateChanged)
-        self.navigationController!.popViewController(animated: true)
+        self.delegate?.didChangeExpenseData(data: self.selectedExpense, selectedDate: self.selectedDate, isForNew: self.isForNew, isDateChanged: self.isDateChanged)
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: - text field delegate
@@ -228,10 +225,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     
     @objc func changedPrice() {
         
-        var priceStr: String = "0.00"
-        if self.priceTextLabel.text != nil && self.priceTextLabel.text!.count > 0 {
-            priceStr = self.priceTextField.text!
-        }
+        let priceStr: String = self.priceTextField.text ?? "0.00"
         let priceValue: Float = fabsf((priceStr as NSString).floatValue / 100.0)
         self.amountData = String(format: "%0.2f", priceValue)
         self.priceTextLabel.text = self.amountData
@@ -242,13 +236,13 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     func didSelectItem(isForPayment: Bool, name: String, id: String) {
         
         if isForPayment == true {
-            self.selectedExpense!.payment = name
-            self.selectedExpense!.payment_id = id
+            self.selectedExpense.payment = name
+            self.selectedExpense.payment_id = id
             self.displayPaymentData()
         }
         else {
-            self.selectedExpense!.vendor = name
-            self.selectedExpense!.vendor_id = id
+            self.selectedExpense.vendor = name
+            self.selectedExpense.vendor_id = id
             self.displayVendorData()
         }
     }
@@ -267,10 +261,10 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     
     func closeChangeDateView() {
         
-        if self.changeDateVC != nil {
-            self.changeDateVC!.dismiss(animated: true, completion: nil)
-            self.changeDateVC = nil
+        if let vc = self.changeDateVC {
+            vc.dismiss(animated: true, completion: nil)
         }
+        self.changeDateVC = nil
     }
 
 }
@@ -279,7 +273,7 @@ extension EditExpensesViewController: TopHeaderViewControllerDelegate {
     
     func goback() {
         self.clearKeyboards()
-        self.navigationController!.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func showAdmin() {

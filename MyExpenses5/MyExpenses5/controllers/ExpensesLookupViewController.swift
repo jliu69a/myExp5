@@ -144,9 +144,6 @@ class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewCont
 
         let range = calendar.range(of: .day, in: .month, for: date)!
         self.totalDaysOfMonth = range.count
-        print("> ")
-        print("> display as '\(self.yearMonthDisplay)', total days of month = \(self.totalDaysOfMonth)")
-        print("> ")
         
         //-- 1 : Sunday
         //-- 7 : Saturday
@@ -154,11 +151,6 @@ class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewCont
         
         self.dayOfWeek = Calendar.current.component(.weekday, from: selectedDate)
         self.firstDayIndex = self.dayOfWeek - 1
-        
-        let totalDaysAhead: Int = self.dayOfWeek - 1
-        print("- ")
-        print("- date = \(selectedDate), the day of week is : \(self.dayOfWeek), total days ahead = \(totalDaysAhead) ")
-        print("- ")
         
         self.collectionView.reloadData()
     }
@@ -285,7 +277,6 @@ extension ExpensesLookupViewController: UICollectionViewDataSource, UICollection
                 isWithData = self.lookupDaysList.contains(day)
             }
             cell.showCellData(index: indexPath.row, date: day, isWithData: isWithData, isActive: isActive)
-            print("-> index = \(indexPath.row), cell : '\(day)', is active? \(isActive), is with data? \(isWithData) ")
             
             return cell
         }

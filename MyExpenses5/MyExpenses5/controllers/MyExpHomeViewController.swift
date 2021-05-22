@@ -86,7 +86,8 @@ class MyExpHomeViewController: UIViewController {
         
         if let vc = MEStoryboard.home(MEHomePage.saveExp).vc as? EditExpensesViewController {
             vc.delegate = self
-            vc.selectedExpense = model
+            vc.isForNew = (model == nil)
+            vc.selectedExpense = model ?? Expense()
             if model == nil {
                 vc.selectedDate = self.selectedDate
             }
@@ -107,13 +108,6 @@ class MyExpHomeViewController: UIViewController {
     }
     
     //MARK: - IB actions
-    
-//    @IBAction func adminAction(_ sender: Any) {
-//
-//        if let vc = MEStoryboard.admin(MEAdminsPage.home).vc as? AdminHomeViewController {
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-//    }
     
     @IBAction func selectDateAction(_ sender: Any) {
         

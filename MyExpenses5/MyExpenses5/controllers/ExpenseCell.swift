@@ -61,7 +61,6 @@ class ExpenseCell: UITableViewCell {
               .light: return .white
             case .dark: return .black
             @unknown default:
-                print("error in color.")
                 return UIColor.clear
             }
         }

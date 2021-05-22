@@ -155,7 +155,6 @@ extension PaymentVendorViewModel {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("- payments & vendors : No Data")
             return []
         }
         
@@ -245,11 +244,6 @@ extension PaymentVendorViewModel {
             vendorsArray.append(each)
             self.appDele.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
         }
-        
-        print("-> ")
-        print("-> AppDelegate, vendor titles, size = \(self.appDele.vendorDisplayTitles.count) ...")
-        print("-> AppDelegate, vendor data dictionary, size = \(self.appDele.vendorDisplayData.count) ...")
-        print("-> ")
     }
     
 }

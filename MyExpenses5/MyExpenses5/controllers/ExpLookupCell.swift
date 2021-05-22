@@ -39,9 +39,8 @@ class ExpLookupCell: UICollectionViewCell {
         }
         
         let day = self.dateLabel.text ?? "0"
-        self.parentVC!.dataForSelectedDate(day: day)
-        print("-> ")
-        print("-> select index = \(selectedIndex), date = \(day)")
-        print("-> ")
+        if let parent = self.parentVC {
+            parent.dataForSelectedDate(day: day)
+        }
     }
 }

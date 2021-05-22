@@ -164,16 +164,7 @@ extension AdminHomeViewController: UITableViewDelegate {
 extension AdminHomeViewController: PaymentsVendorsViewControllerDelegate {
     
     func didSelectItem(isForPayment: Bool, name: String, id: String) {
-        if isForPayment == true {
-            print("- ")
-            print("- from admin, selected payment, id = \(id), name = '\(name)' ")
-            print("- ")
-        }
-        else {
-            print("- ")
-            print("- from admin, selected vendor, id = \(id), name = '\(name)' ")
-            print("- ")
-        }
+        //
     }
 }
 
@@ -192,8 +183,5 @@ extension AdminHomeViewController: FilmsHomeViewModelDelegate {
     
     func didLoadFilmsData() {
         //
-        let appDele = UIApplication.shared.delegate as! AppDelegate
-        
-        
     }
 }

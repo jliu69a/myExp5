@@ -96,14 +96,6 @@ class MyExpDataManager: NSObject {
         let top10Key: String = "Top 10"
         self.vendorDisplayTitles.insert(top10Key, at: 0)
         self.vendorDisplayData[top10Key] = self.top10List
-        
-        //-- test print
-        print("- ")
-        let vendors = self.vendorDisplayData[top10Key] ?? []
-        for each in vendors {
-            print("    - top 10: id = \(each.id ?? "0"), total = \(each.total ?? "0"), name = \(each.vendor ?? "") ")
-        }
-        print("- ")
     }
     
     //MARK: - get myexp data
@@ -133,13 +125,6 @@ class MyExpDataManager: NSObject {
                     }
                 }
                 let value: Any = self.expenseList as Any
-                
-                print("> ")
-                print("> top 10  = \(self.top10List.count)")
-                print("> vendor  = \(self.vendorList.count)")
-                print("> payment = \(self.paymentList.count)")
-                print("> my exps = \(self.expenseList.count)")
-                print("> ")
                 self.parseVendorsArray()
 
                 completion(value)
@@ -281,17 +266,6 @@ class MyExpDataManager: NSObject {
             model.exps.append(each)
             self.lookupData[dateTitle] = model
         }
-        
-        //-- testing print
-        print("- ")
-        print("- lookup title list : \(self.lookupTitlesList) ")
-
-        for each in self.lookupTitlesList {
-            let model = self.lookupData[each] ?? LookupModel()
-            print("    - title : \(model.date), total = \(model.total), array size = \(model.exps.count)")
-        }
-        print("- ")
-        
     }
     
     func createLookupTitle(dateText: String) -> String {

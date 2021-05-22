@@ -60,7 +60,6 @@ class FilmsHomeViewModel {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("-> Error: films list, No Data")
             return []
         }
         
@@ -96,38 +95,7 @@ class FilmsHomeViewModel {
         }
         self.totalRows = self.filmsList.count
         
-        self.testingPrint()
-        
         self.delegate?.didLoadFilmsData()
-    }
-    
-    func testingPrint() {
-        
-        print("> ")
-        print("> all languages :")
-        
-        for each in self.appDele.filmLanguagesList {
-            print("    > language : \(each.name ?? ""), id = \(each.id ?? "0") ")
-        }
-        print("> ")
-        print("> all types :")
-        
-        for each in self.appDele.filmTypesList {
-            print("    > type : \(each.name ?? ""), id = \(each.id ?? "0") ")
-        }
-        print("> ")
-        print("> all genres :")
-        
-        for each in self.appDele.filmGenresList {
-            print("    > genre : \(each.name ?? ""), id = \(each.id ?? "0") ")
-        }
-        print("> ")
-        print("> all films :")
-        
-        for each in self.filmsList {
-            print("    > film : \(each.title ?? ""), release year : \(each.year ?? "0")")
-        }
-        print("> ")
     }
     
     //MARK: - helpers

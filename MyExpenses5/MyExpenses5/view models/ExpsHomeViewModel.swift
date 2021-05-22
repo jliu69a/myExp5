@@ -82,7 +82,6 @@ extension ExpsHomeViewModel {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("- my expenses : No Data")
             return []
         }
         
@@ -175,22 +174,6 @@ extension ExpsHomeViewModel {
             }
             self.appDele.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
         }
-        
-        //-- test print
-        print("> ")
-        print("> total top 10s (in AppDelegate) = \(self.appDele.top10sList.count)")
-        print("> total vendors (in AppDelegate) = \(self.appDele.vendorsList.count)")
-        print("> total payments (in AppDelegate) = \(self.appDele.paymentsList.count)")
-        print("> total expenses = \(self.expenseList.count)")
-        print("- ")
-        let array: [Vendor] = self.appDele.vendorDisplayData[top10Key] as? [Vendor] ?? []
-        for each in array {
-            let name = each.vendor ?? ""
-            let id = each.id ?? "0"
-            let total = each.total ?? "0"
-            print("    - top 10, id = \(id), total = \(total), name = \(name)")
-        }
-        print("- ")
     }
     
     func checkForUnique(vendorsList: [Vendor], vendor: Vendor) -> Bool {
@@ -237,7 +220,6 @@ extension ExpsHomeViewModel {
         
         let json = try? JSON(data: data)
         if json == nil {
-            print("- my expenses : No Data")
             return []
         }
         
