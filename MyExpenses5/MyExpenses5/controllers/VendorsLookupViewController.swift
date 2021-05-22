@@ -71,12 +71,10 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
     
     func showTopView() {
         let frame = self.topView.frame
-        let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "Vendor Lookup", isForAdmin: false)
-        
-        if vc != nil {
-            vc!.delegate = self
-            self.topView.addSubview(vc!.view)
-            self.addChild(vc!)
+        if let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "Vendor Lookup", isForAdmin: false) {
+            vc.delegate = self
+            self.topView.addSubview(vc.view)
+            self.addChild(vc)
         }
     }
     

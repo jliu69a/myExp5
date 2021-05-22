@@ -100,12 +100,10 @@ class PaymentsVendorsViewController: UIViewController {
     
     func showTopView() {
         let frame = self.topView.frame
-        let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "", isForAdmin: false)
-        
-        if vc != nil {
-            vc!.delegate = self
-            self.topView.addSubview(vc!.view)
-            self.addChild(vc!)
+        if let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "", isForAdmin: false) {
+            vc.delegate = self
+            self.topView.addSubview(vc.view)
+            self.addChild(vc)
             self.topHeaderVC = vc
         }
     }
