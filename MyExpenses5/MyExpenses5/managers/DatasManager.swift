@@ -1,6 +1,6 @@
 //
 //  DatasManager.swift
-//  MyTest6
+//  MyExp
 //
 //  Created by Johnson Liu on 7/14/20.
 //  Copyright © 2020 Johnson Liu. All rights reserved.
@@ -14,26 +14,48 @@ class DatasManager: NSObject {
     
     static let sharedInstance = DatasManager()
     
-    let folder: String = (UIApplication.shared.delegate as! AppDelegate).folder
+    var paymentsList: [Payment] = []
+    var vendorsList: [Vendor] = []
+    var top10sList: [Vendor] = []
+    
+    var vendorDisplayTitles: [String] = []
+    var vendorDisplayData: [String: AnyObject] = [:]
+
+    var filmLanguagesList: [FilmSelection] = []
+    var filmTypesList: [FilmSelection] = []
+    var filmGenresList: [FilmSelection] = []
+    
+    
     let kExpenseCode: Int = 0
     let kTop10Code: Int = 1
     let kPaymentCode: Int = 2
     let kVendorCode: Int = 3
     
+    //MARK: -
+    
+    func folderName() -> String {
+        guard let appDele = UIApplication.shared.delegate as? AppDelegate else {
+            return "prods"
+        }
+        return appDele.folder
+    }
+    
     
     //MARK: - myexp preload data
     
     func myExpsData(selectedDate: Date, completion: @escaping  (Any)->()) {
+        let folder = self.folderName()
         
         let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/preload_data.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [MyExpsData] = self.parseMyExpsData(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [MyExpsData] = self.parseMyExpsData(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
     
@@ -58,16 +80,18 @@ class DatasManager: NSObject {
     //MARK: - myexp by date
     
     func myExpsWithDate(selectedDate: Date, completion: @escaping  (Any)->()) {
+        let folder = self.folderName()
         
         let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expense_by_date.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [Expense] = self.parseMyExpsWithDate(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [Expense] = self.parseMyExpsWithDate(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
     
@@ -92,15 +116,17 @@ class DatasManager: NSObject {
     //MARK: - save changes
     
     func saveMyexpsWithParameters(parameters: [String: Any], completion: @escaping  (Any)->()) {
+        let folder = self.folderName()
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expenses_change.php", folder)
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [EditMyExpsData] = self.parseSaveMyexpsWithParameters(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [EditMyExpsData] = self.parseSaveMyexpsWithParameters(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
     
@@ -125,15 +151,17 @@ class DatasManager: NSObject {
     //MARK: - save payment / vendor
     
     func savePaymentsAndVendors(parameters: [String: Any], completion: @escaping  (Any)->()) {
+        let folder = self.folderName()
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_edit.php", folder)
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [ChangePVData] = self.parseSavePaymentsAndVendors(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [ChangePVData] = self.parseSavePaymentsAndVendors(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
     
@@ -158,15 +186,17 @@ class DatasManager: NSObject {
     //MARK: - vendor lookup
     
     func vendorsLookup(year: String, vendorId: String, completion: @escaping  (Any)->()) {
+        let folder = self.folderName()
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/vendors_lookup.php?year=%@&vendorid=%@", folder, year, vendorId)
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [MyExpsData] = self.parseDataForVendors(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [MyExpsData] = self.parseDataForVendors(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
     
@@ -191,15 +221,17 @@ class DatasManager: NSObject {
     //MARK: - expense lookup
     
     func expenseLookup(year: String, month: String, completion: @escaping  (Any)->()) {
+        let folder = self.folderName()
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expense_lookup.php?date=%@-%@", folder, year, month)
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [Expense] = self.parseDataForExpenseLookup(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [Expense] = self.parseDataForExpenseLookup(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
 
@@ -229,10 +261,11 @@ class DatasManager: NSObject {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            let statesData: Data = data as! Data
-            let statesList: [StatesData] = self.parseStatesData(data: statesData)
-            let value: Any = statesList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let statesList: [StatesData] = self.parseStatesData(data: rawData)
+                let value: Any = statesList as Any
+                completion(value)
+            }
         }
     }
 

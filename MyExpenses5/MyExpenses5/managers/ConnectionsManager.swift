@@ -1,6 +1,6 @@
 //
 //  ConnectionsManager.swift
-//  MyTest6
+//  MyExp
 //
 //  Created by Johnson Liu on 7/14/20.
 //  Copyright © 2020 Johnson Liu. All rights reserved.
