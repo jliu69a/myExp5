@@ -89,7 +89,7 @@ class MyExpDataManager: NSObject {
             return
         }
         
-        self.vendorDisplayData = Dictionary(grouping: self.vendorList, by: { ($0.vendor!.uppercased().first!.isNumber) ? "#" : String($0.vendor!.uppercased().first!) })
+        self.vendorDisplayData = Dictionary(grouping: self.vendorList, by: { self.firstCharForVendor(vendor: $0.vendor) })
         let allKeys = Array(self.vendorDisplayData.keys) as [String]
         self.vendorDisplayTitles = allKeys.sorted()
         
@@ -98,13 +98,22 @@ class MyExpDataManager: NSObject {
         self.vendorDisplayData[top10Key] = self.top10List
     }
     
+    func firstCharForVendor(vendor: String?) -> String {
+        
+        let vendorName = vendor ?? ""
+        guard let firstChar = vendorName.uppercased().first else {
+            return ""
+        }
+        return String(firstChar)
+    }
+    
     //MARK: - get myexp data
     
     func myExpsData(selectedDate: Date, completion: @escaping  (Any)->()) {
         
         DatasManager.sharedInstance.myExpsData(selectedDate: selectedDate) { (any: Any) in
             DispatchQueue.main.async {
-                let myexpsList = any as! [MyExpsData]
+                let myexpsList = any as? [MyExpsData] ?? []
                 self.expenseList.removeAll()
                 self.paymentList.removeAll()
                 self.vendorList.removeAll()
@@ -112,16 +121,16 @@ class MyExpDataManager: NSObject {
                 
                 for each in myexpsList {
                     if each.expense != nil {
-                        self.expenseList = each.expense!
+                        self.expenseList = each.expense ?? []
                     }
                     if each.payments != nil {
-                        self.paymentList = each.payments!
+                        self.paymentList = each.payments ?? []
                     }
                     if each.vendors != nil {
-                        self.vendorList = each.vendors!
+                        self.vendorList = each.vendors ?? []
                     }
                     if each.top10 != nil {
-                        self.top10List = each.top10!
+                        self.top10List = each.top10 ?? []
                     }
                 }
                 let value: Any = self.expenseList as Any
@@ -136,7 +145,7 @@ class MyExpDataManager: NSObject {
         
         DatasManager.sharedInstance.myExpsWithDate(selectedDate: selectedDate) { (any: Any) in
             DispatchQueue.main.async {
-                let dataList = any as! [Expense]
+                let dataList = any as? [Expense] ?? []
                 self.expenseList = dataList
                 let value: Any = self.expenseList as Any
                 completion(value)
@@ -148,7 +157,7 @@ class MyExpDataManager: NSObject {
         
         DatasManager.sharedInstance.expenseLookup(year: year, month: month)  { (any: Any) in
             DispatchQueue.main.async {
-                let dataList = any as! [Expense]
+                let dataList = any as? [Expense] ?? []
                 self.expenseLookupList = dataList
                 let value: Any = self.expenseLookupList as Any
                 completion(value)
@@ -163,16 +172,16 @@ class MyExpDataManager: NSObject {
         let parameters: [String: Any] = self.createParameters(data: data, actionCode: actionCode)
         DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { (any: Any) in
             DispatchQueue.main.async {
-                let myexpsList = any as! [EditMyExpsData]
+                let myexpsList = any as? [EditMyExpsData] ?? []
                 self.expenseList.removeAll()
                 self.top10List.removeAll()
                 
                 for each in myexpsList {
                     if each.expense != nil {
-                        self.expenseList = each.expense!
+                        self.expenseList = each.expense ?? []
                     }
                     if each.top10 != nil {
-                        self.top10List = each.top10!
+                        self.top10List = each.top10 ?? []
                     }
                 }
                 let value: Any = self.expenseList as Any
@@ -195,16 +204,16 @@ class MyExpDataManager: NSObject {
         
         DatasManager.sharedInstance.savePaymentsAndVendors(parameters: parameters) { (any: Any) in
             DispatchQueue.main.async {
-                let pvList = any as! [ChangePVData]
+                let pvList = any as? [ChangePVData] ?? []
                 self.paymentList.removeAll()
                 self.vendorList.removeAll()
                 
                 for each in pvList {
                     if each.payments != nil {
-                        self.paymentList = each.payments!
+                        self.paymentList = each.payments ?? []
                     }
                     if each.vendors != nil {
-                        self.vendorList = each.vendors!
+                        self.vendorList = each.vendors ?? []
                     }
                 }
                 self.parseVendorsArray()
@@ -222,11 +231,11 @@ class MyExpDataManager: NSObject {
         
         DatasManager.sharedInstance.vendorsLookup(year: year, vendorId: vendorId) { (any: Any) in
             DispatchQueue.main.async {
-                let dataList = any as! [MyExpsData]
+                let dataList = any as? [MyExpsData] ?? []
                 
                 if dataList.count > 0 {
                     let each = dataList[0]
-                    let expsListWithVendor: [Expense] = each.expense!
+                    let expsListWithVendor: [Expense] = each.expense ?? []
                     self.parseVendorLookupsData(list: expsListWithVendor)
                 }
                 
