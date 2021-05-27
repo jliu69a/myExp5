@@ -36,10 +36,10 @@ class AdminHomeViewController: UIViewController {
         self.tableView.layer.borderColor = UIColor.systemOrange.cgColor
         self.tableView.layer.borderWidth = 0.5
         
-        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
-        let build = Bundle.main.infoDictionary!["CFBundleVersion"] as? String
+        let appVersion = (Bundle.main.infoDictionary ?? [:])["CFBundleShortVersionString"] as? String ?? ""
+        let build = (Bundle.main.infoDictionary ?? [:])["CFBundleVersion"] as? String ?? ""
         self.versionsLabel.backgroundColor = UIColor.systemGray6
-        self.versionsLabel.text = String(format: "Version: %@,  Build: %@", appVersion!, build!)
+        self.versionsLabel.text = String(format: "Version: %@,  Build: %@", appVersion, build)
     }
     
     //MARK: - top view
