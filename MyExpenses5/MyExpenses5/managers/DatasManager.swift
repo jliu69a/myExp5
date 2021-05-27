@@ -30,10 +30,11 @@ class DatasManager: NSObject {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [MyExpsData] = self.parseMyExpsData(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [MyExpsData] = self.parseMyExpsData(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
     
@@ -64,10 +65,11 @@ class DatasManager: NSObject {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [Expense] = self.parseMyExpsWithDate(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [Expense] = self.parseMyExpsWithDate(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
     
@@ -97,10 +99,11 @@ class DatasManager: NSObject {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [EditMyExpsData] = self.parseSaveMyexpsWithParameters(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [EditMyExpsData] = self.parseSaveMyexpsWithParameters(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
     
@@ -130,10 +133,11 @@ class DatasManager: NSObject {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [ChangePVData] = self.parseSavePaymentsAndVendors(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [ChangePVData] = self.parseSavePaymentsAndVendors(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
     
@@ -163,10 +167,11 @@ class DatasManager: NSObject {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [MyExpsData] = self.parseDataForVendors(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [MyExpsData] = self.parseDataForVendors(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
     
@@ -196,10 +201,11 @@ class DatasManager: NSObject {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [Expense] = self.parseDataForExpenseLookup(data: myexpData)
-            let value: Any = myexpsList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let myexpsList: [Expense] = self.parseDataForExpenseLookup(data: rawData)
+                let value: Any = myexpsList as Any
+                completion(value)
+            }
         }
     }
 
@@ -229,10 +235,10 @@ class DatasManager: NSObject {
         let connect: ConnectionsManager = ConnectionsManager()
 
         connect.saveHomeTestData(url: url, data: data) { (data: Any) in
-            let myexpData: Data = data as! Data
-            
-            let resultText: String = String(data: myexpData, encoding: .utf8) ?? "n/a"
-            print("-> save HomeTest, result = '\(resultText)' ")
+            if let rawData = data as? Data {
+                let resultText: String = String(data: rawData, encoding: .utf8) ?? "n/a"
+                print("-> save HomeTest, result = '\(resultText)' ")
+            }
         }
     }
     
@@ -244,10 +250,11 @@ class DatasManager: NSObject {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            let statesData: Data = data as! Data
-            let statesList: [StatesData] = self.parseStatesData(data: statesData)
-            let value: Any = statesList as Any
-            completion(value)
+            if let rawData = data as? Data {
+                let statesList: [StatesData] = self.parseStatesData(data: rawData)
+                let value: Any = statesList as Any
+                completion(value)
+            }
         }
     }
 
