@@ -71,10 +71,11 @@ extension ExpsHomeViewModel {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { [weak self] (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [MyExpsData] = self?.myExpensesData(data: myexpData) ?? []
-            self?.parseMyExpsData(myexpsList: myexpsList)
-            completion()
+            if let rawData = data as? Data {
+                let myexpsList: [MyExpsData] = self?.myExpensesData(data: rawData) ?? []
+                self?.parseMyExpsData(myexpsList: myexpsList)
+                completion()
+            }
         }
     }
 
@@ -103,16 +104,16 @@ extension ExpsHomeViewModel {
 
         for each in myexpsList {
             if each.expense != nil {
-                self.expenseList = each.expense!
+                self.expenseList = each.expense ?? []
             }
             if each.payments != nil {
-                self.appDele.paymentsList = each.payments!
+                self.appDele.paymentsList = each.payments ?? []
             }
             if each.vendors != nil {
-                self.appDele.vendorsList = each.vendors!
+                self.appDele.vendorsList = each.vendors ?? []
             }
             if each.top10 != nil {
-                self.appDele.top10sList = each.top10!
+                self.appDele.top10sList = each.top10 ?? []
             }
         }
         self.totalRows = self.expenseList.count
@@ -129,10 +130,10 @@ extension ExpsHomeViewModel {
         
         for each in myexpsList {
             if each.expense != nil {
-                self.expenseList = each.expense!
+                self.expenseList = each.expense ?? []
             }
             if each.top10 != nil {
-                self.appDele.top10sList = each.top10!
+                self.appDele.top10sList = each.top10 ?? []
             }
         }
         self.totalRows = self.expenseList.count
@@ -156,7 +157,7 @@ extension ExpsHomeViewModel {
         let letters: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         
         for each in vendorsList {
-            let vendorName: String = each.vendor!.uppercased()
+            let vendorName: String = (each.vendor ?? "").uppercased()
             
             var firstLetter: String = String(vendorName.prefix(1))
             if letters.contains(firstLetter) == false {
@@ -209,10 +210,11 @@ extension ExpsHomeViewModel {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { [weak self] (data: Any) in
-            let myexpData: Data = data as! Data
-            let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: myexpData) ?? []
-            self?.parseSavedExpsData(myexpsList: myexpsList)
-            completion()
+            if let rawData = data as? Data {
+                let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
+                self?.parseSavedExpsData(myexpsList: myexpsList)
+                completion()
+            }
         }
     }
     

@@ -144,10 +144,11 @@ extension PaymentVendorViewModel {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { [weak self] (data: Any) in
-            let myPVData: Data = data as! Data
-            let pvList: [ChangePVData] = self?.parseSavePaymentsAndVendors(data: myPVData) ?? []
-            self?.parseSavedPVData(myPVList: pvList)
-            completion()
+            if let rawData = data as? Data {
+                let pvList: [ChangePVData] = self?.parseSavePaymentsAndVendors(data: rawData) ?? []
+                self?.parseSavedPVData(myPVList: pvList)
+                completion()
+            }
         }
     }
     
@@ -175,10 +176,10 @@ extension PaymentVendorViewModel {
         
         for each in myPVList {
             if each.payments != nil {
-                self.appDele.paymentsList = each.payments!
+                self.appDele.paymentsList = each.payments ?? []
             }
             if each.vendors != nil {
-                self.appDele.vendorsList = each.vendors!
+                self.appDele.vendorsList = each.vendors ?? []
             }
         }
         if !self.isForPayments {
@@ -230,7 +231,7 @@ extension PaymentVendorViewModel {
         let letters: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         
         for each in vendorsList {
-            let vendorName: String = each.vendor!.uppercased()
+            let vendorName: String = (each.vendor ?? "").uppercased()
             
             var firstLetter: String = String(vendorName.prefix(1))
             if letters.contains(firstLetter) == false {

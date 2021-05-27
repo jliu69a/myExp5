@@ -48,11 +48,11 @@ class FilmsHomeViewModel {
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { [weak self] (data: Any) in
-            let filmsData: Data = data as! Data
-            
-            let filmsList: [FilmsData] = self?.filmsData(data: filmsData) ?? []
-            self?.parseFilmsListData(filmsList: filmsList)
-            completion()
+            if let rawData = data as? Data {
+                let filmsList: [FilmsData] = self?.filmsData(data: rawData) ?? []
+                self?.parseFilmsListData(filmsList: filmsList)
+                completion()
+            }
         }
     }
     
@@ -81,16 +81,16 @@ class FilmsHomeViewModel {
 
         for each in filmsList {
             if each.films != nil {
-                self.filmsList = each.films!
+                self.filmsList = each.films ?? []
             }
             if each.languages != nil {
-                self.appDele.filmLanguagesList = each.languages!
+                self.appDele.filmLanguagesList = each.languages ?? []
             }
             if each.types != nil {
-                self.appDele.filmTypesList = each.types!
+                self.appDele.filmTypesList = each.types ?? []
             }
             if each.genres != nil {
-                self.appDele.filmGenresList = each.genres!
+                self.appDele.filmGenresList = each.genres ?? []
             }
         }
         self.totalRows = self.filmsList.count
