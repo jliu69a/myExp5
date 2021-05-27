@@ -126,7 +126,7 @@ class PaymentsVendorsViewController: UIViewController {
     //MARK: - IB action
     
     @IBAction func gobackAction(_ sender: Any) {
-        self.navigationController!.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func addNewAction(_ sender: Any) {
@@ -254,7 +254,7 @@ extension PaymentsVendorsViewController: UITableViewDelegate {
         }
         else {
             self.delegate?.didSelectItem(isForPayment: self.isForPayments, name: self.selectedName, id: self.selectedId)
-            self.navigationController!.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
@@ -280,7 +280,7 @@ extension PaymentsVendorsViewController: PaymentVendorViewModelDelegate {
 extension PaymentsVendorsViewController: TopHeaderViewControllerDelegate {
     
     func goback() {
-        self.navigationController!.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func showAdmin() {

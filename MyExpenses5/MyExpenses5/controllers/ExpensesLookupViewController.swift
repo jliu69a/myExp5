@@ -93,7 +93,7 @@ class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewCont
         
         MyExpDataManager.sharedInstance.expsLookupData(year: year, month: month) { (any: Any) in
             DispatchQueue.main.async {
-                self.expsLookupList = any as! [Expense]
+                self.expsLookupList = any as? [Expense] ?? []
                 self.parseExpsLookupData()
             }
         }
@@ -140,10 +140,11 @@ class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewCont
         
         let dateComponents = DateComponents(year: self.selectedYear, month: self.selectedMonth)
         let calendar = Calendar.current
-        let date = calendar.date(from: dateComponents)!
+        let date = calendar.date(from: dateComponents) ?? Date()
 
-        let range = calendar.range(of: .day, in: .month, for: date)!
-        self.totalDaysOfMonth = range.count
+        if let range = calendar.range(of: .day, in: .month, for: date) {
+            self.totalDaysOfMonth = range.count
+        }
         
         //-- 1 : Sunday
         //-- 7 : Saturday
@@ -194,8 +195,8 @@ class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewCont
             vc.delegate = self
             vc.isForYearOnly = false
             vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
             self.selectVC = vc
-            self.present(self.selectVC!, animated: true, completion: nil)
         }
     }
     

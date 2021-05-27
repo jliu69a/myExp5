@@ -102,8 +102,8 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
             vc.delegate = self
             vc.isForYearOnly = true
             vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
             self.selectVC = vc
-            self.present(self.selectVC!, animated: true, completion: nil)
         }
     }
     

@@ -67,15 +67,15 @@ class ChangeDateViewController: UIViewController {
     
     @IBAction func setToTodayAction(_ sender: Any) {
         self.datePicker.date = Date()
-        self.delegate!.selectNewDate(date: self.datePicker.date)
+        self.delegate?.selectNewDate(date: self.datePicker.date)
     }
     
     @IBAction func cancelDateSelectAction(_ sender: Any) {
-        self.delegate!.cancelSelectDate()
+        self.delegate?.cancelSelectDate()
     }
     
     @IBAction func selectPickerDateAction(_ sender: Any) {
-        self.delegate!.selectNewDate(date: self.datePicker.date)
+        self.delegate?.selectNewDate(date: self.datePicker.date)
     }
     
     //MARK: - date picker

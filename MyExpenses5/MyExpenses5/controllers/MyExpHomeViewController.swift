@@ -70,7 +70,7 @@ class MyExpHomeViewController: UIViewController {
         let alert: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         
         alert.addAction( UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive, handler: { (action: UIAlertAction) in
-            self.confirmToDelete(data: self.selectedExpense!)
+            self.confirmToDelete(data: self.selectedExpense ?? Expense())
         }) )
         
         alert.addAction( UIAlertAction(title: "Edit", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
@@ -96,7 +96,7 @@ class MyExpHomeViewController: UIViewController {
     
     func confirmToDelete(data: Expense) {
         
-        let title: String = String(format: "Do you want to delete the expense at: %@? \n\nwith amount of $%@ ?", data.vendor!, data.amount!)
+        let title: String = String(format: "Do you want to delete the expense at: %@? \n\nwith amount of $%@ ?", (data.vendor ?? ""), (data.amount ?? ""))
         let alert: UIAlertController = UIAlertController(title: title, message: nil, preferredStyle: UIAlertController.Style.alert)
         
         alert.addAction( UIAlertAction(title: "Cancel", style: UIAlertAction.Style.destructive, handler: nil) )
@@ -190,10 +190,11 @@ extension MyExpHomeViewController: ChangeDateViewControllerDelegate {
     }
     
     func closeChangeDateView() {
-        if self.changeDateVC != nil {
-            self.changeDateVC!.dismiss(animated: true, completion: nil)
-            self.changeDateVC = nil
+        
+        if let vc = self.changeDateVC {
+            vc.dismiss(animated: true, completion: nil)
         }
+        self.changeDateVC = nil
     }
 }
 
