@@ -274,13 +274,4 @@ class MyExpDataManager: NSObject {
         }
         return Date().textToDate(format: "yyyy-MM-dd", dateText: dateText).dateToText(formate: "MMMM")
     }
-    
-    //MARK: - testing
-    
-    func saveHomeTest() {
-        
-        let data: HomeTest = HomeTest(name: "real test", value: "to save", notes: "calliing from the app")
-        DatasManager.sharedInstance.saveHomeTest(data: data)
-    }
-    
 }

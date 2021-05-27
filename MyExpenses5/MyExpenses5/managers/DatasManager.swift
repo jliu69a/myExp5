@@ -221,21 +221,6 @@ class DatasManager: NSObject {
         return dataList
     }
     
-    //MARK: - save home test
-    
-    func saveHomeTest(data: HomeTest) {
-        
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/change_home_test.php", folder)
-        let connect: ConnectionsManager = ConnectionsManager()
-
-        connect.saveHomeTestData(url: url, data: data) { (data: Any) in
-            let myexpData: Data = data as! Data
-            
-            let resultText: String = String(data: myexpData, encoding: .utf8) ?? "n/a"
-            print("-> save HomeTest, result = '\(resultText)' ")
-        }
-    }
-    
     //MARK: - states data
     
     func statesData(completion: @escaping  (Any)->()) {
