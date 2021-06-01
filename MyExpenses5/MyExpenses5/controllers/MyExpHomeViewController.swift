@@ -10,7 +10,6 @@ import UIKit
 
 class MyExpHomeViewController: UIViewController {
     
-    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     
@@ -29,11 +28,13 @@ class MyExpHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel.delegate = self
         
+        self.title = "MyExp"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Admin", style: .plain, target: self, action: #selector(showAdminPage))
+        
+        self.viewModel.delegate = self
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
         
-        self.showTopView()
         self.loadingData()
     }
     
@@ -47,15 +48,29 @@ class MyExpHomeViewController: UIViewController {
         self.dateLabel.text = viewModel.displayCurrentDate(date: self.selectedDate)
     }
     
-    //MARK: - top view
+    //MARK: - bar button items
     
-    func showTopView() {
-        let frame = self.topView.frame
-        if let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "My Expense", isForAdmin: true) {
-            vc.delegate = self
-            self.topView.addSubview(vc.view)
-            self.addChild(vc)
+    @objc func showAdminPage() {
+        if let vc = MEStoryboard.admin(MEAdminsPage.home).vc as? AdminHomeViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
         }
+    }
+    
+    //MARK: - IB actions
+    
+    @IBAction func selectDateAction(_ sender: Any) {
+        
+        if let vc = MEStoryboard.home(MEHomePage.changeDate).vc as? ChangeDateViewController {
+            vc.currentDate = self.selectedDate
+            vc.delegate = self
+            vc.modalPresentationStyle = .fullScreen
+            self.changeDateVC = vc
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func createNewAction(_ sender: Any) {
+        self.showAddEditPage(model: nil)
     }
     
     //MARK: - helpers
@@ -87,7 +102,10 @@ class MyExpHomeViewController: UIViewController {
             vc.delegate = self
             vc.isForNew = (model == nil)
             vc.selectedExpense = model ?? Expense()
+            
+            vc.pageTitle = "Edit"
             if model == nil {
+                vc.pageTitle = "Add"
                 vc.selectedDate = self.selectedDate
             }
             self.navigationController?.pushViewController(vc, animated: true)
@@ -104,23 +122,6 @@ class MyExpHomeViewController: UIViewController {
             self.viewModel.savingData(data: data, actionCode: self.viewModel.kDeleteCode)
         }) )
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    //MARK: - IB actions
-    
-    @IBAction func selectDateAction(_ sender: Any) {
-        
-        if let vc = MEStoryboard.home(MEHomePage.changeDate).vc as? ChangeDateViewController {
-            vc.currentDate = self.selectedDate
-            vc.delegate = self
-            vc.modalPresentationStyle = .fullScreen
-            self.changeDateVC = vc
-            self.present(vc, animated: true, completion: nil)
-        }
-    }
-    
-    @IBAction func createNewAction(_ sender: Any) {
-        self.showAddEditPage(model: nil)
     }
 }
 
@@ -208,18 +209,5 @@ extension MyExpHomeViewController: EditExpensesViewControllerDelegate {
         }
         let actionCode = isForNew ? self.viewModel.kInsertCode : self.viewModel.kUpdateCode
         self.viewModel.savingData(data: data, actionCode: actionCode)
-    }
-}
-
-extension MyExpHomeViewController: TopHeaderViewControllerDelegate {
-    
-    func goback() {
-        //
-    }
-    
-    func showAdmin() {
-        if let vc = MEStoryboard.admin(MEAdminsPage.home).vc as? AdminHomeViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
     }
 }

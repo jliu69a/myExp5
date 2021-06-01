@@ -15,9 +15,7 @@ protocol EditExpensesViewControllerDelegate: AnyObject {
 }
 
 
-class EditExpensesViewController: UIViewController, UITextFieldDelegate, PaymentsVendorsViewControllerDelegate, ChangeDateViewControllerDelegate {
-    
-    @IBOutlet weak var topView: UIView!
+class EditExpensesViewController: UIViewController {
     
     @IBOutlet weak var priceTextLabel: UILabel!
     @IBOutlet weak var priceTextField: UITextField!
@@ -30,6 +28,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     
     weak var delegate: EditExpensesViewControllerDelegate?
     
+    var pageTitle: String = ""
     var selectedExpense: Expense = Expense()
     
     var changeDateVC: ChangeDateViewController? = nil
@@ -46,7 +45,11 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.showTopView()
+        self.title = pageTitle
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
         self.priceTextField.text = self.selectedExpense.amount ?? ""
         self.priceTextLabel.text = self.selectedExpense.amount ?? "0.00"
@@ -70,19 +73,15 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.saveButton.layer.cornerRadius = 5
     }
     
-    //MARK: - top view
-    
-    func showTopView() {
-        let frame = self.topView.frame
-        if let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "", isForAdmin: false) {
-            vc.delegate = self
-            self.topView.addSubview(vc.view)
-            self.addChild(vc)
-            self.topHeaderVC = vc
-        }
-    }
-    
     //MARK: - helpers
+    
+    @objc func changedPrice() {
+        
+        let priceStr: String = self.priceTextField.text ?? "0.00"
+        let priceValue: Float = fabsf((priceStr as NSString).floatValue / 100.0)
+        self.amountData = String(format: "%0.2f", priceValue)
+        self.priceTextLabel.text = self.amountData
+    }
     
     func displayPaymentData() {
         
@@ -131,6 +130,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.clearKeyboards()
         
         if let vc = MEStoryboard.pv.vc as? PaymentsVendorsViewController {
+            vc.pageTitle = "Payment"
             vc.isForAdmin = false
             vc.isForPayments = true
             vc.delegate = self
@@ -142,6 +142,7 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.clearKeyboards()
         
         if let vc = MEStoryboard.pv.vc as? PaymentsVendorsViewController {
+            vc.pageTitle = "Vendor"
             vc.isForAdmin = false
             vc.isForPayments = false
             vc.delegate = self
@@ -182,8 +183,11 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.delegate?.didChangeExpenseData(data: self.selectedExpense, selectedDate: self.selectedDate, isForNew: self.isForNew, isDateChanged: self.isDateChanged)
         self.navigationController?.popViewController(animated: true)
     }
-    
-    //MARK: - text field delegate
+}
+
+//MARK: -
+
+extension EditExpensesViewController: UITextFieldDelegate {
     
     func clearKeyboards() {
         self.priceTextField.resignFirstResponder()
@@ -215,16 +219,11 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         
         return true
     }
-    
-    @objc func changedPrice() {
-        
-        let priceStr: String = self.priceTextField.text ?? "0.00"
-        let priceValue: Float = fabsf((priceStr as NSString).floatValue / 100.0)
-        self.amountData = String(format: "%0.2f", priceValue)
-        self.priceTextLabel.text = self.amountData
-    }
-    
-    //MARK: - class delegates
+}
+
+//MARK: -
+
+extension EditExpensesViewController: PaymentsVendorsViewControllerDelegate {
     
     func didSelectItem(isForPayment: Bool, name: String, id: String) {
         
@@ -239,6 +238,19 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
             self.displayVendorData()
         }
     }
+}
+
+//MARK: -
+
+extension EditExpensesViewController: ChangeDateViewControllerDelegate {
+    
+    func closeChangeDateView() {
+        
+        if let vc = self.changeDateVC {
+            vc.dismiss(animated: true, completion: nil)
+        }
+        self.changeDateVC = nil
+    }
     
     func cancelSelectDate() {
         self.closeChangeDateView()
@@ -250,26 +262,5 @@ class EditExpensesViewController: UIViewController, UITextFieldDelegate, Payment
         self.selectedDate = date
         self.isDateChanged = true
         self.displayDate()
-    }
-    
-    func closeChangeDateView() {
-        
-        if let vc = self.changeDateVC {
-            vc.dismiss(animated: true, completion: nil)
-        }
-        self.changeDateVC = nil
-    }
-
-}
-
-extension EditExpensesViewController: TopHeaderViewControllerDelegate {
-    
-    func goback() {
-        self.clearKeyboards()
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func showAdmin() {
-        //
     }
 }

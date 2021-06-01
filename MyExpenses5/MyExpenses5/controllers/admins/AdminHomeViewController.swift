@@ -10,7 +10,6 @@ import UIKit
 
 class AdminHomeViewController: UIViewController {
     
-    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var versionsLabel: UILabel!
     
@@ -22,11 +21,15 @@ class AdminHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Admin"
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        
         filmViewModel.delegate = self
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
-        
-        self.showTopView()
         self.loadMyFilms()
     }
     
@@ -38,19 +41,7 @@ class AdminHomeViewController: UIViewController {
         
         let appVersion = (Bundle.main.infoDictionary ?? [:])["CFBundleShortVersionString"] as? String ?? ""
         let build = (Bundle.main.infoDictionary ?? [:])["CFBundleVersion"] as? String ?? ""
-        self.versionsLabel.backgroundColor = UIColor.systemGray6
         self.versionsLabel.text = String(format: "Version: %@,  Build: %@", appVersion, build)
-    }
-    
-    //MARK: - top view
-    
-    func showTopView() {
-        let frame = self.topView.frame
-        if let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "Admin", isForAdmin: false) {
-            vc.delegate = self
-            self.topView.addSubview(vc.view)
-            self.addChild(vc)
-        }
     }
     
     //MARK: - my films list
@@ -65,6 +56,7 @@ class AdminHomeViewController: UIViewController {
         
         if let vc = MEStoryboard.pv.vc as? PaymentsVendorsViewController {
             vc.isForAdmin = true
+            vc.pageTitle = isForPayment ? "Payment" : "Vendor"
             vc.isForPayments = isForPayment
             vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
@@ -161,17 +153,6 @@ extension AdminHomeViewController: UITableViewDelegate {
 extension AdminHomeViewController: PaymentsVendorsViewControllerDelegate {
     
     func didSelectItem(isForPayment: Bool, name: String, id: String) {
-        //
-    }
-}
-
-extension AdminHomeViewController: TopHeaderViewControllerDelegate {
-    
-    func goback() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func showAdmin() {
         //
     }
 }

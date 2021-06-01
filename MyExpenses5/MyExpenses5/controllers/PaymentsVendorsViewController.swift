@@ -29,6 +29,8 @@ class PaymentsVendorsViewController: UIViewController {
     
     var viewModel: PaymentVendorViewModel = PaymentVendorViewModel()
     
+    var pageTitle: String = ""
+    
     var allPayments: [Payment] = []
     var allVendors: [Vendor] = []
     var vendorDisplayTitles: [String] = []
@@ -51,7 +53,13 @@ class PaymentsVendorsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.showTopView()
+        self.title = self.pageTitle
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        
+        //self.showTopView()
         self.addVendorReferences()
         
         self.viewModel.allPayments = self.appDele.paymentsList
@@ -97,15 +105,15 @@ class PaymentsVendorsViewController: UIViewController {
     
     //MARK: - top view
     
-    func showTopView() {
-        let frame = self.topView.frame
-        if let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "", isForAdmin: false) {
-            vc.delegate = self
-            self.topView.addSubview(vc.view)
-            self.addChild(vc)
-            self.topHeaderVC = vc
-        }
-    }
+//    func showTopView() {
+//        let frame = self.topView.frame
+//        if let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "", isForAdmin: false) {
+//            vc.delegate = self
+//            self.topView.addSubview(vc.view)
+//            self.addChild(vc)
+//            self.topHeaderVC = vc
+//        }
+//    }
     
     //MARK: - vendor refernece
     
@@ -277,16 +285,16 @@ extension PaymentsVendorsViewController: PaymentVendorViewModelDelegate {
     }
 }
 
-extension PaymentsVendorsViewController: TopHeaderViewControllerDelegate {
-    
-    func goback() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func showAdmin() {
-        //
-    }
-}
+//extension PaymentsVendorsViewController: TopHeaderViewControllerDelegate {
+//
+//    func goback() {
+//        self.navigationController?.popViewController(animated: true)
+//    }
+//
+//    func showAdmin() {
+//        //
+//    }
+//}
 
 extension PaymentsVendorsViewController: VendorReferencesViewControllerDelegate {
     

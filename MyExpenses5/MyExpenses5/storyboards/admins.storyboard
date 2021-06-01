@@ -17,16 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m28-Uc-i8j" userLabel="top view">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="dCs-EX-npp"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzO-xU-bon" userLabel="version label">
-                                <rect key="frame" x="10" y="88" width="394" height="22"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="10" y="44" width="394" height="22"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="l0Q-Pt-72I"/>
                                 </constraints>
@@ -35,7 +28,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="45" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="fH0-jw-tRx">
-                                <rect key="frame" x="10" y="110" width="394" height="742"/>
+                                <rect key="frame" x="10" y="66" width="394" height="786"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="itU-Nd-9QK" id="wov-Gu-4Je"/>
@@ -46,12 +39,9 @@
                         <viewLayoutGuide key="safeArea" id="BOr-wt-wNg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="m28-Uc-i8j" firstAttribute="top" secondItem="BOr-wt-wNg" secondAttribute="top" id="5sR-rq-B7E"/>
-                            <constraint firstItem="m28-Uc-i8j" firstAttribute="leading" secondItem="BOr-wt-wNg" secondAttribute="leading" id="7kV-sh-VJg"/>
-                            <constraint firstItem="NzO-xU-bon" firstAttribute="top" secondItem="m28-Uc-i8j" secondAttribute="bottom" id="RCG-hQ-oJf"/>
+                            <constraint firstItem="NzO-xU-bon" firstAttribute="top" secondItem="BOr-wt-wNg" secondAttribute="top" id="G3b-u1-Ejd"/>
                             <constraint firstItem="fH0-jw-tRx" firstAttribute="top" secondItem="NzO-xU-bon" secondAttribute="bottom" id="TYm-cc-m6b"/>
                             <constraint firstItem="NzO-xU-bon" firstAttribute="leading" secondItem="BOr-wt-wNg" secondAttribute="leading" constant="10" id="Y9H-kD-soQ"/>
-                            <constraint firstItem="m28-Uc-i8j" firstAttribute="trailing" secondItem="BOr-wt-wNg" secondAttribute="trailing" id="etd-zv-bgX"/>
                             <constraint firstItem="BOr-wt-wNg" firstAttribute="trailing" secondItem="fH0-jw-tRx" secondAttribute="trailing" constant="10" id="i9D-1a-mi2"/>
                             <constraint firstItem="BOr-wt-wNg" firstAttribute="trailing" secondItem="NzO-xU-bon" secondAttribute="trailing" constant="10" id="lTx-cD-atd"/>
                             <constraint firstItem="fH0-jw-tRx" firstAttribute="leading" secondItem="BOr-wt-wNg" secondAttribute="leading" constant="10" id="xzU-Vg-AkA"/>
@@ -62,7 +52,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="fH0-jw-tRx" id="vFN-As-E1U"/>
-                        <outlet property="topView" destination="m28-Uc-i8j" id="Icw-nY-B00"/>
                         <outlet property="versionsLabel" destination="NzO-xU-bon" id="KYZ-9z-sbx"/>
                     </connections>
                 </viewController>
