@@ -55,8 +55,8 @@ class EditExpensesViewController: UIViewController {
         self.priceTextLabel.text = self.selectedExpense.amount ?? "0.00"
         self.notesTextField.text = self.selectedExpense.note ?? ""
 
-        self.displayPaymentData()
-        self.displayVendorData()
+        self.displayPaymentData(isFirstTime: true)
+        self.displayVendorData(isFirstTime: true)
         self.displayInitialDate()
     }
     
@@ -83,16 +83,28 @@ class EditExpensesViewController: UIViewController {
         self.priceTextLabel.text = self.amountData
     }
     
-    func displayPaymentData() {
+    func displayPaymentData(isFirstTime: Bool) {
+        var title = ""
         
-        let title = self.isForNew ? "select a payment" : String(format: "%@ (%@)", (self.selectedExpense.payment ?? ""), (self.selectedExpense.payment_id ?? "0"))
+        if isFirstTime {
+            title = self.isForNew ? "select a payment" : String(format: "%@ (%@)", (self.selectedExpense.payment ?? ""), (self.selectedExpense.payment_id ?? "0"))
+        }
+        else {
+            title = String(format: "%@ (%@)", (self.selectedExpense.payment ?? ""), (self.selectedExpense.payment_id ?? "0"))
+        }
         self.selectPaymentButton.setTitle(title, for: UIControl.State.normal)
         self.selectPaymentButton.setTitle(title, for: UIControl.State.highlighted)
     }
     
-    func displayVendorData() {
+    func displayVendorData(isFirstTime: Bool) {
+        var title = ""
         
-        let title = self.isForNew ? "select a vendor" : String(format: "%@ (%@)", (self.selectedExpense.vendor ?? ""), (self.selectedExpense.vendor_id ?? "0"))
+        if isFirstTime {
+            title = self.isForNew ? "select a vendor" : String(format: "%@ (%@)", (self.selectedExpense.vendor ?? ""), (self.selectedExpense.vendor_id ?? "0"))
+        }
+        else {
+            title = String(format: "%@ (%@)", (self.selectedExpense.vendor ?? ""), (self.selectedExpense.vendor_id ?? "0"))
+        }
         self.selectVendorButton.setTitle(title, for: UIControl.State.normal)
         self.selectVendorButton.setTitle(title, for: UIControl.State.highlighted)
     }
@@ -230,12 +242,12 @@ extension EditExpensesViewController: PaymentsVendorsViewControllerDelegate {
         if isForPayment == true {
             self.selectedExpense.payment = name
             self.selectedExpense.payment_id = id
-            self.displayPaymentData()
+            self.displayPaymentData(isFirstTime: false)
         }
         else {
             self.selectedExpense.vendor = name
             self.selectedExpense.vendor_id = id
-            self.displayVendorData()
+            self.displayVendorData(isFirstTime: false)
         }
     }
 }

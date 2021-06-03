@@ -101,13 +101,14 @@ class MyExpHomeViewController: UIViewController {
         if let vc = MEStoryboard.home(MEHomePage.saveExp).vc as? EditExpensesViewController {
             vc.delegate = self
             vc.isForNew = (model == nil)
-            vc.selectedExpense = model ?? Expense()
+            vc.pageTitle = (model == nil) ? "Add" : "Edit"
+            vc.selectedDate = self.selectedDate
             
-            vc.pageTitle = "Edit"
-            if model == nil {
-                vc.pageTitle = "Add"
-                vc.selectedDate = self.selectedDate
-            }
+//            if model == nil {
+//                vc.selectedDate = self.selectedDate
+//            }
+            
+            vc.selectedExpense = model ?? Expense()
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
