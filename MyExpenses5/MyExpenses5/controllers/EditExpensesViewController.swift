@@ -26,6 +26,8 @@ class EditExpensesViewController: UIViewController {
     @IBOutlet weak var changeDateButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
+    @IBOutlet weak var titleView: UIView!
+    
     weak var delegate: EditExpensesViewControllerDelegate?
     
     var pageTitle: String = ""
@@ -62,6 +64,7 @@ class EditExpensesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.showTitleView()
         
         self.topHeaderVC?.changeTitle(title: (self.isForNew ? "Add" : "Edit"))
         
@@ -71,6 +74,28 @@ class EditExpensesViewController: UIViewController {
         self.selectVendorButton.layer.cornerRadius = 5
         self.changeDateButton.layer.cornerRadius = 5
         self.saveButton.layer.cornerRadius = 5
+    }
+    
+    //MARK: - title view
+    
+    func showTitleView() {
+        
+        let storyboard = UIStoryboard(name: "sharedHeader", bundle: nil)
+        if let vc = storyboard.instantiateViewController(identifier: "SharedHeaderViewController") as? SharedHeaderViewController {
+            
+            let frame = self.titleView.frame
+            vc.view.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+            self.titleView.addSubview(vc.view)
+            
+            vc.backButton.addTarget(self, action: #selector(toClosePage), for: .touchUpInside)
+            
+            self.addChild(vc)
+            vc.showData(title: (self.isForNew ? "Add" : "Edit"))
+        }
+    }
+    
+    @objc func toClosePage() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     //MARK: - helpers

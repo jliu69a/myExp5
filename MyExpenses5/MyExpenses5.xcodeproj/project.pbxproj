@@ -57,6 +57,8 @@
 		FEB62EF5261A43F100725848 /* FilmsHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB62EF4261A43F100725848 /* FilmsHomeViewController.swift */; };
 		FEB62EF8261A445F00725848 /* FilmsHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */; };
 		FECD2D0A25F2E5B400410E7C /* TopBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECD2D0925F2E5B400410E7C /* TopBarManager.swift */; };
+		FEE35C5A26C831920081BAD9 /* SharedHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */; };
+		FEE35C5C26C831B10081BAD9 /* sharedHeader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +116,8 @@
 		FEB62EF4261A43F100725848 /* FilmsHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsHomeViewController.swift; sourceTree = "<group>"; };
 		FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsHomeViewModel.swift; sourceTree = "<group>"; };
 		FECD2D0925F2E5B400410E7C /* TopBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarManager.swift; sourceTree = "<group>"; };
+		FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHeaderViewController.swift; sourceTree = "<group>"; };
+		FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = sharedHeader.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */,
+				FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				FE1F566625F071D200743825 /* topheader.storyboard */,
+				FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -385,6 +391,7 @@
 				5A87AB8D24C134A0009792A1 /* myExp_more.png in Resources */,
 				5A90E45F24E05E84005C42A3 /* ExpLookupCell.xib in Resources */,
 				5A97C78024C12E050019E2B4 /* Main.storyboard in Resources */,
+				FEE35C5C26C831B10081BAD9 /* sharedHeader.storyboard in Resources */,
 				FE329FC0261A1C3C0092BFAC /* FilmsCell.xib in Resources */,
 				5A8BAAB424C33EC50033B46A /* pandv.storyboard in Resources */,
 				5A87AB9124C134C7009792A1 /* ExpenseCell.xib in Resources */,
@@ -460,6 +467,7 @@
 				FECD2D0A25F2E5B400410E7C /* TopBarManager.swift in Sources */,
 				5A1CDDB824C26C9400E83452 /* EditExpensesViewController.swift in Sources */,
 				5A90E45B24E03471005C42A3 /* ExpensesLookupViewController.swift in Sources */,
+				FEE35C5A26C831920081BAD9 /* SharedHeaderViewController.swift in Sources */,
 				5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */,
 				5A8BAAB024C336440033B46A /* PAndVCell.swift in Sources */,
 				FEB3255A25F43D6C002B20A4 /* VendorReferencesViewController.swift in Sources */,
