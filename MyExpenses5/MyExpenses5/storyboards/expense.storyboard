@@ -264,14 +264,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Au-Fh-if2" userLabel="title view">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="7HO-fJ-Obn"/>
+                                    <constraint firstAttribute="height" id="7HO-fJ-Obn"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIh-G6-Ljj" userLabel="price label">
-                                <rect key="frame" x="47.5" y="70" width="280" height="20"/>
+                                <rect key="frame" x="47.5" y="26" width="280" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="5gj-h4-FyG"/>
@@ -282,13 +282,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5l0-tu-RrU" userLabel="price text label">
-                                <rect key="frame" x="54.5" y="90" width="266" height="30"/>
+                                <rect key="frame" x="54.5" y="46" width="266" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ga-7c-k1U" userLabel="price text field">
-                                <rect key="frame" x="47.5" y="90" width="280" height="30"/>
+                                <rect key="frame" x="47.5" y="46" width="280" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="5UM-Vh-4XC"/>
@@ -302,7 +302,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Oo-sp-PTv">
-                                <rect key="frame" x="47.5" y="140" width="280" height="20"/>
+                                <rect key="frame" x="47.5" y="96" width="280" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Abf-xu-P39"/>
@@ -313,7 +313,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="notes" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yBs-JI-oje" userLabel="notes text field">
-                                <rect key="frame" x="47.5" y="160" width="280" height="30"/>
+                                <rect key="frame" x="47.5" y="116" width="280" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="bqx-4a-ePE"/>
                                     <constraint firstAttribute="width" constant="280" id="hQY-eU-wlV"/>
@@ -325,7 +325,7 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btV-wW-E4t" userLabel="payment label">
-                                <rect key="frame" x="47.5" y="210" width="280" height="20"/>
+                                <rect key="frame" x="47.5" y="166" width="280" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="76B-jZ-Csn"/>
@@ -336,7 +336,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCx-dn-6BK" userLabel="payment button">
-                                <rect key="frame" x="47.5" y="230" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="186" width="280" height="40"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="0ys-YQ-EM8"/>
@@ -350,7 +350,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vendor:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMV-2K-HB6" userLabel="vendor label">
-                                <rect key="frame" x="47.5" y="290" width="280" height="20"/>
+                                <rect key="frame" x="47.5" y="246" width="280" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="2zq-k1-CeL"/>
@@ -361,7 +361,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hX4-bD-ini" userLabel="vendor button">
-                                <rect key="frame" x="47.5" y="310" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="266" width="280" height="40"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bf1-V5-vEr"/>
@@ -375,7 +375,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mij-RW-n4N" userLabel="date label">
-                                <rect key="frame" x="47.5" y="370" width="280" height="20"/>
+                                <rect key="frame" x="47.5" y="326" width="280" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="QMF-5V-aEP"/>
@@ -386,7 +386,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qt-Nn-A64" userLabel="date button">
-                                <rect key="frame" x="47.5" y="390" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="346" width="280" height="40"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="n3P-GL-uEh"/>
@@ -400,7 +400,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1zT-2x-usO">
-                                <rect key="frame" x="87.5" y="470" width="200" height="40"/>
+                                <rect key="frame" x="87.5" y="426" width="200" height="40"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Oew-RZ-JLP"/>
@@ -419,6 +419,7 @@
                         <constraints>
                             <constraint firstItem="aIh-G6-Ljj" firstAttribute="centerX" secondItem="TJq-hd-dJ6" secondAttribute="centerX" id="0Fb-Mw-zaD"/>
                             <constraint firstItem="5l0-tu-RrU" firstAttribute="bottom" secondItem="0ga-7c-k1U" secondAttribute="bottom" id="3Q7-1p-IOQ"/>
+                            <constraint firstItem="aIh-G6-Ljj" firstAttribute="top" secondItem="5Au-Fh-if2" secondAttribute="bottom" constant="26" id="5I0-dt-ZTY"/>
                             <constraint firstItem="btV-wW-E4t" firstAttribute="centerX" secondItem="TJq-hd-dJ6" secondAttribute="centerX" id="70n-Vq-kyc"/>
                             <constraint firstItem="MMV-2K-HB6" firstAttribute="top" secondItem="wCx-dn-6BK" secondAttribute="bottom" constant="20" id="7Wd-Jx-ofB"/>
                             <constraint firstItem="hX4-bD-ini" firstAttribute="top" secondItem="MMV-2K-HB6" secondAttribute="bottom" id="BFi-5t-JXa"/>
@@ -437,7 +438,6 @@
                             <constraint firstItem="yBs-JI-oje" firstAttribute="centerX" secondItem="TJq-hd-dJ6" secondAttribute="centerX" id="aXC-sS-8Ou"/>
                             <constraint firstItem="6Oo-sp-PTv" firstAttribute="centerX" secondItem="TJq-hd-dJ6" secondAttribute="centerX" id="aa2-Fh-dZa"/>
                             <constraint firstItem="wCx-dn-6BK" firstAttribute="top" secondItem="btV-wW-E4t" secondAttribute="bottom" id="bJ9-cJ-exG"/>
-                            <constraint firstItem="aIh-G6-Ljj" firstAttribute="top" secondItem="bzq-vf-AQc" secondAttribute="top" constant="70" id="gJH-Te-MAW"/>
                             <constraint firstItem="5l0-tu-RrU" firstAttribute="top" secondItem="0ga-7c-k1U" secondAttribute="top" id="gXH-Hc-TTY"/>
                             <constraint firstItem="btV-wW-E4t" firstAttribute="top" secondItem="yBs-JI-oje" secondAttribute="bottom" constant="20" id="hni-B6-cF6"/>
                             <constraint firstItem="5Au-Fh-if2" firstAttribute="top" secondItem="bzq-vf-AQc" secondAttribute="top" id="iVH-Wi-d4w"/>

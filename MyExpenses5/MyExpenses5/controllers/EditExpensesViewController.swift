@@ -64,7 +64,9 @@ class EditExpensesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.showTitleView()
+        
+        //-- not to use
+        //self.showTitleView()
         
         self.topHeaderVC?.changeTitle(title: (self.isForNew ? "Add" : "Edit"))
         
@@ -80,6 +82,7 @@ class EditExpensesViewController: UIViewController {
     
     func showTitleView() {
         
+        //-- not to use
         let storyboard = UIStoryboard(name: "sharedHeader", bundle: nil)
         if let vc = storyboard.instantiateViewController(identifier: "SharedHeaderViewController") as? SharedHeaderViewController {
             
@@ -95,6 +98,7 @@ class EditExpensesViewController: UIViewController {
     }
     
     @objc func toClosePage() {
+        //-- not to use
         self.navigationController?.popViewController(animated: true)
     }
     
