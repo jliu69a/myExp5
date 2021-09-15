@@ -28,5 +28,5 @@ NOTE: "dev_6" is the latest branch now.  the "dev_4" is being removed.
 
 
 3,
-keep in mind that, when commit the changes, all of the system atuo-updates can be disregarded.  only the code changes are committed in, and this will make the branches merging smoothly.
+keep in mind that, when commit the changes, all of the system auto-updates can be disregarded.  only the code changes are committed in, and this will make the branches merging smoothly.
 
