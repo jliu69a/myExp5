@@ -44,15 +44,10 @@ class FilmsHomeViewModel {
     
     func loadingFilms(completion: @escaping () -> Void) {
         
-        let url: String = "http://www.mysohoplace.com/php_hdb/php_Film_List/preload_film_data.php"
-        let connect: ConnectionsManager = ConnectionsManager()
-        
-        connect.getDataFromUrl(url: url) { [weak self] (data: Any) in
-            if let rawData = data as? Data {
-                let filmsList: [FilmsData] = self?.filmsData(data: rawData) ?? []
-                self?.parseFilmsListData(filmsList: filmsList)
-                completion()
-            }
+        DatasManager.sharedInstance.loadFilmsData { [weak self] (rawData: Data) in
+            let filmsList: [FilmsData] = self?.filmsData(data: rawData) ?? []
+            self?.parseFilmsListData(filmsList: filmsList)
+            completion()
         }
     }
     

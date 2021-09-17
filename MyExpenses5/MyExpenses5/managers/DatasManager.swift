@@ -90,16 +90,14 @@ class DatasManager: NSObject {
     
     //MARK: - save changes
     
-    func saveMyexpsWithParameters(parameters: [String: Any], completion: @escaping  (Any)->()) {
+    func saveMyexpsWithParameters(parameters: [String: Any], completion: @escaping  (Data)->()) {
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expenses_change.php", folder)
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
             if let rawData = data as? Data {
-                let myexpsList: [EditMyExpsData] = self.parseSaveMyexpsWithParameters(data: rawData)
-                let value: Any = myexpsList as Any
-                completion(value)
+                completion(rawData)
             }
         }
     }
@@ -124,16 +122,14 @@ class DatasManager: NSObject {
     
     //MARK: - save payment / vendor
     
-    func savePaymentsAndVendors(parameters: [String: Any], completion: @escaping  (Any)->()) {
+    func savePaymentsAndVendors(parameters: [String: Any], completion: @escaping  (Data)->()) {
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_edit.php", folder)
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
             if let rawData = data as? Data {
-                let myexpsList: [ChangePVData] = self.parseSavePaymentsAndVendors(data: rawData)
-                let value: Any = myexpsList as Any
-                completion(value)
+                completion(rawData)
             }
         }
     }
@@ -272,5 +268,19 @@ class DatasManager: NSObject {
         
         return dataList
     }
-
+    
+    //MARK: - film data
+    
+    func loadFilmsData(completion: @escaping  (Data)->()) {
+        
+        let url: String = "http://www.mysohoplace.com/php_hdb/php_Film_List/preload_film_data.php"
+        let connect: ConnectionsManager = ConnectionsManager()
+        
+        connect.getDataFromUrl(url: url) { (data: Any) in
+            if let rawData = data as? Data {
+                completion(rawData)
+            }
+        }
+    }
+    
 }

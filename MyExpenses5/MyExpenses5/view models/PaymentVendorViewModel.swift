@@ -140,15 +140,10 @@ extension PaymentVendorViewModel {
         
         let parameters: [String: Any] = ["id": (idValue as Any), "name": (name as Any), "ispayment": (isPaymentValue as Any), "edit":(isEditValue as Any)]
         
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_edit.php", self.appDele.folder)
-        let connect: ConnectionsManager = ConnectionsManager()
-        
-        connect.saveDataFromUrl(url: url, parameters: parameters) { [weak self] (data: Any) in
-            if let rawData = data as? Data {
-                let pvList: [ChangePVData] = self?.parseSavePaymentsAndVendors(data: rawData) ?? []
-                self?.parseSavedPVData(myPVList: pvList)
-                completion()
-            }
+        DatasManager.sharedInstance.savePaymentsAndVendors(parameters: parameters) { [weak self] (rawData: Data) in
+            let pvList: [ChangePVData] = self?.parseSavePaymentsAndVendors(data: rawData) ?? []
+            self?.parseSavedPVData(myPVList: pvList)
+            completion()
         }
     }
     

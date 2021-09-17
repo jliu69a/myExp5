@@ -201,15 +201,10 @@ extension ExpsHomeViewModel {
         
         let parameters: [String: Any] = self.createParameters(data: data, actionCode: actionCode)
         
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expenses_change.php", self.appDele.folder)
-        let connect: ConnectionsManager = ConnectionsManager()
-        
-        connect.saveDataFromUrl(url: url, parameters: parameters) { [weak self] (data: Any) in
-            if let rawData = data as? Data {
-                let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
-                self?.parseSavedExpsData(myexpsList: myexpsList)
-                completion()
-            }
+        DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { [weak self] (rawData: Data) in
+            let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
+            self?.parseSavedExpsData(myexpsList: myexpsList)
+            completion()
         }
     }
     
