@@ -23,21 +23,18 @@ class DatasManager: NSObject {
     
     //MARK: - myexp preload data
     
-    func myExpsData(selectedDate: Date, completion: @escaping  (Any)->()) {
+    func myExpsData(selectedDate: Date, completion: @escaping  (Data)->()) {
         
         let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/preload_data.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
         
         connect.getDataFromUrl(url: url) { (data: Any) in
-            if let rawData = data as? Data {
-                let myexpsList: [MyExpsData] = self.parseMyExpsData(data: rawData)
-                let value: Any = myexpsList as Any
-                completion(value)
-            }
+            let myexpData: Data = data as! Data
+            completion(myexpData)
         }
     }
-    
+
     func parseMyExpsData(data: Data) -> [MyExpsData] {
         
         let json = try? JSON(data: data)

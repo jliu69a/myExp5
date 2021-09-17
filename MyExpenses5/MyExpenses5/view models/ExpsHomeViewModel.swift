@@ -67,18 +67,13 @@ extension ExpsHomeViewModel {
     
     func loadingMyExpenses(selectedDate: Date, completion: @escaping () -> Void) {
         
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/preload_data.php?date=%@", self.appDele.folder, selectedDate.dateToText(formate: "yyyy-MM-dd"))
-        let connect: ConnectionsManager = ConnectionsManager()
-        
-        connect.getDataFromUrl(url: url) { [weak self] (data: Any) in
-            if let rawData = data as? Data {
-                let myexpsList: [MyExpsData] = self?.myExpensesData(data: rawData) ?? []
-                self?.parseMyExpsData(myexpsList: myexpsList)
-                completion()
-            }
+        DatasManager.sharedInstance.myExpsData(selectedDate: selectedDate) { [weak self] (rawData: Data) in
+            let myexpsList: [MyExpsData] = self?.myExpensesData(data: rawData) ?? []
+            self?.parseMyExpsData(myexpsList: myexpsList)
+            completion()
         }
     }
-
+    
     func myExpensesData(data: Data) -> [MyExpsData] {
         
         let json = try? JSON(data: data)
