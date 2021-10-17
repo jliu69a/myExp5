@@ -21,6 +21,18 @@ class DatasManager: NSObject {
     let kVendorCode: Int = 3
     
     
+    //MARK: - unit testing
+    
+    var testDataString = ""
+    
+    func testingForData(urlString: String) {
+        let connect: ConnectionsManager = ConnectionsManager()
+        connect.getDataFromUrl(url: urlString) { (data: Any) in
+            let rawData: Data = data as! Data
+            self.testDataString = String(decoding: rawData, as: UTF8.self)
+        }
+    }
+    
     //MARK: - myexp preload data
     
     func myExpsData(selectedDate: Date, completion: @escaping  (Data)->()) {

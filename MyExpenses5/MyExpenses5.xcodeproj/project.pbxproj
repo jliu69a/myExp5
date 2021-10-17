@@ -47,6 +47,7 @@
 		5AF26FC624CBA8550042DE15 /* AdminPVAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF26FC524CBA8550042DE15 /* AdminPVAddEditViewController.swift */; };
 		5AFBAE1E24F1763100F87276 /* ExpLookupDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFBAE1D24F1763100F87276 /* ExpLookupDisplayViewController.swift */; };
 		94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */; };
+		FE15E8FC271C75EA00913558 /* MyExp5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE15E8FB271C75EA00913558 /* MyExp5Tests.swift */; };
 		FE1F566325F06F1C00743825 /* TopHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */; };
 		FE1F566725F071D200743825 /* topheader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE1F566625F071D200743825 /* topheader.storyboard */; };
 		FE329FBF261A1C3C0092BFAC /* FilmsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE329FBD261A1C3C0092BFAC /* FilmsCell.swift */; };
@@ -60,6 +61,16 @@
 		FEE35C5A26C831920081BAD9 /* SharedHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */; };
 		FEE35C5C26C831B10081BAD9 /* sharedHeader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FE15E8FE271C75EA00913558 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5A97C76D24C12E050019E2B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5A97C77424C12E050019E2B4;
+			remoteInfo = MyExpenses5;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		5A072FD424DEFA14009DA0A4 /* LookupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupModel.swift; sourceTree = "<group>"; };
@@ -106,6 +117,9 @@
 		95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyExpenses5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7E7A5EB671D2EB1790CB4C /* Pods-MyExpenses5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.debug.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.debug.xcconfig"; sourceTree = "<group>"; };
 		D3D82A40FD8B16F17D98AD67 /* Pods-MyExpenses5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.release.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.release.xcconfig"; sourceTree = "<group>"; };
+		FE15E8F9271C75EA00913558 /* MyExp5Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyExp5Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE15E8FB271C75EA00913558 /* MyExp5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExp5Tests.swift; sourceTree = "<group>"; };
+		FE15E8FD271C75EA00913558 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderViewController.swift; sourceTree = "<group>"; };
 		FE1F566625F071D200743825 /* topheader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = topheader.storyboard; sourceTree = "<group>"; };
 		FE329FBD261A1C3C0092BFAC /* FilmsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsCell.swift; sourceTree = "<group>"; };
@@ -126,6 +140,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE15E8F6271C75EA00913558 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				5A97C77724C12E050019E2B4 /* MyExpenses5 */,
+				FE15E8FA271C75EA00913558 /* MyExp5Tests */,
 				5A97C77624C12E050019E2B4 /* Products */,
 				4AC9B4FD6DD80E42202ED767 /* Pods */,
 				09B7087C37D9605A6AC9F57F /* Frameworks */,
@@ -202,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				5A97C77524C12E050019E2B4 /* MyExp 5.1.app */,
+				FE15E8F9271C75EA00913558 /* MyExp5Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -286,6 +309,15 @@
 			path = admins;
 			sourceTree = "<group>";
 		};
+		FE15E8FA271C75EA00913558 /* MyExp5Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FE15E8FB271C75EA00913558 /* MyExp5Tests.swift */,
+				FE15E8FD271C75EA00913558 /* Info.plist */,
+			);
+			path = MyExp5Tests;
+			sourceTree = "<group>";
+		};
 		FE1F566025F06EDF00743825 /* shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,6 +376,24 @@
 			productReference = 5A97C77524C12E050019E2B4 /* MyExp 5.1.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FE15E8F8271C75EA00913558 /* MyExp5Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE15E900271C75EA00913558 /* Build configuration list for PBXNativeTarget "MyExp5Tests" */;
+			buildPhases = (
+				FE15E8F5271C75EA00913558 /* Sources */,
+				FE15E8F6271C75EA00913558 /* Frameworks */,
+				FE15E8F7271C75EA00913558 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE15E8FF271C75EA00913558 /* PBXTargetDependency */,
+			);
+			name = MyExp5Tests;
+			productName = MyExp5Tests;
+			productReference = FE15E8F9271C75EA00913558 /* MyExp5Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -356,6 +406,10 @@
 				TargetAttributes = {
 					5A97C77424C12E050019E2B4 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					FE15E8F8271C75EA00913558 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 5A97C77424C12E050019E2B4;
 					};
 				};
 			};
@@ -373,6 +427,7 @@
 			projectRoot = "";
 			targets = (
 				5A97C77424C12E050019E2B4 /* MyExpenses5 */,
+				FE15E8F8271C75EA00913558 /* MyExp5Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -399,6 +454,13 @@
 				5A8BAAB124C336440033B46A /* PAndVCell.xib in Resources */,
 				FE1F566725F071D200743825 /* topheader.storyboard in Resources */,
 				5A87AB8E24C134A0009792A1 /* myExp_plus.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE15E8F7271C75EA00913558 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +550,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE15E8F5271C75EA00913558 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE15E8FC271C75EA00913558 /* MyExp5Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FE15E8FF271C75EA00913558 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5A97C77424C12E050019E2B4 /* MyExpenses5 */;
+			targetProxy = FE15E8FE271C75EA00913558 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		5A97C77E24C12E050019E2B4 /* Main.storyboard */ = {
@@ -668,6 +746,50 @@
 			};
 			name = Release;
 		};
+		FE15E901271C75EA00913558 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WSH8T4CK9T;
+				INFOPLIST_FILE = MyExp5Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Home-Office.MyExp5Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyExp 5.1.app/MyExp 5.1";
+			};
+			name = Debug;
+		};
+		FE15E902271C75EA00913558 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WSH8T4CK9T;
+				INFOPLIST_FILE = MyExp5Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Home-Office.MyExp5Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyExp 5.1.app/MyExp 5.1";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -685,6 +807,15 @@
 			buildConfigurations = (
 				5A97C78A24C12E060019E2B4 /* Debug */,
 				5A97C78B24C12E060019E2B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE15E900271C75EA00913558 /* Build configuration list for PBXNativeTarget "MyExp5Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE15E901271C75EA00913558 /* Debug */,
+				FE15E902271C75EA00913558 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
