@@ -146,7 +146,9 @@ extension ExpsHomeViewModel {
         }
         
         let top10Key: String = "Top 10"
-        self.appDele.vendorDisplayTitles.append(top10Key)
+        if !self.appDele.vendorDisplayTitles.contains(top10Key) {
+            self.appDele.vendorDisplayTitles.append(top10Key)
+        }
         self.appDele.vendorDisplayData[top10Key] = self.appDele.top10sList as AnyObject
         
         let letters: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
