@@ -60,6 +60,7 @@
 		FECD2D0A25F2E5B400410E7C /* TopBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECD2D0925F2E5B400410E7C /* TopBarManager.swift */; };
 		FEE35C5A26C831920081BAD9 /* SharedHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */; };
 		FEE35C5C26C831B10081BAD9 /* sharedHeader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */; };
+		FEF726622734363D00A85326 /* VendorsLookupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,7 @@
 		FECD2D0925F2E5B400410E7C /* TopBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarManager.swift; sourceTree = "<group>"; };
 		FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHeaderViewController.swift; sourceTree = "<group>"; };
 		FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = sharedHeader.storyboard; sourceTree = "<group>"; };
+		FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsLookupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 				5A8F7574255C5ECE00612AE4 /* PaymentVendorViewModel.swift */,
 				5A3A578E256951710033EDAB /* AdminHomeViewModel.swift */,
 				FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */,
+				FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */,
 			);
 			path = "view models";
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				5A072FD524DEFA14009DA0A4 /* LookupModel.swift in Sources */,
 				5A97C77B24C12E050019E2B4 /* SceneDelegate.swift in Sources */,
 				5AF26FC624CBA8550042DE15 /* AdminPVAddEditViewController.swift in Sources */,
+				FEF726622734363D00A85326 /* VendorsLookupViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

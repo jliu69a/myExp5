@@ -21,6 +21,8 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var startNewLookupButton: UIButton!
     @IBOutlet weak var yearLabel: UILabel!
     
+    let viewModel = VendorsLookupViewModel()
+    
     var selectedYear: String = "0"
     var selectedVendorId: String = "0"
     var selectedVendorName: String = "select a vendor"
@@ -38,7 +40,7 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
         
         self.showTopView()
         
-        MyExpDataManager.sharedInstance.clearVendorLookupData()
+        viewModel.clearVendorLookupData()
         
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
         
@@ -85,11 +87,9 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
     
     @IBAction func lookupAction(_ sender: Any) {
         
-        MyExpDataManager.sharedInstance.vendorsLookupData(year: self.selectedYear, vendorId: self.selectedVendorId) { (any: Any) in
+        viewModel.vendorsLookupData(year: self.selectedYear, vendorId: self.selectedVendorId) { (any: Any) in
             DispatchQueue.main.async {
                 self.showResultView()
-                self.lookupTitlesList = MyExpDataManager.sharedInstance.lookupTitlesList
-                self.lookupData = MyExpDataManager.sharedInstance.lookupData
                 self.tableView.reloadData()
             }
         }
@@ -120,7 +120,7 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
     
     @IBAction func startNewLookupAction(_ sender: Any) {
         
-        MyExpDataManager.sharedInstance.clearVendorLookupData()
+        self.viewModel.clearVendorLookupData()
         self.hideResultView()
         self.tableView.setContentOffset(CGPoint.zero, animated: false)
     }
@@ -143,14 +143,11 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
     //MARK: - table view source
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.lookupTitlesList.count
+        return viewModel.lookupSections()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        let title = self.lookupTitlesList[section]
-        let model = self.lookupData[title] ?? LookupModel()
-        return model.exps.count
+        return viewModel.lookupItemForSection(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -161,18 +158,13 @@ class VendorsLookupViewController: UIViewController, UITableViewDataSource, UITa
         
         cell.isForLookup = true
         
-        let title = self.lookupTitlesList[indexPath.section]
-        let model = self.lookupData[title] ?? LookupModel()
-        let expsData = model.exps[indexPath.row]
+        let expsData = viewModel.lookupData(indexPath: indexPath)
         cell.displayModelData(data: expsData)
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        let title = self.lookupTitlesList[section]
-        let model = self.lookupData[title] ?? LookupModel()
-        return String(format: "%@ (total = %0.2f)", model.date, model.total)
+        return viewModel.lookupTitleForSection(section: section)
     }
     
     //MARK: - table view delegate
