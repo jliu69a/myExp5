@@ -53,6 +53,7 @@
 		FE329FBF261A1C3C0092BFAC /* FilmsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE329FBD261A1C3C0092BFAC /* FilmsCell.swift */; };
 		FE329FC0261A1C3C0092BFAC /* FilmsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE329FBE261A1C3C0092BFAC /* FilmsCell.xib */; };
 		FE329FC5261A24A90092BFAC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE329FC4261A24A90092BFAC /* Date+Extension.swift */; };
+		FE5858E6273477EF00542779 /* ExpsLookupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */; };
 		FEB3255A25F43D6C002B20A4 /* VendorReferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3255925F43D6C002B20A4 /* VendorReferencesViewController.swift */; };
 		FEB3255D25F44144002B20A4 /* VendorReferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3255C25F44144002B20A4 /* VendorReferenceCell.swift */; };
 		FEB62EF5261A43F100725848 /* FilmsHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB62EF4261A43F100725848 /* FilmsHomeViewController.swift */; };
@@ -126,6 +127,7 @@
 		FE329FBD261A1C3C0092BFAC /* FilmsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsCell.swift; sourceTree = "<group>"; };
 		FE329FBE261A1C3C0092BFAC /* FilmsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilmsCell.xib; sourceTree = "<group>"; };
 		FE329FC4261A24A90092BFAC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpsLookupViewModel.swift; sourceTree = "<group>"; };
 		FEB3255925F43D6C002B20A4 /* VendorReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorReferencesViewController.swift; sourceTree = "<group>"; };
 		FEB3255C25F44144002B20A4 /* VendorReferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorReferenceCell.swift; sourceTree = "<group>"; };
 		FEB62EF4261A43F100725848 /* FilmsHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsHomeViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				5A3A578E256951710033EDAB /* AdminHomeViewModel.swift */,
 				FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */,
 				FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */,
+				FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */,
 			);
 			path = "view models";
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				FEB62EF8261A445F00725848 /* FilmsHomeViewModel.swift in Sources */,
 				5AFBAE1E24F1763100F87276 /* ExpLookupDisplayViewController.swift in Sources */,
 				5A87AB7E24C133D4009792A1 /* ConnectionsManager.swift in Sources */,
+				FE5858E6273477EF00542779 /* ExpsLookupViewModel.swift in Sources */,
 				FEB62EF5261A43F100725848 /* FilmsHomeViewController.swift in Sources */,
 				FE329FBF261A1C3C0092BFAC /* FilmsCell.swift in Sources */,
 				5A97C77D24C12E050019E2B4 /* ViewController.swift in Sources */,

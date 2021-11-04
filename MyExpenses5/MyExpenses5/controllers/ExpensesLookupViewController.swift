@@ -21,6 +21,7 @@ class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewCont
     @IBOutlet weak var collectionView: UICollectionView!
     
     let maxDayNumber: Int = 42
+    let viewModel = ExpsLookupViewModel()
     
     var selectedYear: Int = 0
     var selectedMonth: Int = 0
@@ -91,7 +92,7 @@ class ExpensesLookupViewController: UIViewController, SelectMonthAndYearViewCont
     func myexpWithYearAndMonth(year: String, month: String) {
         self.expsLookupList.removeAll()
         
-        MyExpDataManager.sharedInstance.expsLookupData(year: year, month: month) { (any: Any) in
+        viewModel.expsLookupData(year: year, month: month) { (any: Any) in
             DispatchQueue.main.async {
                 self.expsLookupList = any as? [Expense] ?? []
                 self.parseExpsLookupData()

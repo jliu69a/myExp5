@@ -22,13 +22,8 @@ class MyExpDataManager: NSObject {
     var vendorList: [Vendor] = []
     var top10List: [Vendor] = []
     
-    var expenseLookupList: [Expense] = []
-    
     var vendorDisplayTitles: [String] = []
     var vendorDisplayData: [String: [Vendor]] = [:]
-    
-    var lookupTitlesList: [String] = []
-    var lookupData: [String: LookupModel] = [:]
     
     let kPaymentsAndVendorsPageRefreshNotification: String = "Payments_And_Vendors_Page_Refresh_Notification"
     
@@ -105,19 +100,5 @@ class MyExpDataManager: NSObject {
             return ""
         }
         return String(firstChar)
-    }
-    
-    //MARK: - get myexp data
-    
-    func expsLookupData(year: String, month: String, completion: @escaping  (Any)->()) {
-        
-        DatasManager.sharedInstance.expenseLookup(year: year, month: month)  { (any: Any) in
-            DispatchQueue.main.async {
-                let dataList = any as? [Expense] ?? []
-                self.expenseLookupList = dataList
-                let value: Any = self.expenseLookupList as Any
-                completion(value)
-            }
-        }
     }
 }

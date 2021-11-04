@@ -9,5 +9,19 @@
 import UIKit
 
 class ExpsLookupViewModel: NSObject {
-
+    
+    var expenseLookupList: [Expense] = []
+    
+    func expsLookupData(year: String, month: String, completion: @escaping  (Any)->()) {
+        
+        DatasManager.sharedInstance.expenseLookup(year: year, month: month)  { (any: Any) in
+            DispatchQueue.main.async {
+                let dataList = any as? [Expense] ?? []
+                self.expenseLookupList = dataList
+                let value: Any = self.expenseLookupList as Any
+                completion(value)
+            }
+        }
+    }
+    
 }
