@@ -20,7 +20,11 @@ class ExpLookupDisplayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.showTopView()
+        self.title = "Expense Lookup"
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
     }
@@ -30,31 +34,6 @@ class ExpLookupDisplayViewController: UIViewController {
         
         self.tableView.layer.borderColor = UIColor.systemOrange.cgColor
         self.tableView.layer.borderWidth = 0.5
-    }
-    
-    //MARK: - top view
-    
-    func showTopView() {
-        let frame = self.topView.frame
-        if let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "Expense Lookup", isForAdmin: false) {
-            vc.delegate = self
-            self.topView.addSubview(vc.view)
-            self.addChild(vc)
-        }
-    }
-    
-}
-
-//MARK: -
-
-extension ExpLookupDisplayViewController: TopHeaderViewControllerDelegate {
-    
-    func goback() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func showAdmin() {
-        //
     }
 }
 

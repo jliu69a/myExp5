@@ -22,20 +22,20 @@ struct MEConstants {
     static let kEditExpenseStoryboardId = "EditExpensesViewController"
     static let kPaymentsVendorsStoryboardId = "PaymentsVendorsViewController"
     static let kAdminHomePageStoryboardId = "AdminHomeViewController"
-    static let kExpenseLookUpStoaryboardId = "ExpensesLookupViewController"
+    static let kExpsLookUpSelectStorboardId = "ExpsLookupSelectViewController"
     static let kVendorLookupStorybardId = "VendorsLookupViewController"
 }
 
 
 enum MEStoryboard {
-    case home(MEHomePage), pv, admin(MEAdminsPage), expenseLookup, vendorLookup
+    case home(MEHomePage), pv, admin(MEAdminsPage), expsLookupSelect, vendorLookup
     
     var board: UIStoryboard {
         switch self {
         case .home: return UIStoryboard(name: MEConstants.kHomePageStoryboardName, bundle: nil)
         case .pv: return UIStoryboard(name: MEConstants.kPaymentsVendorsStoryboardName, bundle: nil)
         case .admin: return UIStoryboard(name: MEConstants.kAdminPagesStoryboardName, bundle: nil)
-        case .expenseLookup: return UIStoryboard(name: MEConstants.kExpenseLookupStoryboardName, bundle: nil)
+        case .expsLookupSelect: return UIStoryboard(name: MEConstants.kExpenseLookupStoryboardName, bundle: nil)
         case .vendorLookup: return UIStoryboard(name: MEConstants.kVendorLookupStoryboardName, bundle: nil)
         }
     }
@@ -45,7 +45,7 @@ enum MEStoryboard {
         case .home(let page): return self.board.instantiateViewController(identifier: page.vcId)
         case .pv: return self.board.instantiateViewController(identifier: MEConstants.kPaymentsVendorsStoryboardId)
         case .admin(let page): return self.board.instantiateViewController(identifier: page.vcId)
-        case .expenseLookup: return self.board.instantiateViewController(identifier: MEConstants.kExpenseLookUpStoaryboardId)
+        case .expsLookupSelect: return self.board.instantiateViewController(identifier: MEConstants.kExpsLookUpSelectStorboardId)
         case .vendorLookup: return self.board.instantiateViewController(identifier: MEConstants.kVendorLookupStorybardId)
         }
     }

@@ -74,7 +74,7 @@ class AdminHomeViewController: UIViewController {
     
     func showExpenseLookup() {
         
-        if let vc = MEStoryboard.expenseLookup.vc as? ExpensesLookupViewController {
+        if let vc = MEStoryboard.expsLookupSelect.vc as? ExpsLookupSelectViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

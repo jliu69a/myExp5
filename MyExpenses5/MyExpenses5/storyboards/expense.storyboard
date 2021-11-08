@@ -463,6 +463,73 @@
             </objects>
             <point key="canvasLocation" x="1679.2" y="131.78410794602701"/>
         </scene>
+        <!--Exps Lookup Select View Controller-->
+        <scene sceneID="w6k-z5-Mj0">
+            <objects>
+                <viewController storyboardIdentifier="ExpsLookupSelectViewController" id="5K2-pb-eVA" customClass="ExpsLookupSelectViewController" customModule="MyExp_5_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l0L-dS-Nt8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Year &amp; Month :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nhq-K0-tej" userLabel="year month label">
+                                <rect key="frame" x="50" y="75" width="275" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="QXk-aP-nY0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eel-kV-avQ">
+                                <rect key="frame" x="50" y="100" width="275" height="50"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="wva-BV-Vsf"/>
+                                </constraints>
+                                <state key="normal" title="year &amp; month">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseYearMonthAction:" destination="5K2-pb-eVA" eventType="touchUpInside" id="BnM-ih-fqc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-XC-xPn">
+                                <rect key="frame" x="75" y="250" width="225" height="50"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="n1G-r2-KCe"/>
+                                </constraints>
+                                <state key="normal" title="Start to Lookup">
+                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="startLookupAction:" destination="5K2-pb-eVA" eventType="touchUpInside" id="4g1-Iv-WuZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="udH-ew-n09"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Nhq-K0-tej" firstAttribute="top" secondItem="udH-ew-n09" secondAttribute="top" constant="75" id="7AN-Eg-65C"/>
+                            <constraint firstItem="tcf-XC-xPn" firstAttribute="top" secondItem="eel-kV-avQ" secondAttribute="bottom" constant="100" id="96H-Ga-tbT"/>
+                            <constraint firstItem="eel-kV-avQ" firstAttribute="leading" secondItem="udH-ew-n09" secondAttribute="leading" constant="50" id="Dv2-rK-NB9"/>
+                            <constraint firstItem="tcf-XC-xPn" firstAttribute="leading" secondItem="udH-ew-n09" secondAttribute="leading" constant="75" id="Fbe-lE-DJQ"/>
+                            <constraint firstItem="udH-ew-n09" firstAttribute="trailing" secondItem="tcf-XC-xPn" secondAttribute="trailing" constant="75" id="Wb7-DL-GEP"/>
+                            <constraint firstItem="udH-ew-n09" firstAttribute="trailing" secondItem="eel-kV-avQ" secondAttribute="trailing" constant="50" id="YJU-hX-lq3"/>
+                            <constraint firstItem="Nhq-K0-tej" firstAttribute="leading" secondItem="udH-ew-n09" secondAttribute="leading" constant="50" id="aci-1J-F8J"/>
+                            <constraint firstItem="udH-ew-n09" firstAttribute="trailing" secondItem="Nhq-K0-tej" secondAttribute="trailing" constant="50" id="mKQ-Tt-rQ4"/>
+                            <constraint firstItem="eel-kV-avQ" firstAttribute="top" secondItem="Nhq-K0-tej" secondAttribute="bottom" constant="5" id="mMe-D9-cgi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="startLookupButton" destination="tcf-XC-xPn" id="Jds-Az-5Dn"/>
+                        <outlet property="yearMonthBotton" destination="eel-kV-avQ" id="Ohj-wA-P52"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mNO-za-LU5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2554" y="132"/>
+        </scene>
         <!--Expenses Lookup View Controller-->
         <scene sceneID="H7q-IR-YfE">
             <objects>
@@ -471,48 +538,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fz-sB-zeM" userLabel="top view">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="HbG-uf-eYD"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Year &amp; Month :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yjr-0t-UGP" userLabel="year month label">
-                                <rect key="frame" x="50" y="144" width="275" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="rds-dA-CZV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EAd-2J-K2A">
-                                <rect key="frame" x="50" y="172" width="275" height="50"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Flx-Ss-84S"/>
-                                </constraints>
-                                <state key="normal" title="year &amp; month">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="chooseYearMonthAction:" destination="kbQ-Wh-kGI" eventType="touchUpInside" id="aFL-VP-OOd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VFp-ms-ORO">
-                                <rect key="frame" x="75" y="322" width="225" height="50"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Ffb-O3-aRK"/>
-                                </constraints>
-                                <state key="normal" title="Start to Lookup">
-                                    <color key="titleColor" systemColor="systemBackgroundColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="startLookupAction:" destination="kbQ-Wh-kGI" eventType="touchUpInside" id="nYL-oa-cAU"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xr3-7d-4kQ" userLabel="results view">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
@@ -525,22 +550,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qn-f7-G0Z" userLabel="close button">
-                                        <rect key="frame" x="62.5" y="577" width="250" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="250" id="s3p-GF-yLk"/>
-                                            <constraint firstAttribute="height" constant="50" id="zBI-Xu-cP0"/>
-                                        </constraints>
-                                        <state key="normal" title="Close">
-                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="clearResultsAction:" destination="kbQ-Wh-kGI" eventType="touchUpInside" id="B6k-Dk-rqa"/>
-                                        </connections>
-                                    </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fxU-3G-kye">
-                                        <rect key="frame" x="27.5" y="90" width="320" height="370"/>
+                                        <rect key="frame" x="27.5" y="105" width="320" height="370"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="370" id="B29-7v-bhu"/>
@@ -568,7 +579,7 @@
                                         </connections>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pl6-g3-BnM" userLabel="week days view">
-                                        <rect key="frame" x="27.5" y="65" width="320" height="25"/>
+                                        <rect key="frame" x="27.5" y="80" width="320" height="25"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YT-1H-T3U" userLabel="Sun label">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="25"/>
@@ -668,18 +679,26 @@
                                             <constraint firstItem="kIn-aS-Smp" firstAttribute="top" secondItem="pl6-g3-BnM" secondAttribute="top" id="wZt-83-6K7"/>
                                         </constraints>
                                     </view>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2bj-kn-Pce">
+                                        <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="0nU-KW-ihG"/>
+                                            <constraint firstAttribute="width" constant="20" id="jR3-5I-gHu"/>
+                                        </constraints>
+                                        <color key="color" systemColor="systemBlueColor"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="NWw-qT-HX8" firstAttribute="leading" secondItem="xr3-7d-4kQ" secondAttribute="leading" constant="25" id="0UA-XI-Qnw"/>
+                                    <constraint firstItem="2bj-kn-Pce" firstAttribute="centerX" secondItem="xr3-7d-4kQ" secondAttribute="centerX" id="16P-vo-oGJ"/>
                                     <constraint firstItem="pl6-g3-BnM" firstAttribute="centerX" secondItem="xr3-7d-4kQ" secondAttribute="centerX" id="5lo-Y6-hYO"/>
-                                    <constraint firstItem="fxU-3G-kye" firstAttribute="top" secondItem="NWw-qT-HX8" secondAttribute="bottom" constant="55" id="6kl-ML-y82"/>
+                                    <constraint firstItem="fxU-3G-kye" firstAttribute="top" secondItem="NWw-qT-HX8" secondAttribute="bottom" constant="70" id="6kl-ML-y82"/>
                                     <constraint firstAttribute="trailing" secondItem="NWw-qT-HX8" secondAttribute="trailing" constant="25" id="8pQ-eN-wf0"/>
-                                    <constraint firstItem="5qn-f7-G0Z" firstAttribute="centerX" secondItem="xr3-7d-4kQ" secondAttribute="centerX" id="Epj-qv-sDZ"/>
                                     <constraint firstItem="fxU-3G-kye" firstAttribute="centerX" secondItem="xr3-7d-4kQ" secondAttribute="centerX" id="HVt-nY-fBh"/>
                                     <constraint firstItem="fxU-3G-kye" firstAttribute="top" secondItem="pl6-g3-BnM" secondAttribute="bottom" id="Ycx-cp-a2o"/>
                                     <constraint firstItem="NWw-qT-HX8" firstAttribute="top" secondItem="xr3-7d-4kQ" secondAttribute="top" constant="15" id="e9M-0a-ZGM"/>
-                                    <constraint firstAttribute="bottom" secondItem="5qn-f7-G0Z" secondAttribute="bottom" constant="40" id="ey3-FX-84e"/>
+                                    <constraint firstItem="2bj-kn-Pce" firstAttribute="centerY" secondItem="xr3-7d-4kQ" secondAttribute="centerY" id="p6Y-bh-1Vg"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -687,36 +706,20 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="MJd-qz-RSY" firstAttribute="bottom" secondItem="xr3-7d-4kQ" secondAttribute="bottom" id="DBz-mF-x39"/>
-                            <constraint firstItem="6fz-sB-zeM" firstAttribute="leading" secondItem="MJd-qz-RSY" secondAttribute="leading" id="EX6-aZ-wFK"/>
-                            <constraint firstItem="EAd-2J-K2A" firstAttribute="top" secondItem="yjr-0t-UGP" secondAttribute="bottom" constant="8" id="JeM-bA-flN"/>
-                            <constraint firstItem="MJd-qz-RSY" firstAttribute="trailing" secondItem="yjr-0t-UGP" secondAttribute="trailing" constant="50" id="RaB-5g-ofh"/>
-                            <constraint firstItem="EAd-2J-K2A" firstAttribute="leading" secondItem="MJd-qz-RSY" secondAttribute="leading" constant="50" id="VXu-hC-BEI"/>
-                            <constraint firstItem="VFp-ms-ORO" firstAttribute="leading" secondItem="MJd-qz-RSY" secondAttribute="leading" constant="75" id="bFW-86-2HI"/>
-                            <constraint firstItem="6fz-sB-zeM" firstAttribute="trailing" secondItem="MJd-qz-RSY" secondAttribute="trailing" id="gfQ-Xs-Dv4"/>
                             <constraint firstItem="xr3-7d-4kQ" firstAttribute="leading" secondItem="MJd-qz-RSY" secondAttribute="leading" id="k7v-DC-pFK"/>
                             <constraint firstItem="xr3-7d-4kQ" firstAttribute="trailing" secondItem="MJd-qz-RSY" secondAttribute="trailing" id="kbB-62-qDA"/>
                             <constraint firstItem="xr3-7d-4kQ" firstAttribute="top" secondItem="MJd-qz-RSY" secondAttribute="top" id="kht-OQ-GHo"/>
-                            <constraint firstItem="yjr-0t-UGP" firstAttribute="top" secondItem="6fz-sB-zeM" secondAttribute="bottom" constant="100" id="lPd-jd-UEb"/>
-                            <constraint firstItem="MJd-qz-RSY" firstAttribute="trailing" secondItem="EAd-2J-K2A" secondAttribute="trailing" constant="50" id="nF1-il-P3L"/>
-                            <constraint firstItem="VFp-ms-ORO" firstAttribute="top" secondItem="EAd-2J-K2A" secondAttribute="bottom" constant="100" id="qk9-Ce-rEq"/>
-                            <constraint firstItem="MJd-qz-RSY" firstAttribute="trailing" secondItem="VFp-ms-ORO" secondAttribute="trailing" constant="75" id="rBm-h3-hTx"/>
-                            <constraint firstItem="yjr-0t-UGP" firstAttribute="leading" secondItem="MJd-qz-RSY" secondAttribute="leading" constant="50" id="vY3-gS-mqm"/>
-                            <constraint firstItem="6fz-sB-zeM" firstAttribute="top" secondItem="MJd-qz-RSY" secondAttribute="top" id="xR8-eF-I4N"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="clearResultsButton" destination="5qn-f7-G0Z" id="q0p-WV-a3O"/>
                         <outlet property="collectionView" destination="fxU-3G-kye" id="pMT-Tm-21F"/>
                         <outlet property="lookupTitle" destination="NWw-qT-HX8" id="1fa-RC-2gX"/>
-                        <outlet property="resultsView" destination="xr3-7d-4kQ" id="GWV-j6-nAM"/>
-                        <outlet property="startLookupButton" destination="VFp-ms-ORO" id="g3I-y9-t4S"/>
-                        <outlet property="topView" destination="6fz-sB-zeM" id="EH6-eh-NkS"/>
-                        <outlet property="yearMonthBotton" destination="EAd-2J-K2A" id="pTz-cm-toc"/>
+                        <outlet property="progressIndicator" destination="2bj-kn-Pce" id="nvS-C1-48b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDV-ll-5Xd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2504.8000000000002" y="131.78410794602701"/>
+            <point key="canvasLocation" x="3421.5999999999999" y="131.78410794602701"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nB9-8t-MSf">

@@ -60,6 +60,7 @@
 		FEB62EF5261A43F100725848 /* FilmsHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB62EF4261A43F100725848 /* FilmsHomeViewController.swift */; };
 		FEB62EF8261A445F00725848 /* FilmsHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */; };
 		FECD2D0A25F2E5B400410E7C /* TopBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECD2D0925F2E5B400410E7C /* TopBarManager.swift */; };
+		FECDC79C2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDC79B2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift */; };
 		FEE35C5A26C831920081BAD9 /* SharedHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */; };
 		FEE35C5C26C831B10081BAD9 /* sharedHeader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */; };
 		FEF726622734363D00A85326 /* VendorsLookupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */; };
@@ -135,6 +136,7 @@
 		FEB62EF4261A43F100725848 /* FilmsHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsHomeViewController.swift; sourceTree = "<group>"; };
 		FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsHomeViewModel.swift; sourceTree = "<group>"; };
 		FECD2D0925F2E5B400410E7C /* TopBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarManager.swift; sourceTree = "<group>"; };
+		FECDC79B2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpsLookupSelectViewController.swift; sourceTree = "<group>"; };
 		FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHeaderViewController.swift; sourceTree = "<group>"; };
 		FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = sharedHeader.storyboard; sourceTree = "<group>"; };
 		FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsLookupViewModel.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				5A8F15A924D4C51100B57A9B /* SelectMonthAndYearViewController.swift */,
 				5A8F15AD24D4D88500B57A9B /* VendorsLookupViewController.swift */,
 				FE5858E727347B6400542779 /* VendorsLookupDataViewController.swift */,
+				FECDC79B2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift */,
 				5A90E45A24E03471005C42A3 /* ExpensesLookupViewController.swift */,
 				5A90E45C24E05E84005C42A3 /* ExpLookupCell.swift */,
 				5A90E45D24E05E84005C42A3 /* ExpLookupCell.xib */,
@@ -544,6 +547,7 @@
 				5A87AB7D24C133D4009792A1 /* DatasManager.swift in Sources */,
 				5A8BAAB024C336440033B46A /* PAndVCell.swift in Sources */,
 				FEB3255A25F43D6C002B20A4 /* VendorReferencesViewController.swift in Sources */,
+				FECDC79C2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift in Sources */,
 				5A924170255637AC00263B07 /* ExpsHomeViewModel.swift in Sources */,
 				FE1F566325F06F1C00743825 /* TopHeaderViewController.swift in Sources */,
 				5A8F15AA24D4C51100B57A9B /* SelectMonthAndYearViewController.swift in Sources */,
@@ -720,7 +724,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = WSH8T4CK9T;
 				INFOPLIST_FILE = MyExpenses5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -742,7 +746,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_TEAM = WSH8T4CK9T;
 				INFOPLIST_FILE = MyExpenses5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
