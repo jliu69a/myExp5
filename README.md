@@ -30,3 +30,13 @@ NOTE: "dev_6" is the latest branch now.  the "dev_4" is being removed.
 3,
 keep in mind that, when commit the changes, all of the system auto-updates can be disregarded.  only the code changes are committed in, and this will make the branches merging smoothly.
 
+//
+
+currently it is at the version 8, and it should be branched off to be develop.  it will be a clean start.
+
+the original develop can be branched off as a backup.
+
+after that, it will be like: "dev_8" -> "develop" -> "dev_11".
+
+
+
