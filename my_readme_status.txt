@@ -3,6 +3,7 @@ This is the status of all changes.
 
 on 2022-07-29 (Friday)
 
+1.
 have a clean start with this mobile app.  the branches are :
 
 "dev_8" -> "develop" -> "dev_11"
@@ -10,10 +11,71 @@ have a clean start with this mobile app.  the branches are :
 the most updated veresion is in "dev_11", and need to fix the issue of data not refreshed correctly when changing payment types and/or vendors.
 
 
+2.
+here is the log:
+
+user-MBP> myExp5 % git branch
+* dev_8
+user-MBP> myExp5 % git checkout -b develop
+Switched to a new branch 'develop'
+user-MBP> myExp5 %
+user-MBP> myExp5 % git push
+fatal: The current branch develop has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin develop
+
+user-MBP> myExp5 % git push --set-upstream origin develop
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'develop' on GitHub by visiting:
+remote:      https://github.com/jliu69a/myExp5/pull/new/develop
+remote:
+To https://github.com/jliu69a/myExp5.git
+ * [new branch]      develop -> develop
+Branch 'develop' set up to track remote branch 'develop' from 'origin'.
+user-MBP> myExp5 %
+user-MBP> myExp5 %
+user-MBP> myExp5 % git branch
+  dev_8
+* develop
+user-MBP> myExp5 %
+user-MBP> myExp5 % git checkout -b dev_11
+Switched to a new branch 'dev_11'
+user-MBP> myExp5 %
+user-MBP> myExp5 % git branch
+* dev_11
+  dev_8
+  develop
+user-MBP> myExp5 %
+user-MBP> myExp5 % git push
+fatal: The current branch dev_11 has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin dev_11
+
+user-MBP> myExp5 % git push --set-upstream origin dev_11
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'dev_11' on GitHub by visiting:
+remote:      https://github.com/jliu69a/myExp5/pull/new/dev_11
+remote:
+To https://github.com/jliu69a/myExp5.git
+ * [new branch]      dev_11 -> dev_11
+Branch 'dev_11' set up to track remote branch 'dev_11' from 'origin'.
+user-MBP> myExp5 %
+user-MBP> myExp5 %
+user-MBP> myExp5 % git branch
+* dev_11
+  dev_8
+  develop
+user-MBP> myExp5 %
 
 
 
-//
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 (old notes)
 
