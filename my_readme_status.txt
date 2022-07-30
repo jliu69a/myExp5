@@ -8,6 +8,9 @@ have a clean start with this mobile app.  the branches are :
 
 "dev_8" -> "develop" -> "dev_11"
 
+"dev_11"  -> "develop"
+"develop" -> "dev_12"
+
 the most updated veresion is in "dev_11", and need to fix the issue of data not refreshed correctly when changing payment types and/or vendors.
 
 
