@@ -139,39 +139,7 @@ extension ExpsHomeViewModel {
     }
     
     func parseVendorsArray() {
-        let vendorsList = self.appDele.vendorsList
-        
-        if vendorsList.count == 0 {
-            return
-        }
-        
-        let top10Key: String = "Top 10"
-        if !self.appDele.vendorDisplayTitles.contains(top10Key) {
-            self.appDele.vendorDisplayTitles.append(top10Key)
-        }
-        self.appDele.vendorDisplayData[top10Key] = self.appDele.top10sList as AnyObject
-        
-        let letters: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        
-        for each in vendorsList {
-            let vendorName: String = (each.vendor ?? "").uppercased()
-            
-            var firstLetter: String = String(vendorName.prefix(1))
-            if letters.contains(firstLetter) == false {
-                firstLetter = "#"
-            }
-            
-            if self.appDele.vendorDisplayTitles.contains(firstLetter) == false {
-                self.appDele.vendorDisplayTitles.append(firstLetter)
-            }
-            var vendorsArray = (self.appDele.vendorDisplayData[firstLetter] as? [Vendor]) ?? []
-            
-            let isUnique = self.checkForUnique(vendorsList: vendorsArray, vendor: each)
-            if isUnique {
-                vendorsArray.append(each)
-            }
-            self.appDele.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
-        }
+        SharedHelper().parseVendorsArray()
     }
     
     func checkForUnique(vendorsList: [Vendor], vendor: Vendor) -> Bool {

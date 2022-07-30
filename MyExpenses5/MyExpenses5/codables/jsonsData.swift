@@ -18,13 +18,6 @@ public struct MyExpsData: Codable {
     var vendors : [Vendor]?
 }
 
-//public struct MyExps2Data: Codable {
-//    var expense : [Expense]?
-//    var payments : [Selection]?
-//    var top10 : [Selection]?
-//    var vendors : [Selection]?
-//}
-
 public struct EditMyExpsData: Codable {
     var expense: [Expense]?
     var top10: [Vendor]?
@@ -33,6 +26,7 @@ public struct EditMyExpsData: Codable {
 public struct ChangePVData: Codable {
     var payments: [Payment]?
     var vendors: [Vendor]?
+    var top10 : [Vendor]?
 }
 
 public struct StatesData: Codable {
