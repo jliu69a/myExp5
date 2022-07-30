@@ -36,6 +36,9 @@ class MyExpHomeViewController: UIViewController {
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
         
         self.loadingData()
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(toReloadExpData), name: Notification.Name("NotificationForPaymentOrVendorChanges"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +49,12 @@ class MyExpHomeViewController: UIViewController {
         
         self.amountLabel.text = viewModel.displayTotalAmount()
         self.dateLabel.text = viewModel.displayCurrentDate(date: self.selectedDate)
+    }
+    
+    //MARK: - notification
+    
+    @objc func toReloadExpData() {
+        self.loadingData()
     }
     
     //MARK: - bar button items

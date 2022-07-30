@@ -168,6 +168,7 @@ extension PaymentVendorViewModel {
         
         self.appDele.paymentsList.removeAll()
         self.appDele.vendorsList.removeAll()
+        self.appDele.top10sList.removeAll()
         
         for each in myPVList {
             if each.payments != nil {
@@ -175,6 +176,9 @@ extension PaymentVendorViewModel {
             }
             if each.vendors != nil {
                 self.appDele.vendorsList = each.vendors ?? []
+            }
+            if each.top10 != nil {
+                self.appDele.top10sList = each.top10 ?? []
             }
         }
         if !self.isForPayments {
@@ -184,62 +188,7 @@ extension PaymentVendorViewModel {
     }
     
     func updateVendorsData() {
-        
-        //-- update existing top-10 array
-        let top10Key: String = "Top 10"
-        var top10Vendors = (self.appDele.vendorDisplayData[top10Key] as? [Vendor]) ?? []
-        
-        var selectedIndex: Int = -1
-        for index in 0..<top10Vendors.count {
-            let item = top10Vendors[index]
-            let idValue = item.id ?? "0"
-            
-            if self.selectedVendor.id == idValue {
-                selectedIndex = index
-                break
-            }
-        }
-        
-        if selectedIndex >= 0 {
-            if self.vendorActionCode == kUpdateVendorCode {
-                var selectedVendor = top10Vendors[selectedIndex]
-                selectedVendor.vendor = self.selectedVendor.name
-                top10Vendors[selectedIndex] = selectedVendor
-            }
-            else if self.vendorActionCode == kDeleteVendorCode {
-                top10Vendors.remove(at: selectedIndex)
-            }
-        }
-        
-        //-- parse latest vendors
-        let vendorsList = self.appDele.vendorsList
-        if vendorsList.count == 0 {
-            return
-        }
-        
-        self.appDele.vendorDisplayTitles.removeAll()
-        self.appDele.vendorDisplayTitles.append(top10Key)
-        
-        self.appDele.vendorDisplayData.removeAll()
-        self.appDele.vendorDisplayData[top10Key] = top10Vendors as AnyObject
-        
-        let letters: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        
-        for each in vendorsList {
-            let vendorName: String = (each.vendor ?? "").uppercased()
-            
-            var firstLetter: String = String(vendorName.prefix(1))
-            if letters.contains(firstLetter) == false {
-                firstLetter = "#"
-            }
-            
-            if self.appDele.vendorDisplayTitles.contains(firstLetter) == false {
-                self.appDele.vendorDisplayTitles.append(firstLetter)
-            }
-            var vendorsArray = (self.appDele.vendorDisplayData[firstLetter] as? [Vendor]) ?? []
-            vendorsArray.append(each)
-            self.appDele.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
-        }
+        SharedHelper().parseVendorsArray()
     }
     
 }

@@ -55,6 +55,7 @@
 		FE329FC5261A24A90092BFAC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE329FC4261A24A90092BFAC /* Date+Extension.swift */; };
 		FE5858E6273477EF00542779 /* ExpsLookupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */; };
 		FE5858E827347B6400542779 /* VendorsLookupDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5858E727347B6400542779 /* VendorsLookupDataViewController.swift */; };
+		FE8260542894AE52007B3CEA /* SharedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8260532894AE52007B3CEA /* SharedHelper.swift */; };
 		FEB3255A25F43D6C002B20A4 /* VendorReferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3255925F43D6C002B20A4 /* VendorReferencesViewController.swift */; };
 		FEB3255D25F44144002B20A4 /* VendorReferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3255C25F44144002B20A4 /* VendorReferenceCell.swift */; };
 		FEB62EF5261A43F100725848 /* FilmsHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB62EF4261A43F100725848 /* FilmsHomeViewController.swift */; };
@@ -131,6 +132,7 @@
 		FE329FC4261A24A90092BFAC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpsLookupViewModel.swift; sourceTree = "<group>"; };
 		FE5858E727347B6400542779 /* VendorsLookupDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsLookupDataViewController.swift; sourceTree = "<group>"; };
+		FE8260532894AE52007B3CEA /* SharedHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelper.swift; sourceTree = "<group>"; };
 		FEB3255925F43D6C002B20A4 /* VendorReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorReferencesViewController.swift; sourceTree = "<group>"; };
 		FEB3255C25F44144002B20A4 /* VendorReferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorReferenceCell.swift; sourceTree = "<group>"; };
 		FEB62EF4261A43F100725848 /* FilmsHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsHomeViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */,
 				FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */,
 				FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */,
+				FE8260532894AE52007B3CEA /* SharedHelper.swift */,
 			);
 			path = "view models";
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				5A87AB7E24C133D4009792A1 /* ConnectionsManager.swift in Sources */,
 				FE5858E6273477EF00542779 /* ExpsLookupViewModel.swift in Sources */,
 				FEB62EF5261A43F100725848 /* FilmsHomeViewController.swift in Sources */,
+				FE8260542894AE52007B3CEA /* SharedHelper.swift in Sources */,
 				FE329FBF261A1C3C0092BFAC /* FilmsCell.swift in Sources */,
 				FE5858E827347B6400542779 /* VendorsLookupDataViewController.swift in Sources */,
 				5A97C77D24C12E050019E2B4 /* ViewController.swift in Sources */,

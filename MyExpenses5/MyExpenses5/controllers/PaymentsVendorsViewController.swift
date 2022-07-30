@@ -150,6 +150,9 @@ class PaymentsVendorsViewController: UIViewController {
         self.viewModel.vendorDisplayTitles = self.appDele.vendorDisplayTitles
         self.viewModel.vendorDisplayData = self.appDele.vendorDisplayData
         self.tableView.reloadData()
+        
+        let nc = NotificationCenter.default
+        nc.post(name: Notification.Name("NotificationForPaymentOrVendorChanges"), object: nil)
     }
     
     //MARK: - alets
@@ -284,17 +287,6 @@ extension PaymentsVendorsViewController: PaymentVendorViewModelDelegate {
         self.toRefreshPage()
     }
 }
-
-//extension PaymentsVendorsViewController: TopHeaderViewControllerDelegate {
-//
-//    func goback() {
-//        self.navigationController?.popViewController(animated: true)
-//    }
-//
-//    func showAdmin() {
-//        //
-//    }
-//}
 
 extension PaymentsVendorsViewController: VendorReferencesViewControllerDelegate {
     
