@@ -20,7 +20,6 @@ class MyExpHomeViewController: UIViewController {
     var selectedDate: Date = Date()
     var selectedExpense: Expense? = nil
     
-    var changeDateVC: ChangeDateViewController? = nil
     var editExpenseVC: EditExpensesViewController? = nil
     
     
@@ -69,12 +68,10 @@ class MyExpHomeViewController: UIViewController {
     
     @IBAction func selectDateAction(_ sender: Any) {
         
-        if let vc = MEStoryboard.home(MEHomePage.changeDate).vc as? ChangeDateViewController {
-            vc.currentDate = self.selectedDate
+        let storyboard = UIStoryboard(name: "chooseDate", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "ChooseDateViewController") as? ChooseDateViewController {
             vc.delegate = self
-            vc.modalPresentationStyle = .fullScreen
-            self.changeDateVC = vc
-            self.present(vc, animated: true, completion: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -112,10 +109,6 @@ class MyExpHomeViewController: UIViewController {
             vc.isForNew = (model == nil)
             vc.pageTitle = (model == nil) ? "Add" : "Edit"
             vc.selectedDate = self.selectedDate
-            
-//            if model == nil {
-//                vc.selectedDate = self.selectedDate
-//            }
             
             vc.selectedExpense = model ?? Expense()
             self.navigationController?.pushViewController(vc, animated: true)
@@ -186,26 +179,11 @@ extension MyExpHomeViewController: ExpsHomeViewModelDelegate {
 
 //MARK: -
 
-extension MyExpHomeViewController: ChangeDateViewControllerDelegate {
-    
-    //-- date change delegates
-    
-    func cancelSelectDate() {
-        self.closeChangeDateView()
-    }
+extension MyExpHomeViewController: ChooseDateViewControllerDelegate {
     
     func selectNewDate(date: Date) {
         self.selectedDate = date
-        self.closeChangeDateView()
         self.loadingData()
-    }
-    
-    func closeChangeDateView() {
-        
-        if let vc = self.changeDateVC {
-            vc.dismiss(animated: true, completion: nil)
-        }
-        self.changeDateVC = nil
     }
 }
 
