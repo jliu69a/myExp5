@@ -33,7 +33,6 @@ class EditExpensesViewController: UIViewController {
     var pageTitle: String = ""
     var selectedExpense: Expense = Expense()
     
-    var changeDateVC: ChangeDateViewController? = nil
     var selectedDate: Date = Date()
     var isDateChanged: Bool = false
     var amountData: String = ""
@@ -194,12 +193,11 @@ class EditExpensesViewController: UIViewController {
     @IBAction func changeDateAction(_ sender: Any) {
         self.clearKeyboards()
         
-        if let vc = MEStoryboard.home(MEHomePage.changeDate).vc as? ChangeDateViewController {
-            vc.currentDate = self.selectedDate
+        let storyboard = UIStoryboard(name: "chooseDate", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "ChooseDateViewController") as? ChooseDateViewController {
             vc.delegate = self
-            vc.modalPresentationStyle = .fullScreen
-            self.changeDateVC = vc
-            self.present(vc, animated: true, completion: nil)
+            vc.selectedDate = self.selectedDate
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -283,23 +281,9 @@ extension EditExpensesViewController: PaymentsVendorsViewControllerDelegate {
 
 //MARK: -
 
-extension EditExpensesViewController: ChangeDateViewControllerDelegate {
-    
-    func closeChangeDateView() {
-        
-        if let vc = self.changeDateVC {
-            vc.dismiss(animated: true, completion: nil)
-        }
-        self.changeDateVC = nil
-    }
-    
-    func cancelSelectDate() {
-        self.closeChangeDateView()
-    }
+extension EditExpensesViewController: ChooseDateViewControllerDelegate {
     
     func selectNewDate(date: Date) {
-        self.closeChangeDateView()
-        
         self.selectedDate = date
         self.isDateChanged = true
         self.displayDate()

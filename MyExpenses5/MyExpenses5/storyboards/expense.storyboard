@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PJM-uF-xTG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PJM-uF-xTG">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -125,135 +125,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8wP-W3-j7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-148" y="132.68365817091455"/>
-        </scene>
-        <!--Change Date View Controller-->
-        <scene sceneID="oVL-aj-a1j">
-            <objects>
-                <viewController storyboardIdentifier="ChangeDateViewController" id="Edb-U3-irL" customClass="ChangeDateViewController" customModule="MyExp_5_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="h78-Ht-BYP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0rZ-Zj-U7f" userLabel="top nav view">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date/time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwr-as-eWg">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvy-KK-ESG" userLabel="close label">
-                                        <rect key="frame" x="10" y="0.0" width="56" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="56" id="BGc-gM-2NF"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                        <color key="textColor" systemColor="systemBlueColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xlD-5p-U0v" userLabel="close">
-                                        <rect key="frame" x="0.0" y="0.0" width="66" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="66" id="ugt-Sb-WDG"/>
-                                        </constraints>
-                                        <state key="normal" title="back">
-                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelDateSelectAction:" destination="Edb-U3-irL" eventType="touchUpInside" id="CA2-VT-G7e"/>
-                                            <action selector="gobackAction:" destination="KwG-Y4-JbD" eventType="touchUpInside" id="nYl-mz-y3k"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="xlD-5p-U0v" firstAttribute="top" secondItem="0rZ-Zj-U7f" secondAttribute="top" id="0DH-JP-nhu"/>
-                                    <constraint firstItem="xlD-5p-U0v" firstAttribute="leading" secondItem="0rZ-Zj-U7f" secondAttribute="leading" id="3SD-2Q-qlb"/>
-                                    <constraint firstItem="Zwr-as-eWg" firstAttribute="leading" secondItem="0rZ-Zj-U7f" secondAttribute="leading" id="8bo-dA-8cM"/>
-                                    <constraint firstItem="wvy-KK-ESG" firstAttribute="leading" secondItem="0rZ-Zj-U7f" secondAttribute="leading" constant="10" id="Jut-1G-7sk"/>
-                                    <constraint firstAttribute="bottom" secondItem="wvy-KK-ESG" secondAttribute="bottom" id="Wq8-nt-AL5"/>
-                                    <constraint firstAttribute="bottom" secondItem="xlD-5p-U0v" secondAttribute="bottom" id="X3R-ob-t5s"/>
-                                    <constraint firstItem="wvy-KK-ESG" firstAttribute="top" secondItem="0rZ-Zj-U7f" secondAttribute="top" id="YRh-Ga-cfC"/>
-                                    <constraint firstAttribute="height" constant="44" id="gRe-8Z-nah"/>
-                                    <constraint firstAttribute="bottom" secondItem="Zwr-as-eWg" secondAttribute="bottom" id="s22-cl-BqM"/>
-                                    <constraint firstAttribute="trailing" secondItem="Zwr-as-eWg" secondAttribute="trailing" id="wVG-Vn-Vrk"/>
-                                    <constraint firstItem="Zwr-as-eWg" firstAttribute="top" secondItem="0rZ-Zj-U7f" secondAttribute="top" id="waP-mG-ns4"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kC-Y2-pCN" userLabel="date view">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7cp-Lz-RXb">
-                                        <rect key="frame" x="67.5" y="543" width="240" height="40"/>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="240" id="TGW-em-dIF"/>
-                                            <constraint firstAttribute="height" constant="40" id="o1U-cb-Smh"/>
-                                        </constraints>
-                                        <state key="normal" title="Choose Today">
-                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="setToTodayAction:" destination="Edb-U3-irL" eventType="touchUpInside" id="O15-Hl-39Z"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0B4-qH-vph">
-                                        <rect key="frame" x="62.5" y="463" width="250" height="40"/>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="1kt-ec-Dbw"/>
-                                            <constraint firstAttribute="width" constant="250" id="Sjn-Si-GNh"/>
-                                        </constraints>
-                                        <state key="normal" title="Choose Selected Date">
-                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="selectPickerDateAction:" destination="Edb-U3-irL" eventType="touchUpInside" id="flU-Ku-HKy"/>
-                                        </connections>
-                                    </button>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="R8H-8d-uvg">
-                                        <rect key="frame" x="10" y="10" width="355" height="413"/>
-                                    </datePicker>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="0B4-qH-vph" firstAttribute="top" secondItem="R8H-8d-uvg" secondAttribute="bottom" constant="40" id="0hg-JU-fAJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="R8H-8d-uvg" secondAttribute="trailing" constant="10" id="742-7W-7zc"/>
-                                    <constraint firstItem="0B4-qH-vph" firstAttribute="centerX" secondItem="6kC-Y2-pCN" secondAttribute="centerX" id="7kz-X4-UTP"/>
-                                    <constraint firstItem="7cp-Lz-RXb" firstAttribute="centerX" secondItem="6kC-Y2-pCN" secondAttribute="centerX" id="8Jv-rS-Poh"/>
-                                    <constraint firstItem="R8H-8d-uvg" firstAttribute="leading" secondItem="6kC-Y2-pCN" secondAttribute="leading" constant="10" id="DxL-4a-8d5"/>
-                                    <constraint firstItem="7cp-Lz-RXb" firstAttribute="top" secondItem="0B4-qH-vph" secondAttribute="bottom" constant="40" id="I3u-Bh-7e0"/>
-                                    <constraint firstAttribute="bottom" secondItem="7cp-Lz-RXb" secondAttribute="bottom" constant="40" id="isr-si-TcB"/>
-                                    <constraint firstItem="R8H-8d-uvg" firstAttribute="top" secondItem="6kC-Y2-pCN" secondAttribute="top" constant="10" id="uca-wa-bAX"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="7VY-gI-wNn"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="0rZ-Zj-U7f" firstAttribute="leading" secondItem="7VY-gI-wNn" secondAttribute="leading" id="Mg5-7O-QkY"/>
-                            <constraint firstItem="0rZ-Zj-U7f" firstAttribute="top" secondItem="7VY-gI-wNn" secondAttribute="top" id="VSk-Mk-AWN"/>
-                            <constraint firstItem="7VY-gI-wNn" firstAttribute="trailing" secondItem="6kC-Y2-pCN" secondAttribute="trailing" id="WvI-a3-FAf"/>
-                            <constraint firstItem="7VY-gI-wNn" firstAttribute="bottom" secondItem="6kC-Y2-pCN" secondAttribute="bottom" id="dFb-Uz-AFU"/>
-                            <constraint firstItem="6kC-Y2-pCN" firstAttribute="top" secondItem="0rZ-Zj-U7f" secondAttribute="bottom" id="doL-63-kfX"/>
-                            <constraint firstItem="6kC-Y2-pCN" firstAttribute="leading" secondItem="7VY-gI-wNn" secondAttribute="leading" id="fgF-BY-Jg7"/>
-                            <constraint firstItem="0rZ-Zj-U7f" firstAttribute="trailing" secondItem="7VY-gI-wNn" secondAttribute="trailing" id="zck-Ux-OFK"/>
-                        </constraints>
-                    </view>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="datePicker" destination="R8H-8d-uvg" id="oQg-4h-Yhy"/>
-                        <outlet property="selectButton" destination="0B4-qH-vph" id="RbW-3n-4wt"/>
-                        <outlet property="titleLabel" destination="Zwr-as-eWg" id="yog-lk-RW9"/>
-                        <outlet property="todayButton" destination="7cp-Lz-RXb" id="KhB-As-Goe"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5e5-d3-C0j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="792.79999999999995" y="131.78410794602701"/>
         </scene>
         <!--Edit Expenses View Controller-->
         <scene sceneID="CeC-Jc-VcM">
