@@ -1,6 +1,16 @@
 This is the status of all changes.
 
 
+on 2022-08-09 (Tuesday)
+
+1.
+need to recheck the way creating the storyboard.  the current ways is over doing the task.
+
+"develop" -> "edit_13"
+
+
+////////////////////////////////////////////////////////////////////////////////
+
 on 2022-07-29 (Friday)
 
 1.
@@ -73,8 +83,6 @@ user-MBP> myExp5 % git branch
   dev_8
   develop
 user-MBP> myExp5 %
-
-
 
 
 
