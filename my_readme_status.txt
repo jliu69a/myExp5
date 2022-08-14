@@ -9,6 +9,14 @@ need to recheck the way creating the storyboard.  the current ways is over doing
 "develop" -> "edit_13"
 
 
+2.
+had fixed the color for table section header, the text and the background.
+
+also remove the top padding of table section headers.
+
+push the changes into "edit_13", and merge back to "develop".
+
+
 ////////////////////////////////////////////////////////////////////////////////
 
 on 2022-07-29 (Friday)
