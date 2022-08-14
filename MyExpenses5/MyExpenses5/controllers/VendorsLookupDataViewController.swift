@@ -97,8 +97,8 @@ extension VendorsLookupDataViewController: UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
-            headerView.contentView.backgroundColor = .black
-            headerView.textLabel?.textColor = .systemGreen
+            headerView.contentView.backgroundColor = kHeaderBgColor
+            headerView.textLabel?.textColor = kHeaderTextColor
         }
     }
     
