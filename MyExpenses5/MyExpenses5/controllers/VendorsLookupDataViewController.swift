@@ -33,6 +33,10 @@ class VendorsLookupDataViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
         self.tableView.register(UINib(nibName: "ExpenseCell", bundle: nil), forCellReuseIdentifier: "CellId")
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,6 +93,13 @@ extension VendorsLookupDataViewController: UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel.lookupTitleForSection(section: section)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = kHeaderBgColor
+            headerView.textLabel?.textColor = kHeaderTextColor
+        }
     }
     
     //MARK: - table view delegate

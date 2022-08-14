@@ -31,6 +31,10 @@ class AdminHomeViewController: UIViewController {
         
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
         self.loadMyFilms()
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,6 +114,13 @@ extension AdminHomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.viewModel.titleForSections(index: section)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = kHeaderBgColor
+            headerView.textLabel?.textColor = kHeaderTextColor
+        }
     }
 }
 

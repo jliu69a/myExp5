@@ -72,6 +72,10 @@ class PaymentsVendorsViewController: UIViewController {
         self.viewModel.delegate = self
         
         self.tableView.register(UINib(nibName: "PAndVCell", bundle: nil), forCellReuseIdentifier: "CellId")
+        
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,18 +106,6 @@ class PaymentsVendorsViewController: UIViewController {
         self.tableView.layer.borderColor = UIColor.systemOrange.cgColor
         self.tableView.layer.borderWidth = 0.5
     }
-    
-    //MARK: - top view
-    
-//    func showTopView() {
-//        let frame = self.topView.frame
-//        if let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "", isForAdmin: false) {
-//            vc.delegate = self
-//            self.topView.addSubview(vc.view)
-//            self.addChild(vc)
-//            self.topHeaderVC = vc
-//        }
-//    }
     
     //MARK: - vendor refernece
     
@@ -246,6 +238,13 @@ extension PaymentsVendorsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.viewModel.headerTitleForSection(section: section)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = kHeaderBgColor
+            headerView.textLabel?.textColor = kHeaderTextColor
+        }
     }
 }
 

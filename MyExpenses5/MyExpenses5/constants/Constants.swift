@@ -9,6 +9,10 @@
 import UIKit
 
 
+let kHeaderBgColor = UIColor.darkGray
+let kHeaderTextColor = UIColor.systemGreen
+
+
 struct MEConstants {
     
     static let kHomePageStoryboardName = "expense"
