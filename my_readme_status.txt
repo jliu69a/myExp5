@@ -24,12 +24,12 @@ on 2022-07-29 (Friday)
 1.
 have a clean start with this mobile app.  the branches are :
 
-"dev_8" -> "develop" -> "dev_11"
+"dev_8"
+"dev_11"
+"dev_12"
+"dev_13"
 
-"dev_11"  -> "develop"
-"develop" -> "dev_12"
-
-the most updated veresion is in "dev_11", and need to fix the issue of data not refreshed correctly when changing payment types and/or vendors.
+task: had fixed the issue of data not refreshed correctly when changing payment types and/or vendors.
 
 
 2.
@@ -130,9 +130,10 @@ keep in mind that, when commit the changes, all of the system auto-updates can b
 
 //
 
-currently it is at the version 8, and it should be branched off to be develop.  it will be a clean start.
+currently it is at the version 8, and will be branched off to be develop.  it is a clean start.
 
-the original develop can be branched off as a backup.
+the original develop can be branched off as a backup, as:
 
-after that, it will be like: "dev_8" -> "develop" -> "dev_11".
+dev_8
+dev_11
 
