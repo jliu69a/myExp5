@@ -6,7 +6,7 @@ on 2022-08-31 (Wednesday)
 1.
 recheck the structure, to see whether it is following the MVVM design pattern.
 
-"develop" -> "edit+14_mvvm"
+"develop" -> "edit_14_mvvm"
 
 
 2.
