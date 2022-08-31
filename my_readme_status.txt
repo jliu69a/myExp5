@@ -1,6 +1,20 @@
 This is the status of all changes.
 
 
+on 2022-08-31 (Wednesday)
+
+1.
+recheck the structure, to see whether it is following the MVVM design pattern.
+
+"develop" -> "edit+14_mvvm"
+
+
+2.
+start with each page, with view, controller, and view model.  the model can be shared.
+
+
+////////////////////////////////////////////////////////////////////////////////
+
 on 2022-08-09 (Tuesday)
 
 1.
