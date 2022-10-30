@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var vendorDisplayTitles: [String] = []
     var vendorDisplayData: [String: AnyObject] = [:]
     
-    var folder: String = "prod" //production use
+    var folder: String = "homee" //production use
 
     var filmLanguagesList: [FilmSelection] = []
     var filmTypesList: [FilmSelection] = []

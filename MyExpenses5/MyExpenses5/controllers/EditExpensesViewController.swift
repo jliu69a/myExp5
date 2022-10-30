@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import Combine
 
 
 protocol EditExpensesViewControllerDelegate: AnyObject {
@@ -29,6 +30,10 @@ class EditExpensesViewController: UIViewController {
     @IBOutlet weak var titleView: UIView!
     
     weak var delegate: EditExpensesViewControllerDelegate?
+    
+    let viewModel = EditExpsViewModel()
+    
+    private var cancellables: Set<AnyCancellable> = []
     
     var pageTitle: String = ""
     var selectedExpense: Expense = Expense()
@@ -75,6 +80,43 @@ class EditExpensesViewController: UIViewController {
         self.selectVendorButton.layer.cornerRadius = 5
         self.changeDateButton.layer.cornerRadius = 5
         self.saveButton.layer.cornerRadius = 5
+        
+        //-- testing
+        selectPaymentButton.isEnabled = false
+        selectVendorButton.isEnabled = false
+    }
+    
+    func setupSubscribers() {
+        
+//        cardNumberTextField.textPublisher
+//            .receive(on: DispatchQueue.main)
+//            .assign(to: \.last4CardNumber, on: viewModel)
+//            .store(in: &cancellables)
+        
+//        viewModel.isValidUserInputVerification
+//            .receive(on: DispatchQueue.main)
+//            .assign(to: \.isEnabled, on: processButton)
+//            .store(in: &cancellables)
+        
+        priceTextField.textPublisher
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.priceValueText, on: viewModel)
+            .store(in: &cancellables)
+        
+        viewModel.isValidUserInputVerification
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.isEnabled, on: saveButton)
+            .store(in: &cancellables)
+        
+        /*
+         * the final validation check will set the boolean flag in UIButton.
+         * now, change to set the boolean property of other class, no need to be an UI compoment class.
+         *
+         * the UITextField has delegate functions, but UIButton does not.
+         * need to find some way to notify when the button title is changed.
+         *
+         */
+        
     }
     
     //MARK: - title view

@@ -47,8 +47,11 @@
 		5AFBAE1E24F1763100F87276 /* ExpLookupDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFBAE1D24F1763100F87276 /* ExpLookupDisplayViewController.swift */; };
 		94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */; };
 		FE15E8FC271C75EA00913558 /* MyExp5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE15E8FB271C75EA00913558 /* MyExp5Tests.swift */; };
+		FE16CE38290098A100D07D14 /* Combine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE16CE37290098A100D07D14 /* Combine.framework */; };
+		FE16CE3A290098B700D07D14 /* EditExpsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16CE39290098B700D07D14 /* EditExpsViewModel.swift */; };
 		FE1F566325F06F1C00743825 /* TopHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */; };
 		FE1F566725F071D200743825 /* topheader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE1F566625F071D200743825 /* topheader.storyboard */; };
+		FE2A3A82290C862E00D3EACE /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2A3A81290C862E00D3EACE /* UITextField+Extension.swift */; };
 		FE329FBF261A1C3C0092BFAC /* FilmsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE329FBD261A1C3C0092BFAC /* FilmsCell.swift */; };
 		FE329FC0261A1C3C0092BFAC /* FilmsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE329FBE261A1C3C0092BFAC /* FilmsCell.xib */; };
 		FE329FC5261A24A90092BFAC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE329FC4261A24A90092BFAC /* Date+Extension.swift */; };
@@ -125,8 +128,11 @@
 		FE15E8F9271C75EA00913558 /* MyExp5Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyExp5Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE15E8FB271C75EA00913558 /* MyExp5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExp5Tests.swift; sourceTree = "<group>"; };
 		FE15E8FD271C75EA00913558 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE16CE37290098A100D07D14 /* Combine.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Combine.framework; path = System/Library/Frameworks/Combine.framework; sourceTree = SDKROOT; };
+		FE16CE39290098B700D07D14 /* EditExpsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpsViewModel.swift; sourceTree = "<group>"; };
 		FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHeaderViewController.swift; sourceTree = "<group>"; };
 		FE1F566625F071D200743825 /* topheader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = topheader.storyboard; sourceTree = "<group>"; };
+		FE2A3A81290C862E00D3EACE /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		FE329FBD261A1C3C0092BFAC /* FilmsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsCell.swift; sourceTree = "<group>"; };
 		FE329FBE261A1C3C0092BFAC /* FilmsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilmsCell.xib; sourceTree = "<group>"; };
 		FE329FC4261A24A90092BFAC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE16CE38290098A100D07D14 /* Combine.framework in Frameworks */,
 				94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -168,6 +175,7 @@
 		09B7087C37D9605A6AC9F57F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FE16CE37290098A100D07D14 /* Combine.framework */,
 				95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */,
 			);
 			name = Frameworks;
@@ -214,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				5A92416F255637AC00263B07 /* ExpsHomeViewModel.swift */,
+				FE16CE39290098B700D07D14 /* EditExpsViewModel.swift */,
 				5A8F7574255C5ECE00612AE4 /* PaymentVendorViewModel.swift */,
 				5A3A578E256951710033EDAB /* AdminHomeViewModel.swift */,
 				FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */,
@@ -368,6 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				FE329FC4261A24A90092BFAC /* Date+Extension.swift */,
+				FE2A3A81290C862E00D3EACE /* UITextField+Extension.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -560,9 +570,11 @@
 				FE1F566325F06F1C00743825 /* TopHeaderViewController.swift in Sources */,
 				5A8F15AA24D4C51100B57A9B /* SelectMonthAndYearViewController.swift in Sources */,
 				5A8F7575255C5ECE00612AE4 /* PaymentVendorViewModel.swift in Sources */,
+				FE16CE3A290098B700D07D14 /* EditExpsViewModel.swift in Sources */,
 				FE329FC5261A24A90092BFAC /* Date+Extension.swift in Sources */,
 				5A87DCF92558227800F6D2C2 /* MyExpHomeViewController.swift in Sources */,
 				5A87AB9224C134C7009792A1 /* ExpenseCell.swift in Sources */,
+				FE2A3A82290C862E00D3EACE /* UITextField+Extension.swift in Sources */,
 				5A8F15AE24D4D88500B57A9B /* VendorsLookupViewController.swift in Sources */,
 				5AF26FC224CB86380042DE15 /* AdminHomeViewController.swift in Sources */,
 				5A3A578F256951710033EDAB /* AdminHomeViewModel.swift in Sources */,
