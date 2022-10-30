@@ -24,7 +24,7 @@ class EditExpsViewModel: NSObject {
     @Published var selectedVendor: String = ""
     
     var isValidUserInputVerification: AnyPublisher<Bool, Never> {
-        return Publishers.CombineLatest($priceValue)
+        return Publishers.CombineLatest($priceValueText)
             .receive(on: DispatchQueue.main)
             .map { priceValue in
                 return (priceValue.count > 0)
