@@ -56,7 +56,7 @@ extension ExpsHomeViewModel {
     }
     
     func displayCurrentDate(date: Date) -> String {
-        return date.dateToText(formate: "yyyy-MM-dd, EEE")
+        return date.dateToText(formate: "MMM dd, yyyy  (EEE)")  //original: yyyy-MM-dd, EEE
     }
     
     //MARK: - api, query expense
