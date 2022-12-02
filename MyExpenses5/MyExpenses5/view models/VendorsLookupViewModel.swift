@@ -94,7 +94,7 @@ extension VendorsLookupViewModel {
     func lookupTitleForSection(section: Int) -> String {
         let title = lookupTitlesList[section]
         let model = lookupData[title] ?? LookupModel()
-        return String(format: "%@ (total = %0.2f)", model.date, model.total)
+        return String(format: "%@, total ($) = %0.2f", model.date, model.total)
     }
     
 }
