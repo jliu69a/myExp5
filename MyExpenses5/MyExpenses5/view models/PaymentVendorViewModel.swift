@@ -149,11 +149,14 @@ extension PaymentVendorViewModel {
     
     func parseSavePaymentsAndVendors(data: Data) -> [ChangePVData] {
         
-        let json = try? JSON(data: data)
-        if json == nil {
+        guard let json = try? JSON(data: data) else {
             return []
         }
         
+        print("-> ")
+        print("-> PaymentVendorViewModel, save payments and vendors, response : \(json)")
+        print("-> ")
+
         var dataList: [ChangePVData] = []
         do {
             dataList = try JSONDecoder().decode([ChangePVData].self, from: data)

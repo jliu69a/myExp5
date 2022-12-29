@@ -76,11 +76,19 @@ extension ExpsHomeViewModel {
     
     func myExpensesData(data: Data) -> [MyExpsData] {
         
-        let json = try? JSON(data: data)
-        if json == nil {
+//        let json = try? JSON(data: data)
+//        if json == nil {
+//            return []
+//        }
+        
+        guard let json = try? JSON(data: data) else {
             return []
         }
         
+        print("-> ")
+        print("-> ExpsHomeViewModel, my exps response : \(json)")
+        print("-> ")
+
         var dataList: [MyExpsData] = []
         do {
             dataList = try JSONDecoder().decode([MyExpsData].self, from: data)
@@ -171,19 +179,31 @@ extension ExpsHomeViewModel {
         
         let parameters: [String: Any] = self.createParameters(data: data, actionCode: actionCode)
         
-        DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { [weak self] (rawData: Data) in
+        let paraString = self.parametersString(data: data, actionCode: actionCode)
+        
+//        DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { [weak self] (rawData: Data) in
+//            let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
+//            self?.parseSavedExpsData(myexpsList: myexpsList)
+//            completion()
+//        }
+        
+        DatasManager.sharedInstance.saveMyexps2WithParameters(paraString: paraString) { [weak self] (rawData: Data) in
             let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
             self?.parseSavedExpsData(myexpsList: myexpsList)
             completion()
         }
+        
     }
     
     func parseSaveMyexpsWithParameters(data: Data) -> [EditMyExpsData] {
         
-        let json = try? JSON(data: data)
-        if json == nil {
+        guard let json = try? JSON(data: data) else {
             return []
         }
+        
+        print("-> ")
+        print("-> ExpsHomeViewModel, saveMyExps response : \(json)")
+        print("-> ")
         
         var dataList: [EditMyExpsData] = []
         do {
@@ -197,6 +217,8 @@ extension ExpsHomeViewModel {
     }
     
     func createParameters(data: Expense, actionCode: Int) -> [String: Any] {
+        
+        //-- for the post method, having problems with Alamofire
         
         let currentDate: String = Date().dateToText(formate: "yyyy-MM-dd")
         let currentTime: String = Date().dateToText(formate: "HH:mm:ss")
@@ -227,6 +249,57 @@ extension ExpsHomeViewModel {
         let parameters: [String: Any] = ["id": (id as Any), "date": (date as Any), "time": (time as Any), "vendorid":(vendorId as Any), "paymentid":(paymentId as Any), "amount":(amount as Any), "note":(note as Any), "isedit":(isEdit as Any)]
         
         return parameters
+    }
+    
+    func parametersString(data: Expense, actionCode: Int) -> String {
+        
+        //-- temp fix, using HTML GET
+        //-- change to use Apple's standard way for send out GET/POST requests
+        
+        let currentDate: String = Date().dateToText(formate: "yyyy-MM-dd")
+        let currentTime: String = Date().dateToText(formate: "HH:mm:ss")
+        
+        let id: String = data.id ?? "-1"
+        let date: String = data.date ?? currentDate
+        let time: String = data.time ?? currentTime
+        let vendorId: String = data.vendor_id ?? "0"
+        let paymentId: String = data.payment_id ?? "0"
+        let amount: String = data.amount ?? "0"
+        let note: String = data.note ?? ""
+        
+        var isEdit: String = "0"
+        switch actionCode {
+        case kInsertCode:
+            isEdit = "0"
+            break
+        case kUpdateCode:
+            isEdit = "1"
+            break
+        case kDeleteCode:
+            isEdit = "0"
+            break
+        default:
+            break
+        }
+        
+        let escapedNote = escapeHTMLCharacters(line: note)
+        let parameterStr = "id=\(id)&date=\(date)&time=\(time)&vendorid=\(vendorId)&paymentid=\(paymentId)&amount=\(amount)&isedit=\(isEdit)&note=\(escapedNote)"
+        
+        return parameterStr
+    }
+    
+    func escapeHTMLCharacters(line: String) -> String {
+        
+        if line.count == 0 {
+            return line
+        }
+        
+        let phaseOneString = line.trimmingCharacters(in: .whitespacesAndNewlines)
+        let phaseTwoString = phaseOneString.replacingOccurrences(of: " ", with: "+")
+        let phaseThreeString = phaseTwoString.replacingOccurrences(of: "&", with: "&amp;")
+        
+        let finalString = phaseThreeString
+        return finalString
     }
     
     //MARK: - helpers

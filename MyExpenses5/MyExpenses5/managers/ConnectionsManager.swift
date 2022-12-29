@@ -55,6 +55,19 @@ class ConnectionsManager: NSObject {
         }
     }
     
+    func saveData2FromUrl(url: String, completion: @escaping (_ data: Any) -> Void) {
+        
+        AF.request(url).responseData { response in
+            switch response.result {
+            case let .success(value):
+                completion(value)
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
+    
+    
     //MARK: - testing
     
     func saveHomeTestData(url: String, data: HomeTest, completion: @escaping (_ data: Any) -> Void) {
