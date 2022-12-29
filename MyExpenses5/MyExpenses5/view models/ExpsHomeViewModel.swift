@@ -181,17 +181,17 @@ extension ExpsHomeViewModel {
         
         let paraString = self.parametersString(data: data, actionCode: actionCode)
         
-//        DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { [weak self] (rawData: Data) in
-//            let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
-//            self?.parseSavedExpsData(myexpsList: myexpsList)
-//            completion()
-//        }
-        
-        DatasManager.sharedInstance.saveMyexps2WithParameters(paraString: paraString) { [weak self] (rawData: Data) in
+        DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { [weak self] (rawData: Data) in
             let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
             self?.parseSavedExpsData(myexpsList: myexpsList)
             completion()
         }
+        
+//        DatasManager.sharedInstance.saveMyexps2WithParameters(paraString: paraString) { [weak self] (rawData: Data) in
+//            let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
+//            self?.parseSavedExpsData(myexpsList: myexpsList)
+//            completion()
+//        }
         
     }
     
@@ -296,7 +296,7 @@ extension ExpsHomeViewModel {
         
         let phaseOneString = line.trimmingCharacters(in: .whitespacesAndNewlines)
         let phaseTwoString = phaseOneString.replacingOccurrences(of: " ", with: "+")
-        let phaseThreeString = phaseTwoString.replacingOccurrences(of: "&", with: "&amp;")
+        let phaseThreeString = phaseTwoString.replacingOccurrences(of: "&", with: "And")
         
         let finalString = phaseThreeString
         return finalString

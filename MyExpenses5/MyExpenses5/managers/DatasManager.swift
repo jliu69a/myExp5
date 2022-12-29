@@ -123,6 +123,9 @@ class DatasManager: NSObject {
         print("-> ")
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
+            
+            print("> data : \(data)")
+            
             if let rawData = data as? Data {
                 
                 let rawStr = String(decoding: rawData, as: UTF8.self)

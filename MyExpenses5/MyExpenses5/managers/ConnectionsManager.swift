@@ -45,14 +45,39 @@ class ConnectionsManager: NSObject {
     
     func saveDataFromUrl(url: String, parameters: [String: Any], completion: @escaping (_ data: Any) -> Void) {
         
-        AF.request(url, method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: nil).validate().responseData { response in
-            switch response.result {
-            case let .success(value):
-                completion(value)
-            case let .failure(error):
-                print(error)
+//        AF.request(url, method: HTTPMethod.post, parameters: parameters, encoding: URLEncoding.httpBody, headers: nil).validate().responseData { response in
+//            switch response.result {
+//            case let .success(value):
+//                completion(value)
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
+        
+        print("> connect manager, parameters : \(parameters)")
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
+        let urlLink = URL(string: url)!
+        
+        
+
+        var request = URLRequest(url: urlLink)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print("> saveDataFromUrl has error : \(error?.localizedDescription ?? "")")
+                return
             }
+
+            guard let responseJson = try? JSONSerialization.jsonObject(with: data, options: []) else {
+                print("> responseJson has problem.")
+                return
+            }
+            completion(responseJson)
         }
+        task.resume()
     }
     
     func saveData2FromUrl(url: String, completion: @escaping (_ data: Any) -> Void) {
