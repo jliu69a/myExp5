@@ -43,5 +43,18 @@ class SharedHelper {
             self.appDele.vendorDisplayData[firstLetter] = vendorsArray as AnyObject
         }
     }
+    
+    func escapeForHTMLCharacters(line: String) -> String {
+        
+        if line.count == 0 {
+            return line
+        }
+        
+        var parametersLine = line
+        parametersLine = parametersLine.trimmingCharacters(in: .whitespacesAndNewlines)
+        parametersLine = parametersLine.replacingOccurrences(of: "&", with: "*and*")
+        parametersLine = parametersLine.replacingOccurrences(of: " ", with: "+")
 
+        return parametersLine
+    }
 }

@@ -54,6 +54,7 @@ class DatasManager: NSObject {
     func parseMyExpsData(data: Data) -> [MyExpsData] {
         
         guard let _ = try? JSON(data: data) else {
+            print("ERROR: myExpsData, response has error.")
             return []
         }
         
@@ -91,13 +92,10 @@ class DatasManager: NSObject {
     
     func parseMyExpsWithDate(data: Data) -> [Expense] {
         
-        guard let json = try? JSON(data: data) else {
+        guard let _ = try? JSON(data: data) else {
+            print("ERROR: myExpsWithDate, response has error.")
             return []
         }
-        
-        print("-> ")
-        print("-> datas manager, expense by date, response : \(json)")
-        print("-> ")
         
         var dataList: [Expense] = []
         do {
@@ -123,15 +121,7 @@ class DatasManager: NSObject {
         print("-> ")
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
-            
-            print("> data : \(data)")
-            
             if let rawData = data as? Data {
-                
-                let rawStr = String(decoding: rawData, as: UTF8.self)
-                print("-> ")
-                print("-> datas manager, expense change, raw data : \(rawStr)")
-                print("-> ")
                 completion(rawData)
             }
         }
@@ -148,11 +138,6 @@ class DatasManager: NSObject {
         
         connect.saveData2FromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
-                
-                let rawStr = String(decoding: rawData, as: UTF8.self)
-                print("-> ")
-                print("-> datas manager, GET, expense change, raw data : \(rawStr)")
-                print("-> ")
                 completion(rawData)
             }
         }
@@ -187,6 +172,22 @@ class DatasManager: NSObject {
         print("-> ")
         
         connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
+            if let rawData = data as? Data {
+                completion(rawData)
+            }
+        }
+    }
+    
+    func save2ForPaymentsAndVendors(paramString: String, completion: @escaping  (Data)->()) {
+        
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_edit2.php?%@", folder, paramString)
+        let connect: ConnectionsManager = ConnectionsManager()
+        
+        print("-> ")
+        print("-> datas manager, payments vendors edit, URL : \(url)")
+        print("-> ")
+        
+        connect.saveData2FromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
                 completion(rawData)
             }
@@ -232,13 +233,10 @@ class DatasManager: NSObject {
     
     func parseDataForVendors(data: Data) -> [MyExpsData] {
         
-        guard let json = try? JSON(data: data) else {
+        guard let _ = try? JSON(data: data) else {
+            print("ERROR: vendorsLookup, response has error.")
             return []
         }
-        
-        print("-> ")
-        print("-> datas manager, vendors lookup, response : \(json)")
-        print("-> ")
         
         var dataList: [MyExpsData] = []
         do {
@@ -273,13 +271,10 @@ class DatasManager: NSObject {
 
     func parseDataForExpenseLookup(data: Data) -> [Expense] {
         
-        guard let json = try? JSON(data: data) else {
+        guard let _ = try? JSON(data: data) else {
+            print("ERROR: expenseLookup, response has error.")
             return []
         }
-        
-        print("-> ")
-        print("-> datas manager, expense lookup, response : \(json)")
-        print("-> ")
         
         var dataList: [Expense] = []
         do {

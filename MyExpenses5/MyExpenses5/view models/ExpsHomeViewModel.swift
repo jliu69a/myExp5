@@ -10,7 +10,7 @@ import UIKit
 import SwiftyJSON
 
 
-protocol ExpsHomeViewModelDelegate: class {
+protocol ExpsHomeViewModelDelegate: AnyObject {
     func didLoadExpensesData()
 }
 
@@ -75,11 +75,6 @@ extension ExpsHomeViewModel {
     }
     
     func myExpensesData(data: Data) -> [MyExpsData] {
-        
-//        let json = try? JSON(data: data)
-//        if json == nil {
-//            return []
-//        }
         
         guard let json = try? JSON(data: data) else {
             return []
@@ -177,33 +172,29 @@ extension ExpsHomeViewModel {
     
     func saveMyexpsWithParameters(data: Expense, actionCode: Int, completion: @escaping () -> Void) {
         
-        let parameters: [String: Any] = self.createParameters(data: data, actionCode: actionCode)
-        
-        let paraString = self.parametersString(data: data, actionCode: actionCode)
-        
-        DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { [weak self] (rawData: Data) in
-            let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
-            self?.parseSavedExpsData(myexpsList: myexpsList)
-            completion()
-        }
-        
-//        DatasManager.sharedInstance.saveMyexps2WithParameters(paraString: paraString) { [weak self] (rawData: Data) in
+        //-- not used.
+//        let parameters: [String: Any] = self.createParameters(data: data, actionCode: actionCode)
+//
+//        DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { [weak self] (rawData: Data) in
 //            let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
 //            self?.parseSavedExpsData(myexpsList: myexpsList)
 //            completion()
 //        }
         
+        let paraString = self.parametersString(data: data, actionCode: actionCode)
+        
+        DatasManager.sharedInstance.saveMyexps2WithParameters(paraString: paraString) { [weak self] (rawData: Data) in
+            let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
+            self?.parseSavedExpsData(myexpsList: myexpsList)
+            completion()
+        }
     }
     
     func parseSaveMyexpsWithParameters(data: Data) -> [EditMyExpsData] {
         
-        guard let json = try? JSON(data: data) else {
+        guard let _ = try? JSON(data: data) else {
             return []
         }
-        
-        print("-> ")
-        print("-> ExpsHomeViewModel, saveMyExps response : \(json)")
-        print("-> ")
         
         var dataList: [EditMyExpsData] = []
         do {
@@ -253,8 +244,7 @@ extension ExpsHomeViewModel {
     
     func parametersString(data: Expense, actionCode: Int) -> String {
         
-        //-- temp fix, using HTML GET
-        //-- change to use Apple's standard way for send out GET/POST requests
+        //-- using HTML GET
         
         let currentDate: String = Date().dateToText(formate: "yyyy-MM-dd")
         let currentTime: String = Date().dateToText(formate: "HH:mm:ss")
@@ -282,24 +272,10 @@ extension ExpsHomeViewModel {
             break
         }
         
-        let escapedNote = escapeHTMLCharacters(line: note)
+        let escapedNote = SharedHelper().escapeForHTMLCharacters(line: note)
         let parameterStr = "id=\(id)&date=\(date)&time=\(time)&vendorid=\(vendorId)&paymentid=\(paymentId)&amount=\(amount)&isedit=\(isEdit)&note=\(escapedNote)"
         
         return parameterStr
-    }
-    
-    func escapeHTMLCharacters(line: String) -> String {
-        
-        if line.count == 0 {
-            return line
-        }
-        
-        let phaseOneString = line.trimmingCharacters(in: .whitespacesAndNewlines)
-        let phaseTwoString = phaseOneString.replacingOccurrences(of: " ", with: "+")
-        let phaseThreeString = phaseTwoString.replacingOccurrences(of: "&", with: "And")
-        
-        let finalString = phaseThreeString
-        return finalString
     }
     
     //MARK: - helpers
