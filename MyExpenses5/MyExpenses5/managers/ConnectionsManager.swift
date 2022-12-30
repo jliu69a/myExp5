@@ -59,7 +59,7 @@ class ConnectionsManager: NSObject {
         let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
         let urlLink = URL(string: url)!
         
-        
+        //-- error: parameters not passing in.
 
         var request = URLRequest(url: urlLink)
         request.httpMethod = "POST"

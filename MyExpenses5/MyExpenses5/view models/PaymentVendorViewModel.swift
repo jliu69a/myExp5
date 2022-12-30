@@ -138,9 +138,19 @@ extension PaymentVendorViewModel {
         let isPaymentValue: String = isForPayment ? "1" : "0"
         let isEditValue: String = isEdit ? "1" : "0"
         
-        let parameters: [String: Any] = ["id": (idValue as Any), "name": (name as Any), "ispayment": (isPaymentValue as Any), "edit":(isEditValue as Any)]
+        //-- not used.
+//        let parameters: [String: Any] = ["id": (idValue as Any), "name": (name as Any), "ispayment": (isPaymentValue as Any), "edit":(isEditValue as Any)]
+//
+//        DatasManager.sharedInstance.savePaymentsAndVendors(parameters: parameters) { [weak self] (rawData: Data) in
+//            let pvList: [ChangePVData] = self?.parseSavePaymentsAndVendors(data: rawData) ?? []
+//            self?.parseSavedPVData(myPVList: pvList)
+//            completion()
+//        }
         
-        DatasManager.sharedInstance.savePaymentsAndVendors(parameters: parameters) { [weak self] (rawData: Data) in
+        let escapedName = SharedHelper().escapeForHTMLCharacters(line: name)
+        let paramString = "id=\(idValue)&name=\(escapedName)&ispayment=\(isPaymentValue)&edit=\(isEditValue)"
+        
+        DatasManager.sharedInstance.save2ForPaymentsAndVendors(paramString: paramString)  { [weak self] (rawData: Data) in
             let pvList: [ChangePVData] = self?.parseSavePaymentsAndVendors(data: rawData) ?? []
             self?.parseSavedPVData(myPVList: pvList)
             completion()
