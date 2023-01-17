@@ -171,19 +171,9 @@ extension ExpsHomeViewModel {
     }
     
     func saveMyexpsWithParameters(data: Expense, actionCode: Int, completion: @escaping () -> Void) {
-        
-        //-- not used.
-//        let parameters: [String: Any] = self.createParameters(data: data, actionCode: actionCode)
-//
-//        DatasManager.sharedInstance.saveMyexpsWithParameters(parameters: parameters) { [weak self] (rawData: Data) in
-//            let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
-//            self?.parseSavedExpsData(myexpsList: myexpsList)
-//            completion()
-//        }
-        
         let paraString = self.parametersString(data: data, actionCode: actionCode)
         
-        DatasManager.sharedInstance.saveMyexps2WithParameters(paraString: paraString) { [weak self] (rawData: Data) in
+        DatasManager.sharedInstance.saveMyexpsWithParameters(paraString: paraString) { [weak self] (rawData: Data) in
             let myexpsList: [EditMyExpsData] = self?.parseSaveMyexpsWithParameters(data: rawData) ?? []
             self?.parseSavedExpsData(myexpsList: myexpsList)
             completion()
@@ -209,7 +199,7 @@ extension ExpsHomeViewModel {
     
     func createParameters(data: Expense, actionCode: Int) -> [String: Any] {
         
-        //-- for the post method, having problems with Alamofire
+        //-- for the POST method, having problems with Alamofire
         
         let currentDate: String = Date().dateToText(formate: "yyyy-MM-dd")
         let currentTime: String = Date().dateToText(formate: "HH:mm:ss")
@@ -244,7 +234,7 @@ extension ExpsHomeViewModel {
     
     func parametersString(data: Expense, actionCode: Int) -> String {
         
-        //-- using HTML GET
+        //-- for the GET method
         
         let currentDate: String = Date().dateToText(formate: "yyyy-MM-dd")
         let currentTime: String = Date().dateToText(formate: "HH:mm:ss")

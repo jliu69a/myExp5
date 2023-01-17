@@ -40,10 +40,7 @@ class DatasManager: NSObject {
         let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/preload_data.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
-        
-        print("-> ")
-        print("-> datas manager, preload data, URL : \(url)")
-        print("-> ")
+        print("-> DatasManager, myExpsData(), URL : \(url)")
         
         connect.getDataFromUrl(url: url) { (data: Any) in
             let myexpData: Data = data as! Data
@@ -76,10 +73,7 @@ class DatasManager: NSObject {
         let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expense_by_date.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
-        
-        print("-> ")
-        print("-> datas manager, expense by date, URL : \(url)")
-        print("-> ")
+        print("-> DatasManager, myExpsWithDate(), URL : \(url)")
         
         connect.getDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
@@ -110,105 +104,32 @@ class DatasManager: NSObject {
     
     //MARK: - save changes
     
-    func saveMyexpsWithParameters(parameters: [String: Any], completion: @escaping  (Data)->()) {
+    func saveMyexpsWithParameters(paraString: String, completion: @escaping  (Data)->()) {
         
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expenses_change.php", folder)
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expenses_change.php?%@", folder, paraString)
         let connect: ConnectionsManager = ConnectionsManager()
+        print("-> DatasManager, saveMyExps2WithParameters(), URL string : \(url)")
         
-        print("-> ")
-        print("-> datas manager, expense change, URL : \(url)")
-        print("-> datas manager, expense change, parameters : \(parameters)")
-        print("-> ")
-        
-        connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
+        connect.saveDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
                 completion(rawData)
             }
         }
-    }
-    
-    func saveMyexps2WithParameters(paraString: String, completion: @escaping  (Data)->()) {
-        
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expenses2_change.php?%@", folder, paraString)
-        let connect: ConnectionsManager = ConnectionsManager()
-        
-        print("-> ")
-        print("-> datas manager, expense change 2, URL string : \(url)")
-        print("-> ")
-        
-        connect.saveData2FromUrl(url: url) { (data: Any) in
-            if let rawData = data as? Data {
-                completion(rawData)
-            }
-        }
-    }
-    
-    func parseSaveMyexpsWithParameters(data: Data) -> [EditMyExpsData] {
-        
-        guard let _ = try? JSON(data: data) else {
-            return []
-        }
-        
-        var dataList: [EditMyExpsData] = []
-        do {
-            dataList = try JSONDecoder().decode([EditMyExpsData].self, from: data)
-        }
-        catch {
-            print(error)
-        }
-        
-        return dataList
     }
     
     //MARK: - save payment / vendor
     
-    func savePaymentsAndVendors(parameters: [String: Any], completion: @escaping  (Data)->()) {
+    func saveForPaymentsAndVendors(paramString: String, completion: @escaping  (Data)->()) {
         
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_edit.php", folder)
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_edit.php?%@", folder, paramString)
         let connect: ConnectionsManager = ConnectionsManager()
+        print("-> DatasManager, save2ForPaymentsAndVendors(), URL : \(url)")
         
-        print("-> ")
-        print("-> datas manager, payments vendors edit, URL : \(url)")
-        print("-> ")
-        
-        connect.saveDataFromUrl(url: url, parameters: parameters) { (data: Any) in
+        connect.saveDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
                 completion(rawData)
             }
         }
-    }
-    
-    func save2ForPaymentsAndVendors(paramString: String, completion: @escaping  (Data)->()) {
-        
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_edit2.php?%@", folder, paramString)
-        let connect: ConnectionsManager = ConnectionsManager()
-        
-        print("-> ")
-        print("-> datas manager, payments vendors edit, URL : \(url)")
-        print("-> ")
-        
-        connect.saveData2FromUrl(url: url) { (data: Any) in
-            if let rawData = data as? Data {
-                completion(rawData)
-            }
-        }
-    }
-    
-    func parseSavePaymentsAndVendors(data: Data) -> [ChangePVData] {
-        
-        guard let _ = try? JSON(data: data) else {
-            return []
-        }
-        
-        var dataList: [ChangePVData] = []
-        do {
-            dataList = try JSONDecoder().decode([ChangePVData].self, from: data)
-        }
-        catch {
-            print(error)
-        }
-        
-        return dataList
     }
     
     //MARK: - vendor lookup
@@ -217,10 +138,7 @@ class DatasManager: NSObject {
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/vendors_lookup.php?year=%@&vendorid=%@", folder, year, vendorId)
         let connect: ConnectionsManager = ConnectionsManager()
-        
-        print("-> ")
-        print("-> datas manager, vendors lookup, URL : \(url)")
-        print("-> ")
+        print("-> DatasManager, vendorsLookup(), URL : \(url)")
         
         connect.getDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
@@ -255,10 +173,7 @@ class DatasManager: NSObject {
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expense_lookup.php?date=%@-%@", folder, year, month)
         let connect: ConnectionsManager = ConnectionsManager()
-        
-        print("-> ")
-        print("-> datas manager, expense lookup, URL : \(url)")
-        print("-> ")
+        print("-> DatasManager, expenseLookup(), URL : \(url)")
         
         connect.getDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
@@ -279,55 +194,6 @@ class DatasManager: NSObject {
         var dataList: [Expense] = []
         do {
             dataList = try JSONDecoder().decode([Expense].self, from: data)
-        }
-        catch {
-            print(error)
-        }
-        
-        return dataList
-    }
-    
-    //MARK: - save home test
-    
-    func saveHomeTest(data: HomeTest) {
-        
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/change_home_test.php", folder)
-        let connect: ConnectionsManager = ConnectionsManager()
-
-        connect.saveHomeTestData(url: url, data: data) { (data: Any) in
-            if let rawData = data as? Data {
-                let resultText: String = String(data: rawData, encoding: .utf8) ?? "n/a"
-                print("-> save HomeTest, result = '\(resultText)' ")
-            }
-        }
-    }
-    
-    //MARK: - states data
-    
-    func statesData(completion: @escaping  (Any)->()) {
-        
-        let url: String = "http://www.mysohoplace.com/php_hdb/home_test/all_states.php"
-        let connect: ConnectionsManager = ConnectionsManager()
-        
-        connect.getDataFromUrl(url: url) { (data: Any) in
-            if let rawData = data as? Data {
-                let statesList: [StatesData] = self.parseStatesData(data: rawData)
-                let value: Any = statesList as Any
-                completion(value)
-            }
-        }
-    }
-
-    func parseStatesData(data: Data) -> [StatesData] {
-        
-        let json = try? JSON(data: data)
-        if json == nil {
-            return []
-        }
-        
-        var dataList: [StatesData] = []
-        do {
-            dataList = try JSONDecoder().decode([StatesData].self, from: data)
         }
         catch {
             print(error)

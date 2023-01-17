@@ -53,6 +53,7 @@ class SharedHelper {
         var parametersLine = line
         parametersLine = parametersLine.trimmingCharacters(in: .whitespacesAndNewlines)
         parametersLine = parametersLine.replacingOccurrences(of: "&", with: "*and*")
+        parametersLine = parametersLine.replacingOccurrences(of: "+", with: "*plus*")
         parametersLine = parametersLine.replacingOccurrences(of: " ", with: "+")
 
         return parametersLine
