@@ -83,7 +83,7 @@ class AdminHomeViewController: UIViewController {
         }
     }
     
-    func showLocationCheck() {
+    func showdailyStatusCheck() {
         //
     }
     
@@ -150,7 +150,7 @@ extension AdminHomeViewController: UITableViewDelegate {
             break
         case 2:
             if indexPath.row == 0 {
-                self.showLocationCheck()
+                self.showdailyStatusCheck()
             }
             break
         default:

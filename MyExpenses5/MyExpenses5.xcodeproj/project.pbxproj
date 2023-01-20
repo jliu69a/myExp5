@@ -54,6 +54,7 @@
 		FE329FC5261A24A90092BFAC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE329FC4261A24A90092BFAC /* Date+Extension.swift */; };
 		FE5858E6273477EF00542779 /* ExpsLookupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */; };
 		FE5858E827347B6400542779 /* VendorsLookupDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5858E727347B6400542779 /* VendorsLookupDataViewController.swift */; };
+		FE73BB67297A406900AB8897 /* DailyCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE73BB66297A406900AB8897 /* DailyCheckViewModel.swift */; };
 		FE8260542894AE52007B3CEA /* SharedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8260532894AE52007B3CEA /* SharedHelper.swift */; };
 		FEA1200F289AB7C800E360A0 /* chooseDate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA1200E289AB7C800E360A0 /* chooseDate.storyboard */; };
 		FEA12011289AB82D00E360A0 /* ChooseDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA12010289AB82D00E360A0 /* ChooseDateViewController.swift */; };
@@ -132,6 +133,7 @@
 		FE329FC4261A24A90092BFAC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpsLookupViewModel.swift; sourceTree = "<group>"; };
 		FE5858E727347B6400542779 /* VendorsLookupDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsLookupDataViewController.swift; sourceTree = "<group>"; };
+		FE73BB66297A406900AB8897 /* DailyCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckViewModel.swift; sourceTree = "<group>"; };
 		FE8260532894AE52007B3CEA /* SharedHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelper.swift; sourceTree = "<group>"; };
 		FEA1200E289AB7C800E360A0 /* chooseDate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = chooseDate.storyboard; sourceTree = "<group>"; };
 		FEA12010289AB82D00E360A0 /* ChooseDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDateViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				5A92416F255637AC00263B07 /* ExpsHomeViewModel.swift */,
 				5A8F7574255C5ECE00612AE4 /* PaymentVendorViewModel.swift */,
 				5A3A578E256951710033EDAB /* AdminHomeViewModel.swift */,
+				FE73BB66297A406900AB8897 /* DailyCheckViewModel.swift */,
 				FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */,
 				FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */,
 				FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */,
@@ -533,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A344D1A25585BE2000B993E /* Constants.swift in Sources */,
+				FE73BB67297A406900AB8897 /* DailyCheckViewModel.swift in Sources */,
 				5A8B1F3124C137D80094E543 /* MyExpDataManager.swift in Sources */,
 				5A8BAAB224C336440033B46A /* PaymentsVendorsViewController.swift in Sources */,
 				FEB62EF8261A445F00725848 /* FilmsHomeViewModel.swift in Sources */,
