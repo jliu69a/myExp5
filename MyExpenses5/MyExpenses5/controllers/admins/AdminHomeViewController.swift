@@ -84,7 +84,11 @@ class AdminHomeViewController: UIViewController {
     }
     
     func showdailyStatusCheck() {
-        //
+        
+        let storyboard = UIStoryboard(name: "admins", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "DailyCheckViewController") as? DailyCheckViewController {
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

@@ -13,13 +13,26 @@ class DailyCheckViewModel: NSObject {
     let appDele = UIApplication.shared.delegate as! AppDelegate
     let kUserDefault = UserDefaults.standard
     
-    var dailyStatusList = [Bool]()
+    let helper = SharedHelper()
+    var totalDays: Int = 0
+    var displayDate = ""
+    
+    var dailyStatusList = [String]()
     
     func retrieveDailyStatusData() {
-        dailyStatusList = kUserDefault.array(forKey: appDele.kDailyCheckStatusKey)! as? [Bool] ?? [Bool]()
+        dailyStatusList = kUserDefault.array(forKey: appDele.kDailyCheckStatusKey) as? [String] ?? [String]()
         if dailyStatusList.count == 0 {
-            dailyStatusList.append(contentsOf: SharedHelper().resetStatusList())
+            dailyStatusList.append(contentsOf: helper.resetStatusList())
+            saveDailyStatusData()
         }
+        
+        totalDays = helper.totalDaysOfMonth()
+        displayDate = helper.dailyCheckDateText
+    }
+    
+    func refreshDailyStatusData() {
+        dailyStatusList.removeAll()
+        dailyStatusList.append(contentsOf: helper.resetStatusList())
     }
     
     func saveDailyStatusData() {
@@ -27,11 +40,12 @@ class DailyCheckViewModel: NSObject {
         kUserDefault.synchronize()
     }
     
-    func editDailyStatusData(index: Int, value: Bool) {
+    func editDailyStatusData(index: Int, value: String) {
         if index >= dailyStatusList.count {
             return
         }
         dailyStatusList[index] = value
+        saveDailyStatusData()
     }
 }
 
@@ -42,11 +56,10 @@ extension DailyCheckViewModel {
     }
     
     func numberOfRows(index: Int) -> Int {
-        let totalDays = SharedHelper().totalDaysOfMonth()
         return (totalDays > appDele.maxDaysInMonth) ? appDele.maxDaysInMonth : totalDays
     }
     
-    func rowAtIndex(row: Int) -> Bool {
-        return (row < dailyStatusList.count) ? dailyStatusList[row] : false
+    func rowAtIndex(row: Int) -> String {
+        return (row < dailyStatusList.count) ? dailyStatusList[row] : "0"
     }
 }

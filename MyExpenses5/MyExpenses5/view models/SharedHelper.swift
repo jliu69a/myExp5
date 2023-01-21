@@ -63,20 +63,24 @@ class SharedHelper {
     
     //MARK: -
     
+    var dailyCheckDateText = ""
+    
     func totalDaysOfMonth(date: Date? = nil) -> Int {
-        
-        var selecteDate = Date()
+        var selectedDate = Date()
         if let theDate = date {
-            selecteDate = theDate
+            selectedDate = theDate
         }
         
         let df = DateFormatter()
         
+        df.dateFormat = "MMMM yyyy"
+        dailyCheckDateText = df.string(from: selectedDate)
+        
         df.dateFormat = "yyyy"
-        let year: Int = Int(df.string(from: selecteDate)) ?? 0
+        let year: Int = Int(df.string(from: selectedDate)) ?? 0
 
         df.dateFormat = "MM"
-        let month: Int = Int(df.string(from: selecteDate)) ?? 0
+        let month: Int = Int(df.string(from: selectedDate)) ?? 0
 
         let dateComponents = DateComponents(year: year, month: month)
         let calendar = Calendar.current
@@ -86,12 +90,12 @@ class SharedHelper {
         return range.count
     }
     
-    func resetStatusList() -> [Bool] {
+    func resetStatusList() -> [String] {
         let appDele = UIApplication.shared.delegate as! AppDelegate
         
-        var dataList = [Bool]()
+        var dataList = [String]()
         for _ in 0...appDele.maxDaysInMonth {
-            dataList.append(false)
+            dataList.append("0")
         }
         return dataList
     }
