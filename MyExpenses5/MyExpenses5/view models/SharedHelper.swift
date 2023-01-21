@@ -11,6 +11,8 @@ import UIKit
 class SharedHelper {
     let appDele = UIApplication.shared.delegate as! AppDelegate
     
+    //MARK: -
+    
     func parseVendorsArray() {
         let vendorsList = self.appDele.vendorsList
         
@@ -57,5 +59,44 @@ class SharedHelper {
         parametersLine = parametersLine.replacingOccurrences(of: " ", with: "+")
 
         return parametersLine
+    }
+    
+    //MARK: -
+    
+    var dailyCheckDateText = ""
+    
+    func totalDaysOfMonth(date: Date? = nil) -> Int {
+        var selectedDate = Date()
+        if let theDate = date {
+            selectedDate = theDate
+        }
+        
+        let df = DateFormatter()
+        
+        df.dateFormat = "MMMM yyyy"
+        dailyCheckDateText = df.string(from: selectedDate)
+        
+        df.dateFormat = "yyyy"
+        let year: Int = Int(df.string(from: selectedDate)) ?? 0
+
+        df.dateFormat = "MM"
+        let month: Int = Int(df.string(from: selectedDate)) ?? 0
+
+        let dateComponents = DateComponents(year: year, month: month)
+        let calendar = Calendar.current
+        let date = calendar.date(from: dateComponents)!
+
+        let range = calendar.range(of: .day, in: .month, for: date)!
+        return range.count
+    }
+    
+    func resetStatusList() -> [String] {
+        let appDele = UIApplication.shared.delegate as! AppDelegate
+        
+        var dataList = [String]()
+        for _ in 0...appDele.maxDaysInMonth {
+            dataList.append("0")
+        }
+        return dataList
     }
 }
