@@ -33,6 +33,7 @@ class DailyCheckViewModel: NSObject {
     func refreshDailyStatusData() {
         dailyStatusList.removeAll()
         dailyStatusList.append(contentsOf: helper.resetStatusList())
+        saveDailyStatusData()
     }
     
     func saveDailyStatusData() {
