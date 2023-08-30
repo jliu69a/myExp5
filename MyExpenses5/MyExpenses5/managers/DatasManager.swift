@@ -202,6 +202,77 @@ class DatasManager: NSObject {
         return dataList
     }
     
+    //MARK: - med status tracking
+    
+    func medStatusList(year: String, month: String, completion: @escaping  (Any)->()) {
+        
+        let url: String = String(format: "https://www.mysohoplace.com/php_hdb/php_GL/%@/med/med_status_list.php?date=%@-%@", folder, year, month)
+        let connect: ConnectionsManager = ConnectionsManager()
+        print("-> DatasManager, medStatusList(), URL : \(url)")
+        
+        connect.getDataFromUrl(url: url) { (data: Any) in
+            if let rawData = data as? Data {
+                let statusList: [MedStatus] = self.parseDataForMedStatusList(data: rawData)
+                let value: Any = statusList as Any
+                completion(value)
+            }
+        }
+    }
+    
+    func parseDataForMedStatusList(data: Data) -> [MedStatus] {
+        
+        guard let _ = try? JSON(data: data) else {
+            print("ERROR: medStatisList, response has error.")
+            return []
+        }
+        
+        var dataList: [MedStatus] = []
+        do {
+            dataList = try JSONDecoder().decode([MedStatus].self, from: data)
+        }
+        catch {
+            print(error)
+        }
+        
+        return dataList
+    }
+    
+    //MARK: - med data tracking
+    
+    func medDataList(completion: @escaping  (Any)->()) {
+        
+        let url: String = String(format: "https://www.mysohoplace.com/php_hdb/php_GL/%@/med/med_data_list.php", folder)
+        let connect: ConnectionsManager = ConnectionsManager()
+        print("-> DatasManager, medDataList(), URL : \(url)")
+        
+        connect.getDataFromUrl(url: url) { (data: Any) in
+            if let rawData = data as? Data {
+                let dataList: [MedData] = self.parseDataForMedDataList(data: rawData)
+                let value: Any = dataList as Any
+                completion(value)
+            }
+        }
+    }
+    
+    func parseDataForMedDataList(data: Data) -> [MedData] {
+        
+        guard let _ = try? JSON(data: data) else {
+            print("ERROR: medDataList, response has error.")
+            return []
+        }
+        
+        var dataList: [MedData] = []
+        do {
+            dataList = try JSONDecoder().decode([MedData].self, from: data)
+        }
+        catch {
+            print(error)
+        }
+        
+        return dataList
+    }
+    
+    
     //MARK: - film data
     
     func loadFilmsData(completion: @escaping  (Data)->()) {
