@@ -13,6 +13,7 @@ class ExpensesLookupViewController: UIViewController {
     @IBOutlet weak var lookupTitle: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var amountTotalLabel: UILabel!
     
     let maxDayNumber: Int = 42
     let viewModel = ExpsLookupViewModel()
@@ -55,6 +56,8 @@ class ExpensesLookupViewController: UIViewController {
         lookupMonthValue = Int(lookupMonth) ?? 0
         lookupTitle.text = String(format: "for: %0.4d-%0.2d", lookupYearValue, lookupMonthValue)
         
+        amountTotalLabel.text = ""
+        
         monthInfo()
         
         self.collectionView.layer.borderColor = UIColor.systemOrange.cgColor
@@ -74,6 +77,14 @@ class ExpensesLookupViewController: UIViewController {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.progressIndicator.stopAnimating()
+                
+                let myDouble = self.viewModel.amountTotal
+                let currencyFormatter = NumberFormatter()
+                currencyFormatter.usesGroupingSeparator = true
+                currencyFormatter.numberStyle = .currency
+                currencyFormatter.locale = Locale.current
+                let priceString = currencyFormatter.string(from: NSNumber(value: myDouble)) ?? "0.00"
+                self.amountTotalLabel.text = "total amount: \(priceString)"
             }
         }
     }

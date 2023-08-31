@@ -72,6 +72,26 @@ public struct Expense: Codable {
     var vendor_id : String?
 }
 
+//MARK: - med tracking
+
+public struct MedData: Codable {
+    var id: String?
+    var short_name: String?
+    var full_name: String?
+    var dose: String?
+    var notes: String?
+}
+
+public struct MedStatus: Codable {
+    var id: String?
+    var med_name: String?
+    var date: String?
+    var time: String?
+    var updated_date: String?
+    var is_taken: String?
+    var notes: String?
+}
+
 //MARK: - films
 
 public struct FilmsData: Codable {

@@ -15,6 +15,8 @@ class ExpsLookupViewModel: NSObject {
     var lookupDaysList: [String] = []
     var lookupData: [String: [Expense]] = [:]
     
+    var amountTotal: Double = 0
+    
     func expsLookupData(year: String, month: String, completion: @escaping  (Any)->()) {
         
         DatasManager.sharedInstance.expenseLookup(year: year, month: month)  { (any: Any) in
@@ -38,6 +40,10 @@ class ExpsLookupViewModel: NSObject {
         for eachExp in self.expenseLookupList {
             let dayText = (eachExp.date ?? defaultDate).suffix(2)
             let displayDay = "\(Int(dayText) ?? 0)"
+            
+            if let value = eachExp.amount {
+                amountTotal += Double(value) ?? 0
+            }
             
             if !self.lookupDaysList.contains(displayDay) {
                 self.lookupDaysList.append(displayDay)
