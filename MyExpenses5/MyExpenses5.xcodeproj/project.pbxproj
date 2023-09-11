@@ -29,7 +29,6 @@
 		5A8BAAB424C33EC50033B46A /* pandv.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A8BAAB324C33EC50033B46A /* pandv.storyboard */; };
 		5A8F15AA24D4C51100B57A9B /* SelectMonthAndYearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F15A924D4C51100B57A9B /* SelectMonthAndYearViewController.swift */; };
 		5A8F15AC24D4C54500B57A9B /* monthAndYear.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A8F15AB24D4C54500B57A9B /* monthAndYear.storyboard */; };
-		5A8F15AE24D4D88500B57A9B /* VendorsLookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F15AD24D4D88500B57A9B /* VendorsLookupViewController.swift */; };
 		5A8F7575255C5ECE00612AE4 /* PaymentVendorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8F7574255C5ECE00612AE4 /* PaymentVendorViewModel.swift */; };
 		5A90E45B24E03471005C42A3 /* ExpensesLookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A90E45A24E03471005C42A3 /* ExpensesLookupViewController.swift */; };
 		5A90E45E24E05E84005C42A3 /* ExpLookupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A90E45C24E05E84005C42A3 /* ExpLookupCell.swift */; };
@@ -46,6 +45,9 @@
 		5AF26FC624CBA8550042DE15 /* AdminPVAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF26FC524CBA8550042DE15 /* AdminPVAddEditViewController.swift */; };
 		5AFBAE1E24F1763100F87276 /* ExpLookupDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AFBAE1D24F1763100F87276 /* ExpLookupDisplayViewController.swift */; };
 		94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */; };
+		FE0209C72AAE4EAA0015AA17 /* PAndVLookupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0209C62AAE4EAA0015AA17 /* PAndVLookupViewController.swift */; };
+		FE0209C92AAE50600015AA17 /* PAndVLookupDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0209C82AAE50600015AA17 /* PAndVLookupDataViewController.swift */; };
+		FE0209CB2AAE52B70015AA17 /* PAndVLookupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0209CA2AAE52B70015AA17 /* PAndVLookupViewModel.swift */; };
 		FE15E8FC271C75EA00913558 /* MyExp5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE15E8FB271C75EA00913558 /* MyExp5Tests.swift */; };
 		FE1F566325F06F1C00743825 /* TopHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1F566225F06F1C00743825 /* TopHeaderViewController.swift */; };
 		FE1F566725F071D200743825 /* topheader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE1F566625F071D200743825 /* topheader.storyboard */; };
@@ -53,7 +55,6 @@
 		FE329FC0261A1C3C0092BFAC /* FilmsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE329FBE261A1C3C0092BFAC /* FilmsCell.xib */; };
 		FE329FC5261A24A90092BFAC /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE329FC4261A24A90092BFAC /* Date+Extension.swift */; };
 		FE5858E6273477EF00542779 /* ExpsLookupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */; };
-		FE5858E827347B6400542779 /* VendorsLookupDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5858E727347B6400542779 /* VendorsLookupDataViewController.swift */; };
 		FE73BB67297A406900AB8897 /* DailyCheckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE73BB66297A406900AB8897 /* DailyCheckViewModel.swift */; };
 		FE8260542894AE52007B3CEA /* SharedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8260532894AE52007B3CEA /* SharedHelper.swift */; };
 		FE89199A297B87D100512A80 /* DailyCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE891999297B87D100512A80 /* DailyCheckViewController.swift */; };
@@ -69,7 +70,6 @@
 		FECDC79C2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDC79B2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift */; };
 		FEE35C5A26C831920081BAD9 /* SharedHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */; };
 		FEE35C5C26C831B10081BAD9 /* sharedHeader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */; };
-		FEF726622734363D00A85326 /* VendorsLookupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,7 +105,6 @@
 		5A8BAAB324C33EC50033B46A /* pandv.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = pandv.storyboard; sourceTree = "<group>"; };
 		5A8F15A924D4C51100B57A9B /* SelectMonthAndYearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMonthAndYearViewController.swift; sourceTree = "<group>"; };
 		5A8F15AB24D4C54500B57A9B /* monthAndYear.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = monthAndYear.storyboard; sourceTree = "<group>"; };
-		5A8F15AD24D4D88500B57A9B /* VendorsLookupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsLookupViewController.swift; sourceTree = "<group>"; };
 		5A8F7574255C5ECE00612AE4 /* PaymentVendorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentVendorViewModel.swift; sourceTree = "<group>"; };
 		5A90E45A24E03471005C42A3 /* ExpensesLookupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesLookupViewController.swift; sourceTree = "<group>"; };
 		5A90E45C24E05E84005C42A3 /* ExpLookupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpLookupCell.swift; sourceTree = "<group>"; };
@@ -126,6 +125,9 @@
 		95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyExpenses5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7E7A5EB671D2EB1790CB4C /* Pods-MyExpenses5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.debug.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.debug.xcconfig"; sourceTree = "<group>"; };
 		D3D82A40FD8B16F17D98AD67 /* Pods-MyExpenses5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyExpenses5.release.xcconfig"; path = "Target Support Files/Pods-MyExpenses5/Pods-MyExpenses5.release.xcconfig"; sourceTree = "<group>"; };
+		FE0209C62AAE4EAA0015AA17 /* PAndVLookupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PAndVLookupViewController.swift; sourceTree = "<group>"; };
+		FE0209C82AAE50600015AA17 /* PAndVLookupDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PAndVLookupDataViewController.swift; sourceTree = "<group>"; };
+		FE0209CA2AAE52B70015AA17 /* PAndVLookupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PAndVLookupViewModel.swift; sourceTree = "<group>"; };
 		FE15E8F9271C75EA00913558 /* MyExp5Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyExp5Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE15E8FB271C75EA00913558 /* MyExp5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyExp5Tests.swift; sourceTree = "<group>"; };
 		FE15E8FD271C75EA00913558 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -135,7 +137,6 @@
 		FE329FBE261A1C3C0092BFAC /* FilmsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilmsCell.xib; sourceTree = "<group>"; };
 		FE329FC4261A24A90092BFAC /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpsLookupViewModel.swift; sourceTree = "<group>"; };
-		FE5858E727347B6400542779 /* VendorsLookupDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsLookupDataViewController.swift; sourceTree = "<group>"; };
 		FE73BB66297A406900AB8897 /* DailyCheckViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckViewModel.swift; sourceTree = "<group>"; };
 		FE8260532894AE52007B3CEA /* SharedHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelper.swift; sourceTree = "<group>"; };
 		FE891999297B87D100512A80 /* DailyCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckViewController.swift; sourceTree = "<group>"; };
@@ -151,7 +152,6 @@
 		FECDC79B2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpsLookupSelectViewController.swift; sourceTree = "<group>"; };
 		FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHeaderViewController.swift; sourceTree = "<group>"; };
 		FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = sharedHeader.storyboard; sourceTree = "<group>"; };
-		FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsLookupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,7 +226,7 @@
 				5A3A578E256951710033EDAB /* AdminHomeViewModel.swift */,
 				FE73BB66297A406900AB8897 /* DailyCheckViewModel.swift */,
 				FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */,
-				FEF726612734363D00A85326 /* VendorsLookupViewModel.swift */,
+				FE0209CA2AAE52B70015AA17 /* PAndVLookupViewModel.swift */,
 				FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */,
 				FE8260532894AE52007B3CEA /* SharedHelper.swift */,
 			);
@@ -303,8 +303,8 @@
 				5A8BAAAD24C336430033B46A /* PAndVCell.swift */,
 				5A8BAAAE24C336440033B46A /* PAndVCell.xib */,
 				5A8F15A924D4C51100B57A9B /* SelectMonthAndYearViewController.swift */,
-				5A8F15AD24D4D88500B57A9B /* VendorsLookupViewController.swift */,
-				FE5858E727347B6400542779 /* VendorsLookupDataViewController.swift */,
+				FE0209C62AAE4EAA0015AA17 /* PAndVLookupViewController.swift */,
+				FE0209C82AAE50600015AA17 /* PAndVLookupDataViewController.swift */,
 				FECDC79B2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift */,
 				5A90E45A24E03471005C42A3 /* ExpensesLookupViewController.swift */,
 				5A90E45C24E05E84005C42A3 /* ExpLookupCell.swift */,
@@ -546,6 +546,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A344D1A25585BE2000B993E /* Constants.swift in Sources */,
+				FE0209C72AAE4EAA0015AA17 /* PAndVLookupViewController.swift in Sources */,
 				FE73BB67297A406900AB8897 /* DailyCheckViewModel.swift in Sources */,
 				5A8B1F3124C137D80094E543 /* MyExpDataManager.swift in Sources */,
 				5A8BAAB224C336440033B46A /* PaymentsVendorsViewController.swift in Sources */,
@@ -556,12 +557,12 @@
 				FEB62EF5261A43F100725848 /* FilmsHomeViewController.swift in Sources */,
 				FE8260542894AE52007B3CEA /* SharedHelper.swift in Sources */,
 				FE329FBF261A1C3C0092BFAC /* FilmsCell.swift in Sources */,
-				FE5858E827347B6400542779 /* VendorsLookupDataViewController.swift in Sources */,
 				5A97C77D24C12E050019E2B4 /* ViewController.swift in Sources */,
 				5A90E45E24E05E84005C42A3 /* ExpLookupCell.swift in Sources */,
 				5A87AB8324C1340E009792A1 /* jsonsData.swift in Sources */,
 				FEA12011289AB82D00E360A0 /* ChooseDateViewController.swift in Sources */,
 				FEB3255D25F44144002B20A4 /* VendorReferenceCell.swift in Sources */,
+				FE0209C92AAE50600015AA17 /* PAndVLookupDataViewController.swift in Sources */,
 				FECD2D0A25F2E5B400410E7C /* TopBarManager.swift in Sources */,
 				FE89199D297B880300512A80 /* DailyCheckCell.swift in Sources */,
 				5A1CDDB824C26C9400E83452 /* EditExpensesViewController.swift in Sources */,
@@ -572,6 +573,7 @@
 				FEB3255A25F43D6C002B20A4 /* VendorReferencesViewController.swift in Sources */,
 				FECDC79C2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift in Sources */,
 				5A924170255637AC00263B07 /* ExpsHomeViewModel.swift in Sources */,
+				FE0209CB2AAE52B70015AA17 /* PAndVLookupViewModel.swift in Sources */,
 				FE89199A297B87D100512A80 /* DailyCheckViewController.swift in Sources */,
 				FE1F566325F06F1C00743825 /* TopHeaderViewController.swift in Sources */,
 				5A8F15AA24D4C51100B57A9B /* SelectMonthAndYearViewController.swift in Sources */,
@@ -579,14 +581,12 @@
 				FE329FC5261A24A90092BFAC /* Date+Extension.swift in Sources */,
 				5A87DCF92558227800F6D2C2 /* MyExpHomeViewController.swift in Sources */,
 				5A87AB9224C134C7009792A1 /* ExpenseCell.swift in Sources */,
-				5A8F15AE24D4D88500B57A9B /* VendorsLookupViewController.swift in Sources */,
 				5AF26FC224CB86380042DE15 /* AdminHomeViewController.swift in Sources */,
 				5A3A578F256951710033EDAB /* AdminHomeViewModel.swift in Sources */,
 				5A97C77924C12E050019E2B4 /* AppDelegate.swift in Sources */,
 				5A072FD524DEFA14009DA0A4 /* LookupModel.swift in Sources */,
 				5A97C77B24C12E050019E2B4 /* SceneDelegate.swift in Sources */,
 				5AF26FC624CBA8550042DE15 /* AdminPVAddEditViewController.swift in Sources */,
-				FEF726622734363D00A85326 /* VendorsLookupViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,7 +748,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = WSH8T4CK9T;
 				INFOPLIST_FILE = MyExpenses5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -770,7 +770,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = WSH8T4CK9T;
 				INFOPLIST_FILE = MyExpenses5/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

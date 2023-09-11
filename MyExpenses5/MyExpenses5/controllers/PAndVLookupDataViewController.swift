@@ -1,32 +1,33 @@
 //
-//  VendorsLookupDataViewController.swift
+//  PAndVLookupDataViewController.swift
 //  MyExpenses5
 //
-//  Created by Johnson Liu on 11/4/21.
-//  Copyright © 2021 Home Office. All rights reserved.
+//  Created by Johnson Liu on 9/10/23.
+//  Copyright © 2023 Home Office. All rights reserved.
 //
 
 import UIKit
 
-class VendorsLookupDataViewController: UIViewController {
+class PAndVLookupDataViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
-    let viewModel = VendorsLookupViewModel()
+    let viewModel = PAndVLookupViewModel()
     
     var selectedYear: String = "0"
-    var selectedVendorId: String = "0"
-    
+    var selectedPAndVId: String = "0"
+    var isForPayment: Bool = false
+
     //MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Vendors Lookup"
+        self.title = isForPayment ? "Payments Lookup" : "Vendors Lookup"
         
-        viewModel.clearVendorLookupData()
+        viewModel.clearPAndVLookupData()
         
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
@@ -56,17 +57,20 @@ class VendorsLookupDataViewController: UIViewController {
     }
     
     func showVendorsLookupData() {
-        viewModel.vendorsLookupData(year: self.selectedYear, vendorId: self.selectedVendorId) { (any: Any) in
+        
+        viewModel.PAndVLookupData(year: self.selectedYear, paymentAndVendorId: selectedPAndVId, isForPayment: isForPayment) { (any: Any) in
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.progressIndicator.stopAnimating()
+                
+                self.tableView.isHidden = self.viewModel.isEmpty
             }
         }
     }
     
 }
 
-extension VendorsLookupDataViewController: UITableViewDataSource, UITableViewDelegate {
+extension PAndVLookupDataViewController: UITableViewDataSource, UITableViewDelegate {
     
     //MARK: - table view source
     

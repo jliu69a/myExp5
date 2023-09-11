@@ -71,14 +71,26 @@ class AdminHomeViewController: UIViewController {
     
     func showVendorsLookup() {
         
-        if let vc = MEStoryboard.vendorLookup.vc as? VendorsLookupViewController {
+        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "PAndVLookupViewController") as? PAndVLookupViewController {
+            vc.isForPayment = false
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func showPaymentsLookup() {
+        
+        let storyboard = UIStoryboard(name: "pandv", bundle: nil)
+        if let vc = storyboard.instantiateViewController(withIdentifier: "PAndVLookupViewController") as? PAndVLookupViewController {
+            vc.isForPayment = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     func showExpenseLookup() {
         
-        if let vc = MEStoryboard.expsLookupSelect.vc as? ExpsLookupSelectViewController {
+        let storyboard = UIStoryboard(name: "expense", bundle: nil)
+        if let vc = storyboard.instantiateViewController(identifier: "ExpsLookupSelectViewController") as? ExpsLookupSelectViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -149,6 +161,9 @@ extension AdminHomeViewController: UITableViewDelegate {
                 self.showVendorsLookup()
             }
             else if indexPath.row == 1 {
+                self.showPaymentsLookup()
+            }
+            else if indexPath.row == 2 {
                 self.showExpenseLookup()
             }
             break

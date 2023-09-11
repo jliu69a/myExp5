@@ -40,7 +40,7 @@ class DatasManager: NSObject {
         let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/preload_data.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
-        print("-> DatasManager, myExpsData(), URL : \(url)")
+        //print("-> DatasManager, myExpsData(), URL : \(url)")
         
         connect.getDataFromUrl(url: url) { (data: Any) in
             let myexpData: Data = data as! Data
@@ -73,7 +73,7 @@ class DatasManager: NSObject {
         let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expense_by_date.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
-        print("-> DatasManager, myExpsWithDate(), URL : \(url)")
+        //print("-> DatasManager, myExpsWithDate(), URL : \(url)")
         
         connect.getDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
@@ -108,7 +108,7 @@ class DatasManager: NSObject {
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expenses_change.php?%@", folder, paraString)
         let connect: ConnectionsManager = ConnectionsManager()
-        print("-> DatasManager, saveMyExps2WithParameters(), URL string : \(url)")
+        //print("-> DatasManager, saveMyExps2WithParameters(), URL string : \(url)")
         
         connect.saveDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
@@ -123,7 +123,7 @@ class DatasManager: NSObject {
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_edit.php?%@", folder, paramString)
         let connect: ConnectionsManager = ConnectionsManager()
-        print("-> DatasManager, save2ForPaymentsAndVendors(), URL : \(url)")
+        //print("-> DatasManager, save2ForPaymentsAndVendors(), URL : \(url)")
         
         connect.saveDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
@@ -132,24 +132,26 @@ class DatasManager: NSObject {
         }
     }
     
-    //MARK: - vendor lookup
+    //MARK: - payment & vendor lookup
     
-    func vendorsLookup(year: String, vendorId: String, completion: @escaping  (Any)->()) {
+    func paymentsAndVendorsLookup(year: String, paymentVendorId: String, isForPayment: Bool, completion: @escaping  (Any)->()) {
         
-        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/vendors_lookup.php?year=%@&vendorid=%@", folder, year, vendorId)
+        let queryTerm = isForPayment ? "isforpayment=1&pandvid=\(paymentVendorId)" : "isforpayment=0&pandvid=\(paymentVendorId)"
+        
+        let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/payments_vendors_lookup.php?year=%@&%@", folder, year, queryTerm)
         let connect: ConnectionsManager = ConnectionsManager()
-        print("-> DatasManager, vendorsLookup(), URL : \(url)")
+        //print("-> DatasManager, paymentsAndVendorsLookup(), URL : \(url)")
         
         connect.getDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
-                let myexpsList: [MyExpsData] = self.parseDataForVendors(data: rawData)
+                let myexpsList: [MyExpsData] = self.parseDataForPaymentsAndVendors(data: rawData)
                 let value: Any = myexpsList as Any
                 completion(value)
             }
         }
     }
     
-    func parseDataForVendors(data: Data) -> [MyExpsData] {
+    func parseDataForPaymentsAndVendors(data: Data) -> [MyExpsData] {
         
         guard let _ = try? JSON(data: data) else {
             print("ERROR: vendorsLookup, response has error.")
@@ -173,7 +175,7 @@ class DatasManager: NSObject {
         
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expense_lookup.php?date=%@-%@", folder, year, month)
         let connect: ConnectionsManager = ConnectionsManager()
-        print("-> DatasManager, expenseLookup(), URL : \(url)")
+        //print("-> DatasManager, expenseLookup(), URL : \(url)")
         
         connect.getDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
@@ -208,7 +210,7 @@ class DatasManager: NSObject {
         
         let url: String = String(format: "https://www.mysohoplace.com/php_hdb/php_GL/%@/med/med_status_list.php?date=%@-%@", folder, year, month)
         let connect: ConnectionsManager = ConnectionsManager()
-        print("-> DatasManager, medStatusList(), URL : \(url)")
+        //print("-> DatasManager, medStatusList(), URL : \(url)")
         
         connect.getDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {
@@ -243,7 +245,7 @@ class DatasManager: NSObject {
         
         let url: String = String(format: "https://www.mysohoplace.com/php_hdb/php_GL/%@/med/med_data_list.php", folder)
         let connect: ConnectionsManager = ConnectionsManager()
-        print("-> DatasManager, medDataList(), URL : \(url)")
+        //print("-> DatasManager, medDataList(), URL : \(url)")
         
         connect.getDataFromUrl(url: url) { (data: Any) in
             if let rawData = data as? Data {

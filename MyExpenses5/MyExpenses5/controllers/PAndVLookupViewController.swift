@@ -1,24 +1,27 @@
 //
-//  VendorsLookupViewController.swift
+//  PAndVLookupViewController.swift
 //  MyExpenses5
 //
-//  Created by Johnson Liu on 7/31/20.
-//  Copyright © 2020 Home Office. All rights reserved.
+//  Created by Johnson Liu on 9/10/23.
+//  Copyright © 2023 Home Office. All rights reserved.
 //
 
 import UIKit
 
-class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewControllerDelegate, PaymentsVendorsViewControllerDelegate {
+class PAndVLookupViewController: UIViewController, SelectMonthAndYearViewControllerDelegate, PaymentsVendorsViewControllerDelegate {
     
     @IBOutlet weak var selectYearButton: UIButton!
-    @IBOutlet weak var selectVendorButton: UIButton!
+    @IBOutlet weak var selectPAndVButton: UIButton!
     @IBOutlet weak var lookupButton: UIButton!
+    @IBOutlet weak var lookupTitleLabel: UILabel!
     
-    let viewModel = VendorsLookupViewModel()
+    let viewModel = PAndVLookupViewModel()
+    
+    var isForPayment: Bool = false
     
     var selectedYear: String = "0"
-    var selectedVendorId: String = "0"
-    var selectedVendorName: String = "select a vendor"
+    var selectedPAndVId: String = "0"
+    var selectedPAndVName: String = ""
     
     var selectVC: SelectMonthAndYearViewController? = nil
     var selectVendor: PaymentsVendorsViewController? = nil
@@ -31,28 +34,32 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Vendors Lookup"
+        self.title = isForPayment ? "Payments Lookup" : "Vendors Lookup"
+        
+        selectedPAndVName = isForPayment ? "select a payment" : "select a vendor"
         
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
-        viewModel.clearVendorLookupData()
+        viewModel.clearPAndVLookupData()
         
         self.selectedYear = Date().dateToText(formate: "yyyy")
         self.selectYearButton.setTitle(self.selectedYear, for: UIControl.State.normal)
         self.selectYearButton.setTitle(self.selectedYear, for: UIControl.State.highlighted)
         
-        self.selectVendorButton.setTitle(self.selectedVendorName, for: UIControl.State.normal)
-        self.selectVendorButton.setTitle(self.selectedVendorName, for: UIControl.State.highlighted)
+        self.selectPAndVButton.setTitle(self.selectedPAndVName, for: UIControl.State.normal)
+        self.selectPAndVButton.setTitle(self.selectedPAndVName, for: UIControl.State.highlighted)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.selectYearButton.layer.cornerRadius = 5
-        self.selectVendorButton.layer.cornerRadius = 5
+        self.selectPAndVButton.layer.cornerRadius = 5
         self.lookupButton.layer.cornerRadius = 5
+        
+        self.lookupTitleLabel.text = isForPayment ? "Payment" : "Vendor"
     }
     
     func showAlert(title: String?, message: String?) {
@@ -66,15 +73,17 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
     
     @IBAction func lookupAction(_ sender: Any) {
         
-        if self.selectedVendorId == "0" {
-            showAlert(title: "Need to select a vendor.", message: nil)
+        if self.selectedPAndVId == "0" {
+            let title = self.isForPayment ? "Need to select a payment." : "Need to select a vendor."
+            showAlert(title: title, message: nil)
             return
         }
         
         let storyboard = UIStoryboard(name: "pandv", bundle: nil)
-        if let vc = storyboard.instantiateViewController(identifier: "VendorsLookupDataViewController") as? VendorsLookupDataViewController {
+        if let vc = storyboard.instantiateViewController(identifier: "PAndVLookupDataViewController") as? PAndVLookupDataViewController {
             vc.selectedYear = self.selectedYear
-            vc.selectedVendorId = self.selectedVendorId
+            vc.selectedPAndVId = self.selectedPAndVId
+            vc.isForPayment = self.isForPayment
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -91,12 +100,12 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
         }
     }
     
-    @IBAction func chooseVendorAction(_ sender: Any) {
+    @IBAction func choosePAndVAction(_ sender: Any) {
         
         let storyboard = UIStoryboard(name: "pandv", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "PaymentsVendorsViewController") as? PaymentsVendorsViewController {
             vc.isForAdmin = false
-            vc.isForPayments = false
+            vc.isForPayments = self.isForPayment
             vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -119,13 +128,11 @@ class VendorsLookupViewController: UIViewController, SelectMonthAndYearViewContr
     
     func didSelectItem(isForPayment: Bool, name: String, id: String) {
         
-        if isForPayment == false {
-            self.selectedVendorId = id
-            self.selectedVendorName = name
-            
-            let displayVendor = String(format: "%@ (%@)", self.selectedVendorName, self.selectedVendorId)
-            self.selectVendorButton.setTitle(displayVendor, for: UIControl.State.normal)
-            self.selectVendorButton.setTitle(displayVendor, for: UIControl.State.highlighted)
-        }
+        self.selectedPAndVId = id
+        self.selectedPAndVName = name
+        
+        let displayPAndV = String(format: "%@ (%@)", self.selectedPAndVName, self.selectedPAndVId)
+        self.selectPAndVButton.setTitle(displayPAndV, for: UIControl.State.normal)
+        self.selectPAndVButton.setTitle(displayPAndV, for: UIControl.State.highlighted)
     }
 }
