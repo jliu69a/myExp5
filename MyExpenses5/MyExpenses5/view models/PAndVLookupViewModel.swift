@@ -1,30 +1,31 @@
 //
-//  VendorsLookupViewModel.swift
+//  PAndVLookupViewModel.swift
 //  MyExpenses5
 //
-//  Created by Johnson Liu on 11/4/21.
-//  Copyright © 2021 Home Office. All rights reserved.
+//  Created by Johnson Liu on 9/10/23.
+//  Copyright © 2023 Home Office. All rights reserved.
 //
 
 import UIKit
 
-class VendorsLookupViewModel: NSObject {
+class PAndVLookupViewModel: NSObject {
     
     var lookupTitlesList: [String] = []
     var lookupData: [String: LookupModel] = [:]
+    var isEmpty: Bool = false
     
     //MARK: -
     
-    func vendorsLookupData(year: String, vendorId: String, completion: @escaping  (Any)->()) {
+    func PAndVLookupData(year: String, paymentAndVendorId: String, isForPayment: Bool, completion: @escaping  (Any)->()) {
         
-        DatasManager.sharedInstance.paymentsAndVendorsLookup(year: year, paymentVendorId: vendorId, isForPayment: false) { (any: Any) in
+        DatasManager.sharedInstance.paymentsAndVendorsLookup(year: year, paymentVendorId: paymentAndVendorId, isForPayment: isForPayment) { (any: Any) in
             DispatchQueue.main.async {
                 let dataList = any as? [MyExpsData] ?? []
                 
                 if dataList.count > 0 {
                     let each = dataList[0]
                     let expsListWithVendor: [Expense] = each.expense ?? []
-                    self.parseVendorLookupsData(list: expsListWithVendor)
+                    self.parsePAndVLookupsData(list: expsListWithVendor)
                 }
                 
                 let temp: [Expense] = []
@@ -33,15 +34,18 @@ class VendorsLookupViewModel: NSObject {
         }
     }
     
-    func clearVendorLookupData() {
+    func clearPAndVLookupData() {
         self.lookupTitlesList.removeAll()
         self.lookupData.removeAll()
     }
     
-    func parseVendorLookupsData(list: [Expense]) {
+    func parsePAndVLookupsData(list: [Expense]) {
         
-        self.clearVendorLookupData()
+        self.isEmpty = false
+        self.clearPAndVLookupData()
+        
         if list.count == 0 {
+            self.isEmpty = true
             return
         }
         
@@ -71,9 +75,11 @@ class VendorsLookupViewModel: NSObject {
         }
         return Date().textToDate(format: "yyyy-MM-dd", dateText: dateText).dateToText(formate: "MMMM")
     }
+    
+    
 }
 
-extension VendorsLookupViewModel {
+extension PAndVLookupViewModel {
     
     func lookupSections() -> Int {
         return lookupTitlesList.count
