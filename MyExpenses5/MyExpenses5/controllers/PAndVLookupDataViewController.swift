@@ -12,6 +12,7 @@ class PAndVLookupDataViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var yearLabel: UILabel!
+    @IBOutlet weak var yearTotalLabel: UILabel!
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
     let viewModel = PAndVLookupViewModel()
@@ -47,6 +48,7 @@ class PAndVLookupDataViewController: UIViewController {
         self.tableView.layer.borderWidth = 0.5
         
         self.yearLabel.text = String(format: "( Year: %@ )", self.selectedYear)
+        self.yearTotalLabel.text = ""
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,6 +64,8 @@ class PAndVLookupDataViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.progressIndicator.stopAnimating()
+                
+                self.yearTotalLabel.text = String(format: "annual total = %@", self.viewModel.showInCurrencyFormat(value: self.viewModel.annualTotal))
                 
                 self.tableView.isHidden = self.viewModel.isEmpty
             }

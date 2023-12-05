@@ -13,6 +13,7 @@ class PAndVLookupViewModel: NSObject {
     var lookupTitlesList: [String] = []
     var lookupData: [String: LookupModel] = [:]
     var isEmpty: Bool = false
+    var annualTotal: Float = 0
     
     //MARK: -
     
@@ -49,6 +50,8 @@ class PAndVLookupViewModel: NSObject {
             return
         }
         
+        self.annualTotal = 0
+        
         for each in list {
             let dateText = each.date ?? ""
             let dateTitle = self.createLookupTitle(dateText: dateText)
@@ -63,6 +66,7 @@ class PAndVLookupViewModel: NSObject {
             let amount = each.amount ?? "0"
             let amountValue = Float(amount) ?? 0
             model.total += amountValue
+            self.annualTotal += amountValue
             
             model.exps.append(each)
             self.lookupData[dateTitle] = model
@@ -78,6 +82,8 @@ class PAndVLookupViewModel: NSObject {
     
     
 }
+
+//MARK: -
 
 extension PAndVLookupViewModel {
     
@@ -100,7 +106,21 @@ extension PAndVLookupViewModel {
     func lookupTitleForSection(section: Int) -> String {
         let title = lookupTitlesList[section]
         let model = lookupData[title] ?? LookupModel()
-        return String(format: "%@, total ($) = %0.2f", model.date, model.total)
+        return String(format: "%@, total = %@", model.date, showInCurrencyFormat(value: model.total))
     }
     
+}
+
+//MARK: -
+
+extension PAndVLookupViewModel {
+    
+    func showInCurrencyFormat(value: Float) -> String {
+        let numberObj = NSNumber(value: Float(value))
+        let currencyFormatter = NumberFormatter()
+        currencyFormatter.usesGroupingSeparator = true
+        currencyFormatter.numberStyle = .currency
+        currencyFormatter.locale = Locale.current
+        return currencyFormatter.string(from: numberObj) ?? "$0.00"
+    }
 }
