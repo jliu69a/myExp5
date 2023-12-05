@@ -192,12 +192,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="year" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiU-11-gn9">
-                                <rect key="frame" x="20" y="48" width="374" height="25"/>
+                                <rect key="frame" x="20" y="48" width="374" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="78y-Ah-zkB"/>
+                                    <constraint firstAttribute="height" constant="20" id="78y-Ah-zkB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="year total" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIc-3T-UNl" userLabel="annual year total">
+                                <rect key="frame" x="20" y="68" width="374" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="zNP-JD-bL0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                <color key="textColor" systemColor="systemBlueColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results from this lookup." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uW-Z8-5zx" userLabel="no results label">
@@ -211,7 +220,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="45" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tEi-fQ-6M7">
-                                <rect key="frame" x="10" y="83" width="394" height="759"/>
+                                <rect key="frame" x="10" y="108" width="394" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="YuR-4g-m0C" id="d7F-oI-pr9"/>
@@ -227,11 +236,14 @@
                         <viewLayoutGuide key="safeArea" id="dij-Cu-Sg4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="tEi-fQ-6M7" firstAttribute="top" secondItem="tiU-11-gn9" secondAttribute="bottom" constant="10" id="Cih-4n-NZs"/>
+                            <constraint firstItem="gIc-3T-UNl" firstAttribute="leading" secondItem="dij-Cu-Sg4" secondAttribute="leading" constant="20" id="8q2-SC-Zpv"/>
                             <constraint firstItem="dij-Cu-Sg4" firstAttribute="trailing" secondItem="tEi-fQ-6M7" secondAttribute="trailing" constant="10" id="J7s-P0-Xnc"/>
+                            <constraint firstItem="tEi-fQ-6M7" firstAttribute="top" secondItem="gIc-3T-UNl" secondAttribute="bottom" constant="20" id="Ns5-WA-PeP"/>
                             <constraint firstItem="tiU-11-gn9" firstAttribute="top" secondItem="dij-Cu-Sg4" secondAttribute="top" id="P8E-BI-EkM"/>
                             <constraint firstItem="6uW-Z8-5zx" firstAttribute="centerY" secondItem="1ws-TV-pLH" secondAttribute="centerY" id="d5D-nT-h4q"/>
+                            <constraint firstItem="gIc-3T-UNl" firstAttribute="top" secondItem="tiU-11-gn9" secondAttribute="bottom" id="d5P-QL-Tpz"/>
                             <constraint firstItem="dij-Cu-Sg4" firstAttribute="trailing" secondItem="tiU-11-gn9" secondAttribute="trailing" constant="20" id="fnB-Po-VP9"/>
+                            <constraint firstItem="dij-Cu-Sg4" firstAttribute="trailing" secondItem="gIc-3T-UNl" secondAttribute="trailing" constant="20" id="ppa-93-rFa"/>
                             <constraint firstItem="dij-Cu-Sg4" firstAttribute="bottom" secondItem="tEi-fQ-6M7" secondAttribute="bottom" constant="20" id="sWG-29-Nbt"/>
                             <constraint firstItem="tEi-fQ-6M7" firstAttribute="leading" secondItem="dij-Cu-Sg4" secondAttribute="leading" constant="10" id="t4y-O9-Qea"/>
                             <constraint firstItem="6uW-Z8-5zx" firstAttribute="centerX" secondItem="1ws-TV-pLH" secondAttribute="centerX" id="yAi-Jd-IUl"/>
@@ -242,6 +254,7 @@
                         <outlet property="progressIndicator" destination="5IL-hq-amL" id="QAy-x8-KMx"/>
                         <outlet property="tableView" destination="tEi-fQ-6M7" id="0Hj-GK-xlq"/>
                         <outlet property="yearLabel" destination="tiU-11-gn9" id="cGS-wP-dSW"/>
+                        <outlet property="yearTotalLabel" destination="gIc-3T-UNl" id="goY-6b-5Kx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5pH-MU-E62" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
