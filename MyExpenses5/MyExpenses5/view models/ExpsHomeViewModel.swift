@@ -52,7 +52,8 @@ extension ExpsHomeViewModel {
     }
     
     func displayTotalAmount() -> String {
-        return String(format: "Total($): %0.2f", self.totalAmount)
+        let displayAmount = HelpingTools().displayInUSCurrency(value: self.totalAmount)
+        return String(format: "Total: %@", displayAmount)
     }
     
     func displayCurrentDate(date: Date) -> String {

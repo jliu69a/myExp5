@@ -36,8 +36,8 @@ class ExpenseCell: UITableViewCell {
         }
         
         let amountText: String = data.amount ?? "0"
-        let amountValue: Float = (amountText as NSString).floatValue
-        self.cellAmountLabel.text = String(format: "%0.2f", amountValue)
+        let amountValue: Double = (amountText as NSString).doubleValue
+        self.cellAmountLabel.text = HelpingTools().displayInUSCurrency(value: amountValue)
         
         self.innerView.backgroundColor = UIColor.systemGray6
     }

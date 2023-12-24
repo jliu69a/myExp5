@@ -68,6 +68,7 @@
 		FEB62EF8261A445F00725848 /* FilmsHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */; };
 		FECD2D0A25F2E5B400410E7C /* TopBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECD2D0925F2E5B400410E7C /* TopBarManager.swift */; };
 		FECDC79C2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECDC79B2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift */; };
+		FED0E9C62B38D2C8009E2C70 /* HelpingTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED0E9C52B38D2C8009E2C70 /* HelpingTools.swift */; };
 		FEE35C5A26C831920081BAD9 /* SharedHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */; };
 		FEE35C5C26C831B10081BAD9 /* sharedHeader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */; };
 /* End PBXBuildFile section */
@@ -150,6 +151,7 @@
 		FEB62EF7261A445F00725848 /* FilmsHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsHomeViewModel.swift; sourceTree = "<group>"; };
 		FECD2D0925F2E5B400410E7C /* TopBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarManager.swift; sourceTree = "<group>"; };
 		FECDC79B2736BB8E0008BA5D /* ExpsLookupSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpsLookupSelectViewController.swift; sourceTree = "<group>"; };
+		FED0E9C52B38D2C8009E2C70 /* HelpingTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpingTools.swift; sourceTree = "<group>"; };
 		FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHeaderViewController.swift; sourceTree = "<group>"; };
 		FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = sharedHeader.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -380,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				FE329FC4261A24A90092BFAC /* Date+Extension.swift */,
+				FED0E9C52B38D2C8009E2C70 /* HelpingTools.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 			files = (
 				5A344D1A25585BE2000B993E /* Constants.swift in Sources */,
 				FE0209C72AAE4EAA0015AA17 /* PAndVLookupViewController.swift in Sources */,
+				FED0E9C62B38D2C8009E2C70 /* HelpingTools.swift in Sources */,
 				FE73BB67297A406900AB8897 /* DailyCheckViewModel.swift in Sources */,
 				5A8B1F3124C137D80094E543 /* MyExpDataManager.swift in Sources */,
 				5A8BAAB224C336440033B46A /* PaymentsVendorsViewController.swift in Sources */,
