@@ -14,6 +14,7 @@ class DailyCheckViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let viewModel = DailyCheckViewModel()
+    var checkingType = DailyCheckViewModel.CheckingTypes.forProstate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class DailyCheckViewController: UIViewController {
         tableView.layer.borderColor = UIColor.black.cgColor
         tableView.layer.borderWidth = 0.5
         
+        viewModel.types = checkingType
         viewModel.retrieveDailyStatusData()
         tableView.reloadData()
         
