@@ -18,16 +18,35 @@ class DailyCheckViewModel: NSObject {
     var displayDate = ""
     
     var dailyStatusList = [String]()
+    var types: CheckingTypes = .forProstate
     
     func retrieveDailyStatusData() {
-        dailyStatusList = kUserDefault.array(forKey: appDele.kDailyCheckStatusKey) as? [String] ?? [String]()
+        dailyStatusList = kUserDefault.array(forKey: retrieveCheckingKey(type: types)) as? [String] ?? [String]()
         if dailyStatusList.count == 0 {
             dailyStatusList.append(contentsOf: helper.resetStatusList())
             saveDailyStatusData()
         }
         
         totalDays = helper.totalDaysOfMonth()
-        displayDate = helper.dailyCheckDateText
+        displayDate = String(format: "%@  (%@)", helper.dailyCheckDateText, displayCheckingKey(type: types))
+    }
+    
+    private func retrieveCheckingKey(type: CheckingTypes) -> String {
+        switch type {
+        case .forProstate:
+            return appDele.kDailyCheckStatusKey
+        case .forVitamins:
+            return appDele.kDailyVitaminsKey
+        }
+    }
+    
+    private func displayCheckingKey(type: CheckingTypes) -> String {
+        switch type {
+        case .forProstate:
+            return "for Prostate"
+        case .forVitamins:
+            return "for Vitamins"
+        }
     }
     
     func refreshDailyStatusData() {
@@ -37,7 +56,7 @@ class DailyCheckViewModel: NSObject {
     }
     
     func saveDailyStatusData() {
-        kUserDefault.set(dailyStatusList, forKey: appDele.kDailyCheckStatusKey)
+        kUserDefault.set(dailyStatusList, forKey: retrieveCheckingKey(type: types))
         kUserDefault.synchronize()
     }
     
@@ -51,6 +70,10 @@ class DailyCheckViewModel: NSObject {
 }
 
 extension DailyCheckViewModel {
+    
+    enum CheckingTypes {
+        case forProstate, forVitamins
+    }
     
     func numberOfSectionis() -> Int {
         return 1

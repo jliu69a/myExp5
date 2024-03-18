@@ -95,10 +95,11 @@ class AdminHomeViewController: UIViewController {
         }
     }
     
-    func showdailyStatusCheck() {
+    func showDailyStatusCheck(checkingTypes: DailyCheckViewModel.CheckingTypes) {
         
         let storyboard = UIStoryboard(name: "admins", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "DailyCheckViewController") as? DailyCheckViewController {
+            vc.checkingType = checkingTypes
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -147,6 +148,12 @@ extension AdminHomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
         
+        /*
+         * section 0: Setting
+         * section 1: Reports
+         * section 2: Misc
+         */
+        
         switch indexPath.section {
         case 0:
             if indexPath.row == 0 {
@@ -169,7 +176,10 @@ extension AdminHomeViewController: UITableViewDelegate {
             break
         case 2:
             if indexPath.row == 0 {
-                self.showdailyStatusCheck()
+                self.showDailyStatusCheck(checkingTypes: .forProstate)
+            }
+            else if indexPath.row == 1 {
+                self.showDailyStatusCheck(checkingTypes: .forVitamins)
             }
             break
         default:
