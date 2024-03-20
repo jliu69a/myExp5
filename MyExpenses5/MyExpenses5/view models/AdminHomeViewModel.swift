@@ -16,7 +16,7 @@ class AdminHomeViewModel {
     let titlesList = ["Settings", "Reports", "Misc"]
     let settingsList = ["Edit Payments", "Edit Vendors"]
     let reportsList = ["Vendor, Look Up", "Payment, Look Up", "Expenses, Look Up"]
-    let miscList = ["Daily Medicine Check", "Daily Vitamin Check"]
+    let miscList = ["Med Check for Vitamin", "Med Check for Prostate"]
 }
 
 
