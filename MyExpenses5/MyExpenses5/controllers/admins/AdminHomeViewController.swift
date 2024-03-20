@@ -176,10 +176,10 @@ extension AdminHomeViewController: UITableViewDelegate {
             break
         case 2:
             if indexPath.row == 0 {
-                self.showDailyStatusCheck(checkingTypes: .forProstate)
+                self.showDailyStatusCheck(checkingTypes: .forVitamins)
             }
             else if indexPath.row == 1 {
-                self.showDailyStatusCheck(checkingTypes: .forVitamins)
+                self.showDailyStatusCheck(checkingTypes: .forProstate)
             }
             break
         default:
