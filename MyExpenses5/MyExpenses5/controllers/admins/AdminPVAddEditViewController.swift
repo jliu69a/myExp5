@@ -36,7 +36,12 @@ class AdminPVAddEditViewController: UIViewController {
         super.viewDidLoad()
         
         self.viewModel.delegate = self
-        self.showTopView()
+        
+        self.title = self.isForPayment ? "Payment" : "Vendor"
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "Back"
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,18 +58,6 @@ class AdminPVAddEditViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.nameTextField.becomeFirstResponder()
-    }
-    
-    //MARK: - top view
-    
-    func showTopView() {
-        let frame = self.topView.frame
-        if let vc = TopBarManager.sharedInstance.createTopHeader(frame: frame, title: "", isForAdmin: false) {
-            vc.delegate = self
-            self.topView.addSubview(vc.view)
-            self.addChild(vc)
-            self.topHeaderVC = vc
-        }
     }
     
     //MARK: - IB actions
