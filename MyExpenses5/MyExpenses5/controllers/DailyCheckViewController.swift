@@ -12,6 +12,8 @@ class DailyCheckViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var dateTimeLabel: UILabel!
+    @IBOutlet weak var resetAllButton: UIButton!
     
     let viewModel = DailyCheckViewModel()
     var checkingType = DailyCheckViewModel.CheckingTypes.forProstate
@@ -36,7 +38,11 @@ class DailyCheckViewController: UIViewController {
         viewModel.retrieveDailyStatusData()
         tableView.reloadData()
         
+        resetAllButton.layer.cornerRadius = 5
+        
         titleLabel?.text = viewModel.displayDate
+        
+        dateTimeLabel?.text = "Now:  \(Date().dateToText(formate: "yyyy-MM-dd HH:mm:ss  (EEE)"))"
     }
     
     @IBAction func resetAllDataAction(_ sender: Any) {
