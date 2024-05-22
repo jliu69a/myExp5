@@ -162,85 +162,6 @@
             </objects>
             <point key="canvasLocation" x="598.55072463768124" y="259.82142857142856"/>
         </scene>
-        <!--Daily Check View Controller-->
-        <scene sceneID="Haz-lW-Oe6">
-            <objects>
-                <viewController storyboardIdentifier="DailyCheckViewController" id="bzp-6R-Frl" customClass="DailyCheckViewController" customModule="MyExp_5_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Bw5-QR-HzV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFM-yd-NZY">
-                                <rect key="frame" x="20" y="48" width="374" height="35"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="rBu-rA-wcH"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rc8-j8-LzL" userLabel="date/Time Label">
-                                <rect key="frame" x="20" y="83" width="374" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="LF7-ED-GzC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                <color key="textColor" systemColor="systemPurpleColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCT-SA-ref">
-                                <rect key="frame" x="82" y="792" width="250" height="50"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="GZa-gg-1go"/>
-                                    <constraint firstAttribute="height" constant="50" id="afe-Vd-X5T"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Reset All Data">
-                                    <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="resetAllDataAction:" destination="bzp-6R-Frl" eventType="touchUpInside" id="P40-ak-b6o"/>
-                                </connections>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="a4z-Kr-1Fj">
-                                <rect key="frame" x="20" y="124" width="374" height="648"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="bzp-6R-Frl" id="YTv-0B-hYb"/>
-                                    <outlet property="delegate" destination="bzp-6R-Frl" id="pK2-3p-rai"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="CTG-Cd-ju6"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="CTG-Cd-ju6" firstAttribute="trailing" secondItem="a4z-Kr-1Fj" secondAttribute="trailing" constant="20" id="1VE-I2-dNd"/>
-                            <constraint firstItem="kFM-yd-NZY" firstAttribute="leading" secondItem="CTG-Cd-ju6" secondAttribute="leading" constant="20" id="9bg-jR-Qcf"/>
-                            <constraint firstItem="rc8-j8-LzL" firstAttribute="top" secondItem="kFM-yd-NZY" secondAttribute="bottom" id="FhO-ty-fOj"/>
-                            <constraint firstItem="CTG-Cd-ju6" firstAttribute="trailing" secondItem="rc8-j8-LzL" secondAttribute="trailing" constant="20" id="G5X-av-uCV"/>
-                            <constraint firstItem="rc8-j8-LzL" firstAttribute="leading" secondItem="CTG-Cd-ju6" secondAttribute="leading" constant="20" id="Tc9-8j-aoG"/>
-                            <constraint firstItem="XCT-SA-ref" firstAttribute="centerX" secondItem="Bw5-QR-HzV" secondAttribute="centerX" id="U61-gC-AY6"/>
-                            <constraint firstItem="kFM-yd-NZY" firstAttribute="top" secondItem="CTG-Cd-ju6" secondAttribute="top" id="j2F-ns-vde"/>
-                            <constraint firstItem="CTG-Cd-ju6" firstAttribute="bottom" secondItem="XCT-SA-ref" secondAttribute="bottom" constant="20" id="jD6-R2-43X"/>
-                            <constraint firstItem="a4z-Kr-1Fj" firstAttribute="top" secondItem="rc8-j8-LzL" secondAttribute="bottom" constant="20" id="kFd-v8-IUO"/>
-                            <constraint firstItem="XCT-SA-ref" firstAttribute="top" secondItem="a4z-Kr-1Fj" secondAttribute="bottom" constant="20" id="mY4-2G-6zl"/>
-                            <constraint firstItem="a4z-Kr-1Fj" firstAttribute="leading" secondItem="CTG-Cd-ju6" secondAttribute="leading" constant="20" id="qMe-Ut-Rfa"/>
-                            <constraint firstItem="CTG-Cd-ju6" firstAttribute="trailing" secondItem="kFM-yd-NZY" secondAttribute="trailing" constant="20" id="sFv-wp-sEz"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="dateTimeLabel" destination="rc8-j8-LzL" id="v7S-Xz-ljy"/>
-                        <outlet property="resetAllButton" destination="XCT-SA-ref" id="9Gt-FE-ipp"/>
-                        <outlet property="tableView" destination="a4z-Kr-1Fj" id="YfG-Nf-gti"/>
-                        <outlet property="titleLabel" destination="kFM-yd-NZY" id="StI-hq-rvR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AFV-gB-GzQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1621.7391304347827" y="259.82142857142856"/>
-        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
@@ -248,9 +169,6 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
