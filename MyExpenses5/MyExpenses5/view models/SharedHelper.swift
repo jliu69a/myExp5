@@ -89,14 +89,4 @@ class SharedHelper {
         let range = calendar.range(of: .day, in: .month, for: date)!
         return range.count
     }
-    
-    func resetStatusList() -> [String] {
-        let appDele = UIApplication.shared.delegate as! AppDelegate
-        
-        var dataList = [String]()
-        for _ in 0...appDele.maxDaysInMonth {
-            dataList.append("0")
-        }
-        return dataList
-    }
 }

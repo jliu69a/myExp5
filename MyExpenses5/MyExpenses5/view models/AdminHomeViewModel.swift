@@ -13,10 +13,9 @@ class AdminHomeViewModel {
     var totalSections: Int = 1
     var totalRows: Int = 0
     
-    let titlesList = ["Settings", "Reports", "Misc"]
+    let titlesList = ["Settings", "Reports"]
     let settingsList = ["Edit Payments", "Edit Vendors"]
     let reportsList = ["Vendor, Look Up", "Payment, Look Up", "Expenses, Look Up"]
-    let miscList = ["Med Check for Vitamin", "Med Check for Prostate"]
 }
 
 
@@ -40,9 +39,6 @@ extension AdminHomeViewModel {
         case 1:
             totalRows = self.reportsList.count
             break
-        case 2:
-            totalRows = self.miscList.count
-            break
         default:
             break
         }
@@ -57,9 +53,6 @@ extension AdminHomeViewModel {
         }
         else if section == 1 {
             return self.reportsList[row]
-        }
-        else if section == 2 {
-            return self.miscList[row]
         }
         else {
             return ""
