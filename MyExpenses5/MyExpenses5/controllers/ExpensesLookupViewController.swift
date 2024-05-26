@@ -20,6 +20,7 @@ class ExpensesLookupViewController: UIViewController {
     
     var lookupYear = "0"
     var lookupMonth = "0"
+    var lookupMonthText = ""
     
     var lookupYearValue: Int = 0
     var lookupMonthValue: Int = 0
@@ -54,7 +55,7 @@ class ExpensesLookupViewController: UIViewController {
         
         lookupYearValue = Int(lookupYear) ?? 0
         lookupMonthValue = Int(lookupMonth) ?? 0
-        lookupTitle.text = String(format: "for: %0.4d-%0.2d", lookupYearValue, lookupMonthValue)
+        lookupTitle.text = "for: \(lookupMonthText) \(lookupYear)"
         
         amountTotalLabel.text = ""
         

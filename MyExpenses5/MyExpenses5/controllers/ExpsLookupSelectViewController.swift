@@ -17,6 +17,7 @@ class ExpsLookupSelectViewController: UIViewController {
     
     var lookupYear = "0"
     var lookupMonth = "0"
+    var lookupMonthText = ""
     
     //MARK: -
     
@@ -27,7 +28,8 @@ class ExpsLookupSelectViewController: UIViewController {
         
         lookupYear = Date().dateToText(formate: "yyyy")
         lookupMonth = Date().dateToText(formate: "MM")
-        
+        lookupMonthText = Date().dateToText(formate: "MMM")
+
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
@@ -39,7 +41,7 @@ class ExpsLookupSelectViewController: UIViewController {
         yearMonthBotton.layer.cornerRadius = 5
         startLookupButton.layer.cornerRadius = 5
         
-        showYearAndMonth(display: String(format: "%@-%@", lookupYear, lookupMonth))
+        showYearAndMonth(display: String(format: "%@ %@", lookupMonthText, lookupYear))
     }
     
     //MARK: - IB actions
@@ -62,6 +64,7 @@ class ExpsLookupSelectViewController: UIViewController {
         if let vc = storyboard.instantiateViewController(identifier: "ExpensesLookupViewController") as? ExpensesLookupViewController {
             vc.lookupYear = lookupYear
             vc.lookupMonth = lookupMonth
+            vc.lookupMonthText = lookupMonthText
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -86,7 +89,8 @@ extension ExpsLookupSelectViewController: SelectMonthAndYearViewControllerDelega
         
         self.lookupYear = selectedYear
         self.lookupMonth = selectedMonthIndex
-        self.showYearAndMonth(display: String(format: "%@-%@", selectedYear, selectedMonthIndex))
+        self.lookupMonthText = selectedMonthText
+        self.showYearAndMonth(display: String(format: "%@ %@", selectedMonthText, selectedYear))
         
         self.selectVC?.dismiss(animated: true, completion: nil)
     }
