@@ -22,6 +22,7 @@ class PAndVLookupViewController: UIViewController, SelectMonthAndYearViewControl
     var selectedYear: String = "0"
     var selectedPAndVId: String = "0"
     var selectedPAndVName: String = ""
+    var selectedItem: String = ""
     
     var selectVC: SelectMonthAndYearViewController? = nil
     var selectVendor: PaymentsVendorsViewController? = nil
@@ -83,6 +84,7 @@ class PAndVLookupViewController: UIViewController, SelectMonthAndYearViewControl
         if let vc = storyboard.instantiateViewController(identifier: "PAndVLookupDataViewController") as? PAndVLookupDataViewController {
             vc.selectedYear = self.selectedYear
             vc.selectedPAndVId = self.selectedPAndVId
+            vc.selectedItem = self.selectedItem
             vc.isForPayment = self.isForPayment
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -130,6 +132,7 @@ class PAndVLookupViewController: UIViewController, SelectMonthAndYearViewControl
         
         self.selectedPAndVId = id
         self.selectedPAndVName = name
+        self.selectedItem = self.isForPayment ? "Payment: \(name)" : "Vendor: \(name)"
         
         let displayPAndV = String(format: "%@ (%@)", self.selectedPAndVName, self.selectedPAndVId)
         self.selectPAndVButton.setTitle(displayPAndV, for: UIControl.State.normal)

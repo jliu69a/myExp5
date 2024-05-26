@@ -19,6 +19,7 @@ class PAndVLookupDataViewController: UIViewController {
     
     var selectedYear: String = "0"
     var selectedPAndVId: String = "0"
+    var selectedItem: String = ""
     var isForPayment: Bool = false
 
     //MARK: -
@@ -47,7 +48,7 @@ class PAndVLookupDataViewController: UIViewController {
         self.tableView.layer.borderColor = UIColor.systemOrange.cgColor
         self.tableView.layer.borderWidth = 0.5
         
-        self.yearLabel.text = String(format: "( Year: %@ )", self.selectedYear)
+        self.yearLabel.text = String(format: "Year: %@,   %@", self.selectedYear, self.selectedItem)
         self.yearTotalLabel.text = ""
     }
     
