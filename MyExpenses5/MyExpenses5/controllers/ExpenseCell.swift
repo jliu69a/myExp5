@@ -32,7 +32,8 @@ class ExpenseCell: UITableViewCell {
             self.cellTimeLabel.text = String(format: "( %@,  %@,  %@ )", date, weekday, (data.time ?? ""))
         }
         else {
-            self.cellTimeLabel.text = String(format: "( time: %@ )", (data.time ?? ""))
+            let displayTime = timeIn12HourFormat(time: (data.time ?? ""))
+            self.cellTimeLabel.text = String(format: "( time: %@ )", displayTime)
         }
         
         let amountText: String = data.amount ?? "0"
@@ -50,6 +51,16 @@ class ExpenseCell: UITableViewCell {
         let weekday = Date().textToDate(format: "yyyy-MM-dd", dateText: date).dateToText(formate: "EEE")
         
         return weekday
+    }
+    
+    func timeIn12HourFormat(time: String) -> String {
+        
+        if time.count == 0 {
+            return ""
+        }
+        
+        let timeIn12Hour = Date().textToDate(format: "HH:mm:ss", dateText: time).dateToText(formate: "hh:mm:ss a")
+        return timeIn12Hour
     }
     
     func colorForData() -> UIColor {
