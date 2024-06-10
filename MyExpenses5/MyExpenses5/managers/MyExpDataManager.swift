@@ -9,6 +9,7 @@
 import UIKit
 
 class MyExpDataManager: NSObject {
+    let appDele = UIApplication.shared.delegate as! AppDelegate
     
     static let sharedInstance = MyExpDataManager()
     
@@ -32,13 +33,13 @@ class MyExpDataManager: NSObject {
     //MARK: - util functions
     
     func showDate(date: Date?) -> String {
-        return (date ?? Date()).dateToText(formate: "yyyy-MM-dd, E")
+        return (date ?? Date()).dateToText(formate: "\(appDele.dateFormat), E")
     }
     
     func createParameters(data: Expense, actionCode: Int) -> [String: Any] {
         
-        let currentDate: String = Date().dateToText(formate: "yyyy-MM-dd")
-        let currentTime: String = Date().dateToText(formate: "HH:mm:ss")
+        let currentDate: String = Date().dateToText(formate: appDele.dateFormat)
+        let currentTime: String = Date().dateToText(formate: appDele.timeFormat)
         
         let id: String = data.id ?? "-1"
         let date: String = data.date ?? currentDate

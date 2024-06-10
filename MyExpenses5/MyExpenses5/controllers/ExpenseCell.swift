@@ -9,6 +9,7 @@
 import UIKit
 
 class ExpenseCell: UITableViewCell {
+    let appDele = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var cellVendorLabel: UILabel!
@@ -26,13 +27,15 @@ class ExpenseCell: UITableViewCell {
         self.cellPaymentLabel.text = data.payment ?? ""
         self.cellNotesLabel.text = data.note ?? ""
         
+        let displayTime = HelpingTools().timeIn12HourFormat(time: (data.time ?? ""))
+        
         if self.isForLookup == true {
+            let helpingTool = HelpingTools()
             let date = data.date ?? ""
-            let weekday = self.dayOfWeek(date: date)
-            self.cellTimeLabel.text = String(format: "( %@,  %@,  %@ )", date, weekday, (data.time ?? ""))
+            let displayDate = helpingTool.displayCurrentDate(date: helpingTool.convertTextToDate(dateStr: date))
+            self.cellTimeLabel.text = String(format: "( %@,  %@ )", displayDate, displayTime)
         }
         else {
-            let displayTime = timeIn12HourFormat(time: (data.time ?? ""))
             self.cellTimeLabel.text = String(format: "( time: %@ )", displayTime)
         }
         
@@ -41,26 +44,6 @@ class ExpenseCell: UITableViewCell {
         self.cellAmountLabel.text = HelpingTools().displayInUSCurrency(value: amountValue)
         
         self.innerView.backgroundColor = UIColor.systemGray6
-    }
-    
-    func dayOfWeek(date: String) -> String {
-        if date.count == 0 {
-            return ""
-        }
-        
-        let weekday = Date().textToDate(format: "yyyy-MM-dd", dateText: date).dateToText(formate: "EEE")
-        
-        return weekday
-    }
-    
-    func timeIn12HourFormat(time: String) -> String {
-        
-        if time.count == 0 {
-            return ""
-        }
-        
-        let timeIn12Hour = Date().textToDate(format: "HH:mm:ss", dateText: time).dateToText(formate: "hh:mm:ss a")
-        return timeIn12Hour
     }
     
     func colorForData() -> UIColor {

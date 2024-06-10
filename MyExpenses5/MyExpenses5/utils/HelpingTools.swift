@@ -9,6 +9,7 @@
 import UIKit
 
 class HelpingTools: NSObject {
+    let appDele = UIApplication.shared.delegate as! AppDelegate
     
     func displayInUSCurrency(value: Double) -> String {
         let currencyFormatter = NumberFormatter()
@@ -20,4 +21,33 @@ class HelpingTools: NSObject {
         return valueString
     }
     
+    //MARK: -
+    
+    func timeIn12HourFormat(time: String) -> String {
+        
+        if time.count == 0 {
+            return ""
+        }
+        let timeIn12Hour = Date().textToDate(format: appDele.timeFormat, dateText: time).dateToText(formate: "hh:mm:ss a")
+        return timeIn12Hour
+    }
+    
+    func convertTextToDate(dateStr: String) -> Date {
+        
+        if dateStr.count == 0 {
+            return Date()
+        }
+        return Date().textToDate(format: appDele.dateFormat, dateText: dateStr)
+    }
+    
+    func displayCurrentDate(date: Date) -> String {
+        return date.dateToText(formate: "MMM dd, yyyy  (EEE)")
+    }
+    
+    func dayOfWeek(date: String) -> String {
+        if date.count == 0 {
+            return ""
+        }
+        return Date().textToDate(format: appDele.dateFormat, dateText: date).dateToText(formate: "EEE")
+    }
 }

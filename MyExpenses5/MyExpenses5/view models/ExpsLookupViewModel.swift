@@ -9,6 +9,7 @@
 import UIKit
 
 class ExpsLookupViewModel: NSObject {
+    let appDele = UIApplication.shared.delegate as! AppDelegate
     
     var expenseLookupList: [Expense] = []
     
@@ -35,7 +36,7 @@ class ExpsLookupViewModel: NSObject {
         self.lookupDaysList.removeAll()
         self.lookupData.removeAll()
         
-        let defaultDate = Date().dateToText(formate: "yyyy-MM-dd")
+        let defaultDate = Date().dateToText(formate: appDele.dateFormat)
         
         for eachExp in self.expenseLookupList {
             let dayText = (eachExp.date ?? defaultDate).suffix(2)

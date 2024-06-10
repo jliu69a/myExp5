@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var vendorDisplayData: [String: AnyObject] = [:]
     
     var folder: String = "prods" //production use
+    
+    let dateFormat: String = "yyyy-MM-dd"
+    let timeFormat: String = "HH:mm:ss"
 
     var filmLanguagesList: [FilmSelection] = []
     var filmTypesList: [FilmSelection] = []

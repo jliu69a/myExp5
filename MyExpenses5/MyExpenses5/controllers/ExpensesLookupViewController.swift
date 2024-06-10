@@ -9,6 +9,7 @@
 import UIKit
 
 class ExpensesLookupViewController: UIViewController {
+    let appDele = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var lookupTitle: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -105,7 +106,7 @@ class ExpensesLookupViewController: UIViewController {
         //-- 1 : Sunday
         //-- 7 : Saturday
         let yearMonthDisplay = String(format: "%@-%@", lookupYear, lookupMonth)
-        let selectedDate = Date().textToDate(format: "yyyy-MM-dd", dateText: "\(yearMonthDisplay)-01")
+        let selectedDate = Date().textToDate(format: appDele.dateFormat, dateText: "\(yearMonthDisplay)-01")
         
         self.dayOfWeek = Calendar.current.component(.weekday, from: selectedDate)
         self.firstDayIndex = self.dayOfWeek - 1

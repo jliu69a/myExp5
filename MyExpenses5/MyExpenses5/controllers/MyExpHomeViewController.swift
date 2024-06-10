@@ -47,7 +47,7 @@ class MyExpHomeViewController: UIViewController {
         self.tableView.layer.borderWidth = 0.5
         
         self.amountLabel.text = viewModel.displayTotalAmount()
-        self.dateLabel.text = viewModel.displayCurrentDate(date: self.selectedDate)
+        self.dateLabel.text = HelpingTools().displayCurrentDate(date: self.selectedDate)
     }
     
     //MARK: - notification
@@ -173,7 +173,7 @@ extension MyExpHomeViewController: ExpsHomeViewModelDelegate {
         self.activityIndicator.stopAnimating()
         
         self.amountLabel.text = viewModel.displayTotalAmount()
-        self.dateLabel.text = viewModel.displayCurrentDate(date: self.selectedDate)
+        self.dateLabel.text = HelpingTools().displayCurrentDate(date: self.selectedDate)
     }
 }
 
