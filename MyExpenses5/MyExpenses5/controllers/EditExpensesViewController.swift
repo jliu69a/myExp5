@@ -16,6 +16,7 @@ protocol EditExpensesViewControllerDelegate: AnyObject {
 
 
 class EditExpensesViewController: UIViewController {
+    let appDele = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var priceTextLabel: UILabel!
     @IBOutlet weak var priceTextField: UITextField!
@@ -143,7 +144,7 @@ class EditExpensesViewController: UIViewController {
             self.displayDate()
         }
         else {
-            let dateStr = self.selectedExpense.date ?? Date().dateToText(formate: "yyyy-MM-dd")
+            let dateStr = self.selectedExpense.date ?? Date().dateToText(formate: appDele.dateFormat)
             self.changeDateButton.setTitle(dateStr, for: UIControl.State.normal)
             self.changeDateButton.setTitle(dateStr, for: UIControl.State.highlighted)
         }
@@ -151,8 +152,8 @@ class EditExpensesViewController: UIViewController {
     
     func displayDate() {
         
-        self.selectedExpense.date = self.selectedDate.dateToText(formate: "yyyy-MM-dd")
-        self.selectedExpense.time = self.selectedDate.dateToText(formate: "HH:mm:ss")
+        self.selectedExpense.date = self.selectedDate.dateToText(formate: appDele.dateFormat)
+        self.selectedExpense.time = self.selectedDate.dateToText(formate: appDele.timeFormat)
         
         self.changeDateButton.setTitle(self.selectedExpense.date, for: UIControl.State.normal)
         self.changeDateButton.setTitle(self.selectedExpense.date, for: UIControl.State.highlighted)
@@ -217,7 +218,7 @@ class EditExpensesViewController: UIViewController {
         self.selectedExpense.note = self.notesTextField.text ?? ""
         
         //-- get the current time
-        self.selectedExpense.time = Date().dateToText(formate: "HH:mm:ss")
+        self.selectedExpense.time = Date().dateToText(formate: appDele.timeFormat)
         
         self.delegate?.didChangeExpenseData(data: self.selectedExpense, selectedDate: self.selectedDate, isForNew: self.isForNew, isDateChanged: self.isDateChanged)
         self.navigationController?.popViewController(animated: true)

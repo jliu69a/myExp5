@@ -9,6 +9,7 @@
 import UIKit
 
 class PAndVLookupViewModel: NSObject {
+    let appDele = UIApplication.shared.delegate as! AppDelegate
     
     var lookupTitlesList: [String] = []
     var lookupData: [String: LookupModel] = [:]
@@ -77,7 +78,7 @@ class PAndVLookupViewModel: NSObject {
         if dateText.count == 0 {
             return ""
         }
-        return Date().textToDate(format: "yyyy-MM-dd", dateText: dateText).dateToText(formate: "MMMM")
+        return Date().textToDate(format: appDele.dateFormat, dateText: dateText).dateToText(formate: "MMMM")
     }
     
     

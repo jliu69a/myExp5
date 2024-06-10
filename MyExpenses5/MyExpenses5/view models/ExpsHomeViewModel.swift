@@ -56,10 +56,6 @@ extension ExpsHomeViewModel {
         return String(format: "Total: %@", displayAmount)
     }
     
-    func displayCurrentDate(date: Date) -> String {
-        return date.dateToText(formate: "MMM dd, yyyy  (EEE)")  //original: yyyy-MM-dd, EEE
-    }
-    
     //MARK: - api, query expense
     
     func loadingData(date: Date) {
@@ -202,8 +198,8 @@ extension ExpsHomeViewModel {
         
         //-- for the POST method, having problems with Alamofire
         
-        let currentDate: String = Date().dateToText(formate: "yyyy-MM-dd")
-        let currentTime: String = Date().dateToText(formate: "HH:mm:ss")
+        let currentDate: String = Date().dateToText(formate: appDele.dateFormat)
+        let currentTime: String = Date().dateToText(formate: appDele.timeFormat)
         
         let id: String = data.id ?? "-1"
         let date: String = data.date ?? currentDate
@@ -237,8 +233,8 @@ extension ExpsHomeViewModel {
         
         //-- for the GET method
         
-        let currentDate: String = Date().dateToText(formate: "yyyy-MM-dd")
-        let currentTime: String = Date().dateToText(formate: "HH:mm:ss")
+        let currentDate: String = Date().dateToText(formate: appDele.dateFormat)
+        let currentTime: String = Date().dateToText(formate: appDele.timeFormat)
         
         let id: String = data.id ?? "-1"
         let date: String = data.date ?? currentDate

@@ -11,6 +11,7 @@ import SwiftyJSON
 
 
 class DatasManager: NSObject {
+    let appDele = UIApplication.shared.delegate as! AppDelegate
     
     static let sharedInstance = DatasManager()
     
@@ -37,7 +38,7 @@ class DatasManager: NSObject {
     
     func myExpsData(selectedDate: Date, completion: @escaping  (Data)->()) {
         
-        let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
+        let dateStr: String = selectedDate.dateToText(formate: appDele.dateFormat)
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/preload_data.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
         //print("-> DatasManager, myExpsData(), URL : \(url)")
@@ -70,7 +71,7 @@ class DatasManager: NSObject {
     
     func myExpsWithDate(selectedDate: Date, completion: @escaping  (Any)->()) {
         
-        let dateStr: String = selectedDate.dateToText(formate: "yyyy-MM-dd")
+        let dateStr: String = selectedDate.dateToText(formate: appDele.dateFormat)
         let url: String = String(format: "http://www.mysohoplace.com/php_hdb/php_GL/%@/expense_by_date.php?date=%@", folder, dateStr)
         let connect: ConnectionsManager = ConnectionsManager()
         //print("-> DatasManager, myExpsWithDate(), URL : \(url)")
