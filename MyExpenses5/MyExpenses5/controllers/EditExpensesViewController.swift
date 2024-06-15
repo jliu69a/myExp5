@@ -145,8 +145,9 @@ class EditExpensesViewController: UIViewController {
         }
         else {
             let dateStr = self.selectedExpense.date ?? Date().dateToText(formate: appDele.dateFormat)
-            self.changeDateButton.setTitle(dateStr, for: UIControl.State.normal)
-            self.changeDateButton.setTitle(dateStr, for: UIControl.State.highlighted)
+            let displayDate = displayDate(dateStr: dateStr)
+            self.changeDateButton.setTitle(displayDate, for: UIControl.State.normal)
+            self.changeDateButton.setTitle(displayDate, for: UIControl.State.highlighted)
         }
     }
     
@@ -154,9 +155,17 @@ class EditExpensesViewController: UIViewController {
         
         self.selectedExpense.date = self.selectedDate.dateToText(formate: appDele.dateFormat)
         self.selectedExpense.time = self.selectedDate.dateToText(formate: appDele.timeFormat)
+        let displayDate = displayDate(dateStr: self.selectedExpense.date ?? "")
         
-        self.changeDateButton.setTitle(self.selectedExpense.date, for: UIControl.State.normal)
-        self.changeDateButton.setTitle(self.selectedExpense.date, for: UIControl.State.highlighted)
+        self.changeDateButton.setTitle(displayDate, for: UIControl.State.normal)
+        self.changeDateButton.setTitle(displayDate, for: UIControl.State.highlighted)
+    }
+    
+    private func displayDate(dateStr: String) -> String {
+        if dateStr.count == 0 {
+            return ""
+        }
+        return HelpingTools().displayCurrentDate(date: HelpingTools().convertTextToDate(dateStr: dateStr))
     }
     
     //MARK: - IB functiona
