@@ -116,7 +116,7 @@ class EditExpensesViewController: UIViewController {
         var title = ""
         
         if isFirstTime {
-            title = self.isForNew ? "select a payment" : String(format: "%@ (%@)", (self.selectedExpense.payment ?? ""), (self.selectedExpense.payment_id ?? "0"))
+            title = self.isForNew ? "Select a Payment" : String(format: "%@ (%@)", (self.selectedExpense.payment ?? ""), (self.selectedExpense.payment_id ?? "0"))
         }
         else {
             title = String(format: "%@ (%@)", (self.selectedExpense.payment ?? ""), (self.selectedExpense.payment_id ?? "0"))
@@ -129,7 +129,7 @@ class EditExpensesViewController: UIViewController {
         var title = ""
         
         if isFirstTime {
-            title = self.isForNew ? "select a vendor" : String(format: "%@ (%@)", (self.selectedExpense.vendor ?? ""), (self.selectedExpense.vendor_id ?? "0"))
+            title = self.isForNew ? "Select a Vendor" : String(format: "%@ (%@)", (self.selectedExpense.vendor ?? ""), (self.selectedExpense.vendor_id ?? "0"))
         }
         else {
             title = String(format: "%@ (%@)", (self.selectedExpense.vendor ?? ""), (self.selectedExpense.vendor_id ?? "0"))
