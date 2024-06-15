@@ -104,7 +104,8 @@ class MyExpHomeViewController: UIViewController {
     
     func showAddEditPage(model: Expense?) {
         
-        if let vc = MEStoryboard.home(MEHomePage.saveExp).vc as? EditExpensesViewController {
+        let storyboard = UIStoryboard(name: "expense", bundle: nil)
+        if let vc = storyboard.instantiateViewController(identifier: "EditExpensesViewController") as? EditExpensesViewController {
             vc.delegate = self
             vc.isForNew = (model == nil)
             vc.pageTitle = (model == nil) ? "Add" : "Edit"
