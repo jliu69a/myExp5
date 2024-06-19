@@ -37,7 +37,7 @@ class PAndVLookupViewController: UIViewController, SelectMonthAndYearViewControl
         
         self.title = isForPayment ? "Payments Lookup" : "Vendors Lookup"
         
-        selectedPAndVName = isForPayment ? "select a payment" : "select a vendor"
+        selectedPAndVName = isForPayment ? "Select a Payment" : "Select a Vendor"
         
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
