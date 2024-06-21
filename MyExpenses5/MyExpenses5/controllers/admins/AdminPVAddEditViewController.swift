@@ -27,6 +27,7 @@ class AdminPVAddEditViewController: UIViewController {
     var idValue: String = "0"
     var nameValue: String = ""
     var isForPayment: Bool = false
+    var pageTitle: String = ""
     
     var topHeaderVC: TopHeaderViewController? = nil
     
@@ -36,8 +37,9 @@ class AdminPVAddEditViewController: UIViewController {
         super.viewDidLoad()
         
         self.viewModel.delegate = self
+        pageTitle = self.isForPayment ? "Payment" : "Vendor"
         
-        self.title = self.isForPayment ? "Payment" : "Vendor"
+        self.title = pageTitle
         
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
@@ -50,8 +52,10 @@ class AdminPVAddEditViewController: UIViewController {
         self.idTextField.text = self.idValue
         self.nameTextField.text = self.nameValue
         
-        self.topHeaderVC?.changeTitle(title: (self.isForPayment ? "Payment" : "Vendor"))
+        self.topHeaderVC?.changeTitle(title: pageTitle)
         self.saveButton.layer.cornerRadius = 5
+        
+        setupTextFields()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,6 +64,24 @@ class AdminPVAddEditViewController: UIViewController {
         self.nameTextField.becomeFirstResponder()
     }
     
+    //MARK: - tool bar for text field
+    
+    func setupTextFields() {
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        toolbar.sizeToFit()
+        
+        idTextField.inputAccessoryView = toolbar
+        nameTextField.inputAccessoryView = toolbar
+    }
+
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
+    }
+
     //MARK: - IB actions
     
     @IBAction func gobackAction(_ sender: Any) {
