@@ -76,8 +76,28 @@ class EditExpensesViewController: UIViewController {
         self.selectVendorButton.layer.cornerRadius = 5
         self.changeDateButton.layer.cornerRadius = 5
         self.saveButton.layer.cornerRadius = 5
+        
+        setupTextFields()
     }
     
+    //MARK: - tool bar for text field
+    
+    func setupTextFields() {
+        let toolbar = UIToolbar()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        
+        toolbar.setItems([flexSpace, doneButton], animated: true)
+        toolbar.sizeToFit()
+        
+        priceTextField.inputAccessoryView = toolbar
+        notesTextField.inputAccessoryView = toolbar
+    }
+
+    @objc func doneButtonTapped() {
+        view.endEditing(true)
+    }
+
     //MARK: - title view
     
     func showTitleView() {
