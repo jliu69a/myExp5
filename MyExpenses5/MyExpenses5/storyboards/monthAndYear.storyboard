@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hl5-ty-ECc" userLabel="top nav view">
-                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Close" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBb-Ik-EBG" userLabel="close label">
                                         <rect key="frame" x="10" y="0.0" width="56" height="44"/>
@@ -145,10 +145,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cfb-G0-Pq1" userLabel="inner view">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEc-il-x1d" userLabel="selected date">
+                                        <rect key="frame" x="10" y="0.0" width="394" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="JSH-QT-lB0"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="aFw-me-fEM">
-                                        <rect key="frame" x="10" y="10" width="394" height="798"/>
+                                        <rect key="frame" x="10" y="35" width="394" height="769"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
                                             <outlet property="dataSource" destination="UfG-cZ-CQL" id="YhL-Wc-N28"/>
@@ -158,10 +167,13 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="aFw-me-fEM" firstAttribute="top" secondItem="Cfb-G0-Pq1" secondAttribute="top" constant="10" id="4jt-Bf-EFI"/>
+                                    <constraint firstItem="rEc-il-x1d" firstAttribute="leading" secondItem="Cfb-G0-Pq1" secondAttribute="leading" constant="10" id="0mw-dE-YJ3"/>
                                     <constraint firstItem="aFw-me-fEM" firstAttribute="leading" secondItem="Cfb-G0-Pq1" secondAttribute="leading" constant="10" id="CI0-5r-obs"/>
+                                    <constraint firstAttribute="trailing" secondItem="rEc-il-x1d" secondAttribute="trailing" constant="10" id="IWN-4a-C74"/>
                                     <constraint firstAttribute="bottom" secondItem="aFw-me-fEM" secondAttribute="bottom" constant="10" id="PPr-AL-mXX"/>
                                     <constraint firstAttribute="trailing" secondItem="aFw-me-fEM" secondAttribute="trailing" constant="10" id="gvf-sW-qHZ"/>
+                                    <constraint firstItem="rEc-il-x1d" firstAttribute="top" secondItem="Cfb-G0-Pq1" secondAttribute="top" id="hqQ-4A-vgy"/>
+                                    <constraint firstItem="aFw-me-fEM" firstAttribute="top" secondItem="rEc-il-x1d" secondAttribute="bottom" id="nWA-Eg-yyV"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -175,6 +187,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="selectedDateLabel" destination="rEc-il-x1d" id="vyC-rx-2Ne"/>
                         <outlet property="tableView" destination="aFw-me-fEM" id="tAi-Ct-lww"/>
                     </connections>
                 </viewController>
@@ -188,10 +201,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

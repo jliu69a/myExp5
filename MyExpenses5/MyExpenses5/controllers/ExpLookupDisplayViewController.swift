@@ -12,7 +12,9 @@ class ExpLookupDisplayViewController: UIViewController {
     
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var selectedDateLabel: UILabel!
     
+    var selectedDate = ""
     var myexpsList: [Expense] = []
     
     //MARK: - init
@@ -31,6 +33,8 @@ class ExpLookupDisplayViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        selectedDateLabel.text = "Date:  \(selectedDate)"
         
         self.tableView.layer.borderColor = UIColor.systemOrange.cgColor
         self.tableView.layer.borderWidth = 0.5
