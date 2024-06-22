@@ -128,11 +128,12 @@ class ExpensesLookupViewController: UIViewController {
     }
     
     func dataForSelectedDate(day: String) {
-        let modelsList = viewModel.lookupData[day] ?? [] //self.lookupData[day] ?? []
+        let modelsList = viewModel.lookupData[day] ?? []
         
         let storyboard = UIStoryboard(name: "monthAndYear", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "ExpLookupDisplayViewController") as? ExpLookupDisplayViewController {
             vc.myexpsList = modelsList
+            vc.selectedDate = "\(lookupMonthText) \(day), \(lookupYear)"
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
