@@ -235,11 +235,11 @@ class EditExpensesViewController: UIViewController {
         self.clearKeyboards()
         
         if self.selectedExpense.payment_id == nil {
-            MyExpDataManager.sharedInstance.showAlert(title: "Error", message: "Need to select a payment.", vc: self)
+            HelpingTools().showAlert(title: "Need to select a payment.", message: nil, controller: self)
             return
         }
         if self.selectedExpense.vendor_id == nil {
-            MyExpDataManager.sharedInstance.showAlert(title: "Error", message: "Need to select a vendor.", vc: self)
+            HelpingTools().showAlert(title: "Need to select a vendor.", message: nil, controller: self)
             return
         }
         

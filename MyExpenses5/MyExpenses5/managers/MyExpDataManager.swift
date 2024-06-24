@@ -69,13 +69,6 @@ class MyExpDataManager: NSObject {
         return parameters
     }
     
-    func showAlert(title: String, message: String, vc: UIViewController) {
-        
-        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil) )
-        vc.present(alert, animated: true, completion: nil)
-    }
-    
     func parseVendorsArray() {
         
         self.vendorDisplayTitles.removeAll()

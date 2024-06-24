@@ -50,4 +50,12 @@ class HelpingTools: NSObject {
         }
         return Date().textToDate(format: appDele.dateFormat, dateText: date).dateToText(formate: "EEE")
     }
+    
+    //MARK: -
+    
+    func showAlert(title: String?, message: String?, controller: UIViewController) {
+        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil) )
+        controller.present(alert, animated: true, completion: nil)
+    }
 }

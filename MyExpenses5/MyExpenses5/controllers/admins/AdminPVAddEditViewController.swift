@@ -90,11 +90,23 @@ class AdminPVAddEditViewController: UIViewController {
     }
     
     @IBAction func saveAction(_ sender: Any) {
-        self.clearKeyboard()
-        
-        //-- save action here.
-        self.nameValue = self.nameTextField.text ?? ""
-        self.viewModel.savePaymentsAndVendors(id: self.idValue, name: self.nameValue, isForPayment: self.isForPayment, isEdit: true)
+        if let title = nameTextField.text {
+            if title.isEmpty {
+                showErrorMessage()
+            } else {
+                //-- save action here.
+                self.clearKeyboard()
+                self.nameValue = title
+                self.viewModel.savePaymentsAndVendors(id: self.idValue, name: self.nameValue, isForPayment: self.isForPayment, isEdit: true)
+            }
+        } else {
+            showErrorMessage()
+        }
+    }
+    
+    private func showErrorMessage() {
+        let errorText = "\(isForPayment ? "Payment" : "Vendor") name cannot be empty."
+        HelpingTools().showAlert(title: errorText, message: nil, controller: self)
     }
     
     func closePage() {

@@ -63,20 +63,13 @@ class PAndVLookupViewController: UIViewController, SelectMonthAndYearViewControl
         self.lookupTitleLabel.text = isForPayment ? "Payment" : "Vendor"
     }
     
-    func showAlert(title: String?, message: String?) {
-        
-        let alert: UIAlertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil) )
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     //MARK: - IB functions
     
     @IBAction func lookupAction(_ sender: Any) {
         
         if self.selectedPAndVId == "0" {
             let title = self.isForPayment ? "Need to select a payment." : "Need to select a vendor."
-            showAlert(title: title, message: nil)
+            HelpingTools().showAlert(title: title, message: nil, controller: self)
             return
         }
         
