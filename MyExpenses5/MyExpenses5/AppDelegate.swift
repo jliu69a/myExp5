@@ -11,7 +11,21 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var paymentsList: [Payment] = []
+    var vendorsList: [Vendor] = []
+    var top10sList: [Vendor] = []
+    
+    var vendorDisplayTitles: [String] = []
+    var vendorDisplayData: [String: AnyObject] = [:]
+    
+    var folder: String = "homee" //production use
+    
+    let dateFormat: String = "yyyy-MM-dd"
+    let timeFormat: String = "HH:mm:ss"
 
+    var filmLanguagesList: [FilmSelection] = []
+    var filmTypesList: [FilmSelection] = []
+    var filmGenresList: [FilmSelection] = []
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
