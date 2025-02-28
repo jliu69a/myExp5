@@ -141,6 +141,7 @@ extension AdminHomeViewController: UITableViewDelegate {
         /*
          * section 0: Setting
          * section 1: Reports
+         * section 2: Misc
          */
         
         switch indexPath.section {
@@ -161,6 +162,12 @@ extension AdminHomeViewController: UITableViewDelegate {
             }
             else if indexPath.row == 2 {
                 self.showExpenseLookup()
+            }
+            break
+        case 2:
+            if indexPath.row == 0 {
+                //self.showVendorsLookup()
+                print("- show current location ...")
             }
             break
         default:
