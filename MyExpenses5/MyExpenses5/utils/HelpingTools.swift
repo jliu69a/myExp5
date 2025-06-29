@@ -58,4 +58,19 @@ class HelpingTools: NSObject {
         alert.addAction( UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil) )
         controller.present(alert, animated: true, completion: nil)
     }
+    
+    //MARK: -
+    
+    func celsiusVsFahrenheit(value: Double, forCtoF: Bool) -> Double {
+        var results: Double = 0
+        
+        if forCtoF {
+            // Celsius to Fahrenheit : F = (C * 9/5) + 32
+            results = (value * Double(9) / Double(5)) + Double(32)
+        } else {
+            // Fahrenheit to Celsius : C = (F - 32) * 5/9
+            results = (value - Double(32)) * Double(5) / Double(9)
+        }
+        return results
+    }
 }

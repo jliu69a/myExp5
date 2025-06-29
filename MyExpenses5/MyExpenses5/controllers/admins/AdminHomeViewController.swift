@@ -94,6 +94,14 @@ class AdminHomeViewController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    func showUnitsConversion() {
+        
+        let storyboard = UIStoryboard(name: "unitsConvert", bundle: nil)
+        if let vc = storyboard.instantiateViewController(identifier: "UnitsConvertHomeViewController") as? UnitsConvertHomeViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 //MARK: -
@@ -166,7 +174,9 @@ extension AdminHomeViewController: UITableViewDelegate {
             break
         case 2:
             if indexPath.row == 0 {
-                //self.showVendorsLookup()
+                self.showUnitsConversion()
+            }
+            else if indexPath.row == 1 {
                 print("- misc page, to show current location")
             }
             break
