@@ -2,74 +2,163 @@
 //  UnitsConvertHomeViewController.swift
 //  MyExpenses5
 //
-//  Created by Johnson Liu on 6/29/25.
-//  Copyright © 2025 Home Office. All rights reserved.
+//  Created by Johnson Liu on 1/5/26.
+//  Copyright © 2026 Home Office. All rights reserved.
 //
 
 import UIKit
 
 class UnitsConvertHomeViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var innerView: UIView!
+    @IBOutlet weak var unitsSegment: UISegmentedControl!
     
-    let rowsList = ["Celsius vs Fahrenheit", "Kilometer vs Miles", "Litters vs Gallons"]
+    @IBOutlet weak var originalValueLabel: UILabel!
+    @IBOutlet weak var originalValueTextField: UITextField!
+    
+    @IBOutlet weak var convertedValueLabel: UILabel!
+    @IBOutlet weak var convertedValueTextField: UITextField!
+    
+    @IBOutlet weak var convertToImperialButton: UIButton!
+    @IBOutlet weak var convertToSIButton: UIButton!
+    @IBOutlet weak var resetValuesButton: UIButton!
+    
+    var selectedUnitsCode: Int = UnitsConvertData.sharedInstance.kForTemperature
+    var isFromSI: Bool = true
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = "Units Convert"
         
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "CellId")
+        self.unitsSegment.addTarget(self, action: #selector(segmentedControlValueChanged(_:)), for: .valueChanged)
+        self.unitsSegment.selectedSegmentIndex = 0
+        self.selectedUnitsCode = 1
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.tableView.layer.borderColor = UIColor.systemOrange.cgColor
-        self.tableView.layer.borderWidth = 0.5
-    }
-}
-
-//MARK: -
-
-extension UnitsConvertHomeViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rowsList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.innerView.layer.borderColor = UIColor.black.cgColor
+        self.innerView.layer.borderWidth = 0.5
         
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "CellId") else {
-            return UITableViewCell()
+        self.convertToImperialButton.layer.cornerRadius = 20.0
+        self.convertToImperialButton.clipsToBounds = true
+        
+        self.convertToSIButton.layer.cornerRadius = 20.0
+        self.convertToSIButton.clipsToBounds = true
+        
+        self.resetValuesButton.layer.cornerRadius = 20.0
+        self.resetValuesButton.clipsToBounds = true
+        
+        if #available(iOS 13.0, *) {
+            self.unitsSegment.backgroundColor = UIColor.systemGray6
+            self.unitsSegment.selectedSegmentTintColor = UIColor.systemBlue
+            
+            self.unitsSegment.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+            self.unitsSegment.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
+        }
+        else {
+            self.unitsSegment.tintColor = UIColor.systemBlue
         }
         
-        cell.textLabel!.text = rowsList[indexPath.row]
-        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-        return cell
+        self.displayReset()
+        self.changeDisplay()
     }
     
-}
-
-extension UnitsConvertHomeViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func clearKeyboard() {
+        self.originalValueTextField.resignFirstResponder()
+        self.convertedValueTextField.resignFirstResponder()
+    }
+    
+    func displayReset() {
+        self.originalValueTextField.text = ""
+        self.convertedValueTextField.text = ""
+    }
+    
+    func changeDisplay() {
+        let convertManager = UnitsConvertManager()
         
-        if indexPath.row == 0 {
-            let storyboard = UIStoryboard(name: "unitsConvert", bundle: nil)
-            if let vc = storyboard.instantiateViewController(identifier: "CelsiusVsFahrenheitViewController") as? CelsiusVsFahrenheitViewController {
-                self.navigationController?.pushViewController(vc, animated: true)
+        let originalValueTitle: String = convertManager.titleForOriginalValue(isFromSI: self.isFromSI, selectedUnitCode: self.selectedUnitsCode)
+        let convertedValueTitle: String = convertManager.titleForConvertedValue(isFromSI: self.isFromSI, selectedUnitCode: self.selectedUnitsCode)
+        
+        self.originalValueLabel.text = String(format: "from %@:", originalValueTitle)
+        self.convertedValueLabel.text = String(format: "to %@:", convertedValueTitle)
+        
+        self.convertedValueTextField.text = ""
+    }
+    
+    func convertBetweenUnits() {
+        let convertManager = UnitsConvertManager()
+        let originalText: String = self.originalValueTextField.text ?? "0"
+        
+        let convertedOriginalValue: Double? = Double(originalText)
+        if convertedOriginalValue == nil {
+            self.originalValueTextField.text = String(format: "%0.0f", Double(0))
+        }
+        var originalValue: Double = convertedOriginalValue ?? 0
+        
+        if self.selectedUnitsCode == UnitsConvertData.sharedInstance.kForLength || self.selectedUnitsCode == UnitsConvertData.sharedInstance.kForVolume {
+            
+            if originalValue < Double(0) {
+                originalValue = originalValue * Double(-1)
+                self.originalValueTextField.text = String(format: "%f", originalValue)
             }
         }
         
+        let convertedValue: Double = convertManager.convertValue(originalValue: originalValue, isFromSI: self.isFromSI, selectedUnitCode: self.selectedUnitsCode)
+        let displayConvertedValue: String = String(format: "%f", convertedValue)
+        self.convertedValueTextField.text = displayConvertedValue
+    }
+    
+    
+    @IBAction func convertToImperialAction(_ sender: Any) {
+        self.clearKeyboard()
+        self.isFromSI = true
+        self.changeDisplay()
+        self.convertBetweenUnits()
+    }
+    
+    @IBAction func convertToSIAction(_ sender: Any) {
+        self.clearKeyboard()
+        self.isFromSI = false
+        self.changeDisplay()
+        self.convertBetweenUnits()
+    }
+    
+    @IBAction func resetValuesAction(_ sender: Any) {
+        self.clearKeyboard()
+        self.displayReset()
+    }
+    
+    
+    @objc func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        self.clearKeyboard()
+        
+        if sender.selectedSegmentIndex == 0 {
+            self.selectedUnitsCode = UnitsConvertData.sharedInstance.kForTemperature
+        }
+        else if sender.selectedSegmentIndex == 1 {
+            self.selectedUnitsCode = UnitsConvertData.sharedInstance.kForLength
+        }
+        else if sender.selectedSegmentIndex == 2 {
+            self.selectedUnitsCode = UnitsConvertData.sharedInstance.kForVolume
+        }
+        self.displayReset()
+        self.changeDisplay()
+    }
+}
+
+
+extension UnitsConvertHomeViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.clearKeyboard()
+        return true
     }
 }
