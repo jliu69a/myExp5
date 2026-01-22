@@ -58,6 +58,7 @@
 		FE8260542894AE52007B3CEA /* SharedHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8260532894AE52007B3CEA /* SharedHelper.swift */; };
 		FEA1200F289AB7C800E360A0 /* chooseDate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA1200E289AB7C800E360A0 /* chooseDate.storyboard */; };
 		FEA12011289AB82D00E360A0 /* ChooseDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA12010289AB82D00E360A0 /* ChooseDateViewController.swift */; };
+		FEA9A8FA2F21B478002BFAE5 /* maps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEA9A8F92F21B478002BFAE5 /* maps.storyboard */; };
 		FEB3255A25F43D6C002B20A4 /* VendorReferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3255925F43D6C002B20A4 /* VendorReferencesViewController.swift */; };
 		FEB3255D25F44144002B20A4 /* VendorReferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB3255C25F44144002B20A4 /* VendorReferenceCell.swift */; };
 		FEB62EF5261A43F100725848 /* FilmsHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB62EF4261A43F100725848 /* FilmsHomeViewController.swift */; };
@@ -70,6 +71,10 @@
 		FED84B0C2E11A291005B7879 /* CelsiusVsFahrenheitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED84B0B2E11A291005B7879 /* CelsiusVsFahrenheitViewController.swift */; };
 		FEE35C5A26C831920081BAD9 /* SharedHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */; };
 		FEE35C5C26C831B10081BAD9 /* sharedHeader.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */; };
+		FEE636C02F1D8CAA004F5B94 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE636BF2F1D8CAA004F5B94 /* MapViewController.swift */; };
+		FEE636C22F1D8CD5004F5B94 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE636C12F1D8CD5004F5B94 /* MapKit.framework */; };
+		FEE636C42F1D8CE9004F5B94 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE636C32F1D8CE9004F5B94 /* CoreLocation.framework */; };
+		FEE636C62F1D9011004F5B94 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE636C52F1D9011004F5B94 /* CustomAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +145,7 @@
 		FE8260532894AE52007B3CEA /* SharedHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelper.swift; sourceTree = "<group>"; };
 		FEA1200E289AB7C800E360A0 /* chooseDate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = chooseDate.storyboard; sourceTree = "<group>"; };
 		FEA12010289AB82D00E360A0 /* ChooseDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseDateViewController.swift; sourceTree = "<group>"; };
+		FEA9A8F92F21B478002BFAE5 /* maps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = maps.storyboard; sourceTree = "<group>"; };
 		FEB3255925F43D6C002B20A4 /* VendorReferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorReferencesViewController.swift; sourceTree = "<group>"; };
 		FEB3255C25F44144002B20A4 /* VendorReferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorReferenceCell.swift; sourceTree = "<group>"; };
 		FEB62EF4261A43F100725848 /* FilmsHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsHomeViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +158,10 @@
 		FED84B0B2E11A291005B7879 /* CelsiusVsFahrenheitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelsiusVsFahrenheitViewController.swift; sourceTree = "<group>"; };
 		FEE35C5926C831920081BAD9 /* SharedHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHeaderViewController.swift; sourceTree = "<group>"; };
 		FEE35C5B26C831B10081BAD9 /* sharedHeader.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = sharedHeader.storyboard; sourceTree = "<group>"; };
+		FEE636BF2F1D8CAA004F5B94 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		FEE636C12F1D8CD5004F5B94 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FEE636C32F1D8CE9004F5B94 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FEE636C52F1D9011004F5B94 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +169,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEE636C42F1D8CE9004F5B94 /* CoreLocation.framework in Frameworks */,
+				FEE636C22F1D8CD5004F5B94 /* MapKit.framework in Frameworks */,
 				94DAA3E2EE9B5FAC9135EB8D /* Pods_MyExpenses5.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +188,8 @@
 		09B7087C37D9605A6AC9F57F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FEE636C32F1D8CE9004F5B94 /* CoreLocation.framework */,
+				FEE636C12F1D8CD5004F5B94 /* MapKit.framework */,
 				95771C156CEDF73246F166A0 /* Pods_MyExpenses5.framework */,
 			);
 			name = Frameworks;
@@ -228,6 +242,7 @@
 				FE0209CA2AAE52B70015AA17 /* PAndVLookupViewModel.swift */,
 				FE5858E5273477EF00542779 /* ExpsLookupViewModel.swift */,
 				FE8260532894AE52007B3CEA /* SharedHelper.swift */,
+				FEE636C52F1D9011004F5B94 /* CustomAnnotation.swift */,
 			);
 			path = "view models";
 			sourceTree = "<group>";
@@ -284,6 +299,7 @@
 				5A8F15AB24D4C54500B57A9B /* monthAndYear.storyboard */,
 				FEA1200E289AB7C800E360A0 /* chooseDate.storyboard */,
 				FED84B052E1193EA005B7879 /* unitsConvert.storyboard */,
+				FEA9A8F92F21B478002BFAE5 /* maps.storyboard */,
 			);
 			path = storyboards;
 			sourceTree = "<group>";
@@ -314,6 +330,7 @@
 				FEB3255C25F44144002B20A4 /* VendorReferenceCell.swift */,
 				FED84B072E11944E005B7879 /* UnitsConvertHomeViewController.swift */,
 				FED84B0B2E11A291005B7879 /* CelsiusVsFahrenheitViewController.swift */,
+				FEE636BF2F1D8CAA004F5B94 /* MapViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -478,6 +495,7 @@
 				5A90E45F24E05E84005C42A3 /* ExpLookupCell.xib in Resources */,
 				5A97C78024C12E050019E2B4 /* Main.storyboard in Resources */,
 				FEE35C5C26C831B10081BAD9 /* sharedHeader.storyboard in Resources */,
+				FEA9A8FA2F21B478002BFAE5 /* maps.storyboard in Resources */,
 				FE329FC0261A1C3C0092BFAC /* FilmsCell.xib in Resources */,
 				FED84B062E1193EA005B7879 /* unitsConvert.storyboard in Resources */,
 				5A8BAAB424C33EC50033B46A /* pandv.storyboard in Resources */,
@@ -556,6 +574,7 @@
 				FE5858E6273477EF00542779 /* ExpsLookupViewModel.swift in Sources */,
 				FEB62EF5261A43F100725848 /* FilmsHomeViewController.swift in Sources */,
 				FED84B0C2E11A291005B7879 /* CelsiusVsFahrenheitViewController.swift in Sources */,
+				FEE636C02F1D8CAA004F5B94 /* MapViewController.swift in Sources */,
 				FE8260542894AE52007B3CEA /* SharedHelper.swift in Sources */,
 				FE329FBF261A1C3C0092BFAC /* FilmsCell.swift in Sources */,
 				5A97C77D24C12E050019E2B4 /* ViewController.swift in Sources */,
@@ -583,6 +602,7 @@
 				5A87AB9224C134C7009792A1 /* ExpenseCell.swift in Sources */,
 				5AF26FC224CB86380042DE15 /* AdminHomeViewController.swift in Sources */,
 				5A3A578F256951710033EDAB /* AdminHomeViewModel.swift in Sources */,
+				FEE636C62F1D9011004F5B94 /* CustomAnnotation.swift in Sources */,
 				5A97C77924C12E050019E2B4 /* AppDelegate.swift in Sources */,
 				5A072FD524DEFA14009DA0A4 /* LookupModel.swift in Sources */,
 				5A97C77B24C12E050019E2B4 /* SceneDelegate.swift in Sources */,

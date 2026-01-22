@@ -102,6 +102,14 @@ class AdminHomeViewController: UIViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    func showMyMaps() {
+        
+        let storyboard = UIStoryboard(name: "maps", bundle: nil)
+        if let vc = storyboard.instantiateViewController(identifier: "MapViewController") as? MapViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 //MARK: -
@@ -177,7 +185,7 @@ extension AdminHomeViewController: UITableViewDelegate {
                 self.showUnitsConversion()
             }
             else if indexPath.row == 1 {
-                print("- misc page, to show current location")
+                self.showMyMaps()
             }
             break
         default:
