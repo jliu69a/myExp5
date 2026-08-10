@@ -89,10 +89,12 @@ class AdminHomeViewController: UIViewController {
     
     func showExpenseLookup() {
         
-        let storyboard = UIStoryboard(name: "expense", bundle: nil)
-        if let vc = storyboard.instantiateViewController(identifier: "ExpsLookupSelectViewController") as? ExpsLookupSelectViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        HelpingTools().showAlert(title: "Notices", message: "This page is under construction now.  Please come back later on", controller: self)
+        
+//        let storyboard = UIStoryboard(name: "expense", bundle: nil)
+//        if let vc = storyboard.instantiateViewController(identifier: "ExpsLookupSelectViewController") as? ExpsLookupSelectViewController {
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
     }
     
     func showUnitsConversion() {

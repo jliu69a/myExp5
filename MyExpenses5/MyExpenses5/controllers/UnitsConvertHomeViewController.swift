@@ -70,6 +70,9 @@ extension UnitsConvertHomeViewController: UITableViewDelegate {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
+        else {
+            HelpingTools().showAlert(title: "Notices", message: "This page is under construction now.  Please come back later on", controller: self)
+        }
         
     }
 }
